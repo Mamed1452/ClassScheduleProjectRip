@@ -2,6 +2,12 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppCommonModule } from '@app/shared/common/app-common.module';
+import { AssigningUniversityMajorToClassroomBuildingsComponent } from './assigningUniversityMajorToClassroomBuildings/assigningUniversityMajorToClassroomBuildings/assigningUniversityMajorToClassroomBuildings.component';
+import { ViewAssigningUniversityMajorToClassroomBuildingModalComponent } from './assigningUniversityMajorToClassroomBuildings/assigningUniversityMajorToClassroomBuildings/view-assigningUniversityMajorToClassroomBuilding-modal.component';
+import { CreateOrEditAssigningUniversityMajorToClassroomBuildingModalComponent } from './assigningUniversityMajorToClassroomBuildings/assigningUniversityMajorToClassroomBuildings/create-or-edit-assigningUniversityMajorToClassroomBuilding-modal.component';
+import { AssigningUniversityMajorToClassroomBuildingUniversityMajorLookupTableModalComponent } from './assigningUniversityMajorToClassroomBuildings/assigningUniversityMajorToClassroomBuildings/assigningUniversityMajorToClassroomBuilding-universityMajor-lookup-table-modal.component';
+import { AssigningUniversityMajorToClassroomBuildingClassroomBuildingLookupTableModalComponent } from './assigningUniversityMajorToClassroomBuildings/assigningUniversityMajorToClassroomBuildings/assigningUniversityMajorToClassroomBuilding-classroomBuilding-lookup-table-modal.component';
+
 import { UniversityDepartmentsComponent } from './universityDepartments/universityDepartments/universityDepartments.component';
 import { ViewUniversityDepartmentModalComponent } from './universityDepartments/universityDepartments/view-universityDepartment-modal.component';
 import { CreateOrEditUniversityDepartmentModalComponent } from './universityDepartments/universityDepartments/create-or-edit-universityDepartment-modal.component';
@@ -67,6 +73,12 @@ NgxBootstrapDatePickerConfigService.registerNgxBootstrapDatePickerLocales();
         PopoverModule.forRoot()
     ],
     declarations: [
+		AssigningUniversityMajorToClassroomBuildingsComponent,
+
+		ViewAssigningUniversityMajorToClassroomBuildingModalComponent,
+		CreateOrEditAssigningUniversityMajorToClassroomBuildingModalComponent,
+    AssigningUniversityMajorToClassroomBuildingUniversityMajorLookupTableModalComponent,
+    AssigningUniversityMajorToClassroomBuildingClassroomBuildingLookupTableModalComponent,
 		UniversityDepartmentsComponent,
 		ViewUniversityDepartmentModalComponent,
 		CreateOrEditUniversityDepartmentModalComponent,

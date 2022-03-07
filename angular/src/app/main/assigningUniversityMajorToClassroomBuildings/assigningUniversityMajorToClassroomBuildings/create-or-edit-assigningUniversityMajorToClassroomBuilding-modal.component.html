@@ -1,0 +1,167 @@
+﻿<div
+    bsModal
+    #createOrEditModal="bs-modal"
+    class="modal fade"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="createOrEditModal"
+    aria-hidden="true"
+    [config]="{ backdrop: 'static' }"
+>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form
+                *ngIf="active"
+                #assigningUniversityMajorToClassroomBuildingForm="ngForm"
+                novalidate
+                (ngSubmit)="save()"
+                autocomplete="off"
+            >
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <span *ngIf="assigningUniversityMajorToClassroomBuilding.id">
+                            {{ l('EditAssigningUniversityMajorToClassroomBuilding') }}
+                        </span>
+                        <span *ngIf="!assigningUniversityMajorToClassroomBuilding.id">
+                            {{ l('CreateNewAssigningUniversityMajorToClassroomBuilding') }}
+                        </span>
+                    </h4>
+                    <button type="button" class="close" (click)="close()" aria-label="Close" [disabled]="saving">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group m-form__group">
+                        <label for="UniversityMajorUniversityMajorName">{{ l('UniversityMajor') }}</label>
+                        <div class="input-group">
+                            <input
+                                class="form-control"
+                                id="UniversityMajorUniversityMajorName"
+                                name="universityMajorUniversityMajorName"
+                                [(ngModel)]="universityMajorUniversityMajorName"
+                                type="text"
+                                disabled
+                            />
+                            <div class="input-group-append">
+                                <button
+                                    class="btn btn-primary blue"
+                                    (click)="openSelectUniversityMajorModal()"
+                                    type="button"
+                                >
+                                    <i class="fa fa-search"></i>
+                                    {{ l('Pick') }}
+                                </button>
+                            </div>
+                            <div class="input-group-prepend">
+                                <button
+                                    class="btn btn-danger btn-icon"
+                                    type="button"
+                                    (click)="setUniversityMajorIdNull()"
+                                >
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <input
+                        class="form-control"
+                        name="assigningUniversityMajorToClassroomBuilding.universityMajorId"
+                        [(ngModel)]="assigningUniversityMajorToClassroomBuilding.universityMajorId"
+                        type="text"
+                        required
+                        hidden
+                    />
+
+                    <div class="form-group m-form__group">
+                        <label for="ClassroomBuildingClassroomBuildingName">{{ l('ClassroomBuilding') }}</label>
+                        <div class="input-group">
+                            <input
+                                class="form-control"
+                                id="ClassroomBuildingClassroomBuildingName"
+                                name="classroomBuildingClassroomBuildingName"
+                                [(ngModel)]="classroomBuildingClassroomBuildingName"
+                                type="text"
+                                disabled
+                            />
+                            <div class="input-group-append">
+                                <button
+                                    class="btn btn-primary blue"
+                                    (click)="openSelectClassroomBuildingModal()"
+                                    type="button"
+                                >
+                                    <i class="fa fa-search"></i>
+                                    {{ l('Pick') }}
+                                </button>
+                            </div>
+                            <div class="input-group-prepend">
+                                <button
+                                    class="btn btn-danger btn-icon"
+                                    type="button"
+                                    (click)="setClassroomBuildingIdNull()"
+                                >
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <input
+                        class="form-control"
+                        name="assigningUniversityMajorToClassroomBuilding.classroomBuildingId"
+                        [(ngModel)]="assigningUniversityMajorToClassroomBuilding.classroomBuildingId"
+                        type="text"
+                        required
+                        hidden
+                    />
+
+                    <div class="form-group">
+                        <label
+                            for="AssigningUniversityMajorToClassroomBuilding_MaximumRestrictionsOnUsingClassroomsAtTheSameTime"
+                        >
+                            {{ l('MaximumRestrictionsOnUsingClassroomsAtTheSameTime') }}
+                        </label>
+                        <input
+                            type="number"
+                            #AssigningUniversityMajorToClassroomBuilding_MaximumRestrictionsOnUsingClassroomsAtTheSameTime="ngModel"
+                            id="AssigningUniversityMajorToClassroomBuilding_MaximumRestrictionsOnUsingClassroomsAtTheSameTime"
+                            class="form-control"
+                            [(ngModel)]="
+                                assigningUniversityMajorToClassroomBuilding.maximumRestrictionsOnUsingClassroomsAtTheSameTime
+                            "
+                            name="MaximumRestrictionsOnUsingClassroomsAtTheSameTime"
+                            min="1"
+                            max="300"
+                        />
+                        <validation-messages
+                            [formCtrl]="
+                                AssigningUniversityMajorToClassroomBuilding_MaximumRestrictionsOnUsingClassroomsAtTheSameTime
+                            "
+                        ></validation-messages>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button [disabled]="saving" type="button" class="btn btn-default" (click)="close()">
+                        {{ l('Cancel') }}
+                    </button>
+                    <button
+                        type="submit"
+                        class="btn btn-primary blue"
+                        [disabled]="!assigningUniversityMajorToClassroomBuildingForm.form.valid"
+                        [buttonBusy]="saving"
+                        [busyText]="l('SavingWithThreeDot')"
+                    >
+                        <i class="fa fa-save"></i>
+                        <span>{{ l('Save') }}</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <assigningUniversityMajorToClassroomBuildingUniversityMajorLookupTableModal
+        #assigningUniversityMajorToClassroomBuildingUniversityMajorLookupTableModal
+        (modalSave)="getNewUniversityMajorId()"
+    ></assigningUniversityMajorToClassroomBuildingUniversityMajorLookupTableModal>
+    <assigningUniversityMajorToClassroomBuildingClassroomBuildingLookupTableModal
+        #assigningUniversityMajorToClassroomBuildingClassroomBuildingLookupTableModal
+        (modalSave)="getNewClassroomBuildingId()"
+    ></assigningUniversityMajorToClassroomBuildingClassroomBuildingLookupTableModal>
+</div>

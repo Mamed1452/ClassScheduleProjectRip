@@ -30,6 +30,11 @@ namespace Mohajer.ClassScheduleProject.Authorization
 
             var pages = context.GetPermissionOrNull(AppPermissions.Pages) ?? context.CreatePermission(AppPermissions.Pages, L("Pages"));
 
+            var assigningUniversityMajorToClassroomBuildings = pages.CreateChildPermission(AppPermissions.Pages_AssigningUniversityMajorToClassroomBuildings, L("AssigningUniversityMajorToClassroomBuildings"), multiTenancySides: MultiTenancySides.Tenant);
+            assigningUniversityMajorToClassroomBuildings.CreateChildPermission(AppPermissions.Pages_AssigningUniversityMajorToClassroomBuildings_Create, L("CreateNewAssigningUniversityMajorToClassroomBuilding"), multiTenancySides: MultiTenancySides.Tenant);
+            assigningUniversityMajorToClassroomBuildings.CreateChildPermission(AppPermissions.Pages_AssigningUniversityMajorToClassroomBuildings_Edit, L("EditAssigningUniversityMajorToClassroomBuilding"), multiTenancySides: MultiTenancySides.Tenant);
+            assigningUniversityMajorToClassroomBuildings.CreateChildPermission(AppPermissions.Pages_AssigningUniversityMajorToClassroomBuildings_Delete, L("DeleteAssigningUniversityMajorToClassroomBuilding"), multiTenancySides: MultiTenancySides.Tenant);
+
             var universityDepartments = pages.CreateChildPermission(AppPermissions.Pages_UniversityDepartments, L("UniversityDepartments"), multiTenancySides: MultiTenancySides.Tenant);
             universityDepartments.CreateChildPermission(AppPermissions.Pages_UniversityDepartments_Create, L("CreateNewUniversityDepartment"), multiTenancySides: MultiTenancySides.Tenant);
             universityDepartments.CreateChildPermission(AppPermissions.Pages_UniversityDepartments_Edit, L("EditUniversityDepartment"), multiTenancySides: MultiTenancySides.Tenant);

@@ -1,4 +1,6 @@
-﻿using Mohajer.ClassScheduleProject.CentralUnit.UniversityDepartments.Dtos;
+﻿using Mohajer.ClassScheduleProject.CentralUnit.AssigningUniversityMajorToClassroomBuildings.Dtos;
+using Mohajer.ClassScheduleProject.CentralUnit.AssigningUniversityMajorToClassroomBuildings;
+using Mohajer.ClassScheduleProject.CentralUnit.UniversityDepartments.Dtos;
 using Mohajer.ClassScheduleProject.CentralUnit.UniversityDepartments;
 using Mohajer.ClassScheduleProject.CentralUnit.UniversityMajors.Dtos;
 using Mohajer.ClassScheduleProject.CentralUnit.UniversityMajors;
@@ -60,6 +62,8 @@ namespace Mohajer.ClassScheduleProject
     {
         public static void CreateMappings(IMapperConfigurationExpression configuration)
         {
+            configuration.CreateMap<CreateOrEditAssigningUniversityMajorToClassroomBuildingDto, AssigningUniversityMajorToClassroomBuilding>().ReverseMap();
+            configuration.CreateMap<AssigningUniversityMajorToClassroomBuildingDto, AssigningUniversityMajorToClassroomBuilding>().ReverseMap();
             configuration.CreateMap<CreateOrEditUniversityDepartmentDto, UniversityDepartment>().ReverseMap();
             configuration.CreateMap<UniversityDepartmentDto, UniversityDepartment>().ReverseMap();
             configuration.CreateMap<CreateOrEditUniversityMajorDto, UniversityMajor>().ReverseMap();

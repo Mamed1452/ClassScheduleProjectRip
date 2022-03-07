@@ -1,4 +1,5 @@
-﻿using Mohajer.ClassScheduleProject.CentralUnit.UniversityDepartments;
+﻿using Mohajer.ClassScheduleProject.CentralUnit.AssigningUniversityMajorToClassroomBuildings;
+using Mohajer.ClassScheduleProject.CentralUnit.UniversityDepartments;
 using Mohajer.ClassScheduleProject.CentralUnit.UniversityMajors;
 using Mohajer.ClassScheduleProject.CentralUnit.ClassroomBuildings;
 using Abp.IdentityServer4vNext;
@@ -23,6 +24,8 @@ namespace Mohajer.ClassScheduleProject.EntityFrameworkCore
 {
     public class ClassScheduleProjectDbContext : AbpZeroDbContext<Tenant, Role, User, ClassScheduleProjectDbContext>, IAbpPersistedGrantDbContext
     {
+        public virtual DbSet<AssigningUniversityMajorToClassroomBuilding> AssigningUniversityMajorToClassroomBuildings { get; set; }
+
         public virtual DbSet<UniversityDepartment> UniversityDepartments { get; set; }
 
         public virtual DbSet<UniversityMajor> UniversityMajors { get; set; }
@@ -59,10 +62,14 @@ namespace Mohajer.ClassScheduleProject.EntityFrameworkCore
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<UniversityMajor>(u =>
+            modelBuilder.Entity<AssigningUniversityMajorToClassroomBuilding>(a =>
             {
-                u.HasIndex(e => new { e.TenantId });
+                a.HasIndex(e => new { e.TenantId });
             });
+            modelBuilder.Entity<UniversityMajor>(u =>
+                       {
+                           u.HasIndex(e => new { e.TenantId });
+                       });
             modelBuilder.Entity<UniversityDepartment>(u =>
                        {
                            u.HasIndex(e => new { e.TenantId });

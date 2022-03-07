@@ -1,6 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="en">
-  <texts>    <text name="UniversityDepartments">University departments</text>
+  <texts>    <text name="AssigningUniversityMajorToClassroomBuildings">Assigning university major to classroom buildings</text>
+    <text name="AssigningUniversityMajorToClassroomBuilding">Assigning university major to classroom building</text>
+    <text name="Mohajer.ClassScheduleProject.AssigningUniversityMajorToClassroomBuildings.AssigningUniversityMajorToClassroomBuilding">AssigningUniversityMajorToClassroomBuilding</text>
+    <text name="MaximumRestrictionsOnUsingClassroomsAtTheSameTime">Maximum restrictions on using classrooms at the same time</text>
+    <text name="AssigningUniversityMajorToClassroomBuildingsHeaderInfo">Assigning university major to classroom buildings header info</text>
+    <text name="CreateNewAssigningUniversityMajorToClassroomBuilding">Create new assigning university major to classroom building</text>
+    <text name="EditAssigningUniversityMajorToClassroomBuilding">Edit assigning university major to classroom building</text>
+    <text name="DeleteAssigningUniversityMajorToClassroomBuilding">Delete assigning university major to classroom building</text>
+    <text name="UniversityMajorUniversityMajorName">University major university major name</text>
+    <text name="PickUniversityMajor">Pick university major</text>
+    <text name="ClassroomBuildingClassroomBuildingName">Classroom building classroom building name</text>
+    <text name="PickClassroomBuilding">Pick classroom building</text>
+    <text name="UniversityDepartments">University departments</text>
     <text name="UniversityDepartment">University department</text>
     <text name="Mohajer.ClassScheduleProject.UniversityDepartments.UniversityDepartment">UniversityDepartment</text>
     <text name="UniversityDepartmentName">University department name</text>

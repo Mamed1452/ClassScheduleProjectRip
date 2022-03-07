@@ -630,6 +630,513 @@ export class AccountServiceProxy {
 }
 
 @Injectable()
+export class AssigningUniversityMajorToClassroomBuildingsServiceProxy {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
+    }
+
+    /**
+     * @param filter (optional)
+     * @param maxMaximumRestrictionsOnUsingClassroomsAtTheSameTimeFilter (optional)
+     * @param minMaximumRestrictionsOnUsingClassroomsAtTheSameTimeFilter (optional)
+     * @param universityMajorUniversityMajorNameFilter (optional)
+     * @param classroomBuildingClassroomBuildingNameFilter (optional)
+     * @param sorting (optional)
+     * @param skipCount (optional)
+     * @param maxResultCount (optional)
+     * @return Success
+     */
+    getAll(filter: string | null | undefined, maxMaximumRestrictionsOnUsingClassroomsAtTheSameTimeFilter: number | null | undefined, minMaximumRestrictionsOnUsingClassroomsAtTheSameTimeFilter: number | null | undefined, universityMajorUniversityMajorNameFilter: string | null | undefined, classroomBuildingClassroomBuildingNameFilter: string | null | undefined, sorting: string | null | undefined, skipCount: number | undefined, maxResultCount: number | undefined): Observable<PagedResultDtoOfGetAssigningUniversityMajorToClassroomBuildingForViewDto> {
+        let url_ = this.baseUrl + "/api/services/app/AssigningUniversityMajorToClassroomBuildings/GetAll?";
+        if (filter !== undefined && filter !== null)
+            url_ += "Filter=" + encodeURIComponent("" + filter) + "&";
+        if (maxMaximumRestrictionsOnUsingClassroomsAtTheSameTimeFilter !== undefined && maxMaximumRestrictionsOnUsingClassroomsAtTheSameTimeFilter !== null)
+            url_ += "MaxMaximumRestrictionsOnUsingClassroomsAtTheSameTimeFilter=" + encodeURIComponent("" + maxMaximumRestrictionsOnUsingClassroomsAtTheSameTimeFilter) + "&";
+        if (minMaximumRestrictionsOnUsingClassroomsAtTheSameTimeFilter !== undefined && minMaximumRestrictionsOnUsingClassroomsAtTheSameTimeFilter !== null)
+            url_ += "MinMaximumRestrictionsOnUsingClassroomsAtTheSameTimeFilter=" + encodeURIComponent("" + minMaximumRestrictionsOnUsingClassroomsAtTheSameTimeFilter) + "&";
+        if (universityMajorUniversityMajorNameFilter !== undefined && universityMajorUniversityMajorNameFilter !== null)
+            url_ += "UniversityMajorUniversityMajorNameFilter=" + encodeURIComponent("" + universityMajorUniversityMajorNameFilter) + "&";
+        if (classroomBuildingClassroomBuildingNameFilter !== undefined && classroomBuildingClassroomBuildingNameFilter !== null)
+            url_ += "ClassroomBuildingClassroomBuildingNameFilter=" + encodeURIComponent("" + classroomBuildingClassroomBuildingNameFilter) + "&";
+        if (sorting !== undefined && sorting !== null)
+            url_ += "Sorting=" + encodeURIComponent("" + sorting) + "&";
+        if (skipCount === null)
+            throw new Error("The parameter 'skipCount' cannot be null.");
+        else if (skipCount !== undefined)
+            url_ += "SkipCount=" + encodeURIComponent("" + skipCount) + "&";
+        if (maxResultCount === null)
+            throw new Error("The parameter 'maxResultCount' cannot be null.");
+        else if (maxResultCount !== undefined)
+            url_ += "MaxResultCount=" + encodeURIComponent("" + maxResultCount) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetAll(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetAll(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<PagedResultDtoOfGetAssigningUniversityMajorToClassroomBuildingForViewDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<PagedResultDtoOfGetAssigningUniversityMajorToClassroomBuildingForViewDto>;
+        }));
+    }
+
+    protected processGetAll(response: HttpResponseBase): Observable<PagedResultDtoOfGetAssigningUniversityMajorToClassroomBuildingForViewDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = PagedResultDtoOfGetAssigningUniversityMajorToClassroomBuildingForViewDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<PagedResultDtoOfGetAssigningUniversityMajorToClassroomBuildingForViewDto>(null as any);
+    }
+
+    /**
+     * @param id (optional)
+     * @return Success
+     */
+    getAssigningUniversityMajorToClassroomBuildingForView(id: number | undefined): Observable<GetAssigningUniversityMajorToClassroomBuildingForViewDto> {
+        let url_ = this.baseUrl + "/api/services/app/AssigningUniversityMajorToClassroomBuildings/GetAssigningUniversityMajorToClassroomBuildingForView?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetAssigningUniversityMajorToClassroomBuildingForView(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetAssigningUniversityMajorToClassroomBuildingForView(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<GetAssigningUniversityMajorToClassroomBuildingForViewDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<GetAssigningUniversityMajorToClassroomBuildingForViewDto>;
+        }));
+    }
+
+    protected processGetAssigningUniversityMajorToClassroomBuildingForView(response: HttpResponseBase): Observable<GetAssigningUniversityMajorToClassroomBuildingForViewDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = GetAssigningUniversityMajorToClassroomBuildingForViewDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<GetAssigningUniversityMajorToClassroomBuildingForViewDto>(null as any);
+    }
+
+    /**
+     * @param id (optional)
+     * @return Success
+     */
+    getAssigningUniversityMajorToClassroomBuildingForEdit(id: number | undefined): Observable<GetAssigningUniversityMajorToClassroomBuildingForEditOutput> {
+        let url_ = this.baseUrl + "/api/services/app/AssigningUniversityMajorToClassroomBuildings/GetAssigningUniversityMajorToClassroomBuildingForEdit?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "Id=" + encodeURIComponent("" + id) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetAssigningUniversityMajorToClassroomBuildingForEdit(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetAssigningUniversityMajorToClassroomBuildingForEdit(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<GetAssigningUniversityMajorToClassroomBuildingForEditOutput>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<GetAssigningUniversityMajorToClassroomBuildingForEditOutput>;
+        }));
+    }
+
+    protected processGetAssigningUniversityMajorToClassroomBuildingForEdit(response: HttpResponseBase): Observable<GetAssigningUniversityMajorToClassroomBuildingForEditOutput> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = GetAssigningUniversityMajorToClassroomBuildingForEditOutput.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<GetAssigningUniversityMajorToClassroomBuildingForEditOutput>(null as any);
+    }
+
+    /**
+     * @param body (optional)
+     * @return Success
+     */
+    createOrEdit(body: CreateOrEditAssigningUniversityMajorToClassroomBuildingDto | undefined): Observable<void> {
+        let url_ = this.baseUrl + "/api/services/app/AssigningUniversityMajorToClassroomBuildings/CreateOrEdit";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json-patch+json",
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processCreateOrEdit(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processCreateOrEdit(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<void>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<void>;
+        }));
+    }
+
+    protected processCreateOrEdit(response: HttpResponseBase): Observable<void> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return _observableOf<void>(null as any);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<void>(null as any);
+    }
+
+    /**
+     * @param id (optional)
+     * @return Success
+     */
+    delete(id: number | undefined): Observable<void> {
+        let url_ = this.baseUrl + "/api/services/app/AssigningUniversityMajorToClassroomBuildings/Delete?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "Id=" + encodeURIComponent("" + id) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+            })
+        };
+
+        return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processDelete(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processDelete(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<void>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<void>;
+        }));
+    }
+
+    protected processDelete(response: HttpResponseBase): Observable<void> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return _observableOf<void>(null as any);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<void>(null as any);
+    }
+
+    /**
+     * @param filter (optional)
+     * @param maxMaximumRestrictionsOnUsingClassroomsAtTheSameTimeFilter (optional)
+     * @param minMaximumRestrictionsOnUsingClassroomsAtTheSameTimeFilter (optional)
+     * @param universityMajorUniversityMajorNameFilter (optional)
+     * @param classroomBuildingClassroomBuildingNameFilter (optional)
+     * @return Success
+     */
+    getAssigningUniversityMajorToClassroomBuildingsToExcel(filter: string | null | undefined, maxMaximumRestrictionsOnUsingClassroomsAtTheSameTimeFilter: number | null | undefined, minMaximumRestrictionsOnUsingClassroomsAtTheSameTimeFilter: number | null | undefined, universityMajorUniversityMajorNameFilter: string | null | undefined, classroomBuildingClassroomBuildingNameFilter: string | null | undefined): Observable<FileDto> {
+        let url_ = this.baseUrl + "/api/services/app/AssigningUniversityMajorToClassroomBuildings/GetAssigningUniversityMajorToClassroomBuildingsToExcel?";
+        if (filter !== undefined && filter !== null)
+            url_ += "Filter=" + encodeURIComponent("" + filter) + "&";
+        if (maxMaximumRestrictionsOnUsingClassroomsAtTheSameTimeFilter !== undefined && maxMaximumRestrictionsOnUsingClassroomsAtTheSameTimeFilter !== null)
+            url_ += "MaxMaximumRestrictionsOnUsingClassroomsAtTheSameTimeFilter=" + encodeURIComponent("" + maxMaximumRestrictionsOnUsingClassroomsAtTheSameTimeFilter) + "&";
+        if (minMaximumRestrictionsOnUsingClassroomsAtTheSameTimeFilter !== undefined && minMaximumRestrictionsOnUsingClassroomsAtTheSameTimeFilter !== null)
+            url_ += "MinMaximumRestrictionsOnUsingClassroomsAtTheSameTimeFilter=" + encodeURIComponent("" + minMaximumRestrictionsOnUsingClassroomsAtTheSameTimeFilter) + "&";
+        if (universityMajorUniversityMajorNameFilter !== undefined && universityMajorUniversityMajorNameFilter !== null)
+            url_ += "UniversityMajorUniversityMajorNameFilter=" + encodeURIComponent("" + universityMajorUniversityMajorNameFilter) + "&";
+        if (classroomBuildingClassroomBuildingNameFilter !== undefined && classroomBuildingClassroomBuildingNameFilter !== null)
+            url_ += "ClassroomBuildingClassroomBuildingNameFilter=" + encodeURIComponent("" + classroomBuildingClassroomBuildingNameFilter) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetAssigningUniversityMajorToClassroomBuildingsToExcel(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetAssigningUniversityMajorToClassroomBuildingsToExcel(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<FileDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<FileDto>;
+        }));
+    }
+
+    protected processGetAssigningUniversityMajorToClassroomBuildingsToExcel(response: HttpResponseBase): Observable<FileDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = FileDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<FileDto>(null as any);
+    }
+
+    /**
+     * @param filter (optional)
+     * @param sorting (optional)
+     * @param skipCount (optional)
+     * @param maxResultCount (optional)
+     * @return Success
+     */
+    getAllUniversityMajorForLookupTable(filter: string | null | undefined, sorting: string | null | undefined, skipCount: number | undefined, maxResultCount: number | undefined): Observable<PagedResultDtoOfAssigningUniversityMajorToClassroomBuildingUniversityMajorLookupTableDto> {
+        let url_ = this.baseUrl + "/api/services/app/AssigningUniversityMajorToClassroomBuildings/GetAllUniversityMajorForLookupTable?";
+        if (filter !== undefined && filter !== null)
+            url_ += "Filter=" + encodeURIComponent("" + filter) + "&";
+        if (sorting !== undefined && sorting !== null)
+            url_ += "Sorting=" + encodeURIComponent("" + sorting) + "&";
+        if (skipCount === null)
+            throw new Error("The parameter 'skipCount' cannot be null.");
+        else if (skipCount !== undefined)
+            url_ += "SkipCount=" + encodeURIComponent("" + skipCount) + "&";
+        if (maxResultCount === null)
+            throw new Error("The parameter 'maxResultCount' cannot be null.");
+        else if (maxResultCount !== undefined)
+            url_ += "MaxResultCount=" + encodeURIComponent("" + maxResultCount) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetAllUniversityMajorForLookupTable(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetAllUniversityMajorForLookupTable(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<PagedResultDtoOfAssigningUniversityMajorToClassroomBuildingUniversityMajorLookupTableDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<PagedResultDtoOfAssigningUniversityMajorToClassroomBuildingUniversityMajorLookupTableDto>;
+        }));
+    }
+
+    protected processGetAllUniversityMajorForLookupTable(response: HttpResponseBase): Observable<PagedResultDtoOfAssigningUniversityMajorToClassroomBuildingUniversityMajorLookupTableDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = PagedResultDtoOfAssigningUniversityMajorToClassroomBuildingUniversityMajorLookupTableDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<PagedResultDtoOfAssigningUniversityMajorToClassroomBuildingUniversityMajorLookupTableDto>(null as any);
+    }
+
+    /**
+     * @param filter (optional)
+     * @param sorting (optional)
+     * @param skipCount (optional)
+     * @param maxResultCount (optional)
+     * @return Success
+     */
+    getAllClassroomBuildingForLookupTable(filter: string | null | undefined, sorting: string | null | undefined, skipCount: number | undefined, maxResultCount: number | undefined): Observable<PagedResultDtoOfAssigningUniversityMajorToClassroomBuildingClassroomBuildingLookupTableDto> {
+        let url_ = this.baseUrl + "/api/services/app/AssigningUniversityMajorToClassroomBuildings/GetAllClassroomBuildingForLookupTable?";
+        if (filter !== undefined && filter !== null)
+            url_ += "Filter=" + encodeURIComponent("" + filter) + "&";
+        if (sorting !== undefined && sorting !== null)
+            url_ += "Sorting=" + encodeURIComponent("" + sorting) + "&";
+        if (skipCount === null)
+            throw new Error("The parameter 'skipCount' cannot be null.");
+        else if (skipCount !== undefined)
+            url_ += "SkipCount=" + encodeURIComponent("" + skipCount) + "&";
+        if (maxResultCount === null)
+            throw new Error("The parameter 'maxResultCount' cannot be null.");
+        else if (maxResultCount !== undefined)
+            url_ += "MaxResultCount=" + encodeURIComponent("" + maxResultCount) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetAllClassroomBuildingForLookupTable(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetAllClassroomBuildingForLookupTable(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<PagedResultDtoOfAssigningUniversityMajorToClassroomBuildingClassroomBuildingLookupTableDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<PagedResultDtoOfAssigningUniversityMajorToClassroomBuildingClassroomBuildingLookupTableDto>;
+        }));
+    }
+
+    protected processGetAllClassroomBuildingForLookupTable(response: HttpResponseBase): Observable<PagedResultDtoOfAssigningUniversityMajorToClassroomBuildingClassroomBuildingLookupTableDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = PagedResultDtoOfAssigningUniversityMajorToClassroomBuildingClassroomBuildingLookupTableDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<PagedResultDtoOfAssigningUniversityMajorToClassroomBuildingClassroomBuildingLookupTableDto>(null as any);
+    }
+}
+
+@Injectable()
 export class AuditLogServiceProxy {
     private http: HttpClient;
     private baseUrl: string;
@@ -16033,6 +16540,458 @@ export interface ISwitchToLinkedAccountOutput {
     tenancyName: string | undefined;
 }
 
+export class AssigningUniversityMajorToClassroomBuildingDto implements IAssigningUniversityMajorToClassroomBuildingDto {
+    maximumRestrictionsOnUsingClassroomsAtTheSameTime!: number;
+    universityMajorId!: number;
+    classroomBuildingId!: number;
+    id!: number;
+
+    constructor(data?: IAssigningUniversityMajorToClassroomBuildingDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.maximumRestrictionsOnUsingClassroomsAtTheSameTime = _data["maximumRestrictionsOnUsingClassroomsAtTheSameTime"];
+            this.universityMajorId = _data["universityMajorId"];
+            this.classroomBuildingId = _data["classroomBuildingId"];
+            this.id = _data["id"];
+        }
+    }
+
+    static fromJS(data: any): AssigningUniversityMajorToClassroomBuildingDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new AssigningUniversityMajorToClassroomBuildingDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["maximumRestrictionsOnUsingClassroomsAtTheSameTime"] = this.maximumRestrictionsOnUsingClassroomsAtTheSameTime;
+        data["universityMajorId"] = this.universityMajorId;
+        data["classroomBuildingId"] = this.classroomBuildingId;
+        data["id"] = this.id;
+        return data;
+    }
+}
+
+export interface IAssigningUniversityMajorToClassroomBuildingDto {
+    maximumRestrictionsOnUsingClassroomsAtTheSameTime: number;
+    universityMajorId: number;
+    classroomBuildingId: number;
+    id: number;
+}
+
+export class GetAssigningUniversityMajorToClassroomBuildingForViewDto implements IGetAssigningUniversityMajorToClassroomBuildingForViewDto {
+    assigningUniversityMajorToClassroomBuilding!: AssigningUniversityMajorToClassroomBuildingDto;
+    universityMajorUniversityMajorName!: string | undefined;
+    classroomBuildingClassroomBuildingName!: string | undefined;
+
+    constructor(data?: IGetAssigningUniversityMajorToClassroomBuildingForViewDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.assigningUniversityMajorToClassroomBuilding = _data["assigningUniversityMajorToClassroomBuilding"] ? AssigningUniversityMajorToClassroomBuildingDto.fromJS(_data["assigningUniversityMajorToClassroomBuilding"]) : <any>undefined;
+            this.universityMajorUniversityMajorName = _data["universityMajorUniversityMajorName"];
+            this.classroomBuildingClassroomBuildingName = _data["classroomBuildingClassroomBuildingName"];
+        }
+    }
+
+    static fromJS(data: any): GetAssigningUniversityMajorToClassroomBuildingForViewDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new GetAssigningUniversityMajorToClassroomBuildingForViewDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["assigningUniversityMajorToClassroomBuilding"] = this.assigningUniversityMajorToClassroomBuilding ? this.assigningUniversityMajorToClassroomBuilding.toJSON() : <any>undefined;
+        data["universityMajorUniversityMajorName"] = this.universityMajorUniversityMajorName;
+        data["classroomBuildingClassroomBuildingName"] = this.classroomBuildingClassroomBuildingName;
+        return data;
+    }
+}
+
+export interface IGetAssigningUniversityMajorToClassroomBuildingForViewDto {
+    assigningUniversityMajorToClassroomBuilding: AssigningUniversityMajorToClassroomBuildingDto;
+    universityMajorUniversityMajorName: string | undefined;
+    classroomBuildingClassroomBuildingName: string | undefined;
+}
+
+export class PagedResultDtoOfGetAssigningUniversityMajorToClassroomBuildingForViewDto implements IPagedResultDtoOfGetAssigningUniversityMajorToClassroomBuildingForViewDto {
+    totalCount!: number;
+    items!: GetAssigningUniversityMajorToClassroomBuildingForViewDto[] | undefined;
+
+    constructor(data?: IPagedResultDtoOfGetAssigningUniversityMajorToClassroomBuildingForViewDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.totalCount = _data["totalCount"];
+            if (Array.isArray(_data["items"])) {
+                this.items = [] as any;
+                for (let item of _data["items"])
+                    this.items!.push(GetAssigningUniversityMajorToClassroomBuildingForViewDto.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): PagedResultDtoOfGetAssigningUniversityMajorToClassroomBuildingForViewDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new PagedResultDtoOfGetAssigningUniversityMajorToClassroomBuildingForViewDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["totalCount"] = this.totalCount;
+        if (Array.isArray(this.items)) {
+            data["items"] = [];
+            for (let item of this.items)
+                data["items"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface IPagedResultDtoOfGetAssigningUniversityMajorToClassroomBuildingForViewDto {
+    totalCount: number;
+    items: GetAssigningUniversityMajorToClassroomBuildingForViewDto[] | undefined;
+}
+
+export class CreateOrEditAssigningUniversityMajorToClassroomBuildingDto implements ICreateOrEditAssigningUniversityMajorToClassroomBuildingDto {
+    maximumRestrictionsOnUsingClassroomsAtTheSameTime!: number;
+    universityMajorId!: number;
+    classroomBuildingId!: number;
+    id!: number | undefined;
+
+    constructor(data?: ICreateOrEditAssigningUniversityMajorToClassroomBuildingDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.maximumRestrictionsOnUsingClassroomsAtTheSameTime = _data["maximumRestrictionsOnUsingClassroomsAtTheSameTime"];
+            this.universityMajorId = _data["universityMajorId"];
+            this.classroomBuildingId = _data["classroomBuildingId"];
+            this.id = _data["id"];
+        }
+    }
+
+    static fromJS(data: any): CreateOrEditAssigningUniversityMajorToClassroomBuildingDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new CreateOrEditAssigningUniversityMajorToClassroomBuildingDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["maximumRestrictionsOnUsingClassroomsAtTheSameTime"] = this.maximumRestrictionsOnUsingClassroomsAtTheSameTime;
+        data["universityMajorId"] = this.universityMajorId;
+        data["classroomBuildingId"] = this.classroomBuildingId;
+        data["id"] = this.id;
+        return data;
+    }
+}
+
+export interface ICreateOrEditAssigningUniversityMajorToClassroomBuildingDto {
+    maximumRestrictionsOnUsingClassroomsAtTheSameTime: number;
+    universityMajorId: number;
+    classroomBuildingId: number;
+    id: number | undefined;
+}
+
+export class GetAssigningUniversityMajorToClassroomBuildingForEditOutput implements IGetAssigningUniversityMajorToClassroomBuildingForEditOutput {
+    assigningUniversityMajorToClassroomBuilding!: CreateOrEditAssigningUniversityMajorToClassroomBuildingDto;
+    universityMajorUniversityMajorName!: string | undefined;
+    classroomBuildingClassroomBuildingName!: string | undefined;
+
+    constructor(data?: IGetAssigningUniversityMajorToClassroomBuildingForEditOutput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.assigningUniversityMajorToClassroomBuilding = _data["assigningUniversityMajorToClassroomBuilding"] ? CreateOrEditAssigningUniversityMajorToClassroomBuildingDto.fromJS(_data["assigningUniversityMajorToClassroomBuilding"]) : <any>undefined;
+            this.universityMajorUniversityMajorName = _data["universityMajorUniversityMajorName"];
+            this.classroomBuildingClassroomBuildingName = _data["classroomBuildingClassroomBuildingName"];
+        }
+    }
+
+    static fromJS(data: any): GetAssigningUniversityMajorToClassroomBuildingForEditOutput {
+        data = typeof data === 'object' ? data : {};
+        let result = new GetAssigningUniversityMajorToClassroomBuildingForEditOutput();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["assigningUniversityMajorToClassroomBuilding"] = this.assigningUniversityMajorToClassroomBuilding ? this.assigningUniversityMajorToClassroomBuilding.toJSON() : <any>undefined;
+        data["universityMajorUniversityMajorName"] = this.universityMajorUniversityMajorName;
+        data["classroomBuildingClassroomBuildingName"] = this.classroomBuildingClassroomBuildingName;
+        return data;
+    }
+}
+
+export interface IGetAssigningUniversityMajorToClassroomBuildingForEditOutput {
+    assigningUniversityMajorToClassroomBuilding: CreateOrEditAssigningUniversityMajorToClassroomBuildingDto;
+    universityMajorUniversityMajorName: string | undefined;
+    classroomBuildingClassroomBuildingName: string | undefined;
+}
+
+export class FileDto implements IFileDto {
+    fileName!: string;
+    fileType!: string | undefined;
+    fileToken!: string;
+
+    constructor(data?: IFileDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.fileName = _data["fileName"];
+            this.fileType = _data["fileType"];
+            this.fileToken = _data["fileToken"];
+        }
+    }
+
+    static fromJS(data: any): FileDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new FileDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["fileName"] = this.fileName;
+        data["fileType"] = this.fileType;
+        data["fileToken"] = this.fileToken;
+        return data;
+    }
+}
+
+export interface IFileDto {
+    fileName: string;
+    fileType: string | undefined;
+    fileToken: string;
+}
+
+export class AssigningUniversityMajorToClassroomBuildingUniversityMajorLookupTableDto implements IAssigningUniversityMajorToClassroomBuildingUniversityMajorLookupTableDto {
+    id!: number;
+    displayName!: string | undefined;
+
+    constructor(data?: IAssigningUniversityMajorToClassroomBuildingUniversityMajorLookupTableDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.displayName = _data["displayName"];
+        }
+    }
+
+    static fromJS(data: any): AssigningUniversityMajorToClassroomBuildingUniversityMajorLookupTableDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new AssigningUniversityMajorToClassroomBuildingUniversityMajorLookupTableDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["displayName"] = this.displayName;
+        return data;
+    }
+}
+
+export interface IAssigningUniversityMajorToClassroomBuildingUniversityMajorLookupTableDto {
+    id: number;
+    displayName: string | undefined;
+}
+
+export class PagedResultDtoOfAssigningUniversityMajorToClassroomBuildingUniversityMajorLookupTableDto implements IPagedResultDtoOfAssigningUniversityMajorToClassroomBuildingUniversityMajorLookupTableDto {
+    totalCount!: number;
+    items!: AssigningUniversityMajorToClassroomBuildingUniversityMajorLookupTableDto[] | undefined;
+
+    constructor(data?: IPagedResultDtoOfAssigningUniversityMajorToClassroomBuildingUniversityMajorLookupTableDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.totalCount = _data["totalCount"];
+            if (Array.isArray(_data["items"])) {
+                this.items = [] as any;
+                for (let item of _data["items"])
+                    this.items!.push(AssigningUniversityMajorToClassroomBuildingUniversityMajorLookupTableDto.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): PagedResultDtoOfAssigningUniversityMajorToClassroomBuildingUniversityMajorLookupTableDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new PagedResultDtoOfAssigningUniversityMajorToClassroomBuildingUniversityMajorLookupTableDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["totalCount"] = this.totalCount;
+        if (Array.isArray(this.items)) {
+            data["items"] = [];
+            for (let item of this.items)
+                data["items"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface IPagedResultDtoOfAssigningUniversityMajorToClassroomBuildingUniversityMajorLookupTableDto {
+    totalCount: number;
+    items: AssigningUniversityMajorToClassroomBuildingUniversityMajorLookupTableDto[] | undefined;
+}
+
+export class AssigningUniversityMajorToClassroomBuildingClassroomBuildingLookupTableDto implements IAssigningUniversityMajorToClassroomBuildingClassroomBuildingLookupTableDto {
+    id!: number;
+    displayName!: string | undefined;
+
+    constructor(data?: IAssigningUniversityMajorToClassroomBuildingClassroomBuildingLookupTableDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.displayName = _data["displayName"];
+        }
+    }
+
+    static fromJS(data: any): AssigningUniversityMajorToClassroomBuildingClassroomBuildingLookupTableDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new AssigningUniversityMajorToClassroomBuildingClassroomBuildingLookupTableDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["displayName"] = this.displayName;
+        return data;
+    }
+}
+
+export interface IAssigningUniversityMajorToClassroomBuildingClassroomBuildingLookupTableDto {
+    id: number;
+    displayName: string | undefined;
+}
+
+export class PagedResultDtoOfAssigningUniversityMajorToClassroomBuildingClassroomBuildingLookupTableDto implements IPagedResultDtoOfAssigningUniversityMajorToClassroomBuildingClassroomBuildingLookupTableDto {
+    totalCount!: number;
+    items!: AssigningUniversityMajorToClassroomBuildingClassroomBuildingLookupTableDto[] | undefined;
+
+    constructor(data?: IPagedResultDtoOfAssigningUniversityMajorToClassroomBuildingClassroomBuildingLookupTableDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.totalCount = _data["totalCount"];
+            if (Array.isArray(_data["items"])) {
+                this.items = [] as any;
+                for (let item of _data["items"])
+                    this.items!.push(AssigningUniversityMajorToClassroomBuildingClassroomBuildingLookupTableDto.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): PagedResultDtoOfAssigningUniversityMajorToClassroomBuildingClassroomBuildingLookupTableDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new PagedResultDtoOfAssigningUniversityMajorToClassroomBuildingClassroomBuildingLookupTableDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["totalCount"] = this.totalCount;
+        if (Array.isArray(this.items)) {
+            data["items"] = [];
+            for (let item of this.items)
+                data["items"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface IPagedResultDtoOfAssigningUniversityMajorToClassroomBuildingClassroomBuildingLookupTableDto {
+    totalCount: number;
+    items: AssigningUniversityMajorToClassroomBuildingClassroomBuildingLookupTableDto[] | undefined;
+}
+
 export class AuditLogListDto implements IAuditLogListDto {
     userId!: number | undefined;
     userName!: string | undefined;
@@ -16171,50 +17130,6 @@ export class PagedResultDtoOfAuditLogListDto implements IPagedResultDtoOfAuditLo
 export interface IPagedResultDtoOfAuditLogListDto {
     totalCount: number;
     items: AuditLogListDto[] | undefined;
-}
-
-export class FileDto implements IFileDto {
-    fileName!: string;
-    fileType!: string | undefined;
-    fileToken!: string;
-
-    constructor(data?: IFileDto) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            this.fileName = _data["fileName"];
-            this.fileType = _data["fileType"];
-            this.fileToken = _data["fileToken"];
-        }
-    }
-
-    static fromJS(data: any): FileDto {
-        data = typeof data === 'object' ? data : {};
-        let result = new FileDto();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["fileName"] = this.fileName;
-        data["fileType"] = this.fileType;
-        data["fileToken"] = this.fileToken;
-        return data;
-    }
-}
-
-export interface IFileDto {
-    fileName: string;
-    fileType: string | undefined;
-    fileToken: string;
 }
 
 export class NameValueDto implements INameValueDto {
