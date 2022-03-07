@@ -1,31 +1,216 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <localizationDictionary culture="fa-IR">
   <texts>
+
+    <text name = "ListOfAllCalculatedResults"> فهرست همه نتایج محاسبه شده </text>
+    <text name = "ListOfAllCalculatedResult"> فهرست همه نتایج محاسبه شده </text>
+    <text name = "Mohajer.ClassScheduleProject.ListOfAllCalculatedResults.ListOfAllCalculatedResult"> فهرست همه نتایج محاسبه شده </text>
+    <text name = "NameCalculatedResult"> نام نتیجه محاسبه شده </text>
+    <text name = "ListOfAllCalculatedResultsHeaderInfo"> فهرست تمام نتایج محاسبه شده </text>
+    <text name = "CreateNewListOfAllCalculatedResult"> ایجاد عملیات جدید </text>
+    <text name = "EditListOfAllCalculatedResult"> ویرایش نتایج محاسبه شده </text>
+    <text name = "DeleteListOfAllCalculatedResult"> حذف نتایج محاسبه شده </text>
+    <text name = "ListOfAllCalculatedResultNameCalculatedResult"> نام فهرست تمام نتایج محاسبه شده </text>
+    <text name = "PickListOfAllCalculatedResult"> فهرست انتخاب نتایج محاسبه شده </text>
+    <text name = "ClassScheduleModeSpaces"> فضاهای حالت زمانبندی کلاس </text>
+    <text name = "ClassScheduleModeSpace"> فضای حالت زمانبندی کلاس </text>
+    <text name = "Mohajer.ClassScheduleProject.ClassScheduleModeSpaces.ClassScheduleModeSpace"> فضای حالت زمانبندی کلاس </text>
+    <text name = "NameClassScheduleModeSpaces"> نام فضاهای حالت زمانبندی کلاس </text>
+    <text name = "IsLock"> قفل است </text>
+
+
+
+    <text name="NotIsLock">قفل نیست</text>
+    <text name="ClassScheduleModeSpacesHeaderInfo">لیست فضاهای حالت زمانبندی کلاس</text>
+    <text name="CreateNewClassScheduleModeSpace">ایجاد فضای حالت برنامه کلاسی جدید</text>
+    <text name="EditClassScheduleModeSpace">ویرایش فضای حالت برنامه کلاس</text>
+    <text name="DeleteClassScheduleModeSpace">حذف فضای حالت برنامه کلاس</text>
+    <text name="ClassScheduleModeSpaceNameClassScheduleModeSpaces">نام فضاهای حالت زمانبندی کلاس</text>
+    <text name="PickClassScheduleModeSpace">انتخاب فضای حالت برنامه کلاس</text>
+    <text name="ClassScheduleResults">نتایج برنامه کلاس</text>
+    <text name="ClassScheduleResult">نتیجه زمانبندی کلاس</text>
+    <text name="Mohajer.ClassScheduleProject.ClassScheduleResults.ClassScheduleResult">نتیجه زمانبندی کلاس</text>
+    <text name="WorkTimeInDayId">شناسه زمان کار در روز</text>
+    <text name="LessonId">شناسه درس</text>
+    <text name="UniversityProfessorId">شناسه استاد دانشگاه</text>
+    <text name="SemesterId">شناسه ترم</text>
+    <text name="GradeId">شناسه درجه</text>
+    <text name="UniversityMajorId">شناسه رشته دانشگاه</text>
+    <text name="UniversityDepartmentId">شناسه بخش دانشگاه</text>
+    <text name="ClassScheduleResultsHeaderInfo"> لیست نتایج زمانبندی کلاس</text>
+    <text name="CreateNewClassScheduleResult">ایجاد نتیجه برنامه کلاسی جدید</text>
+    <text name="EditClassScheduleResult">نتیجه برنامه کلاسی را ویرایش کنید</text>
+    <text name="DeleteClassScheduleResult">نتیجه برنامه کلاسی را حذف کنید</text>
+    <text name="LessonsOfUniversityProfessors">درس اساتید دانشگاه</text>
+    <text name="LessonsOfUniversityProfessor">درس های استاد دانشگاه</text>
+    <text name="Mohajer.ClassScheduleProject.LessonsOfUniversityProfessors.LessonsOfUniversityProfessor">درس های استاد دانشگاه</text>
+    <text name="LessonsOfUniversityProfessorsHeaderInfo"> لیست درسهای اساتید دانشگاه</text>
+    <text name="CreateNewLessonsOfUniversityProfessor">ایجاد درس جدید برای استاد دانشگاه</text>
+    <text name="EditLessonsOfUniversityProfessor">ویرایش دروس استاد دانشگاه</text>
+    <text name="DeleteLessonsOfUniversityProfessor">حذف دروس استاد دانشگاه</text>
+    <text name="LessonsOfSemesters">دروس ترم</text>
+    <text name="LessonsOfSemester">دروس ترم</text>
+
+
+
+    <text name="Mohajer.ClassScheduleProject.LessonsOfSemesters.LessonsOfSemester">دروس ترم</text>
+    <text name="LessonOfSemesterType">نوع درس ترم</text>
+    <text name="NumberOfClassesToBeFormed">تعداد کلاسهایی که باید تشکیل شوند</text>
+    <text name="LessonsOfSemestersHeaderInfo">لیست دروس ترم</text>
+    <text name="CreateNewLessonsOfSemester">ایجاد درس های جدید ترم</text>
+    <text name="EditLessonsOfSemester">ویرایش دروس ترم</text>
+    <text name="DeleteLessonsOfSemester">حذف دروس ترم</text>
+    <text name="LessonNameLesson">درس نام درس</text>
+    <text name="PickLesson">انتخاب درس</text>
+    <text name="SemesterSemesterName">نام ترم</text>
+    <text name="PickSemester">انتخاب ترم</text>
+    <text name="Lessons">دروس</text>
+    <text name="Lesson">درس</text>
+    <text name="Mohajer.ClassScheduleProject.Lessons.Lesson">درس</text>
+    <text name="NameLesson">درس نام</text>
+    <text name="HoursPerWeek">ساعت در هفته</text>
+    <text name="LessonType">نوع درس</text>
+    <text name="ClassificationLesson">درس طبقه بندی</text>
+    <text name="NumberOfUnits">تعداد واحدها</text>
+    <text name="NumberOfGroups">تعداد گروه‌ها</text>
+    <text name="LessonsHeaderInfo">اطلاعات سرصفحه درس</text>
+    <text name="CreateNewLesson">ایجاد درس جدید</text>
+    <text name="EditLesson">ویرایش درس</text>
+    <text name="DeleteLesson">حذف درس</text>
+    <text name="UniversityProfessorWorkingTimes">زمان کار استاد دانشگاه</text>
+    <text name="UniversityProfessorWorkingTime">زمان کار استاد دانشگاه</text>
+
+
+
+    <text name="Mohajer.ClassScheduleProject.UniversityProfessorWorkingTimes.UniversityProfessorWorkingTime">زمان کار استاد دانشگاه</text>
+    <text name="UniversityProfessorWorkingTimesHeaderInfo">لیست زمان کار استاد دانشگاه</text>
+    <text name="CreateNewUniversityProfessorWorkingTime">ایجاد زمان کاری جدید استاد دانشگاه</text>
+    <text name="EditUniversityProfessorWorkingTime">ویرایش زمان کار استاد دانشگاه</text>
+    <text name="DeleteUniversityProfessorWorkingTime">حذف زمان کار استاد دانشگاه</text>
+    <text name="UniversityProfessorUniversityProfessorName">نام استاد دانشگاه استاد دانشگاه</text>
+    <text name="PickUniversityProfessor">استاد دانشگاه را انتخاب کنید</text>
+    <text name="WorkTimeInDayNameWorkTimeInDay">نام ساعت کار در روز</text>
+    <text name="PickWorkTimeInDay">انتخاب ساعت کار در روز</text>
+    <text name="UniversityProfessors">استادان دانشگاه</text>
+    <text name="UniversityProfessor">استاد دانشگاه</text>
+    <text name="Mohajer.ClassScheduleProject.UniversityProfessors.UniversityProfessor">استاد دانشگاه</text>
+    <text name="UniversityProfessorName">نام استاد دانشگاه</text>
+    <text name="UniversityProfessorsHeaderInfo">لیست اساتید دانشگاه</text>
+    <text name="CreateNewUniversityProfessor">ایجاد استاد دانشگاه جدید</text>
+    <text name="EditUniversityProfessor">ویرایش استاد دانشگاه</text>
+    <text name="DeleteUniversityProfessor">حذف استاد دانشگاه</text>
+    <text name="WorkTimeInDays">زمان های کاری در روز</text>
+    <text name="WorkTimeInDay">زمان کار در روز</text>
+    <text name="Mohajer.ClassScheduleProject.WorkTimeInDays.WorkTimeInDay">زمان کار در روز</text>
+    <text name="NameWorkTimeInDay">نام زمان کار در روز</text>
+    <text name="DayOfWeek">روز هفته</text>
+    <text name="startTime">زمان شروع</text>
+    <text name="WhatTimeOfDay">چه زمانی از روز</text>
+    <text name="WorkTimeInDaysHeaderInfo">لیست زمان کار در روز</text>
+    <text name="CreateNewWorkTimeInDay">ایجاد ساعت کاری جدید در روز</text>
+    <text name="EditWorkTimeInDay">ویرایش زمان کاری در روز</text>
+    <text name="DeleteWorkTimeInDay">حذف ساعت کاری در روز</text>
+
+
+
+    <text name="AssigningGradeToUniversityMajors">تخصیص مقطع به رشته های دانشگاهی</text>
+    <text name="AssigningGradeToUniversityMajor">تخصیص مقطع به رشته دانشگاهی</text>
+    <text name="Mohajer.ClassScheduleProject.AssigningGradeToUniversityMajors.AssigningGradeToUniversityMajor">تخصیص نمره به رشته دانشگاهی</text>
+    <text name="NameAssignedGradeToUniversityMajor">نام مقطع اختصاص داده شده به رشته دانشگاه</text>
+    <text name="AssigningGradeToUniversityMajorsHeaderInfo">لیست انتسابات مقطع به رشته های دانشگاه</text>
+    <text name="CreateNewAssigningGradeToUniversityMajor">تخصیص مقطع به رشته دانشگاه</text>
+    <text name="EditAssigningGradeToUniversityMajor">ویرایش تخصیص مقطع به رشته دانشگاه</text>
+    <text name="DeleteAssigningGradeToUniversityMajor">حذف تخصیص مقطع به رشته دانشگاه</text>
+    <text name="GradeGradeName">نام مقطع</text>
+    <text name="PickGrade">انتخاب مقطع</text>
+    <text name="AssigningGradeToUniversityMajorNameAssignedGradeToUniversityMajor">نام تخصیص مقطع به رشته دانشگاه</text>
+    <text name="PickAssigningGradeToUniversityMajor">انتخاب مقطع برای رشته دانشگاه</text>
+    <text name="Semesters">ترم ها</text>
+    <text name="Semester">ترم</text>
+    <text name="Mohajer.ClassScheduleProject.Semesters.Semester">ترم</text>
+    <text name="SemesterName">نام ترم</text>
     <text name="NotIsActive">فعال نیست</text>
-    <text name="VoterAnswerDetail">جزئیات پاسخ نظرسنجی</text>
-    <text name="AnswerScore">نمره پاسخ</text>
-    <text name="QuestionScore">نمره سوال</text>
-    <text name="GradeScore">نمره نمره</text>
-    <text name="StatusStatementMaturity">سررسید صورت وضعیت</text>
-    <text name="OrderAnswer">جواب سفارش</text>
-    <text name="AnswerTitle">عنوان پاسخ</text>
-    <text name="AnswerDescription">توضیحات پاسخ</text>
-    <text name="IsCalculatedScore">نمره محاسبه می شود</text>
-    <text name="NotIsCalculatedScore">نمره محاسبه نمی شود</text>
-    <text name="VoterAnswerDetailsHeaderInfo">جزئیات پاسخ شرکت کننده اطلاعات سرصفحه</text>
-    <text name="CreateNewVoterAnswerDetail">جزئیات جدید پاسخ نظرسنجی را ایجاد کنید</text>
-    <text name="EditVoterAnswerDetail">جزئیات پاسخ نظرسنجی را ویرایش کنید</text>
-    <text name="DeleteVoterAnswerDetail">جزئیات پاسخ نظرسنجی را حذف کنید</text>
-    <text name="VoterAnswerDetails">جزئیات پاسخ نظرسنجی</text>
-    <text name="VoterIdentificationCode">کد شناسایی نظرسنجی</text>
-    <text name="PickVoter">نظرسنجی را انتخاب کنید</text>
-    <text name="IsInfoMaked">اطلاعات ساخته شده است</text>
-    <text name="NotIsInfoMaked">اطلاعات ساخته نشده است</text>
-    <text name="Voter">شرکت کننده</text>
-    <text name="IdentificationCode">کد شناسایی</text>
-    <text name="AvragePoint">نقطه میانگین</text>
-    <text name="AverageGrade">نمره متوسط</text>
-    <text name="IP">آی پی</text>
+    <text name="SemestersHeaderInfo"> لیست ترم ها</text>
+    <text name="CreateNewSemester">ایجاد ترم جدید</text>
+    <text name="EditSemester">ویرایش ترم</text>
+    <text name="DeleteSemester">حذف ترم</text>
+    <text name="Grades">مقاطع</text>
+    <text name="Grade">مقطع</text>
+    <text name="Mohajer.ClassScheduleProject.Grades.Grade">مقطع</text>
+    <text name="GradeName">نام مقطع</text>
+    <text name="GradesHeaderInfo">لیست مقاطع</text>
+    <text name="CreateNewGrade">ایجاد مقطع جدید</text>
+
+    
+    
+    
+    <text name="EditGrade">ویرایش مقطع</text>
+    <text name="DeleteGrade">حذف مقطع</text>
+    <text name="AssigningUniversityMajorToClassroomBuildings">تخصیص رشته دانشگاهی به ساختمان های کلاس درس</text>
+    <text name="AssigningUniversityMajorToClassroomBuilding">تخصیص رشته دانشگاهی به ساختمان کلاس درس</text>
+    <text name="Mohajer.ClassScheduleProject.AssigningUniversityMajorToClassroomBuildings.AssigningUniversityMajorToClassroomBuilding">تخصیص رشته دانشگاهی به ساختمان کلاس درس</text>
+    <text name="MaximumRestrictionsOnUsingClassroomsAtTheSameTime">حداکثر محدودیت برای استفاده همزمان از کلاس های درس</text>
+    <text name="AssigningUniversityMajorToClassroomBuildingsHeaderInfo">لیست تخصیص رشته دانشگاهی به ساختمانهای کلاس</text>
+    <text name="CreateNewAssigningUniversityMajorToClassroomBuilding"> تخصیص رشته دانشگاه به ساختمان کلاس</text>
+    <text name="EditAssigningUniversityMajorToClassroomBuilding">ویرایش رشته دانشگاه تخصیص داده شده به ساختمان کلاس</text>
+    <text name="DeleteAssigningUniversityMajorToClassroomBuilding">حذف انتساب رشته دانشگاهی به ساختمان کلاس</text>
+    <text name="UniversityMajorUniversityMajorName">نام رشته دانشگاه </text>
+    <text name="PickUniversityMajor">رشته دانشگاهی را انتخاب کنید</text>
+    <text name="ClassroomBuildingClassroomBuildingName">نام ساختمان کلاس</text>
+    <text name="PickClassroomBuilding">ساختمان کلاس درس را انتخاب کنید</text>
+    <text name="UniversityDepartments">گروه‌های دانشگاه</text>
+    <text name="UniversityDepartment">گروه دانشگاه</text>
+    <text name="Mohajer.ClassScheduleProject.UniversityDepartments.UniversityDepartment">گروه دانشگاه</text>
+    <text name="UniversityDepartmentName">نام گروه دانشگاه</text>
+    <text name="UniversityDepartmentsHeaderInfo">لیست گروه های دانشگاه</text>
+    <text name="CreateNewUniversityDepartment">ایجاد گروه دانشگاه جدید</text>
+    <text name="EditUniversityDepartment">ویرایش گروه دانشگاه</text>
+    <text name="DeleteUniversityDepartment">حذف گروه دانشگاه</text>
+    <text name="UniversityDepartmentUniversityDepartmentName">نام گروه دانشگاه</text>
+    <text name="PickUniversityDepartment">گروه دانشگاه را انتخاب کنید</text>
+    <text name="UniversityMajors">رشته های دانشگاهی</text>
+    <text name="UniversityMajor">رشته دانشگاه</text>
+    <text name="Mohajer.ClassScheduleProject.UniversityMajors.UniversityMajor">رشته دانشگاه</text>
+    <text name="UniversityMajorName">نام رشته دانشگاه</text>
+    <text name="UniversityMajorType">نوع رشته دانشگاهی</text>
+
+    
+    
+    <text name="UniversityMajorsHeaderInfo"> لیست رشته های دانشگاه</text>
+    <text name="CreateNewUniversityMajor">ایجاد رشته دانشگاه جدید</text>
+    <text name="EditUniversityMajor">ویرایش رشته دانشگاه</text>
+    <text name="DeleteUniversityMajor">حذف رشته دانشگاه</text>
+    <text name="ClassroomBuildings">ساختمان های کلاس درس</text>
+    <text name="ClassroomBuilding">ساختمان کلاس</text>
+    <text name="Mohajer.ClassScheduleProject.ClassroomBuildings.ClassroomBuilding">ساختمان کلاس</text>
+    <text name="ClassroomBuildingName">نام ساختمان کلاس</text>
+    <text name="NumberOfClassrooms">تعداد کلاس‌های درس</text>
+    <text name="ClassificationClassroomBuilding">طبقه بندی ساختمان کلاس درس </text>
+    <text name="ClassroomBuildingsHeaderInfo">لیست ساختمانهای کلاس</text>
+    <text name="CreateNewClassroomBuilding">ایجاد ساختمان کلاس درس جدید</text>
+    <text name="EditClassroomBuilding">ویرایش ساختمان کلاس درس</text>
+    <text name="DeleteClassroomBuilding">حذف ساختمان کلاس درس</text>
+
+
+
+    <text name="Min">حداقل</text>
+    <text name="Max">حداکثر</text>
+    
+    
+    <text name="Specialized">تخصصی</text>
+    <text name="TheoryLesson">درس تئوری</text>
+    <text name="LaboratoryLessons">درس آزمایگاه</text>
+    <text name="End">ساعت پایان</text>
+    <text name="Saturday">شنبه</text>
+    <text name="Sunday">یکشنبه</text>
+    <text name="Monday">دوشنبه</text>
+    <text name="Tuesday">سه شنبه</text>
+    <text name="Wednesday">چهار شنبه</text>
+    <text name="Thursday">پنج شنبه</text>
+    <text name="Friday">جمعه</text>
+
+    <text name="Main">اصلی</text>
+    <text name="Compensatory">جبرانی</text>
 
     <text name="ListPreviousContracts">قرارداد قبلی</text>
 
@@ -1064,7 +1249,7 @@
     <text name="DisableRecurringPayments">به طور خودکار حساب من را قبض نکنید</text>
     <text name="EnableRecurringPayments">حساب من را به صورت خودکار قبض کنید</text>
     <text name="ExpiringEdition">تاریخ انقضا</text>
-    <text name="Price">قیمت</text>
+    <text name="Price">ارزش</text>
     <text name="ThereAreTenantsSubscribedToThisEdition">بهره برداران مشترک این نسخه هستند. لطفاً نسخه دیگری را به آنها اختصاص دهید و سپس این نسخه را حذف کنید.</text>
     <text name="MoveTenantsToAnotherEdition">بهره برداران را به نسخه دیگری منتقل کنید</text>
     <text name="TenantsMovedToEditionNotificationMessage">همه بهره برداران نسخه {sourceEditionName} به نسخه {targetEditionName} منتقل شدند.</text>

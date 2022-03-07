@@ -52,8 +52,12 @@ mgl-timeline.mobile {
     font-family: iranSans, BNazanin, BTitr !important;
     font-size: 1rem;
     font-weight: normal;
+    text-align: center !important;
+    align-items: center!important;
   }
-
+  .p-datatable table, .p-datatable th, .p-datatable td {
+    text-align-last: center !important;
+}
 html[dir="rtl"] body {
     font-family: iranSans, BNazanin, BTitr;
     text-align: right;

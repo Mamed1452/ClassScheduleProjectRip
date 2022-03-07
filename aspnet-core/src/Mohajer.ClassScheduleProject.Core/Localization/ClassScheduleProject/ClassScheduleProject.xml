@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="en">
-  <texts>    <text name="ListOfAllCalculatedResults">List of all calculated results</text>
+  <texts>        <text name="ListOfAllCalculatedResults">List of all calculated results</text>
     <text name="ListOfAllCalculatedResult">List of all calculated result</text>
     <text name="Mohajer.ClassScheduleProject.ListOfAllCalculatedResults.ListOfAllCalculatedResult">ListOfAllCalculatedResult</text>
     <text name="NameCalculatedResult">Name calculated result</text>
@@ -15,6 +15,8 @@
     <text name="Mohajer.ClassScheduleProject.ClassScheduleModeSpaces.ClassScheduleModeSpace">ClassScheduleModeSpace</text>
     <text name="NameClassScheduleModeSpaces">Name class schedule mode spaces</text>
     <text name="IsLock">Is lock</text>
+    
+    
     <text name="NotIsLock">Not is lock</text>
     <text name="ClassScheduleModeSpacesHeaderInfo">Class schedule mode spaces header info</text>
     <text name="CreateNewClassScheduleModeSpace">Create new class schedule mode space</text>
@@ -45,6 +47,9 @@
     <text name="DeleteLessonsOfUniversityProfessor">Delete lessons of university professor</text>
     <text name="LessonsOfSemesters">Lessons of semesters</text>
     <text name="LessonsOfSemester">Lessons of semester</text>
+    
+    
+    
     <text name="Mohajer.ClassScheduleProject.LessonsOfSemesters.LessonsOfSemester">LessonsOfSemester</text>
     <text name="LessonOfSemesterType">Lesson of semester type</text>
     <text name="NumberOfClassesToBeFormed">Number of classes to be formed</text>
@@ -71,6 +76,9 @@
     <text name="DeleteLesson">Delete lesson</text>
     <text name="UniversityProfessorWorkingTimes">University professor working times</text>
     <text name="UniversityProfessorWorkingTime">University professor working time</text>
+    
+    
+    
     <text name="Mohajer.ClassScheduleProject.UniversityProfessorWorkingTimes.UniversityProfessorWorkingTime">UniversityProfessorWorkingTime</text>
     <text name="UniversityProfessorWorkingTimesHeaderInfo">University professor working times header info</text>
     <text name="CreateNewUniversityProfessorWorkingTime">Create new university professor working time</text>
@@ -99,6 +107,10 @@
     <text name="CreateNewWorkTimeInDay">Create new work time in day</text>
     <text name="EditWorkTimeInDay">Edit work time in day</text>
     <text name="DeleteWorkTimeInDay">Delete work time in day</text>
+    
+    
+    
+    
     <text name="AssigningGradeToUniversityMajors">Assigning grade to university majors</text>
     <text name="AssigningGradeToUniversityMajor">Assigning grade to university major</text>
     <text name="Mohajer.ClassScheduleProject.AssigningGradeToUniversityMajors.AssigningGradeToUniversityMajor">AssigningGradeToUniversityMajor</text>
@@ -126,6 +138,10 @@
     <text name="GradeName">Grade name</text>
     <text name="GradesHeaderInfo">Grades header info</text>
     <text name="CreateNewGrade">Create new grade</text>
+    
+    
+    
+    
     <text name="EditGrade">Edit grade</text>
     <text name="DeleteGrade">Delete grade</text>
     <text name="AssigningUniversityMajorToClassroomBuildings">Assigning university major to classroom buildings</text>
@@ -155,6 +171,10 @@
     <text name="Mohajer.ClassScheduleProject.UniversityMajors.UniversityMajor">UniversityMajor</text>
     <text name="UniversityMajorName">University major name</text>
     <text name="UniversityMajorType">University major type</text>
+    
+    
+    
+    
     <text name="UniversityMajorsHeaderInfo">University majors header info</text>
     <text name="CreateNewUniversityMajor">Create new university major</text>
     <text name="EditUniversityMajor">Edit university major</text>
@@ -178,6 +198,20 @@
     <text name="MinValue">Min</text>
     <text name="MaxValue">Max</text>
 
+
+    <text name="Specialized">Specialized</text>
+    <text name="TheoryLesson">Theory Lesson</text>
+    <text name="LaboratoryLessons">Laboratory Lessons</text>
+    <text name="Main">Main</text>
+    <text name="Compensatory">Compensatory</text>
+    <text name="Saturday">Saturday</text>
+    <text name="Sunday">Sunday</text>
+    <text name="Monday">Monday</text>
+    <text name="Tuesday">Tuesday</text>
+    <text name="Wednesday">Wednesday</text>
+    <text name="Thursday">Thursday</text>
+    <text name="Friday">Friday</text>
+    
     <text name="HomePage">Home page</text>
     <text name="AboutUs">About us</text>
     <text name="Administration">Administration</text>
