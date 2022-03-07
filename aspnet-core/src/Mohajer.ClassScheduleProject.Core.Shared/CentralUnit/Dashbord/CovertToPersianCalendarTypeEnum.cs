@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Mohajer.ClassScheduleProject
+namespace Mohajer.ClassScheduleProject.CentralUnit.Dashbord
 {
     public enum CovertToPersianCalendarTypeEnum
     {

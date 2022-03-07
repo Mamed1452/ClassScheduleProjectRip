@@ -15,6 +15,7 @@ using Abp.Auditing;
 using Abp.Authorization;
 using System.Globalization;
 using Abp.Notifications;
+using Mohajer.ClassScheduleProject.CentralUnit.Dashbord;
 
 namespace Mohajer.ClassScheduleProject.Tenants.Dashboard
 {
