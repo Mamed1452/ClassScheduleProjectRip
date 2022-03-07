@@ -41,8 +41,7 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.UniversityMajors
         {
             var universityMajorTypeFilter = input.UniversityMajorTypeFilter.HasValue
                         ? (UniversityMajorTypeEnum)input.UniversityMajorTypeFilter
-                        : default
-                        .WhereIf(input.UniversityDepartmentIdFilter.HasValue, e => false || e.UniversityDepartmentId == input.UniversityDepartmentIdFilter.Value);
+                        : default(UniversityMajorTypeEnum);
 
             var filteredUniversityMajors = _universityMajorRepository.GetAll()
                         .Include(e => e.UniversityDepartmentFk)
