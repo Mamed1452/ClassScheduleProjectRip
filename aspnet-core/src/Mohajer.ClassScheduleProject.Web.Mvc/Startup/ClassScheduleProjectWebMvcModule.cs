@@ -58,7 +58,6 @@ namespace Mohajer.ClassScheduleProject.Web.Startup
 
             var workManager = IocManager.Resolve<IBackgroundWorkerManager>();
             workManager.Add(IocManager.Resolve<SubscriptionExpirationCheckWorker>());
-            workManager.Add(IocManager.Resolve<ExpiryNotificationsCheckWorker>());
             workManager.Add(IocManager.Resolve<SubscriptionExpireEmailNotifierWorker>());
 
             if (Configuration.Auditing.IsEnabled && ExpiredAuditLogDeleterWorker.IsEnabled)
