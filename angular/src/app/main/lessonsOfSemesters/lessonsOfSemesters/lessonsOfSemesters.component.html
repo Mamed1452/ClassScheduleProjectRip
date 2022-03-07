@@ -1,0 +1,344 @@
+﻿<div [@routerTransition]>
+    <div class="content d-flex flex-column flex-column-fluid">
+        <sub-header [title]="'LessonsOfSemesters' | localize" [description]="'LessonsOfSemestersHeaderInfo' | localize">
+            <div role="actions">
+                <button (click)="exportToExcel()" class="btn btn-outline-success">
+                    <i class="fa fa-file-excel"></i>
+                    {{ l('ExportToExcel') }}
+                </button>
+
+                <button
+                    *ngIf="isGranted('Pages.LessonsOfSemesters.Create')"
+                    (click)="createLessonsOfSemester()"
+                    class="btn btn-primary blue"
+                >
+                    <i class="fa fa-plus"></i>
+                    {{ l('CreateNewLessonsOfSemester') }}
+                </button>
+            </div>
+        </sub-header>
+
+        <div [class]="containerClass">
+            <div class="card card-custom gutter-b">
+                <div class="card-body">
+                    <form class="form" autocomplete="off">
+                        <div>
+                            <div class="row align-items-center">
+                                <div class="col-xl-12">
+                                    <div class="form-group m-form__group align-items-center">
+                                        <div class="input-group">
+                                            <input
+                                                [(ngModel)]="filterText"
+                                                name="filterText"
+                                                autoFocus
+                                                class="form-control m-input"
+                                                [placeholder]="l('SearchWithThreeDot')"
+                                                type="text"
+                                            />
+                                            <span class="input-group-btn">
+                                                <button
+                                                    (click)="getLessonsOfSemesters()"
+                                                    class="btn btn-primary"
+                                                    type="submit"
+                                                >
+                                                    <i class="flaticon-search-1"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" [hidden]="!advancedFiltersAreShown">
+                                <div class="col-md-12">
+                                    <div class="separator separator-dashed"></div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <label for="LessonOfSemesterTypeFilterSelect">
+                                        {{ l('LessonOfSemesterType') }}
+                                    </label>
+                                    <select
+                                        class="form-control"
+                                        name="LessonOfSemesterTypeFilter"
+                                        id="LessonOfSemesterTypeFilterSelect"
+                                        [(ngModel)]="lessonOfSemesterTypeFilter"
+                                    >
+                                        <option value="-1">{{ l('All') }}</option>
+                                        <option value="1">{{ l('Main') }}</option>
+
+                                        <option value="2">{{ l('Compensatory') }}</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="MinNumberOfClassesToBeFormedFilter">
+                                            {{ l('MinMax') }} {{ l('NumberOfClassesToBeFormed') }}
+                                        </label>
+                                        <div class="input-group">
+                                            <input
+                                                type="number"
+                                                class="form-control"
+                                                id="MinNumberOfClassesToBeFormedFilter"
+                                                [(ngModel)]="minNumberOfClassesToBeFormedFilter"
+                                                placeholder="{{ l('MinValue') }}"
+                                                name="minNumberOfClassesToBeFormedFilter"
+                                            />
+                                            <input
+                                                type="number"
+                                                class="form-control"
+                                                [(ngModel)]="maxNumberOfClassesToBeFormedFilter"
+                                                placeholder="{{ l('MaxValue') }}"
+                                                name="maxNumberOfClassesToBeFormedFilter"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="IsActiveFilterSelect">{{ l('IsActive') }}</label>
+                                    <select
+                                        class="form-control"
+                                        name="IsActiveFilter"
+                                        id="IsActiveFilterSelect"
+                                        [(ngModel)]="isActiveFilter"
+                                    >
+                                        <option value="-1">{{ l('All') }}</option>
+                                        <option value="0">{{ l('False') }}</option>
+                                        <option value="1">{{ l('True') }}</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="LessonNameLessonFilter">
+                                            ({{ l('Lesson') }}) {{ l('NameLesson') }}
+                                        </label>
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="LessonNameLessonFilter"
+                                            name="lessonNameLessonFilter"
+                                            [(ngModel)]="lessonNameLessonFilter"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="SemesterSemesterNameFilter">
+                                            ({{ l('Semester') }}) {{ l('SemesterName') }}
+                                        </label>
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="SemesterSemesterNameFilter"
+                                            name="semesterSemesterNameFilter"
+                                            [(ngModel)]="semesterSemesterNameFilter"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-sm-12">
+                                    <span
+                                        class="clickable-item text-muted"
+                                        *ngIf="!advancedFiltersAreShown"
+                                        (click)="advancedFiltersAreShown = !advancedFiltersAreShown"
+                                    >
+                                        <i class="fa fa-angle-down"></i>
+                                        {{ l('ShowAdvancedFilters') }}
+                                    </span>
+                                    <span
+                                        class="clickable-item text-muted"
+                                        *ngIf="advancedFiltersAreShown"
+                                        (click)="advancedFiltersAreShown = !advancedFiltersAreShown"
+                                    >
+                                        <i class="fa fa-angle-up"></i>
+                                        {{ l('HideAdvancedFilters') }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="row align-items-center">
+                        <!--<Primeng-Datatable-Start>-->
+                        <div class="primeng-datatable-container col-12" [busyIf]="primengTableHelper.isLoading">
+                            <p-table
+                                #dataTable
+                                (onLazyLoad)="getLessonsOfSemesters($event)"
+                                [value]="primengTableHelper.records"
+                                rows="{{ primengTableHelper.defaultRecordsCountPerPage }}"
+                                [paginator]="false"
+                                [lazy]="true"
+                                [scrollable]="true"
+                                ScrollWidth="100%"
+                                [responsive]="primengTableHelper.isResponsive"
+                                [resizableColumns]="primengTableHelper.resizableColumns"
+                            >
+                                <ng-template pTemplate="header">
+                                    <tr>
+                                        <th
+                                            style="width: 130px"
+                                            [hidden]="
+                                                !isGrantedAny(
+                                                    'Pages.LessonsOfSemesters.Edit',
+                                                    'Pages.LessonsOfSemesters.Delete'
+                                                )
+                                            "
+                                        >
+                                            {{ l('Actions') }}
+                                        </th>
+                                        <th style="width: 150px" pSortableColumn="lessonFk.nameLesson">
+                                            {{ l('NameLesson') }}
+                                            <p-sortIcon field="lessonNameLesson"></p-sortIcon>
+                                        </th>
+                                        <th style="width: 150px" pSortableColumn="semesterFk.semesterName">
+                                            {{ l('SemesterName') }}
+                                            <p-sortIcon field="semesterSemesterName"></p-sortIcon>
+                                        </th>
+                                        <th style="width: 150px" pSortableColumn="lessonOfSemesterType">
+                                            {{ l('LessonOfSemesterType') }}
+                                            <p-sortIcon field="lessonsOfSemester.lessonOfSemesterType"></p-sortIcon>
+                                        </th>
+                                        <th style="width: 150px" pSortableColumn="numberOfClassesToBeFormed">
+                                            {{ l('NumberOfClassesToBeFormed') }}
+                                            <p-sortIcon
+                                                field="lessonsOfSemester.numberOfClassesToBeFormed"
+                                            ></p-sortIcon>
+                                        </th>
+                                        <th style="width: 150px" pSortableColumn="isActive">
+                                            {{ l('IsActive') }}
+                                            <p-sortIcon field="lessonsOfSemester.isActive"></p-sortIcon>
+                                        </th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-record="$implicit" let-i="rowIndex">
+                                    <tr>
+                                        <td
+                                            style="width: 130px"
+                                            [hidden]="
+                                                !isGrantedAny(
+                                                    'Pages.LessonsOfSemesters.Edit',
+                                                    'Pages.LessonsOfSemesters.Delete'
+                                                )
+                                            "
+                                        >
+                                            <div class="btn-group dropdown" dropdown container="body">
+                                                <button class="dropdown-toggle btn btn-sm btn-primary" dropdownToggle>
+                                                    <i class="fa fa-cog"></i>
+                                                    <span class="caret"></span>
+                                                    {{ l('Actions') }}
+                                                </button>
+                                                <ul class="dropdown-menu" *dropdownMenu>
+                                                    <li>
+                                                        <a
+                                                            href="javascript:;"
+                                                            class="dropdown-item"
+                                                            (click)="viewLessonsOfSemesterModal.show(record)"
+                                                        >
+                                                            {{ l('View') }}
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a
+                                                            href="javascript:;"
+                                                            *ngIf="
+                                                                permission.isGranted('Pages.LessonsOfSemesters.Edit')
+                                                            "
+                                                            class="dropdown-item"
+                                                            (click)="
+                                                                createOrEditLessonsOfSemesterModal.show(
+                                                                    record.lessonsOfSemester.id
+                                                                )
+                                                            "
+                                                        >
+                                                            {{ l('Edit') }}
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a
+                                                            class="dropdown-item"
+                                                            href="javascript:;"
+                                                            *ngIf="
+                                                                permission.isGranted('Pages.LessonsOfSemesters.Delete')
+                                                            "
+                                                            (click)="deleteLessonsOfSemester(record.lessonsOfSemester)"
+                                                        >
+                                                            {{ l('Delete') }}
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a
+                                                            href="javascript:;"
+                                                            *ngIf="entityHistoryEnabled"
+                                                            class="dropdown-item"
+                                                            (click)="showHistory(record.lessonsOfSemester)"
+                                                        >
+                                                            {{ l('History') }}
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                        <td style="width: 150px">
+                                            <span class="p-column-title">{{ l('NameLesson') }}</span>
+                                            {{ record.lessonNameLesson }}
+                                        </td>
+                                        <td style="width: 150px">
+                                            <span class="p-column-title">{{ l('SemesterName') }}</span>
+                                            {{ record.semesterSemesterName }}
+                                        </td>
+                                        <td style="width: 150px">
+                                            <span class="p-column-title">{{ l('LessonOfSemesterType') }}</span>
+                                            {{
+                                                l(
+                                                    lessonOfSemesterTypeEnum[
+                                                        record.lessonsOfSemester.lessonOfSemesterType
+                                                    ]
+                                                )
+                                            }}
+                                        </td>
+                                        <td style="width: 150px">
+                                            <span class="p-column-title">{{ l('NumberOfClassesToBeFormed') }}</span>
+                                            {{ record.lessonsOfSemester.numberOfClassesToBeFormed }}
+                                        </td>
+                                        <td style="width: 150px">
+                                            <span class="p-column-title">{{ l('IsActive') }}</span>
+                                            <div *ngIf="record.lessonsOfSemester.isActive" class="text-center">
+                                                <i class="fa fa-check-circle text-success" title="True"></i>
+                                            </div>
+                                            <div *ngIf="!record.lessonsOfSemester.isActive" class="text-center">
+                                                <i class="fa fa-times-circle" title="False"></i>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </ng-template>
+                            </p-table>
+                            <div class="primeng-no-data" *ngIf="primengTableHelper.totalRecordsCount == 0">
+                                {{ l('NoData') }}
+                            </div>
+                            <div class="primeng-paging-container">
+                                <p-paginator
+                                    [rows]="primengTableHelper.defaultRecordsCountPerPage"
+                                    #paginator
+                                    (onPageChange)="getLessonsOfSemesters($event)"
+                                    [totalRecords]="primengTableHelper.totalRecordsCount"
+                                    [rowsPerPageOptions]="primengTableHelper.predefinedRecordsCountPerPage"
+                                    [showCurrentPageReport]="true"
+                                    [currentPageReportTemplate]="
+                                        'TotalRecordsCount' | localize: primengTableHelper.totalRecordsCount
+                                    "
+                                ></p-paginator>
+                            </div>
+                        </div>
+                        <!--<Primeng-Datatable-End>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <createOrEditLessonsOfSemesterModal
+            #createOrEditLessonsOfSemesterModal
+            (modalSave)="getLessonsOfSemesters()"
+        ></createOrEditLessonsOfSemesterModal>
+        <viewLessonsOfSemesterModal #viewLessonsOfSemesterModal></viewLessonsOfSemesterModal>
+        <entityTypeHistoryModal #entityTypeHistoryModal></entityTypeHistoryModal>
+    </div>
+</div>

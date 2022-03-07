@@ -30,6 +30,21 @@ namespace Mohajer.ClassScheduleProject.Authorization
 
             var pages = context.GetPermissionOrNull(AppPermissions.Pages) ?? context.CreatePermission(AppPermissions.Pages, L("Pages"));
 
+            var lessonsOfUniversityProfessors = pages.CreateChildPermission(AppPermissions.Pages_LessonsOfUniversityProfessors, L("LessonsOfUniversityProfessors"), multiTenancySides: MultiTenancySides.Tenant);
+            lessonsOfUniversityProfessors.CreateChildPermission(AppPermissions.Pages_LessonsOfUniversityProfessors_Create, L("CreateNewLessonsOfUniversityProfessor"), multiTenancySides: MultiTenancySides.Tenant);
+            lessonsOfUniversityProfessors.CreateChildPermission(AppPermissions.Pages_LessonsOfUniversityProfessors_Edit, L("EditLessonsOfUniversityProfessor"), multiTenancySides: MultiTenancySides.Tenant);
+            lessonsOfUniversityProfessors.CreateChildPermission(AppPermissions.Pages_LessonsOfUniversityProfessors_Delete, L("DeleteLessonsOfUniversityProfessor"), multiTenancySides: MultiTenancySides.Tenant);
+
+            var lessonsOfSemesters = pages.CreateChildPermission(AppPermissions.Pages_LessonsOfSemesters, L("LessonsOfSemesters"), multiTenancySides: MultiTenancySides.Tenant);
+            lessonsOfSemesters.CreateChildPermission(AppPermissions.Pages_LessonsOfSemesters_Create, L("CreateNewLessonsOfSemester"), multiTenancySides: MultiTenancySides.Tenant);
+            lessonsOfSemesters.CreateChildPermission(AppPermissions.Pages_LessonsOfSemesters_Edit, L("EditLessonsOfSemester"), multiTenancySides: MultiTenancySides.Tenant);
+            lessonsOfSemesters.CreateChildPermission(AppPermissions.Pages_LessonsOfSemesters_Delete, L("DeleteLessonsOfSemester"), multiTenancySides: MultiTenancySides.Tenant);
+
+            var lessons = pages.CreateChildPermission(AppPermissions.Pages_Lessons, L("Lessons"), multiTenancySides: MultiTenancySides.Tenant);
+            lessons.CreateChildPermission(AppPermissions.Pages_Lessons_Create, L("CreateNewLesson"), multiTenancySides: MultiTenancySides.Tenant);
+            lessons.CreateChildPermission(AppPermissions.Pages_Lessons_Edit, L("EditLesson"), multiTenancySides: MultiTenancySides.Tenant);
+            lessons.CreateChildPermission(AppPermissions.Pages_Lessons_Delete, L("DeleteLesson"), multiTenancySides: MultiTenancySides.Tenant);
+
             var universityProfessorWorkingTimes = pages.CreateChildPermission(AppPermissions.Pages_UniversityProfessorWorkingTimes, L("UniversityProfessorWorkingTimes"), multiTenancySides: MultiTenancySides.Tenant);
             universityProfessorWorkingTimes.CreateChildPermission(AppPermissions.Pages_UniversityProfessorWorkingTimes_Create, L("CreateNewUniversityProfessorWorkingTime"), multiTenancySides: MultiTenancySides.Tenant);
             universityProfessorWorkingTimes.CreateChildPermission(AppPermissions.Pages_UniversityProfessorWorkingTimes_Edit, L("EditUniversityProfessorWorkingTime"), multiTenancySides: MultiTenancySides.Tenant);

@@ -1841,6 +1841,180 @@ namespace Mohajer.ClassScheduleProject.Migrations
                     b.ToTable("Grades");
                 });
 
+            modelBuilder.Entity("Mohajer.ClassScheduleProject.CentralUnit.Lessons.Lesson", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("ClassificationLesson")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ClassroomBuildingId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("HoursPerWeek")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("LessonType")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NameLesson")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<int>("NumberOfGroups")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NumberOfUnits")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TenantId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClassroomBuildingId");
+
+                    b.HasIndex("TenantId");
+
+                    b.ToTable("Lessons");
+                });
+
+            modelBuilder.Entity("Mohajer.ClassScheduleProject.CentralUnit.LessonsOfSemesters.LessonsOfSemester", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .UseIdentityColumn();
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("LessonId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("LessonOfSemesterType")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NumberOfClassesToBeFormed")
+                        .HasColumnType("int");
+
+                    b.Property<long>("SemesterId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("TenantId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LessonId");
+
+                    b.HasIndex("SemesterId");
+
+                    b.HasIndex("TenantId");
+
+                    b.ToTable("LessonsOfSemesters");
+                });
+
+            modelBuilder.Entity("Mohajer.ClassScheduleProject.CentralUnit.LessonsOfUniversityProfessors.LessonsOfUniversityProfessor", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .UseIdentityColumn();
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("LessonId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("TenantId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UniversityProfessorId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LessonId");
+
+                    b.HasIndex("TenantId");
+
+                    b.HasIndex("UniversityProfessorId");
+
+                    b.ToTable("LessonsOfUniversityProfessors");
+                });
+
             modelBuilder.Entity("Mohajer.ClassScheduleProject.CentralUnit.Semesters.Semester", b =>
                 {
                     b.Property<long>("Id")
@@ -2780,6 +2954,55 @@ namespace Mohajer.ClassScheduleProject.Migrations
                     b.Navigation("ClassroomBuildingFk");
 
                     b.Navigation("UniversityMajorFk");
+                });
+
+            modelBuilder.Entity("Mohajer.ClassScheduleProject.CentralUnit.Lessons.Lesson", b =>
+                {
+                    b.HasOne("Mohajer.ClassScheduleProject.CentralUnit.ClassroomBuildings.ClassroomBuilding", "ClassroomBuildingFk")
+                        .WithMany()
+                        .HasForeignKey("ClassroomBuildingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ClassroomBuildingFk");
+                });
+
+            modelBuilder.Entity("Mohajer.ClassScheduleProject.CentralUnit.LessonsOfSemesters.LessonsOfSemester", b =>
+                {
+                    b.HasOne("Mohajer.ClassScheduleProject.CentralUnit.Lessons.Lesson", "LessonFk")
+                        .WithMany()
+                        .HasForeignKey("LessonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Mohajer.ClassScheduleProject.CentralUnit.Semesters.Semester", "SemesterFk")
+                        .WithMany()
+                        .HasForeignKey("SemesterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("LessonFk");
+
+                    b.Navigation("SemesterFk");
+                });
+
+            modelBuilder.Entity("Mohajer.ClassScheduleProject.CentralUnit.LessonsOfUniversityProfessors.LessonsOfUniversityProfessor", b =>
+                {
+                    b.HasOne("Mohajer.ClassScheduleProject.CentralUnit.Lessons.Lesson", "LessonFk")
+                        .WithMany()
+                        .HasForeignKey("LessonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Mohajer.ClassScheduleProject.CentralUnit.UniversityProfessors.UniversityProfessor", "UniversityProfessorFk")
+                        .WithMany()
+                        .HasForeignKey("UniversityProfessorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("LessonFk");
+
+                    b.Navigation("UniversityProfessorFk");
                 });
 
             modelBuilder.Entity("Mohajer.ClassScheduleProject.CentralUnit.Semesters.Semester", b =>

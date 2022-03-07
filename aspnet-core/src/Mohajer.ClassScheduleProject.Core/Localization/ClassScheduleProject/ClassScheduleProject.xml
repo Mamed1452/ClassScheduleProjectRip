@@ -1,6 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="en">
-  <texts>    <text name="UniversityProfessorWorkingTimes">University professor working times</text>
+  <texts>    <text name="LessonsOfUniversityProfessors">Lessons of university professors</text>
+    <text name="LessonsOfUniversityProfessor">Lessons of university professor</text>
+    <text name="Mohajer.ClassScheduleProject.LessonsOfUniversityProfessors.LessonsOfUniversityProfessor">LessonsOfUniversityProfessor</text>
+    <text name="LessonsOfUniversityProfessorsHeaderInfo">Lessons of university professors header info</text>
+    <text name="CreateNewLessonsOfUniversityProfessor">Create new lessons of university professor</text>
+    <text name="EditLessonsOfUniversityProfessor">Edit lessons of university professor</text>
+    <text name="DeleteLessonsOfUniversityProfessor">Delete lessons of university professor</text>
+    <text name="LessonsOfSemesters">Lessons of semesters</text>
+    <text name="LessonsOfSemester">Lessons of semester</text>
+    <text name="Mohajer.ClassScheduleProject.LessonsOfSemesters.LessonsOfSemester">LessonsOfSemester</text>
+    <text name="LessonOfSemesterType">Lesson of semester type</text>
+    <text name="NumberOfClassesToBeFormed">Number of classes to be formed</text>
+    <text name="LessonsOfSemestersHeaderInfo">Lessons of semesters header info</text>
+    <text name="CreateNewLessonsOfSemester">Create new lessons of semester</text>
+    <text name="EditLessonsOfSemester">Edit lessons of semester</text>
+    <text name="DeleteLessonsOfSemester">Delete lessons of semester</text>
+    <text name="LessonNameLesson">Lesson name lesson</text>
+    <text name="PickLesson">Pick lesson</text>
+    <text name="SemesterSemesterName">Semester semester name</text>
+    <text name="PickSemester">Pick semester</text>
+    <text name="Lessons">Lessons</text>
+    <text name="Lesson">Lesson</text>
+    <text name="Mohajer.ClassScheduleProject.Lessons.Lesson">Lesson</text>
+    <text name="NameLesson">Name lesson</text>
+    <text name="HoursPerWeek">Hours per week</text>
+    <text name="LessonType">Lesson type</text>
+    <text name="ClassificationLesson">Classification lesson</text>
+    <text name="NumberOfUnits">Number of units</text>
+    <text name="NumberOfGroups">Number of groups</text>
+    <text name="LessonsHeaderInfo">Lessons header info</text>
+    <text name="CreateNewLesson">Create new lesson</text>
+    <text name="EditLesson">Edit lesson</text>
+    <text name="DeleteLesson">Delete lesson</text>
+    <text name="UniversityProfessorWorkingTimes">University professor working times</text>
     <text name="UniversityProfessorWorkingTime">University professor working time</text>
     <text name="Mohajer.ClassScheduleProject.UniversityProfessorWorkingTimes.UniversityProfessorWorkingTime">UniversityProfessorWorkingTime</text>
     <text name="UniversityProfessorWorkingTimesHeaderInfo">University professor working times header info</text>

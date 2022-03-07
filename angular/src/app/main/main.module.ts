@@ -2,6 +2,23 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppCommonModule } from '@app/shared/common/app-common.module';
+import { LessonsOfUniversityProfessorsComponent } from './lessonsOfUniversityProfessors/lessonsOfUniversityProfessors/lessonsOfUniversityProfessors.component';
+import { ViewLessonsOfUniversityProfessorModalComponent } from './lessonsOfUniversityProfessors/lessonsOfUniversityProfessors/view-lessonsOfUniversityProfessor-modal.component';
+import { CreateOrEditLessonsOfUniversityProfessorModalComponent } from './lessonsOfUniversityProfessors/lessonsOfUniversityProfessors/create-or-edit-lessonsOfUniversityProfessor-modal.component';
+import { LessonsOfUniversityProfessorLessonLookupTableModalComponent } from './lessonsOfUniversityProfessors/lessonsOfUniversityProfessors/lessonsOfUniversityProfessor-lesson-lookup-table-modal.component';
+import { LessonsOfUniversityProfessorUniversityProfessorLookupTableModalComponent } from './lessonsOfUniversityProfessors/lessonsOfUniversityProfessors/lessonsOfUniversityProfessor-universityProfessor-lookup-table-modal.component';
+
+import { LessonsOfSemestersComponent } from './lessonsOfSemesters/lessonsOfSemesters/lessonsOfSemesters.component';
+import { ViewLessonsOfSemesterModalComponent } from './lessonsOfSemesters/lessonsOfSemesters/view-lessonsOfSemester-modal.component';
+import { CreateOrEditLessonsOfSemesterModalComponent } from './lessonsOfSemesters/lessonsOfSemesters/create-or-edit-lessonsOfSemester-modal.component';
+import { LessonsOfSemesterLessonLookupTableModalComponent } from './lessonsOfSemesters/lessonsOfSemesters/lessonsOfSemester-lesson-lookup-table-modal.component';
+import { LessonsOfSemesterSemesterLookupTableModalComponent } from './lessonsOfSemesters/lessonsOfSemesters/lessonsOfSemester-semester-lookup-table-modal.component';
+
+import { LessonsComponent } from './lessons/lessons/lessons.component';
+import { ViewLessonModalComponent } from './lessons/lessons/view-lesson-modal.component';
+import { CreateOrEditLessonModalComponent } from './lessons/lessons/create-or-edit-lesson-modal.component';
+import { LessonClassroomBuildingLookupTableModalComponent } from './lessons/lessons/lesson-classroomBuilding-lookup-table-modal.component';
+
 import { UniversityProfessorWorkingTimesComponent } from './universityProfessorWorkingTimes/universityProfessorWorkingTimes/universityProfessorWorkingTimes.component';
 import { ViewUniversityProfessorWorkingTimeModalComponent } from './universityProfessorWorkingTimes/universityProfessorWorkingTimes/view-universityProfessorWorkingTime-modal.component';
 import { CreateOrEditUniversityProfessorWorkingTimeModalComponent } from './universityProfessorWorkingTimes/universityProfessorWorkingTimes/create-or-edit-universityProfessorWorkingTime-modal.component';
@@ -107,6 +124,23 @@ NgxBootstrapDatePickerConfigService.registerNgxBootstrapDatePickerLocales();
         PopoverModule.forRoot()
     ],
     declarations: [
+		LessonsOfUniversityProfessorsComponent,
+
+		ViewLessonsOfUniversityProfessorModalComponent,
+		CreateOrEditLessonsOfUniversityProfessorModalComponent,
+    LessonsOfUniversityProfessorLessonLookupTableModalComponent,
+    LessonsOfUniversityProfessorUniversityProfessorLookupTableModalComponent,
+		LessonsOfSemestersComponent,
+
+		ViewLessonsOfSemesterModalComponent,
+		CreateOrEditLessonsOfSemesterModalComponent,
+    LessonsOfSemesterLessonLookupTableModalComponent,
+    LessonsOfSemesterSemesterLookupTableModalComponent,
+		LessonsComponent,
+
+		ViewLessonModalComponent,
+		CreateOrEditLessonModalComponent,
+    LessonClassroomBuildingLookupTableModalComponent,
 		UniversityProfessorWorkingTimesComponent,
 
 		ViewUniversityProfessorWorkingTimeModalComponent,

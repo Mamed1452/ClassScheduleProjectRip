@@ -1,0 +1,196 @@
+﻿<div
+    bsModal
+    #createOrEditModal="bs-modal"
+    class="modal fade"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="createOrEditModal"
+    aria-hidden="true"
+    [config]="{ backdrop: 'static' }"
+>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form *ngIf="active" #lessonForm="ngForm" novalidate (ngSubmit)="save()" autocomplete="off">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <span *ngIf="lesson.id">{{ l('EditLesson') }}</span>
+                        <span *ngIf="!lesson.id">{{ l('CreateNewLesson') }}</span>
+                    </h4>
+                    <button type="button" class="close" (click)="close()" aria-label="Close" [disabled]="saving">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group m-form__group">
+                        <label for="ClassroomBuildingClassroomBuildingName">{{ l('ClassroomBuilding') }}</label>
+                        <div class="input-group">
+                            <input
+                                class="form-control"
+                                id="ClassroomBuildingClassroomBuildingName"
+                                name="classroomBuildingClassroomBuildingName"
+                                [(ngModel)]="classroomBuildingClassroomBuildingName"
+                                type="text"
+                                disabled
+                            />
+                            <div class="input-group-append">
+                                <button
+                                    class="btn btn-primary blue"
+                                    (click)="openSelectClassroomBuildingModal()"
+                                    type="button"
+                                >
+                                    <i class="fa fa-search"></i>
+                                    {{ l('Pick') }}
+                                </button>
+                            </div>
+                            <div class="input-group-prepend">
+                                <button
+                                    class="btn btn-danger btn-icon"
+                                    type="button"
+                                    (click)="setClassroomBuildingIdNull()"
+                                >
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <input
+                        class="form-control"
+                        name="lesson.classroomBuildingId"
+                        [(ngModel)]="lesson.classroomBuildingId"
+                        type="text"
+                        required
+                        hidden
+                    />
+
+                    <div class="form-group">
+                        <label for="Lesson_NameLesson">{{ l('NameLesson') }} *</label>
+                        <input
+                            type="text"
+                            #Lesson_NameLesson="ngModel"
+                            id="Lesson_NameLesson"
+                            class="form-control"
+                            [(ngModel)]="lesson.nameLesson"
+                            name="NameLesson"
+                            minlength="1"
+                            maxlength="200"
+                            required
+                        />
+                        <validation-messages [formCtrl]="Lesson_NameLesson"></validation-messages>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Lesson_HoursPerWeek">{{ l('HoursPerWeek') }}</label>
+                        <input
+                            type="number"
+                            #Lesson_HoursPerWeek="ngModel"
+                            id="Lesson_HoursPerWeek"
+                            class="form-control"
+                            [(ngModel)]="lesson.hoursPerWeek"
+                            name="HoursPerWeek"
+                            min="1"
+                            max="150"
+                        />
+                        <validation-messages [formCtrl]="Lesson_HoursPerWeek"></validation-messages>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Lesson_LessonType">{{ l('LessonType') }}</label>
+                        <select
+                            class="form-control"
+                            #Lesson_LessonType="ngModel"
+                            name="LessonType"
+                            id="Lesson_LessonType"
+                            [(ngModel)]="lesson.lessonType"
+                        >
+                            <option value="1">{{ l('LaboratoryLessons') }}</option>
+
+                            <option value="2">{{ l('TheoryLesson') }}</option>
+                        </select>
+                        <validation-messages [formCtrl]="Lesson_LessonType"></validation-messages>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Lesson_ClassificationLesson">{{ l('ClassificationLesson') }}</label>
+                        <select
+                            class="form-control"
+                            #Lesson_ClassificationLesson="ngModel"
+                            name="ClassificationLesson"
+                            id="Lesson_ClassificationLesson"
+                            [(ngModel)]="lesson.classificationLesson"
+                        >
+                            <option value="1">{{ l('Specialized') }}</option>
+
+                            <option value="2">{{ l('General') }}</option>
+                        </select>
+                        <validation-messages [formCtrl]="Lesson_ClassificationLesson"></validation-messages>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Lesson_NumberOfUnits">{{ l('NumberOfUnits') }}</label>
+                        <input
+                            type="number"
+                            #Lesson_NumberOfUnits="ngModel"
+                            id="Lesson_NumberOfUnits"
+                            class="form-control"
+                            [(ngModel)]="lesson.numberOfUnits"
+                            name="NumberOfUnits"
+                            min="1"
+                            max="20"
+                        />
+                        <validation-messages [formCtrl]="Lesson_NumberOfUnits"></validation-messages>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Lesson_NumberOfGroups">{{ l('NumberOfGroups') }}</label>
+                        <input
+                            type="number"
+                            #Lesson_NumberOfGroups="ngModel"
+                            id="Lesson_NumberOfGroups"
+                            class="form-control"
+                            [(ngModel)]="lesson.numberOfGroups"
+                            name="NumberOfGroups"
+                            min="1"
+                            max="20"
+                        />
+                        <validation-messages [formCtrl]="Lesson_NumberOfGroups"></validation-messages>
+                    </div>
+
+                    <br />
+                    <div class="m-checkbox-list">
+                        <label for="Lesson_IsActive" class="kt-checkbox">
+                            <input
+                                id="Lesson_IsActive"
+                                #Lesson_IsActive="ngModel"
+                                type="checkbox"
+                                name="IsActive"
+                                [(ngModel)]="lesson.isActive"
+                            />
+                            {{ l('IsActive') }}
+                            <span></span>
+                        </label>
+                        <validation-messages [formCtrl]="Lesson_IsActive"></validation-messages>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button [disabled]="saving" type="button" class="btn btn-default" (click)="close()">
+                        {{ l('Cancel') }}
+                    </button>
+                    <button
+                        type="submit"
+                        class="btn btn-primary blue"
+                        [disabled]="!lessonForm.form.valid"
+                        [buttonBusy]="saving"
+                        [busyText]="l('SavingWithThreeDot')"
+                    >
+                        <i class="fa fa-save"></i>
+                        <span>{{ l('Save') }}</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <lessonClassroomBuildingLookupTableModal
+        #lessonClassroomBuildingLookupTableModal
+        (modalSave)="getNewClassroomBuildingId()"
+    ></lessonClassroomBuildingLookupTableModal>
+</div>

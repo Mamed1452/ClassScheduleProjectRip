@@ -1,4 +1,7 @@
-﻿using Mohajer.ClassScheduleProject.CentralUnit.UniversityProfessorWorkingTimes;
+﻿using Mohajer.ClassScheduleProject.CentralUnit.LessonsOfUniversityProfessors;
+using Mohajer.ClassScheduleProject.CentralUnit.LessonsOfSemesters;
+using Mohajer.ClassScheduleProject.CentralUnit.Lessons;
+using Mohajer.ClassScheduleProject.CentralUnit.UniversityProfessorWorkingTimes;
 using Mohajer.ClassScheduleProject.CentralUnit.UniversityProfessors;
 using Mohajer.ClassScheduleProject.CentralUnit.WorkTimeInDays;
 using Mohajer.ClassScheduleProject.CentralUnit.AssigningGradeToUniversityMajors;
@@ -27,6 +30,9 @@ namespace Mohajer.ClassScheduleProject.EntityHistory
 
         public static readonly Type[] TenantSideTrackedTypes =
         {
+            typeof(LessonsOfUniversityProfessor),
+            typeof(LessonsOfSemester),
+            typeof(Lesson),
             typeof(UniversityProfessorWorkingTime),
             typeof(UniversityProfessor),
             typeof(WorkTimeInDay),

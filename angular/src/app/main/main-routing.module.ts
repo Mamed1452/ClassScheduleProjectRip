@@ -1,5 +1,8 @@
 ﻿import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { LessonsOfUniversityProfessorsComponent } from './lessonsOfUniversityProfessors/lessonsOfUniversityProfessors/lessonsOfUniversityProfessors.component';
+import { LessonsOfSemestersComponent } from './lessonsOfSemesters/lessonsOfSemesters/lessonsOfSemesters.component';
+import { LessonsComponent } from './lessons/lessons/lessons.component';
 import { UniversityProfessorWorkingTimesComponent } from './universityProfessorWorkingTimes/universityProfessorWorkingTimes/universityProfessorWorkingTimes.component';
 import { UniversityProfessorsComponent } from './universityProfessors/universityProfessors/universityProfessors.component';
 import { WorkTimeInDaysComponent } from './workTimeInDays/workTimeInDays/workTimeInDays.component';
@@ -18,6 +21,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
             {
                 path: '',
                 children: [
+                    { path: 'lessonsOfUniversityProfessors/lessonsOfUniversityProfessors', component: LessonsOfUniversityProfessorsComponent, data: { permission: 'Pages.LessonsOfUniversityProfessors' }  },
+                    { path: 'lessonsOfSemesters/lessonsOfSemesters', component: LessonsOfSemestersComponent, data: { permission: 'Pages.LessonsOfSemesters' }  },
+                    { path: 'lessons/lessons', component: LessonsComponent, data: { permission: 'Pages.Lessons' }  },
                     { path: 'universityProfessorWorkingTimes/universityProfessorWorkingTimes', component: UniversityProfessorWorkingTimesComponent, data: { permission: 'Pages.UniversityProfessorWorkingTimes' }  },
                     { path: 'universityProfessors/universityProfessors', component: UniversityProfessorsComponent, data: { permission: 'Pages.UniversityProfessors' }  },
                     { path: 'workTimeInDays/workTimeInDays', component: WorkTimeInDaysComponent, data: { permission: 'Pages.WorkTimeInDays' }  },

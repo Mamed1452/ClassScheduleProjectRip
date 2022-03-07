@@ -1,0 +1,167 @@
+﻿<div
+    bsModal
+    #createOrEditModal="bs-modal"
+    class="modal fade"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="createOrEditModal"
+    aria-hidden="true"
+    [config]="{ backdrop: 'static' }"
+>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form *ngIf="active" #lessonsOfSemesterForm="ngForm" novalidate (ngSubmit)="save()" autocomplete="off">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <span *ngIf="lessonsOfSemester.id">{{ l('EditLessonsOfSemester') }}</span>
+                        <span *ngIf="!lessonsOfSemester.id">{{ l('CreateNewLessonsOfSemester') }}</span>
+                    </h4>
+                    <button type="button" class="close" (click)="close()" aria-label="Close" [disabled]="saving">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group m-form__group">
+                        <label for="LessonNameLesson">{{ l('Lesson') }}</label>
+                        <div class="input-group">
+                            <input
+                                class="form-control"
+                                id="LessonNameLesson"
+                                name="lessonNameLesson"
+                                [(ngModel)]="lessonNameLesson"
+                                type="text"
+                                disabled
+                            />
+                            <div class="input-group-append">
+                                <button class="btn btn-primary blue" (click)="openSelectLessonModal()" type="button">
+                                    <i class="fa fa-search"></i>
+                                    {{ l('Pick') }}
+                                </button>
+                            </div>
+                            <div class="input-group-prepend">
+                                <button class="btn btn-danger btn-icon" type="button" (click)="setLessonIdNull()">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <input
+                        class="form-control"
+                        name="lessonsOfSemester.lessonId"
+                        [(ngModel)]="lessonsOfSemester.lessonId"
+                        type="text"
+                        required
+                        hidden
+                    />
+
+                    <div class="form-group m-form__group">
+                        <label for="SemesterSemesterName">{{ l('Semester') }}</label>
+                        <div class="input-group">
+                            <input
+                                class="form-control"
+                                id="SemesterSemesterName"
+                                name="semesterSemesterName"
+                                [(ngModel)]="semesterSemesterName"
+                                type="text"
+                                disabled
+                            />
+                            <div class="input-group-append">
+                                <button class="btn btn-primary blue" (click)="openSelectSemesterModal()" type="button">
+                                    <i class="fa fa-search"></i>
+                                    {{ l('Pick') }}
+                                </button>
+                            </div>
+                            <div class="input-group-prepend">
+                                <button class="btn btn-danger btn-icon" type="button" (click)="setSemesterIdNull()">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <input
+                        class="form-control"
+                        name="lessonsOfSemester.semesterId"
+                        [(ngModel)]="lessonsOfSemester.semesterId"
+                        type="text"
+                        required
+                        hidden
+                    />
+
+                    <div class="form-group">
+                        <label for="LessonsOfSemester_LessonOfSemesterType">{{ l('LessonOfSemesterType') }}</label>
+                        <select
+                            class="form-control"
+                            #LessonsOfSemester_LessonOfSemesterType="ngModel"
+                            name="LessonOfSemesterType"
+                            id="LessonsOfSemester_LessonOfSemesterType"
+                            [(ngModel)]="lessonsOfSemester.lessonOfSemesterType"
+                        >
+                            <option value="1">{{ l('Main') }}</option>
+
+                            <option value="2">{{ l('Compensatory') }}</option>
+                        </select>
+                        <validation-messages [formCtrl]="LessonsOfSemester_LessonOfSemesterType"></validation-messages>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="LessonsOfSemester_NumberOfClassesToBeFormed">
+                            {{ l('NumberOfClassesToBeFormed') }}
+                        </label>
+                        <input
+                            type="number"
+                            #LessonsOfSemester_NumberOfClassesToBeFormed="ngModel"
+                            id="LessonsOfSemester_NumberOfClassesToBeFormed"
+                            class="form-control"
+                            [(ngModel)]="lessonsOfSemester.numberOfClassesToBeFormed"
+                            name="NumberOfClassesToBeFormed"
+                            min="1"
+                            max="20"
+                        />
+                        <validation-messages
+                            [formCtrl]="LessonsOfSemester_NumberOfClassesToBeFormed"
+                        ></validation-messages>
+                    </div>
+
+                    <br />
+                    <div class="m-checkbox-list">
+                        <label for="LessonsOfSemester_IsActive" class="kt-checkbox">
+                            <input
+                                id="LessonsOfSemester_IsActive"
+                                #LessonsOfSemester_IsActive="ngModel"
+                                type="checkbox"
+                                name="IsActive"
+                                [(ngModel)]="lessonsOfSemester.isActive"
+                            />
+                            {{ l('IsActive') }}
+                            <span></span>
+                        </label>
+                        <validation-messages [formCtrl]="LessonsOfSemester_IsActive"></validation-messages>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button [disabled]="saving" type="button" class="btn btn-default" (click)="close()">
+                        {{ l('Cancel') }}
+                    </button>
+                    <button
+                        type="submit"
+                        class="btn btn-primary blue"
+                        [disabled]="!lessonsOfSemesterForm.form.valid"
+                        [buttonBusy]="saving"
+                        [busyText]="l('SavingWithThreeDot')"
+                    >
+                        <i class="fa fa-save"></i>
+                        <span>{{ l('Save') }}</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <lessonsOfSemesterLessonLookupTableModal
+        #lessonsOfSemesterLessonLookupTableModal
+        (modalSave)="getNewLessonId()"
+    ></lessonsOfSemesterLessonLookupTableModal>
+    <lessonsOfSemesterSemesterLookupTableModal
+        #lessonsOfSemesterSemesterLookupTableModal
+        (modalSave)="getNewSemesterId()"
+    ></lessonsOfSemesterSemesterLookupTableModal>
+</div>
