@@ -1,0 +1,28 @@
+﻿<div class="card card-custom">
+    <div class="card-header align-items-center border-0">
+        <h3 class="card-title align-items-start flex-column">
+            <span class="font-weight-bolder text-dark">
+                 {{'فاکتور های 30 روز گذشته'}}
+            </span>
+        </h3>
+    </div>
+    <div class="card-body" [perfectScrollbar]>
+        <div class="row">
+            <div class="col" style="max-height: 200px">
+                <ngx-charts-bar-vertical [results]="dailySalesLineChart.chartData"
+                                         [scheme]="dailySalesLineChart.scheme"
+                                         [gradient]="gradient"
+                                         [xAxis]="showXAxis"
+                                         [yAxis]="showYAxis"
+                                         [showXAxisLabel]="showXAxisLabel"
+                                         [showYAxisLabel]="showYAxisLabel">
+                    <ng-template #tooltipTemplate let-model="model">
+                        <span>تاریخ : {{model.name}}</span>
+                        <br />
+                        <span>مبلغ : {{model.value | number}}</span>
+                    </ng-template>
+                </ngx-charts-bar-vertical>
+            </div>
+        </div>
+    </div>
+</div>

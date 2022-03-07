@@ -1,0 +1,91 @@
+/* Structure */
+
+.datatable-container {
+    position: relative;
+    min-height: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.mat-table-sticky {
+    background: none;
+}
+
+.datatable-table-container {
+    position: relative;
+    overflow: auto;
+}
+
+table {
+    width: 100%;
+    .mat-cell{
+        font-size: 15px !important;
+    }
+}
+
+.datatable-container table tbody tr:nth-child(odd) {
+    background-color: #f7f6f6;
+}
+
+.datatable-container table th,
+.datatable-container table td {
+    border-left: 1px #d8d2d2 solid;
+    padding: 0px 8px !important;
+}
+
+.datatable-container table thead {
+    background: linear-gradient(
+            180deg, #a12a2a, #db1224) !important;
+    th {
+        font-weight: bold;
+        color: #fff;
+    }
+}
+
+.datatable-loading-shade {
+    position: absolute;
+    top: 50px !important;
+    left: 0;
+    bottom: 56px;
+    right: 0;
+    background: rgba(255, 255, 255, 0.9);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.datatable-rate-limit-reached {
+    color: #980000;
+    max-width: 360px;
+    text-align: center;
+}
+
+/* Column Widths */
+
+.mat-column-number,
+.mat-column-state {
+    max-width: 64px;
+}
+
+.mat-column-created {
+    max-width: 124px;
+}
+
+.datatable-container a {
+    color: #0559e4 !important;
+    cursor: pointer;
+    text-decoration: underline !important;
+}
+
+.mat-sort-header-arrow {
+    color: #fff;
+}
+
+.mat-footer-row {
+    background-color: #5263bf !important;
+    color: #fff;
+    td {
+        color: #fff;
+    }
+}

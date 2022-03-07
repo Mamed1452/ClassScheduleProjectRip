@@ -1,0 +1,45 @@
+﻿<!-- <div class="input-group">
+    <input type="text" class="form-control  date-range-filter"
+        value="{{selectedDateRange[0] | luxonFormat: 'ff'}} - {{selectedDateRange[1] | luxonFormat: 'ff'}}"
+        disabled="disabled" #dateRangePicker="bsDaterangepicker" bsDaterangepicker dateRangePickerLuxonModifier
+        placement="bottom" [(date)]="selectedDateRange" (dateChange)="onChange()">
+    <div class="input-group-append">
+        <button class="btn btn-primary" type="button" (click)="dateRangePicker.toggle()">
+                <i class="fa fa-calendar-day p-0" style="color:white;" aria-hidden="true"></i></button>
+    </div>
+</div> -->
+
+<h5 mat-dialog-title>{{'EnterDateRange'|localize}}</h5>
+<mat-dialog-content>
+  <!-- <mat-form-field appearance="fill" *ngIf="selectedDateRange.length > 0">
+    <mat-label>{{'EnterDateRange'|localize}}</mat-label>
+    <mat-date-range-input [rangePicker]="picker"  >
+      <input matStartDate  [(ngModel)]="selectedDateRange[0]"  #range1="ngModel" placeholder="{{'StartDate'|localize}}">
+      <input matEndDate  [(ngModel)]="selectedDateRange[1]"  #range2="ngModel" placeholder="{{'EndDate'|localize}}">
+    </mat-date-range-input>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+  
+    <mat-error *ngIf="range1.hasError('matStartDateInvalid')">{{'InvalidStartDate'|localize}}</mat-error>
+    <mat-error *ngIf="range2.hasError('matEndDateInvalid')">{{'InvalidEndDate'|localize}}</mat-error>
+  <pre></pre>
+  </mat-form-field> -->
+
+  <div *ngIf="loading" class="d-flex justify-content-center align-items-center">
+    <mat-spinner></mat-spinner>
+</div>
+
+  <mat-form-field appearance="fill" *ngIf="!loading && selectedDateRange.length > 0">
+    <mat-label>{{'EnterDateRange'|localize}}</mat-label>
+    <mat-date-range-input [rangePicker]="picker">
+      <input matStartDate [(ngModel)]="selectedDateRange[0]"  #range1="ngModel" placeholder="{{'StartDate'|localize}}">
+      <input matEndDate [(ngModel)]="selectedDateRange[1]"  #range2="ngModel" placeholder="{{'EndDate'|localize}}">
+    </mat-date-range-input>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+    <mat-error *ngIf="range1.hasError('matStartDateInvalid')">{{'InvalidStartDate'|localize}}</mat-error>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button color="default" mat-button (click)="ok()">{{'Ok'|localize}}</button>
+</mat-dialog-actions>

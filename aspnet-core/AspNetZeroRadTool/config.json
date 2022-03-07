@@ -1,0 +1,31 @@
+﻿{
+  "CompanyName": "Mohajer",
+  "ProjectName": "ClassScheduleProject",
+  "ProjectType": "Angular",
+  "ProjectVersion":"10.3.0",
+  "ApplicationAreaName": "App",
+  "LicenseCode": "LicenseCodePlaceHolderToReplace",
+  "AngularSrcPath": "\\..\\..\\angular\\src\\",
+  "AngularMergedSrcPath": "\\..\\src\\Mohajer.ClassScheduleProject.Web.Host\\src\\",
+  "CoreSrcPath": "\\..\\src\\",
+  "FileLocations":{
+	"DbContext" : "Mohajer.ClassScheduleProject.EntityFrameworkCore\\EntityFrameworkCore\\{{Project_Name_Here}}DbContext.cs",
+	"CustomDtoMapper" : "Mohajer.ClassScheduleProject.Application\\CustomDtoMapper.cs",
+	"AppAuthorizationProvider" : "Mohajer.ClassScheduleProject.Core\\Authorization\\AppAuthorizationProvider.cs",
+	"EntityHistoryHelper" : "Mohajer.ClassScheduleProject.Core\\EntityHistory\\EntityHistoryHelper.cs",
+	"AppPermissions" : "Mohajer.ClassScheduleProject.Core\\Authorization\\AppPermissions.cs",
+	"LocalizationFile" : "Mohajer.ClassScheduleProject.Core\\Localization\\{{Project_Name_Here}}\\{{Project_Name_Here}}.xml",
+	"EntityFrameWorkProjectFolder" : "Mohajer.ClassScheduleProject.EntityFrameworkCore",
+	"Mvc":{
+		"AppNavigationProvider" : "Mohajer.ClassScheduleProject.Web.Mvc\\Areas\\App\\Startup\\AppNavigationProvider.cs",
+		"AppPageNames" : "Mohajer.ClassScheduleProject.Web.Mvc\\Areas\\App\\Startup\\AppPageNames.cs",
+		"BundleConfig" : "Mohajer.ClassScheduleProject.Web.Mvc\\bundles.json"
+	},
+	"Angular":{ 
+		"AppNavigationService" : "app\\shared\\layout\\nav\\app-navigation.service.ts",
+		"ServiceProxies" : "shared\\service-proxies\\service-proxy.module.ts",
+		"Module" : "app\\main\\main.module.ts",
+		"RoutingModule" : "app\\main\\main-routing.module.ts"
+	}
+  }
+}

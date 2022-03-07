@@ -1,0 +1,354 @@
+@import "assets/scss/default-dialog.css";
+@import "~angular-mgl-timeline/theme";
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "assets/fonts/font-awesome-5.15.1/css/all.min.css";
+@import "assets/fonts/fonts-b-nazanin.css";
+@import "assets/fonts/fonts-b-titr.css";
+@import "assets/fonts/fonts-iransans-farsinum.css";
+@import "./assets/letter.css";
+@import 'material-icons/iconfont/material-icons.scss';
+
+@import "~@angular/material/theming";
+$custom-typography: mat-typography-config(
+    $font-family: "iranSans",
+    $headline: mat-typography-level(32px, 48px, 700),
+    $body-1: mat-typography-level(18px, 24px, 500),
+);
+@include mat-base-typography($custom-typography);
+@include mat-checkbox-typography($custom-typography);
+@include angular-material-typography($custom-typography);
+@include mat-core($custom-typography);
+@import "./assets/scss/data-table.scss";
+
+$candy-app-primary: mat-palette($mat-blue);
+$candy-app-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$candy-app-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-app-warn);
+
+@include angular-material-theme($candy-app-theme);
+@include mgl-timeline-theme($candy-app-theme);
+
+mgl-timeline:not(.mobile) {
+    padding: 50px 20px;
+}
+
+mgl-timeline.mobile {
+    padding-right: 20px;
+}
+
+.fa,
+.fad {
+    font-weight: normal;
+}
+.mat-raised-button.mat-primary i {
+    color: #fff;
+}
+
+.p-component {
+    font-family: iranSans, BNazanin, BTitr !important;
+    font-size: 1rem;
+    font-weight: normal;
+  }
+
+html[dir="rtl"] body {
+    font-family: iranSans, BNazanin, BTitr;
+    text-align: right;
+
+    .p-sortable-column {
+        text-align: right;
+    }
+
+    .p-datatable-scrollable-header-box {
+        padding-right: 0 !important;
+    }
+
+    .input-group-btn .btn {
+        border-top-right-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+    }
+
+    .ng-tns-c387-7 {
+        text-align: right;
+    }
+}
+
+button {
+    display: flex;
+
+    mat-spinner {
+        float: right;
+        margin: 6px 0px 0px 15px;
+    }
+}
+
+.p-datatable {
+    table,
+    th,
+    td {
+        border: 1px solid darkgray !important;
+    }
+
+    th {
+        background-color: #7a7c7a !important;
+        color: white !important;
+    }
+
+    th,
+    td {
+        padding: 15px;
+        text-align: left;
+    }
+}
+
+.ng-tns-c387-7 .ng-star-inserted:nth-child(even) {
+    background-color: #eee;
+}
+
+.margin-left-5 {
+    margin-left: 5px !important;
+}
+
+.margin-right-5 {
+    margin-right: 5px !important;
+}
+
+.margin-top-5 {
+    margin-top: 5px !important;
+}
+
+.margin-top-15 {
+    margin-top: 15px !important;
+}
+
+.margin-bottom-5 {
+    margin-bottom: 5px !important;
+}
+
+.margin-bottom-5 {
+    margin-bottom: 5px !important;
+}
+
+.margin-bottom-15 {
+    margin-bottom: 15px !important;
+}
+
+.padding-left-5 {
+    padding-left: 5px !important;
+}
+
+.padding-right-5 {
+    padding-right: 5px !important;
+}
+
+.padding-top-5 {
+    padding-top: 5px !important;
+}
+
+.padding-bottom-5 {
+    padding-bottom: 5px !important;
+}
+
+.width-percent-5 {
+    width: 5%;
+}
+
+.width-percent-10 {
+    width: 10%;
+}
+
+.width-percent-15 {
+    width: 15%;
+}
+
+.width-percent-20 {
+    width: 20%;
+}
+
+.width-percent-30 {
+    width: 30%;
+}
+
+.width-percent-40 {
+    width: 40%;
+}
+
+.width-percent-50 {
+    width: 50%;
+}
+
+.width-percent-100 {
+    width: 100%;
+}
+
+/* Sweet alert */
+
+.swal2-title {
+    display: inline-block !important;
+}
+
+body.swal2-height-auto {
+    height: inherit !important;
+}
+
+.swal2-popup.swal2-toast {
+    padding: 10px 12px !important;
+    display: block !important;
+}
+
+.swal2-popup.swal2-toast .swal2-header,
+.swal2-popup.swal2-toast .swal2-title,
+.swal2-popup.swal2-toast .swal2-content {
+    text-align: left !important;
+    margin: 0 !important;
+}
+
+.swal2-popup.swal2-toast .swal2-title {
+    margin-bottom: 4px !important;
+}
+
+.swal2-icon.swal2-info::before,
+.swal2-icon.swal2-warning::before,
+.swal2-icon.swal2-success::before,
+.swal2-icon.swal2-error::before {
+    content: "";
+}
+
+@keyframes glowing {
+    0% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.3;
+    }
+}
+
+.glowing {
+    animation: glowing 2s infinite;
+}
+
+.root-initial-loader .overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(51, 51, 51, 0.8);
+    z-index: 99999 !important;
+    width: 100%;
+    height: 100%;
+}
+
+.root-initial-loader i {
+    position: absolute;
+    color: rgb(91, 167, 234);
+    z-index: 100000 !important;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.root-initial-loader .fa-spin-2x {
+    -webkit-animation: fa-spin 1s infinite linear;
+    animation: fa-spin 1s infinite linear;
+}
+
+ngx-spinner .loading-text {
+    color: white;
+}
+
+/*******************************************************/
+
+/**********************PrimNg RTL***********************/
+
+/*******************************************************/
+
+/*--------------input group ---------*/
+
+.input-group .input-group-btn .btn {
+    border-radius: 0 0.42rem 0.42rem 0;
+}
+
+html[dir="rtl"] {
+    .brand .brand-toggle .svg-icon svg {
+        transform: rotate(180deg);
+    }
+
+    .aside-minimize .brand .brand-toggle .svg-icon svg {
+        transform: rotate(0deg);
+    }
+
+    .aside-menu .menu-nav .menu-item > .menu-heading > .menu-arrow:before,
+    .aside-menu .menu-nav .menu-item > .menu-link > .menu-arrow:before {
+        transform: rotate(180deg);
+    }
+
+    .aside-menu .menu-nav .menu-item.menu-item-open > .menu-heading > .menu-arrow:before,
+    .aside-menu .menu-nav .menu-item.menu-item-open > .menu-link > .menu-arrow:before {
+        transform: rotate(90deg);
+    }
+
+    /*-----------sweetalert2------------------*/
+    .swal2-popup.swal2-toast .swal2-header,
+    .swal2-popup.swal2-toast .swal2-title,
+    .swal2-popup.swal2-toast .swal2-content {
+        text-align: right !important;
+    }
+
+    /*-------------paginator----------------*/
+    .p-paginator-icon.pi-angle-left::before {
+        content: "\e932";
+    }
+
+    .p-paginator-icon.pi-angle-right::before {
+        content: "\e931";
+    }
+
+    .p-paginator-icon.pi-angle-double-left::before {
+        content: "\e92e";
+    }
+
+    .p-paginator-icon.pi-angle-double-right::before {
+        content: "\e92d";
+    }
+
+    /*--------------tree---------------*/
+    .p-tree-toggler.pi-angle-right {
+        content: "\e931";
+    }
+
+    /*--------------input group ---------*/
+    .input-group .input-group-btn .btn {
+        border-radius: 0.42rem 0 0 0.42rem;
+    }
+
+    .p-datatable .p-datatable-thead > tr > th {
+        text-align: right;
+    }
+}
+
+.p-paginator .p-dropdown .p-dropdown-label {
+    padding-left: 0;
+}
+
+::ng-deep.dropdown-menu.dropdown-menu-lg.dropdown-menu-sm.dropdown-menu-anim-up {
+    right: auto !important;
+    left: 0 !important;
+}
+
+::ng-deep .dropdown-menu .dropdown-menu-sm {
+    inset: 100% auto auto 0px !important;
+}
+
+::ng-deep .dropdown-menu .dropdown-menu-right .dropdown-menu-anim-up .dropdown-menu-sm .dropdown-menu-lg {
+    left: 0px !important;
+    right: auto !important;
+    inset: 100% auto auto 0px !important;
+}

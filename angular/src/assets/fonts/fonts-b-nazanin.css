@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'BNazanin';
+    src: url('b-nazanin/BNazanin.eot');
+    src: url('b-nazanin/BNazanin.eot?#iefix') format('embedded-opentype'),
+        url('b-nazanin/BNazanin.woff2') format('woff2'),
+        url('b-nazanin/BNazanin.woff') format('woff'),
+        url('b-nazanin/BNazanin.ttf') format('truetype'),
+        url('b-nazanin/BNazanin.svg#BNazanin') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}

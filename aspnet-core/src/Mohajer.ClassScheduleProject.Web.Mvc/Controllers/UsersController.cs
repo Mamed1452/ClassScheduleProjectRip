@@ -1,0 +1,17 @@
+﻿using Abp.AspNetCore.Mvc.Authorization;
+using Mohajer.ClassScheduleProject.Authorization;
+using Mohajer.ClassScheduleProject.Storage;
+using Abp.BackgroundJobs;
+using Abp.Authorization;
+
+namespace Mohajer.ClassScheduleProject.Web.Controllers
+{
+    [AbpMvcAuthorize(AppPermissions.Pages_Administration_Users)]
+    public class UsersController : UsersControllerBase
+    {
+        public UsersController(IBinaryObjectManager binaryObjectManager, IBackgroundJobManager backgroundJobManager)
+            : base(binaryObjectManager, backgroundJobManager)
+        {
+        }
+    }
+}

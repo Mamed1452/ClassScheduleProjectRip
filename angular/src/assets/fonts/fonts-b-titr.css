@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'BTitr';
+    src: url('b-titr/BTitrBold.eot');
+    src: url('b-titr/BTitrBold.eot?#iefix') format('embedded-opentype'),
+        url('b-titr/BTitrBold.woff2') format('woff2'),
+        url('b-titr/BTitrBold.woff') format('woff'),
+        url('b-titr/BTitrBold.ttf') format('truetype'),
+        url('b-titr/BTitrBold.svg#BTitrBold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+

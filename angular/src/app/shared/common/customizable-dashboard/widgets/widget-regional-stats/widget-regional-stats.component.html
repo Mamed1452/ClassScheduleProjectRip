@@ -1,0 +1,36 @@
+﻿<div class="card card-custom h-100">
+    <div class="card-header align-items-center border-0">
+        <h3 class="card-title align-items-start flex-column">
+            <span class="font-weight-bolder text-dark">
+                 {{'وضعیت قراردادها'}}
+            </span>
+        </h3>
+    </div>
+    <div class="card-body" [perfectScrollbar]>
+        <div class="table-responsive">
+            <!--begin::Table-->
+            <table class="table">
+                <!--begin::Thead-->
+                <thead>
+                <tr>
+                    <td class="m-widget11__app">{{'نوع قرارداد'}}</td>
+                    <td class="m-widget11__sales"> {{'مبلغ قراردادهای جاری'}}</td>
+                    <td class="m-widget11__change">{{'مبلغ فروش'}}</td>
+                    <td class="m-widget11__price">{{'مبلغ سررسید'}}</td>
+                </tr>
+                </thead>
+                <!--end::Thead-->
+                <!--begin::Tbody-->
+                <tbody>
+                <tr *ngFor="let stat of stats; let index = index">
+                    <td>{{stat.contractTypeName}}</td>
+                    <td>{{stat.totalContarctacLiveCost | number}}</td>
+                    <td>{{stat.totalFactorCost | number}}</td>
+                    <td>{{stat.totalUsanceCost | number}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
