@@ -1,6 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="en">
-  <texts>    <text name="AssigningUniversityMajorToClassroomBuildings">Assigning university major to classroom buildings</text>
+  <texts>    <text name="AssigningGradeToUniversityMajors">Assigning grade to university majors</text>
+    <text name="AssigningGradeToUniversityMajor">Assigning grade to university major</text>
+    <text name="Mohajer.ClassScheduleProject.AssigningGradeToUniversityMajors.AssigningGradeToUniversityMajor">AssigningGradeToUniversityMajor</text>
+    <text name="NameAssignedGradeToUniversityMajor">Name assigned grade to university major</text>
+    <text name="AssigningGradeToUniversityMajorsHeaderInfo">Assigning grade to university majors header info</text>
+    <text name="CreateNewAssigningGradeToUniversityMajor">Create new assigning grade to university major</text>
+    <text name="EditAssigningGradeToUniversityMajor">Edit assigning grade to university major</text>
+    <text name="DeleteAssigningGradeToUniversityMajor">Delete assigning grade to university major</text>
+    <text name="GradeGradeName">Grade grade name</text>
+    <text name="PickGrade">Pick grade</text>
+    <text name="AssigningGradeToUniversityMajorNameAssignedGradeToUniversityMajor">Assigning grade to university major name assigned grade to university major</text>
+    <text name="PickAssigningGradeToUniversityMajor">Pick assigning grade to university major</text>
+    <text name="Semesters">Semesters</text>
+    <text name="Semester">Semester</text>
+    <text name="Mohajer.ClassScheduleProject.Semesters.Semester">Semester</text>
+    <text name="SemesterName">Semester name</text>
+    <text name="NotIsActive">Not is active</text>
+    <text name="SemestersHeaderInfo">Semesters header info</text>
+    <text name="CreateNewSemester">Create new semester</text>
+    <text name="EditSemester">Edit semester</text>
+    <text name="DeleteSemester">Delete semester</text>
+    <text name="Grades">Grades</text>
+    <text name="Grade">Grade</text>
+    <text name="Mohajer.ClassScheduleProject.Grades.Grade">Grade</text>
+    <text name="GradeName">Grade name</text>
+    <text name="GradesHeaderInfo">Grades header info</text>
+    <text name="CreateNewGrade">Create new grade</text>
+    <text name="EditGrade">Edit grade</text>
+    <text name="DeleteGrade">Delete grade</text>
+    <text name="AssigningUniversityMajorToClassroomBuildings">Assigning university major to classroom buildings</text>
     <text name="AssigningUniversityMajorToClassroomBuilding">Assigning university major to classroom building</text>
     <text name="Mohajer.ClassScheduleProject.AssigningUniversityMajorToClassroomBuildings.AssigningUniversityMajorToClassroomBuilding">AssigningUniversityMajorToClassroomBuilding</text>
     <text name="MaximumRestrictionsOnUsingClassroomsAtTheSameTime">Maximum restrictions on using classrooms at the same time</text>

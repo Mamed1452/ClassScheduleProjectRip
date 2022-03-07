@@ -2,6 +2,26 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppCommonModule } from '@app/shared/common/app-common.module';
+import { AssigningGradeToUniversityMajorsComponent } from './assigningGradeToUniversityMajors/assigningGradeToUniversityMajors/assigningGradeToUniversityMajors.component';
+import { ViewAssigningGradeToUniversityMajorModalComponent } from './assigningGradeToUniversityMajors/assigningGradeToUniversityMajors/view-assigningGradeToUniversityMajor-modal.component';
+import { CreateOrEditAssigningGradeToUniversityMajorModalComponent } from './assigningGradeToUniversityMajors/assigningGradeToUniversityMajors/create-or-edit-assigningGradeToUniversityMajor-modal.component';
+import { AssigningGradeToUniversityMajorGradeLookupTableModalComponent } from './assigningGradeToUniversityMajors/assigningGradeToUniversityMajors/assigningGradeToUniversityMajor-grade-lookup-table-modal.component';
+import { AssigningGradeToUniversityMajorUniversityMajorLookupTableModalComponent } from './assigningGradeToUniversityMajors/assigningGradeToUniversityMajors/assigningGradeToUniversityMajor-universityMajor-lookup-table-modal.component';
+
+import { MasterDetailChild_AssigningGradeToUniversityMajor_SemestersComponent } from './semesters/semesters/masterDetailChild_AssigningGradeToUniversityMajor_semesters.component';
+import { MasterDetailChild_AssigningGradeToUniversityMajor_ViewSemesterModalComponent } from './semesters/semesters/masterDetailChild_AssigningGradeToUniversityMajor_view-semester-modal.component';
+import { MasterDetailChild_AssigningGradeToUniversityMajor_CreateOrEditSemesterModalComponent } from './semesters/semesters/masterDetailChild_AssigningGradeToUniversityMajor_create-or-edit-semester-modal.component';
+
+import { SemesterAssigningGradeToUniversityMajorLookupTableModalComponent } from './semesters/semesters/semester-assigningGradeToUniversityMajor-lookup-table-modal.component';
+
+import { SemestersComponent } from './semesters/semesters/semesters.component';
+import { ViewSemesterModalComponent } from './semesters/semesters/view-semester-modal.component';
+import { CreateOrEditSemesterModalComponent } from './semesters/semesters/create-or-edit-semester-modal.component';
+
+import { GradesComponent } from './grades/grades/grades.component';
+import { ViewGradeModalComponent } from './grades/grades/view-grade-modal.component';
+import { CreateOrEditGradeModalComponent } from './grades/grades/create-or-edit-grade-modal.component';
+
 import { AssigningUniversityMajorToClassroomBuildingsComponent } from './assigningUniversityMajorToClassroomBuildings/assigningUniversityMajorToClassroomBuildings/assigningUniversityMajorToClassroomBuildings.component';
 import { ViewAssigningUniversityMajorToClassroomBuildingModalComponent } from './assigningUniversityMajorToClassroomBuildings/assigningUniversityMajorToClassroomBuildings/view-assigningUniversityMajorToClassroomBuilding-modal.component';
 import { CreateOrEditAssigningUniversityMajorToClassroomBuildingModalComponent } from './assigningUniversityMajorToClassroomBuildings/assigningUniversityMajorToClassroomBuildings/create-or-edit-assigningUniversityMajorToClassroomBuilding-modal.component';
@@ -73,6 +93,25 @@ NgxBootstrapDatePickerConfigService.registerNgxBootstrapDatePickerLocales();
         PopoverModule.forRoot()
     ],
     declarations: [
+		AssigningGradeToUniversityMajorsComponent,
+
+		ViewAssigningGradeToUniversityMajorModalComponent,
+		CreateOrEditAssigningGradeToUniversityMajorModalComponent,
+    AssigningGradeToUniversityMajorGradeLookupTableModalComponent,
+    AssigningGradeToUniversityMajorUniversityMajorLookupTableModalComponent,
+		MasterDetailChild_AssigningGradeToUniversityMajor_SemestersComponent,
+
+		MasterDetailChild_AssigningGradeToUniversityMajor_ViewSemesterModalComponent,
+		MasterDetailChild_AssigningGradeToUniversityMajor_CreateOrEditSemesterModalComponent,
+    SemesterAssigningGradeToUniversityMajorLookupTableModalComponent,
+		SemestersComponent,
+
+		ViewSemesterModalComponent,
+		CreateOrEditSemesterModalComponent,
+		GradesComponent,
+
+		ViewGradeModalComponent,
+		CreateOrEditGradeModalComponent,
 		AssigningUniversityMajorToClassroomBuildingsComponent,
 
 		ViewAssigningUniversityMajorToClassroomBuildingModalComponent,

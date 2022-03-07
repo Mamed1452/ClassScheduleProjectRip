@@ -30,6 +30,12 @@ export class AppNavigationService {
 
            
             new AppMenuItem('AssigningUniversityMajorToClassroomBuildings', 'Pages.AssigningUniversityMajorToClassroomBuildings', 'flaticon-more', '/app/main/assigningUniversityMajorToClassroomBuildings/assigningUniversityMajorToClassroomBuildings'),
+            
+            new AppMenuItem('Grades', 'Pages.Grades', 'flaticon-more', '/app/main/grades/grades'),
+            
+            new AppMenuItem('Semesters', 'Pages.Semesters', 'flaticon-more', '/app/main/semesters/semesters'),
+            
+            new AppMenuItem('AssigningGradeToUniversityMajors', 'Pages.AssigningGradeToUniversityMajors', 'flaticon-more', '/app/main/assigningGradeToUniversityMajors/assigningGradeToUniversityMajors'),
              new AppMenuItem('Administration', '', 'flaticon-interface-8', '', [], [
                 new AppMenuItem('OrganizationUnits', 'Pages.Administration.OrganizationUnits', 'flaticon-map', '/app/admin/organization-units'),
                 new AppMenuItem('Roles', 'Pages.Administration.Roles', 'flaticon-suitcase', '/app/admin/roles'),

@@ -30,6 +30,21 @@ namespace Mohajer.ClassScheduleProject.Authorization
 
             var pages = context.GetPermissionOrNull(AppPermissions.Pages) ?? context.CreatePermission(AppPermissions.Pages, L("Pages"));
 
+            var assigningGradeToUniversityMajors = pages.CreateChildPermission(AppPermissions.Pages_AssigningGradeToUniversityMajors, L("AssigningGradeToUniversityMajors"), multiTenancySides: MultiTenancySides.Tenant);
+            assigningGradeToUniversityMajors.CreateChildPermission(AppPermissions.Pages_AssigningGradeToUniversityMajors_Create, L("CreateNewAssigningGradeToUniversityMajor"), multiTenancySides: MultiTenancySides.Tenant);
+            assigningGradeToUniversityMajors.CreateChildPermission(AppPermissions.Pages_AssigningGradeToUniversityMajors_Edit, L("EditAssigningGradeToUniversityMajor"), multiTenancySides: MultiTenancySides.Tenant);
+            assigningGradeToUniversityMajors.CreateChildPermission(AppPermissions.Pages_AssigningGradeToUniversityMajors_Delete, L("DeleteAssigningGradeToUniversityMajor"), multiTenancySides: MultiTenancySides.Tenant);
+
+            var semesters = pages.CreateChildPermission(AppPermissions.Pages_Semesters, L("Semesters"), multiTenancySides: MultiTenancySides.Tenant);
+            semesters.CreateChildPermission(AppPermissions.Pages_Semesters_Create, L("CreateNewSemester"), multiTenancySides: MultiTenancySides.Tenant);
+            semesters.CreateChildPermission(AppPermissions.Pages_Semesters_Edit, L("EditSemester"), multiTenancySides: MultiTenancySides.Tenant);
+            semesters.CreateChildPermission(AppPermissions.Pages_Semesters_Delete, L("DeleteSemester"), multiTenancySides: MultiTenancySides.Tenant);
+
+            var grades = pages.CreateChildPermission(AppPermissions.Pages_Grades, L("Grades"), multiTenancySides: MultiTenancySides.Tenant);
+            grades.CreateChildPermission(AppPermissions.Pages_Grades_Create, L("CreateNewGrade"), multiTenancySides: MultiTenancySides.Tenant);
+            grades.CreateChildPermission(AppPermissions.Pages_Grades_Edit, L("EditGrade"), multiTenancySides: MultiTenancySides.Tenant);
+            grades.CreateChildPermission(AppPermissions.Pages_Grades_Delete, L("DeleteGrade"), multiTenancySides: MultiTenancySides.Tenant);
+
             var assigningUniversityMajorToClassroomBuildings = pages.CreateChildPermission(AppPermissions.Pages_AssigningUniversityMajorToClassroomBuildings, L("AssigningUniversityMajorToClassroomBuildings"), multiTenancySides: MultiTenancySides.Tenant);
             assigningUniversityMajorToClassroomBuildings.CreateChildPermission(AppPermissions.Pages_AssigningUniversityMajorToClassroomBuildings_Create, L("CreateNewAssigningUniversityMajorToClassroomBuilding"), multiTenancySides: MultiTenancySides.Tenant);
             assigningUniversityMajorToClassroomBuildings.CreateChildPermission(AppPermissions.Pages_AssigningUniversityMajorToClassroomBuildings_Edit, L("EditAssigningUniversityMajorToClassroomBuilding"), multiTenancySides: MultiTenancySides.Tenant);

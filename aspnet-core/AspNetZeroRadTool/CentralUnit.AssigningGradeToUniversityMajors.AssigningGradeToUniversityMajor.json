@@ -1,0 +1,78 @@
+﻿{
+  "IsRegenerate": false,
+  "MenuPosition": "main",
+  "RelativeNamespace": "CentralUnit.AssigningGradeToUniversityMajors",
+  "EntityName": "AssigningGradeToUniversityMajor",
+  "EntityNamePlural": "AssigningGradeToUniversityMajors",
+  "TableName": "AssigningGradeToUniversityMajors",
+  "PrimaryKeyType": "long",
+  "BaseClass": "FullAuditedEntity",
+  "EntityHistory": true,
+  "AutoMigration": false,
+  "UpdateDatabase": false,
+  "CreateUserInterface": true,
+  "CreateViewOnly": true,
+  "CreateExcelExport": true,
+  "IsNonModalCRUDPage": false,
+  "IsMasterDetailPage": true,
+  "PagePermission": {
+    "Host": false,
+    "Tenant": true
+  },
+  "Properties": [
+    {
+      "Name": "NameAssignedGradeToUniversityMajor",
+      "Type": "string",
+      "MaxLength": 200,
+      "MinLength": 1,
+      "Range": {
+        "IsRangeSet": false,
+        "MinimumValue": 0.0,
+        "MaximumValue": 0.0
+      },
+      "Required": true,
+      "Nullable": false,
+      "Regex": "",
+      "UserInterface": {
+        "AdvancedFilter": true,
+        "List": true,
+        "CreateOrUpdate": true
+      }
+    }
+  ],
+  "NavigationProperties": [
+    {
+      "Namespace": "Mohajer.ClassScheduleProject.CentralUnit.Grades",
+      "ForeignEntityName": "Grade",
+      "IdType": "int",
+      "IsNullable": false,
+      "PropertyName": "GradeId",
+      "DisplayPropertyName": "GradeName",
+      "DuplicationNumber": 0,
+      "RelationType": "single",
+      "ViewType": "LookupTable"
+    },
+    {
+      "Namespace": "Mohajer.ClassScheduleProject.CentralUnit.UniversityMajors",
+      "ForeignEntityName": "UniversityMajor",
+      "IdType": "int",
+      "IsNullable": false,
+      "PropertyName": "UniversityMajorId",
+      "DisplayPropertyName": "UniversityMajorName",
+      "DuplicationNumber": 0,
+      "RelationType": "single",
+      "ViewType": "LookupTable"
+    }
+  ],
+  "NavigationPropertyOneToManyTables": [
+            {
+                "EntityJson": "CentralUnit.Semesters.Semester.json",
+                "ForeignPropertyName": "AssigningGradeToUniversityMajorId",
+                "IsNullable": "False",
+                "DisplayPropertyName": "NameAssignedGradeToUniversityMajor",
+                "ViewType": "LookupTable"
+            },
+        ],
+  "EnumDefinitions": [],
+  "DbContext": null
+}
