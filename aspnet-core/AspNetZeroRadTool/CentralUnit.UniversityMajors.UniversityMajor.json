@@ -1,5 +1,5 @@
-﻿{
-  "IsRegenerate": false,
+{
+  "IsRegenerate": true,
   "MenuPosition": "main",
   "RelativeNamespace": "CentralUnit.UniversityMajors",
   "EntityName": "UniversityMajor",
@@ -42,8 +42,8 @@
     {
       "Name": "UniversityMajorType",
       "Type": "UniversityMajorTypeEnum",
-      "MaxLength": 0,
-      "MinLength": 0,
+      "MaxLength": -1,
+      "MinLength": -1,
       "Range": {
         "IsRangeSet": false,
         "MinimumValue": 0.0,
@@ -59,7 +59,8 @@
       }
     }
   ],
-  "NavigationProperties": [{
+  "NavigationProperties": [
+    {
       "Namespace": "Mohajer.ClassScheduleProject.CentralUnit.UniversityDepartments",
       "ForeignEntityName": "UniversityDepartment",
       "IdType": "int",
@@ -68,9 +69,20 @@
       "DisplayPropertyName": "UniversityDepartmentName",
       "DuplicationNumber": 0,
       "RelationType": "single",
-      "ViewType": "LookupTable",
-      "IsGeneratedByMasterPage": true
-    },],
+      "ViewType": "LookupTable"
+    },
+    {
+      "Namespace": "Mohajer.ClassScheduleProject.CentralUnit.UniversityDepartments",
+      "ForeignEntityName": "UniversityDepartment",
+      "IdType": "int",
+      "IsNullable": false,
+      "PropertyName": "UniversityDepartmentId",
+      "DisplayPropertyName": "UniversityDepartmentName",
+      "DuplicationNumber": 2,
+      "RelationType": "single",
+      "ViewType": "LookupTable"
+    }
+  ],
   "NavigationPropertyOneToManyTables": [],
   "EnumDefinitions": [
     {

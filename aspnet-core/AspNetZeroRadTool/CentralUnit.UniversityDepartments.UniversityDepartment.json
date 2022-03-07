@@ -1,5 +1,5 @@
 ﻿{
-  "IsRegenerate": false,
+  "IsRegenerate": true,
   "MenuPosition": "main",
   "RelativeNamespace": "CentralUnit.UniversityDepartments",
   "EntityName": "UniversityDepartment",

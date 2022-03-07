@@ -178,5 +178,12 @@ namespace Mohajer.ClassScheduleProject.MultiTenancy.HostDashboard
                 .Select(t => ObjectMapper.Map<RecentTenant>(t))
                 .ToList();
         }
+        public async Task<GetHostFilterDatesDto> GetHostFilterDates()
+        {
+            GetHostFilterDatesDto result = new GetHostFilterDatesDto();
+            result.StartDate = DateTime.UtcNow;
+            result.EndDate = DateTime.UtcNow;
+            return result;
+        }
     }
 }

@@ -94,7 +94,6 @@ export class MasterDetailChild_UniversityDepartment_UniversityMajorsComponent ex
                 this.universityMajorNameFilter,
                 this.universityMajorTypeFilter,
                 null,
-                this.universityDepartmentId,
                 this.primengTableHelper.getSorting(this.dataTable),
                 this.primengTableHelper.getSkipCount(this.paginator, event),
                 this.primengTableHelper.getMaxResultCount(this.paginator, event)
@@ -139,7 +138,7 @@ export class MasterDetailChild_UniversityDepartment_UniversityMajorsComponent ex
                 this.filterText,
                 this.universityMajorNameFilter,
                 this.universityMajorTypeFilter,
-                this.universityDepartmentId
+                undefined
             )
             .subscribe((result) => {
                 this._fileDownloadService.downloadTempFile(result);

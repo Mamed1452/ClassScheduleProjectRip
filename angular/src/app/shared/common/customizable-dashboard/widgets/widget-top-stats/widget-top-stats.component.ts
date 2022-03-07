@@ -97,13 +97,8 @@ export class WidgetTopStatsComponent extends WidgetComponentBaseComponent implem
     onDateRangeFilterChange = (dateRange) => {
       this._tenantDashboardServiceProxy.getTopStats(
         dateRange?dateRange[0]:undefined,
-        dateRange?dateRange[1]:undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined).subscribe(result => {
+        dateRange?dateRange[1]:undefined
+        ).subscribe(result => {
                 this.stats = result;
             });
     }

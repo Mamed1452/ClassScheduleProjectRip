@@ -16,6 +16,8 @@ export class CreateOrEditUniversityMajorModalComponent extends AppComponentBase 
     @ViewChild('createOrEditModal', { static: true }) modal: ModalDirective;
     @ViewChild('universityMajorUniversityDepartmentLookupTableModal', { static: true })
     universityMajorUniversityDepartmentLookupTableModal: UniversityMajorUniversityDepartmentLookupTableModalComponent;
+    @ViewChild('universityMajorUniversityDepartmentLookupTableModal2', { static: true })
+    universityMajorUniversityDepartmentLookupTableModal2: UniversityMajorUniversityDepartmentLookupTableModalComponent;
 
     @Output() modalSave: EventEmitter<any> = new EventEmitter<any>();
 
@@ -25,6 +27,7 @@ export class CreateOrEditUniversityMajorModalComponent extends AppComponentBase 
     universityMajor: CreateOrEditUniversityMajorDto = new CreateOrEditUniversityMajorDto();
 
     universityDepartmentUniversityDepartmentName = '';
+    universityDepartmentUniversityDepartmentName2 = '';
 
     constructor(
         injector: Injector,
@@ -39,6 +42,7 @@ export class CreateOrEditUniversityMajorModalComponent extends AppComponentBase 
             this.universityMajor = new CreateOrEditUniversityMajorDto();
             this.universityMajor.id = universityMajorId;
             this.universityDepartmentUniversityDepartmentName = '';
+            this.universityDepartmentUniversityDepartmentName2 = '';
 
             this.active = true;
             this.modal.show();
@@ -76,16 +80,23 @@ export class CreateOrEditUniversityMajorModalComponent extends AppComponentBase 
         this.universityMajorUniversityDepartmentLookupTableModal.displayName = this.universityDepartmentUniversityDepartmentName;
         this.universityMajorUniversityDepartmentLookupTableModal.show();
     }
+    openSelectUniversityDepartmentModal2() {
+        this.universityMajorUniversityDepartmentLookupTableModal2.id = this.universityMajor.universityDepartmentId;
+        this.universityMajorUniversityDepartmentLookupTableModal2.displayName = this.universityDepartmentUniversityDepartmentName;
+        this.universityMajorUniversityDepartmentLookupTableModal2.show();
+    }
 
     setUniversityDepartmentIdNull() {
         this.universityMajor.universityDepartmentId = null;
         this.universityDepartmentUniversityDepartmentName = '';
     }
 
+
     getNewUniversityDepartmentId() {
         this.universityMajor.universityDepartmentId = this.universityMajorUniversityDepartmentLookupTableModal.id;
         this.universityDepartmentUniversityDepartmentName = this.universityMajorUniversityDepartmentLookupTableModal.displayName;
     }
+
 
     close(): void {
         this.active = false;

@@ -5,6 +5,7 @@ using Abp.Authorization;
 using Abp.MultiTenancy;
 using Abp.Runtime.Session;
 using Abp.UI;
+using Mohajer.ClassScheduleProject.Authorization;
 using Mohajer.ClassScheduleProject.Configuration;
 using Mohajer.ClassScheduleProject.DashboardCustomization.Definitions;
 using Mohajer.ClassScheduleProject.DashboardCustomization.Dto;
@@ -12,7 +13,7 @@ using Newtonsoft.Json;
 
 namespace Mohajer.ClassScheduleProject.DashboardCustomization
 {
-    [AbpAuthorize]
+    [AbpAuthorize(AppPermissions.Pages_Tenant_Dashboard, AppPermissions.Pages_Administration_Host_Dashboard)]
     public class DashboardCustomizationAppService : ClassScheduleProjectAppServiceBase, IDashboardCustomizationAppService
     {
         private readonly DashboardConfiguration _dashboardConfiguration;

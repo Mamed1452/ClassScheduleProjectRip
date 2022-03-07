@@ -5,7 +5,7 @@ import { appModuleAnimation } from '@shared/animations/routerTransition';
 import { GridsterConfig, GridsterItem } from 'angular-gridster2';
 import {
   DashboardCustomizationServiceProxy, DashboardOutput, AddNewPageInput,
-  AddNewPageOutput, AddWidgetInput, RenamePageInput, SavePageInput, Page, Widget, WidgetFilterOutput, WidgetOutput, TenantDashboardServiceProxy, GetFilterDatesOutputDto
+  AddNewPageOutput, AddWidgetInput, RenamePageInput, SavePageInput, Page, Widget, WidgetFilterOutput, WidgetOutput, TenantDashboardServiceProxy, GetFilterDatesOutputDto,HostDashboardServiceProxy
 } from '@shared/service-proxies/service-proxies';
 import { TabsetComponent } from 'ngx-bootstrap/tabs';
 import { BsDropdownDirective } from 'ngx-bootstrap/dropdown';
@@ -19,7 +19,7 @@ import { FilterDateRangePickerComponent } from './filters/filter-date-range-pick
 import { DateTime } from 'luxon';
 import { LuxonFormatPipe } from '@shared/utils/luxon-format.pipe';
 import { JalaliPipe } from '@app/core/pipe/jalali';
-
+import { PermissionCheckerService, RefreshTokenService } from 'abp-ng2-module';
 @Component({
   selector: 'customizable-dashboard',
   templateUrl: './customizable-dashboard.component.html',
@@ -61,7 +61,9 @@ export class CustomizableDashboardComponent extends AppComponentBase implements 
     private _dashboardViewConfiguration: DashboardViewConfigurationService,
     private _dashboardCustomizationServiceProxy: DashboardCustomizationServiceProxy,
     public dialog: MatDialog,
-    private tenatnDashboard: TenantDashboardServiceProxy
+    private tenatnDashboard: TenantDashboardServiceProxy,
+    private _permissionChecker: PermissionCheckerService,
+    private hostDashboard: HostDashboardServiceProxy,
       ) {
     super(injector);
   }
@@ -500,10 +502,19 @@ export class CustomizableDashboardComponent extends AppComponentBase implements 
   }
 
   getFilterDates() {
-    this.tenatnDashboard.getFilterDates().subscribe(response => {
-      this.onDateRangeFilterChange([response.startDate.toISODate(), response.endDate.toISODate()]);
+    if (this._permissionChecker.isGranted('Pages.Administration.Host.Dashboard')) {
+        this.hostDashboard.getHostFilterDates().subscribe(response => {
+            this.onDateRangeFilterChange([response.startDate.toISODate(), response.endDate.toISODate()]);
+          })
+          return;
+    }
 
-    })
+    if (this._permissionChecker.isGranted('Pages.Tenant.Dashboard')) {
+        this.tenatnDashboard.getFilterDates().subscribe(response => {
+            this.onDateRangeFilterChange([response.startDate.toISODate(), response.endDate.toISODate()]);
+          })
+          return;
+    }
   }
   onDateRangeFilterChange(dateRange = []) {
     this.startDate = new JalaliPipe().transform(dateRange[0], 'YYYY/MM/DD');
@@ -517,7 +528,7 @@ export class CustomizableDashboardComponent extends AppComponentBase implements 
   }
 
   unSubDateRangeFilter() {
-    abp.event.off('app.dashboardFilters.dateRangePicker.onDateChange', 
+    abp.event.off('app.dashboardFilters.dateRangePicker.onDateChange',
     (dateRange)=>{
       this.onDateRangeFilterChange(dateRange);
      });

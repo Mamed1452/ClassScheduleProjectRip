@@ -1,4 +1,5 @@
 ﻿using Mohajer.ClassScheduleProject.CentralUnit.UniversityDepartments;
+using Mohajer.ClassScheduleProject.CentralUnit.UniversityDepartments;
 
 using Mohajer.ClassScheduleProject.CentralUnit.UniversityMajors;
 
@@ -41,7 +42,7 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.UniversityMajors
         {
             var universityMajorTypeFilter = input.UniversityMajorTypeFilter.HasValue
                         ? (UniversityMajorTypeEnum)input.UniversityMajorTypeFilter
-                        : default(UniversityMajorTypeEnum);
+                        : default;
 
             var filteredUniversityMajors = _universityMajorRepository.GetAll()
                         .Include(e => e.UniversityDepartmentFk)
@@ -58,13 +59,17 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.UniversityMajors
                                    join o1 in _lookup_universityDepartmentRepository.GetAll() on o.UniversityDepartmentId equals o1.Id into j1
                                    from s1 in j1.DefaultIfEmpty()
 
+                                   join o2 in _lookup_universityDepartmentRepository.GetAll() on o.UniversityDepartmentId equals o2.Id into j2
+                                   from s2 in j2.DefaultIfEmpty()
+
                                    select new
                                    {
 
                                        o.UniversityMajorName,
                                        o.UniversityMajorType,
                                        Id = o.Id,
-                                       UniversityDepartmentUniversityDepartmentName = s1 == null || s1.UniversityDepartmentName == null ? "" : s1.UniversityDepartmentName.ToString()
+                                       UniversityDepartmentUniversityDepartmentName = s1 == null || s1.UniversityDepartmentName == null ? "" : s1.UniversityDepartmentName.ToString(),
+                                       UniversityDepartmentUniversityDepartmentName2 = s2 == null || s2.UniversityDepartmentName == null ? "" : s2.UniversityDepartmentName.ToString()
                                    };
 
             var totalCount = await filteredUniversityMajors.CountAsync();
@@ -108,6 +113,8 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.UniversityMajors
                 output.UniversityDepartmentUniversityDepartmentName = _lookupUniversityDepartment?.UniversityDepartmentName?.ToString();
             }
 
+          
+
             return output;
         }
 
@@ -123,6 +130,8 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.UniversityMajors
                 var _lookupUniversityDepartment = await _lookup_universityDepartmentRepository.FirstOrDefaultAsync((int)output.UniversityMajor.UniversityDepartmentId);
                 output.UniversityDepartmentUniversityDepartmentName = _lookupUniversityDepartment?.UniversityDepartmentName?.ToString();
             }
+
+           
 
             return output;
         }
@@ -183,6 +192,9 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.UniversityMajors
             var query = (from o in filteredUniversityMajors
                          join o1 in _lookup_universityDepartmentRepository.GetAll() on o.UniversityDepartmentId equals o1.Id into j1
                          from s1 in j1.DefaultIfEmpty()
+
+                         join o2 in _lookup_universityDepartmentRepository.GetAll() on o.UniversityDepartmentId equals o2.Id into j2
+                         from s2 in j2.DefaultIfEmpty()
 
                          select new GetUniversityMajorForViewDto()
                          {

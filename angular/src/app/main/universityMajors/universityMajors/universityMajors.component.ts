@@ -43,6 +43,7 @@ export class UniversityMajorsComponent extends AppComponentBase {
     universityMajorNameFilter = '';
     universityMajorTypeFilter = -1;
     universityDepartmentUniversityDepartmentNameFilter = '';
+    universityDepartmentUniversityDepartmentName2Filter = '';
 
     universityMajorTypeEnum = UniversityMajorTypeEnum;
 
@@ -92,7 +93,6 @@ export class UniversityMajorsComponent extends AppComponentBase {
                 this.universityMajorNameFilter,
                 this.universityMajorTypeFilter,
                 this.universityDepartmentUniversityDepartmentNameFilter,
-                undefined,
                 this.primengTableHelper.getSorting(this.dataTable),
                 this.primengTableHelper.getSkipCount(this.paginator, event),
                 this.primengTableHelper.getMaxResultCount(this.paginator, event)
@@ -137,8 +137,7 @@ export class UniversityMajorsComponent extends AppComponentBase {
                 this.filterText,
                 this.universityMajorNameFilter,
                 this.universityMajorTypeFilter,
-                this.universityDepartmentUniversityDepartmentNameFilter,
-                undefined
+                this.universityDepartmentUniversityDepartmentNameFilter
             )
             .subscribe((result) => {
                 this._fileDownloadService.downloadTempFile(result);

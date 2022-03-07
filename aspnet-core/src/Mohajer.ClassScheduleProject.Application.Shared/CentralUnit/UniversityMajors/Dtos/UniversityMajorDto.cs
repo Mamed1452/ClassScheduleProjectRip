@@ -12,6 +12,5 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.UniversityMajors.Dtos
         public UniversityMajorTypeEnum UniversityMajorType { get; set; }
 
         public int UniversityDepartmentId { get; set; }
-
     }
 }

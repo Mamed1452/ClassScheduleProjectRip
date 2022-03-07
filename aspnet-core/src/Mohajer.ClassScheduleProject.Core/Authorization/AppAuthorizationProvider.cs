@@ -105,12 +105,6 @@ namespace Mohajer.ClassScheduleProject.Authorization
             dynamicEntityPropertyValues.CreateChildPermission(AppPermissions.Pages_Administration_DynamicEntityPropertyValue_Edit, L("EditingDynamicEntityPropertyValue"));
             dynamicEntityPropertyValues.CreateChildPermission(AppPermissions.Pages_Administration_DynamicEntityPropertyValue_Delete, L("DeletingDynamicEntityPropertyValue"));
 
-            //Phonebook PERMISSIONS
-            var phonebook = pages.CreateChildPermission(AppPermissions.Phonebook, L("Phonebook"));
-
-            // SystemAdmin
-            var systemAdmin = pages.CreateChildPermission(AppPermissions.System_Admin, L("System_Admin"));
-
             //TENANT-SPECIFIC PERMISSIONS
 
             pages.CreateChildPermission(AppPermissions.Pages_Tenant_Dashboard, L("Dashboard"), multiTenancySides: MultiTenancySides.Tenant);

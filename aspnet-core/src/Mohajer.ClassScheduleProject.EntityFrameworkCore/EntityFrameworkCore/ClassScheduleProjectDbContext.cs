@@ -67,6 +67,30 @@ namespace Mohajer.ClassScheduleProject.EntityFrameworkCore
                        {
                            u.HasIndex(e => new { e.TenantId });
                        });
+            modelBuilder.Entity<ClassroomBuilding>(c =>
+                       {
+                           c.HasIndex(e => new { e.TenantId });
+                       });
+            modelBuilder.Entity<UniversityMajor>(u =>
+                       {
+                           u.HasIndex(e => new { e.TenantId });
+                       });
+            modelBuilder.Entity<UniversityDepartment>(u =>
+                       {
+                           u.HasIndex(e => new { e.TenantId });
+                       });
+            modelBuilder.Entity<ClassroomBuilding>(c =>
+                       {
+                           c.HasIndex(e => new { e.TenantId });
+                       });
+            modelBuilder.Entity<UniversityMajor>(u =>
+                       {
+                           u.HasIndex(e => new { e.TenantId });
+                       });
+            modelBuilder.Entity<UniversityDepartment>(u =>
+                       {
+                           u.HasIndex(e => new { e.TenantId });
+                       });
             modelBuilder.Entity<UniversityMajor>(u =>
                        {
                            u.HasIndex(e => new { e.TenantId });

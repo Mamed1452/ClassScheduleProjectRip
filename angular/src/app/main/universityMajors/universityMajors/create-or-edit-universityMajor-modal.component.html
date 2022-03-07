@@ -64,6 +64,49 @@
                         hidden
                     />
 
+                    <div class="form-group m-form__group">
+                        <label for="UniversityDepartmentUniversityDepartmentName2">
+                            {{ l('UniversityDepartment') }}
+                        </label>
+                        <div class="input-group">
+                            <input
+                                class="form-control"
+                                id="UniversityDepartmentUniversityDepartmentName2"
+                                name="universityDepartmentUniversityDepartmentName2"
+                                [(ngModel)]="universityDepartmentUniversityDepartmentName2"
+                                type="text"
+                                disabled
+                            />
+                            <div class="input-group-append">
+                                <button
+                                    class="btn btn-primary blue"
+                                    (click)="openSelectUniversityDepartmentModal2()"
+                                    type="button"
+                                >
+                                    <i class="fa fa-search"></i>
+                                    {{ l('Pick') }}
+                                </button>
+                            </div>
+                            <div class="input-group-prepend">
+                                <button
+                                    class="btn btn-danger btn-icon"
+                                    type="button"
+                                    (click)="setUniversityDepartmentIdNull()"
+                                >
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <input
+                        class="form-control"
+                        name="universityMajor.universityDepartmentId"
+                        [(ngModel)]="universityMajor.universityDepartmentId"
+                        type="text"
+                        required
+                        hidden
+                    />
+
                     <div class="form-group">
                         <label for="UniversityMajor_UniversityMajorName">{{ l('UniversityMajorName') }} *</label>
                         <input
@@ -116,6 +159,10 @@
     </div>
     <universityMajorUniversityDepartmentLookupTableModal
         #universityMajorUniversityDepartmentLookupTableModal
+        (modalSave)="getNewUniversityDepartmentId()"
+    ></universityMajorUniversityDepartmentLookupTableModal>
+    <universityMajorUniversityDepartmentLookupTableModal
+        #universityMajorUniversityDepartmentLookupTableModal2
         (modalSave)="getNewUniversityDepartmentId()"
     ></universityMajorUniversityDepartmentLookupTableModal>
 </div>

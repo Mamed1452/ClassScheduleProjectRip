@@ -210,7 +210,6 @@ namespace Mohajer.ClassScheduleProject.Tenants.Dashboard
                 BouncePercent = DashboardRandomDataGenerator.GetRandomInt(10, 100)
             };
         }
-
         public async Task<GetFilterDatesOutputDto> GetFilterDates()
         {
             GetFilterDatesOutputDto result = new GetFilterDatesOutputDto();

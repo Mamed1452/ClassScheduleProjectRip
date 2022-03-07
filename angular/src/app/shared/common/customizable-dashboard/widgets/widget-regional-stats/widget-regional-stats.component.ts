@@ -69,7 +69,7 @@ export class WidgetRegionalStatsComponent extends WidgetComponentBaseComponent i
 
     stats: Array<any>;
   regionalStatsTable: RegionalStatsTable;
-  
+
   constructor(injector: Injector,
     private _dashboardService: TenantDashboardServiceProxy,
               private tenantDashboardServiceProxy: TenantDashboardServiceProxy) {
@@ -84,17 +84,12 @@ export class WidgetRegionalStatsComponent extends WidgetComponentBaseComponent i
 
 
 
-  
+
   onDateRangeFilterChange = (dateRange) => {
     this._dashboardService.getContractTypeState(
       dateRange?dateRange[0]:undefined,
-      dateRange?dateRange[1]:undefined,
-      undefined,
-      undefined,
-      undefined,
-      undefined,
-      undefined,
-      undefined).subscribe(result => {
+      dateRange?dateRange[1]:undefined
+      ).subscribe(result => {
               this.stats = result.stats;
           });
   }

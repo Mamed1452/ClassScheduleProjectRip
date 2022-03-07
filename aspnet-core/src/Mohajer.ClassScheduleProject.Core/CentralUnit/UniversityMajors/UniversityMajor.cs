@@ -1,5 +1,6 @@
 ﻿using Mohajer.ClassScheduleProject.CentralUnit.UniversityMajors;
 using Mohajer.ClassScheduleProject.CentralUnit.UniversityDepartments;
+using Mohajer.ClassScheduleProject.CentralUnit.UniversityDepartments;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -25,6 +26,8 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.UniversityMajors
 
         [ForeignKey("UniversityDepartmentId")]
         public UniversityDepartment UniversityDepartmentFk { get; set; }
+
+    
 
     }
 }

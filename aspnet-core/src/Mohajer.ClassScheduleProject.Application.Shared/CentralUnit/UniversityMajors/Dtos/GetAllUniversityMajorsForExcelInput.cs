@@ -13,6 +13,5 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.UniversityMajors.Dtos
 
         public string UniversityDepartmentUniversityDepartmentNameFilter { get; set; }
 
-        public int? UniversityDepartmentIdFilter { get; set; }
     }
 }

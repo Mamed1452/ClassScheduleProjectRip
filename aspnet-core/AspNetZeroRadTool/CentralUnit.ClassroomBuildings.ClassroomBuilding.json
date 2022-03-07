@@ -1,5 +1,5 @@
 {
-  "IsRegenerate": false,
+  "IsRegenerate": true,
   "MenuPosition": "main",
   "RelativeNamespace": "CentralUnit.ClassroomBuildings",
   "EntityName": "ClassroomBuilding",
@@ -42,8 +42,8 @@
     {
       "Name": "NumberOfClassrooms",
       "Type": "int",
-      "MaxLength": 0,
-      "MinLength": 0,
+      "MaxLength": -1,
+      "MinLength": -1,
       "Range": {
         "IsRangeSet": true,
         "MinimumValue": 1.0,
@@ -61,8 +61,8 @@
     {
       "Name": "ClassificationClassroomBuilding",
       "Type": "ClassificationClassroomBuildingEnum",
-      "MaxLength": 0,
-      "MinLength": 0,
+      "MaxLength": -1,
+      "MinLength": -1,
       "Range": {
         "IsRangeSet": false,
         "MinimumValue": 0.0,

@@ -15,5 +15,6 @@ namespace Mohajer.ClassScheduleProject.MultiTenancy.HostDashboard
         Task<GetIncomeStatisticsDataOutput> GetIncomeStatistics(GetIncomeStatisticsDataInput input);
 
         Task<GetEditionTenantStatisticsOutput> GetEditionTenantStatistics(GetEditionTenantStatisticsInput input);
+        Task<GetHostFilterDatesDto> GetHostFilterDates();
     }
 }
