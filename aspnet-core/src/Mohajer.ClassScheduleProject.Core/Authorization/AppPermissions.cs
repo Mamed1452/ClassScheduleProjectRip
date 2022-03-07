@@ -6,6 +6,21 @@
     /// </summary>
     public static class AppPermissions
     {
+        public const string Pages_ListOfAllCalculatedResults = "Pages.ListOfAllCalculatedResults";
+        public const string Pages_ListOfAllCalculatedResults_Create = "Pages.ListOfAllCalculatedResults.Create";
+        public const string Pages_ListOfAllCalculatedResults_Edit = "Pages.ListOfAllCalculatedResults.Edit";
+        public const string Pages_ListOfAllCalculatedResults_Delete = "Pages.ListOfAllCalculatedResults.Delete";
+
+        public const string Pages_ClassScheduleModeSpaces = "Pages.ClassScheduleModeSpaces";
+        public const string Pages_ClassScheduleModeSpaces_Create = "Pages.ClassScheduleModeSpaces.Create";
+        public const string Pages_ClassScheduleModeSpaces_Edit = "Pages.ClassScheduleModeSpaces.Edit";
+        public const string Pages_ClassScheduleModeSpaces_Delete = "Pages.ClassScheduleModeSpaces.Delete";
+
+        public const string Pages_ClassScheduleResults = "Pages.ClassScheduleResults";
+        public const string Pages_ClassScheduleResults_Create = "Pages.ClassScheduleResults.Create";
+        public const string Pages_ClassScheduleResults_Edit = "Pages.ClassScheduleResults.Edit";
+        public const string Pages_ClassScheduleResults_Delete = "Pages.ClassScheduleResults.Delete";
+
         public const string Pages_LessonsOfUniversityProfessors = "Pages.LessonsOfUniversityProfessors";
         public const string Pages_LessonsOfUniversityProfessors_Create = "Pages.LessonsOfUniversityProfessors.Create";
         public const string Pages_LessonsOfUniversityProfessors_Edit = "Pages.LessonsOfUniversityProfessors.Edit";

@@ -1,0 +1,108 @@
+﻿{
+  "IsRegenerate": false,
+  "MenuPosition": "main",
+  "RelativeNamespace": "CentralUnit.ClassScheduleModeSpaces",
+  "EntityName": "ClassScheduleModeSpace",
+  "EntityNamePlural": "ClassScheduleModeSpaces",
+  "TableName": "ClassScheduleModeSpaces",
+  "PrimaryKeyType": "long",
+  "BaseClass": "FullAuditedEntity",
+  "EntityHistory": true,
+  "AutoMigration": false,
+  "UpdateDatabase": false,
+  "CreateUserInterface": true,
+  "CreateViewOnly": true,
+  "CreateExcelExport": true,
+  "IsNonModalCRUDPage": false,
+  "IsMasterDetailPage": true,
+  "PagePermission": {
+    "Host": false,
+    "Tenant": true
+  },
+  "Properties": [
+    {
+      "Name": "NameClassScheduleModeSpaces",
+      "Type": "string",
+      "MaxLength": 400,
+      "MinLength": 1,
+      "Range": {
+        "IsRangeSet": false,
+        "MinimumValue": 0.0,
+        "MaximumValue": 0.0
+      },
+      "Required": true,
+      "Nullable": false,
+      "Regex": "",
+      "UserInterface": {
+        "AdvancedFilter": true,
+        "List": true,
+        "CreateOrUpdate": true
+      }
+    },
+    {
+      "Name": "IsLock",
+      "Type": "bool",
+      "MaxLength": 0,
+      "MinLength": 0,
+      "Range": {
+        "IsRangeSet": false,
+        "MinimumValue": 0.0,
+        "MaximumValue": 0.0
+      },
+      "Required": false,
+      "Nullable": false,
+      "Regex": "",
+      "UserInterface": {
+        "AdvancedFilter": true,
+        "List": true,
+        "CreateOrUpdate": true
+      }
+    }
+  ],
+  "NavigationProperties": [
+    {
+      "Namespace": "Mohajer.ClassScheduleProject.CentralUnit.UniversityProfessors",
+      "ForeignEntityName": "UniversityProfessor",
+      "IdType": "int",
+      "IsNullable": false,
+      "PropertyName": "UniversityProfessorId",
+      "DisplayPropertyName": "UniversityProfessorName",
+      "DuplicationNumber": 0,
+      "RelationType": "single",
+      "ViewType": "LookupTable"
+    },
+    {
+      "Namespace": "Mohajer.ClassScheduleProject.CentralUnit.WorkTimeInDays",
+      "ForeignEntityName": "WorkTimeInDay",
+      "IdType": "long",
+      "IsNullable": false,
+      "PropertyName": "WorkTimeInDayId",
+      "DisplayPropertyName": "NameWorkTimeInDay",
+      "DuplicationNumber": 0,
+      "RelationType": "single",
+      "ViewType": "LookupTable"
+    },
+    {
+      "Namespace": "Mohajer.ClassScheduleProject.CentralUnit.Lessons",
+      "ForeignEntityName": "Lesson",
+      "IdType": "long",
+      "IsNullable": false,
+      "PropertyName": "LessonId",
+      "DisplayPropertyName": "NameLesson",
+      "DuplicationNumber": 0,
+      "RelationType": "single",
+      "ViewType": "LookupTable"
+    }
+  ],
+  "NavigationPropertyOneToManyTables": [
+            {
+                "EntityJson": "CentralUnit.ClassScheduleResults.ClassScheduleResult.json",
+                "ForeignPropertyName": "ClassScheduleModeSpaceId",
+                "IsNullable": "False",
+                "DisplayPropertyName": "NameClassScheduleModeSpaces",
+                "ViewType": "LookupTable"
+            },
+        ],
+  "EnumDefinitions": [],
+  "DbContext": null
+}

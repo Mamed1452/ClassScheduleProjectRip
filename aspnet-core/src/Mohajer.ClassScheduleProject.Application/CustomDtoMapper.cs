@@ -1,4 +1,10 @@
-﻿using Mohajer.ClassScheduleProject.CentralUnit.LessonsOfUniversityProfessors.Dtos;
+﻿using Mohajer.ClassScheduleProject.CentralUnit.ListOfAllCalculatedResults.Dtos;
+using Mohajer.ClassScheduleProject.CentralUnit.ListOfAllCalculatedResults;
+using Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleModeSpaces.Dtos;
+using Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleModeSpaces;
+using Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults.Dtos;
+using Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults;
+using Mohajer.ClassScheduleProject.CentralUnit.LessonsOfUniversityProfessors.Dtos;
 using Mohajer.ClassScheduleProject.CentralUnit.LessonsOfUniversityProfessors;
 using Mohajer.ClassScheduleProject.CentralUnit.LessonsOfSemesters.Dtos;
 using Mohajer.ClassScheduleProject.CentralUnit.LessonsOfSemesters;
@@ -80,6 +86,12 @@ namespace Mohajer.ClassScheduleProject
     {
         public static void CreateMappings(IMapperConfigurationExpression configuration)
         {
+            configuration.CreateMap<CreateOrEditListOfAllCalculatedResultDto, ListOfAllCalculatedResult>().ReverseMap();
+            configuration.CreateMap<ListOfAllCalculatedResultDto, ListOfAllCalculatedResult>().ReverseMap();
+            configuration.CreateMap<CreateOrEditClassScheduleModeSpaceDto, ClassScheduleModeSpace>().ReverseMap();
+            configuration.CreateMap<ClassScheduleModeSpaceDto, ClassScheduleModeSpace>().ReverseMap();
+            configuration.CreateMap<CreateOrEditClassScheduleResultDto, ClassScheduleResult>().ReverseMap();
+            configuration.CreateMap<ClassScheduleResultDto, ClassScheduleResult>().ReverseMap();
             configuration.CreateMap<CreateOrEditLessonsOfUniversityProfessorDto, LessonsOfUniversityProfessor>().ReverseMap();
             configuration.CreateMap<LessonsOfUniversityProfessorDto, LessonsOfUniversityProfessor>().ReverseMap();
             configuration.CreateMap<CreateOrEditLessonsOfSemesterDto, LessonsOfSemester>().ReverseMap();

@@ -1,0 +1,65 @@
+﻿<div
+    bsModal
+    #createOrEditModal="bs-modal"
+    class="modal fade"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="createOrEditModal"
+    aria-hidden="true"
+    [config]="{ backdrop: 'static' }"
+>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    <span>{{ l('Details') }}</span>
+                </h4>
+                <button type="button" class="close" (click)="close()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-6 mb-3">
+                        <h6>{{ l('WorkTimeInDayId') }} :</h6>
+                        {{ item.classScheduleResult.workTimeInDayId }}
+                    </div>
+                    <div class="col-6 mb-3">
+                        <h6>{{ l('LessonId') }} :</h6>
+                        {{ item.classScheduleResult.lessonId }}
+                    </div>
+                    <div class="col-6 mb-3">
+                        <h6>{{ l('UniversityProfessorId') }} :</h6>
+                        {{ item.classScheduleResult.universityProfessorId }}
+                    </div>
+                    <div class="col-6 mb-3">
+                        <h6>{{ l('SemesterId') }} :</h6>
+                        {{ item.classScheduleResult.semesterId }}
+                    </div>
+                    <div class="col-6 mb-3">
+                        <h6>{{ l('GradeId') }} :</h6>
+                        {{ item.classScheduleResult.gradeId }}
+                    </div>
+                    <div class="col-6 mb-3">
+                        <h6>{{ l('UniversityMajorId') }} :</h6>
+                        {{ item.classScheduleResult.universityMajorId }}
+                    </div>
+                    <div class="col-6 mb-3">
+                        <h6>{{ l('UniversityDepartmentId') }} :</h6>
+                        {{ item.classScheduleResult.universityDepartmentId }}
+                    </div>
+
+                    <div class="col-6 mb-3">
+                        <h6>({{ l('ClassScheduleModeSpace') }}) {{ l('NameClassScheduleModeSpaces') }} :</h6>
+                        {{ item.classScheduleModeSpaceNameClassScheduleModeSpaces }}
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button [disabled]="saving" type="button" class="btn btn-primary blue" (click)="close()">
+                    {{ l('Close') }}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

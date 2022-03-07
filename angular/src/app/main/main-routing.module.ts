@@ -1,5 +1,8 @@
 ﻿import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { ListOfAllCalculatedResultsComponent } from './listOfAllCalculatedResults/listOfAllCalculatedResults/listOfAllCalculatedResults.component';
+import { ClassScheduleModeSpacesComponent } from './classScheduleModeSpaces/classScheduleModeSpaces/classScheduleModeSpaces.component';
+import { ClassScheduleResultsComponent } from './classScheduleResults/classScheduleResults/classScheduleResults.component';
 import { LessonsOfUniversityProfessorsComponent } from './lessonsOfUniversityProfessors/lessonsOfUniversityProfessors/lessonsOfUniversityProfessors.component';
 import { LessonsOfSemestersComponent } from './lessonsOfSemesters/lessonsOfSemesters/lessonsOfSemesters.component';
 import { LessonsComponent } from './lessons/lessons/lessons.component';
@@ -21,6 +24,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
             {
                 path: '',
                 children: [
+                    { path: 'listOfAllCalculatedResults/listOfAllCalculatedResults', component: ListOfAllCalculatedResultsComponent, data: { permission: 'Pages.ListOfAllCalculatedResults' }  },
+                    { path: 'classScheduleModeSpaces/classScheduleModeSpaces', component: ClassScheduleModeSpacesComponent, data: { permission: 'Pages.ClassScheduleModeSpaces' }  },
+                    { path: 'classScheduleResults/classScheduleResults', component: ClassScheduleResultsComponent, data: { permission: 'Pages.ClassScheduleResults' }  },
                     { path: 'lessonsOfUniversityProfessors/lessonsOfUniversityProfessors', component: LessonsOfUniversityProfessorsComponent, data: { permission: 'Pages.LessonsOfUniversityProfessors' }  },
                     { path: 'lessonsOfSemesters/lessonsOfSemesters', component: LessonsOfSemestersComponent, data: { permission: 'Pages.LessonsOfSemesters' }  },
                     { path: 'lessons/lessons', component: LessonsComponent, data: { permission: 'Pages.Lessons' }  },

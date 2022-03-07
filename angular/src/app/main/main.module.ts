@@ -2,6 +2,34 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppCommonModule } from '@app/shared/common/app-common.module';
+import { ListOfAllCalculatedResultsComponent } from './listOfAllCalculatedResults/listOfAllCalculatedResults/listOfAllCalculatedResults.component';
+import { ViewListOfAllCalculatedResultModalComponent } from './listOfAllCalculatedResults/listOfAllCalculatedResults/view-listOfAllCalculatedResult-modal.component';
+import { CreateOrEditListOfAllCalculatedResultModalComponent } from './listOfAllCalculatedResults/listOfAllCalculatedResults/create-or-edit-listOfAllCalculatedResult-modal.component';
+
+import { MasterDetailChild_ListOfAllCalculatedResult_ClassScheduleResultsComponent } from './classScheduleResults/classScheduleResults/masterDetailChild_ListOfAllCalculatedResult_classScheduleResults.component';
+import { MasterDetailChild_ListOfAllCalculatedResult_ViewClassScheduleResultModalComponent } from './classScheduleResults/classScheduleResults/masterDetailChild_ListOfAllCalculatedResult_view-classScheduleResult-modal.component';
+import { MasterDetailChild_ListOfAllCalculatedResult_CreateOrEditClassScheduleResultModalComponent } from './classScheduleResults/classScheduleResults/masterDetailChild_ListOfAllCalculatedResult_create-or-edit-classScheduleResult-modal.component';
+import { MasterDetailChild_ListOfAllCalculatedResult_ClassScheduleResultClassScheduleModeSpaceLookupTableModalComponent } from './classScheduleResults/classScheduleResults/masterDetailChild_ListOfAllCalculatedResult_classScheduleResult-classScheduleModeSpace-lookup-table-modal.component';
+
+import { ClassScheduleResultListOfAllCalculatedResultLookupTableModalComponent } from './classScheduleResults/classScheduleResults/classScheduleResult-listOfAllCalculatedResult-lookup-table-modal.component';
+
+import { ClassScheduleModeSpacesComponent } from './classScheduleModeSpaces/classScheduleModeSpaces/classScheduleModeSpaces.component';
+import { ViewClassScheduleModeSpaceModalComponent } from './classScheduleModeSpaces/classScheduleModeSpaces/view-classScheduleModeSpace-modal.component';
+import { CreateOrEditClassScheduleModeSpaceModalComponent } from './classScheduleModeSpaces/classScheduleModeSpaces/create-or-edit-classScheduleModeSpace-modal.component';
+import { ClassScheduleModeSpaceUniversityProfessorLookupTableModalComponent } from './classScheduleModeSpaces/classScheduleModeSpaces/classScheduleModeSpace-universityProfessor-lookup-table-modal.component';
+import { ClassScheduleModeSpaceWorkTimeInDayLookupTableModalComponent } from './classScheduleModeSpaces/classScheduleModeSpaces/classScheduleModeSpace-workTimeInDay-lookup-table-modal.component';
+import { ClassScheduleModeSpaceLessonLookupTableModalComponent } from './classScheduleModeSpaces/classScheduleModeSpaces/classScheduleModeSpace-lesson-lookup-table-modal.component';
+
+import { MasterDetailChild_ClassScheduleModeSpace_ClassScheduleResultsComponent } from './classScheduleResults/classScheduleResults/masterDetailChild_ClassScheduleModeSpace_classScheduleResults.component';
+import { MasterDetailChild_ClassScheduleModeSpace_ViewClassScheduleResultModalComponent } from './classScheduleResults/classScheduleResults/masterDetailChild_ClassScheduleModeSpace_view-classScheduleResult-modal.component';
+import { MasterDetailChild_ClassScheduleModeSpace_CreateOrEditClassScheduleResultModalComponent } from './classScheduleResults/classScheduleResults/masterDetailChild_ClassScheduleModeSpace_create-or-edit-classScheduleResult-modal.component';
+
+import { ClassScheduleResultClassScheduleModeSpaceLookupTableModalComponent } from './classScheduleResults/classScheduleResults/classScheduleResult-classScheduleModeSpace-lookup-table-modal.component';
+
+import { ClassScheduleResultsComponent } from './classScheduleResults/classScheduleResults/classScheduleResults.component';
+import { ViewClassScheduleResultModalComponent } from './classScheduleResults/classScheduleResults/view-classScheduleResult-modal.component';
+import { CreateOrEditClassScheduleResultModalComponent } from './classScheduleResults/classScheduleResults/create-or-edit-classScheduleResult-modal.component';
+
 import { LessonsOfUniversityProfessorsComponent } from './lessonsOfUniversityProfessors/lessonsOfUniversityProfessors/lessonsOfUniversityProfessors.component';
 import { ViewLessonsOfUniversityProfessorModalComponent } from './lessonsOfUniversityProfessors/lessonsOfUniversityProfessors/view-lessonsOfUniversityProfessor-modal.component';
 import { CreateOrEditLessonsOfUniversityProfessorModalComponent } from './lessonsOfUniversityProfessors/lessonsOfUniversityProfessors/create-or-edit-lessonsOfUniversityProfessor-modal.component';
@@ -124,6 +152,32 @@ NgxBootstrapDatePickerConfigService.registerNgxBootstrapDatePickerLocales();
         PopoverModule.forRoot()
     ],
     declarations: [
+		ListOfAllCalculatedResultsComponent,
+
+		ViewListOfAllCalculatedResultModalComponent,
+		CreateOrEditListOfAllCalculatedResultModalComponent,
+		MasterDetailChild_ListOfAllCalculatedResult_ClassScheduleResultsComponent,
+
+		MasterDetailChild_ListOfAllCalculatedResult_ViewClassScheduleResultModalComponent,
+		MasterDetailChild_ListOfAllCalculatedResult_CreateOrEditClassScheduleResultModalComponent,
+    MasterDetailChild_ListOfAllCalculatedResult_ClassScheduleResultClassScheduleModeSpaceLookupTableModalComponent,
+    ClassScheduleResultListOfAllCalculatedResultLookupTableModalComponent,
+		ClassScheduleModeSpacesComponent,
+
+		ViewClassScheduleModeSpaceModalComponent,
+		CreateOrEditClassScheduleModeSpaceModalComponent,
+    ClassScheduleModeSpaceUniversityProfessorLookupTableModalComponent,
+    ClassScheduleModeSpaceWorkTimeInDayLookupTableModalComponent,
+    ClassScheduleModeSpaceLessonLookupTableModalComponent,
+		MasterDetailChild_ClassScheduleModeSpace_ClassScheduleResultsComponent,
+
+		MasterDetailChild_ClassScheduleModeSpace_ViewClassScheduleResultModalComponent,
+		MasterDetailChild_ClassScheduleModeSpace_CreateOrEditClassScheduleResultModalComponent,
+    ClassScheduleResultClassScheduleModeSpaceLookupTableModalComponent,
+		ClassScheduleResultsComponent,
+
+		ViewClassScheduleResultModalComponent,
+		CreateOrEditClassScheduleResultModalComponent,
 		LessonsOfUniversityProfessorsComponent,
 
 		ViewLessonsOfUniversityProfessorModalComponent,

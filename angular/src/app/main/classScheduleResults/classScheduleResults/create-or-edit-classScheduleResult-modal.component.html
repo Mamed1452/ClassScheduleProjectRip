@@ -1,0 +1,233 @@
+﻿<div
+    bsModal
+    #createOrEditModal="bs-modal"
+    class="modal fade"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="createOrEditModal"
+    aria-hidden="true"
+    [config]="{ backdrop: 'static' }"
+>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form *ngIf="active" #classScheduleResultForm="ngForm" novalidate (ngSubmit)="save()" autocomplete="off">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <span *ngIf="classScheduleResult.id">{{ l('EditClassScheduleResult') }}</span>
+                        <span *ngIf="!classScheduleResult.id">{{ l('CreateNewClassScheduleResult') }}</span>
+                    </h4>
+                    <button type="button" class="close" (click)="close()" aria-label="Close" [disabled]="saving">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group m-form__group">
+                        <label for="ListOfAllCalculatedResultNameCalculatedResult">
+                            {{ l('ListOfAllCalculatedResult') }}
+                        </label>
+                        <div class="input-group">
+                            <input
+                                class="form-control"
+                                id="ListOfAllCalculatedResultNameCalculatedResult"
+                                name="listOfAllCalculatedResultNameCalculatedResult"
+                                [(ngModel)]="listOfAllCalculatedResultNameCalculatedResult"
+                                type="text"
+                                disabled
+                            />
+                            <div class="input-group-append">
+                                <button
+                                    class="btn btn-primary blue"
+                                    (click)="openSelectListOfAllCalculatedResultModal()"
+                                    type="button"
+                                >
+                                    <i class="fa fa-search"></i>
+                                    {{ l('Pick') }}
+                                </button>
+                            </div>
+                            <div class="input-group-prepend">
+                                <button
+                                    class="btn btn-danger btn-icon"
+                                    type="button"
+                                    (click)="setListOfAllCalculatedResultIdNull()"
+                                >
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <input
+                        class="form-control"
+                        name="classScheduleResult.listOfAllCalculatedResultId"
+                        [(ngModel)]="classScheduleResult.listOfAllCalculatedResultId"
+                        type="text"
+                        required
+                        hidden
+                    />
+
+                    <div class="form-group m-form__group">
+                        <label for="ClassScheduleModeSpaceNameClassScheduleModeSpaces">
+                            {{ l('ClassScheduleModeSpace') }}
+                        </label>
+                        <div class="input-group">
+                            <input
+                                class="form-control"
+                                id="ClassScheduleModeSpaceNameClassScheduleModeSpaces"
+                                name="classScheduleModeSpaceNameClassScheduleModeSpaces"
+                                [(ngModel)]="classScheduleModeSpaceNameClassScheduleModeSpaces"
+                                type="text"
+                                disabled
+                            />
+                            <div class="input-group-append">
+                                <button
+                                    class="btn btn-primary blue"
+                                    (click)="openSelectClassScheduleModeSpaceModal()"
+                                    type="button"
+                                >
+                                    <i class="fa fa-search"></i>
+                                    {{ l('Pick') }}
+                                </button>
+                            </div>
+                            <div class="input-group-prepend">
+                                <button
+                                    class="btn btn-danger btn-icon"
+                                    type="button"
+                                    (click)="setClassScheduleModeSpaceIdNull()"
+                                >
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <input
+                        class="form-control"
+                        name="classScheduleResult.classScheduleModeSpaceId"
+                        [(ngModel)]="classScheduleResult.classScheduleModeSpaceId"
+                        type="text"
+                        required
+                        hidden
+                    />
+
+                    <div class="form-group">
+                        <label for="ClassScheduleResult_WorkTimeInDayId">{{ l('WorkTimeInDayId') }}</label>
+                        <input
+                            type="number"
+                            #ClassScheduleResult_WorkTimeInDayId="ngModel"
+                            id="ClassScheduleResult_WorkTimeInDayId"
+                            class="form-control"
+                            [(ngModel)]="classScheduleResult.workTimeInDayId"
+                            name="WorkTimeInDayId"
+                        />
+                        <validation-messages [formCtrl]="ClassScheduleResult_WorkTimeInDayId"></validation-messages>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ClassScheduleResult_LessonId">{{ l('LessonId') }}</label>
+                        <input
+                            type="number"
+                            #ClassScheduleResult_LessonId="ngModel"
+                            id="ClassScheduleResult_LessonId"
+                            class="form-control"
+                            [(ngModel)]="classScheduleResult.lessonId"
+                            name="LessonId"
+                        />
+                        <validation-messages [formCtrl]="ClassScheduleResult_LessonId"></validation-messages>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ClassScheduleResult_UniversityProfessorId">{{ l('UniversityProfessorId') }}</label>
+                        <input
+                            type="number"
+                            #ClassScheduleResult_UniversityProfessorId="ngModel"
+                            id="ClassScheduleResult_UniversityProfessorId"
+                            class="form-control"
+                            [(ngModel)]="classScheduleResult.universityProfessorId"
+                            name="UniversityProfessorId"
+                        />
+                        <validation-messages
+                            [formCtrl]="ClassScheduleResult_UniversityProfessorId"
+                        ></validation-messages>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ClassScheduleResult_SemesterId">{{ l('SemesterId') }}</label>
+                        <input
+                            type="number"
+                            #ClassScheduleResult_SemesterId="ngModel"
+                            id="ClassScheduleResult_SemesterId"
+                            class="form-control"
+                            [(ngModel)]="classScheduleResult.semesterId"
+                            name="SemesterId"
+                        />
+                        <validation-messages [formCtrl]="ClassScheduleResult_SemesterId"></validation-messages>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ClassScheduleResult_GradeId">{{ l('GradeId') }}</label>
+                        <input
+                            type="number"
+                            #ClassScheduleResult_GradeId="ngModel"
+                            id="ClassScheduleResult_GradeId"
+                            class="form-control"
+                            [(ngModel)]="classScheduleResult.gradeId"
+                            name="GradeId"
+                        />
+                        <validation-messages [formCtrl]="ClassScheduleResult_GradeId"></validation-messages>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ClassScheduleResult_UniversityMajorId">{{ l('UniversityMajorId') }}</label>
+                        <input
+                            type="number"
+                            #ClassScheduleResult_UniversityMajorId="ngModel"
+                            id="ClassScheduleResult_UniversityMajorId"
+                            class="form-control"
+                            [(ngModel)]="classScheduleResult.universityMajorId"
+                            name="UniversityMajorId"
+                        />
+                        <validation-messages [formCtrl]="ClassScheduleResult_UniversityMajorId"></validation-messages>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ClassScheduleResult_UniversityDepartmentId">
+                            {{ l('UniversityDepartmentId') }}
+                        </label>
+                        <input
+                            type="number"
+                            #ClassScheduleResult_UniversityDepartmentId="ngModel"
+                            id="ClassScheduleResult_UniversityDepartmentId"
+                            class="form-control"
+                            [(ngModel)]="classScheduleResult.universityDepartmentId"
+                            name="UniversityDepartmentId"
+                        />
+                        <validation-messages
+                            [formCtrl]="ClassScheduleResult_UniversityDepartmentId"
+                        ></validation-messages>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button [disabled]="saving" type="button" class="btn btn-default" (click)="close()">
+                        {{ l('Cancel') }}
+                    </button>
+                    <button
+                        type="submit"
+                        class="btn btn-primary blue"
+                        [disabled]="!classScheduleResultForm.form.valid"
+                        [buttonBusy]="saving"
+                        [busyText]="l('SavingWithThreeDot')"
+                    >
+                        <i class="fa fa-save"></i>
+                        <span>{{ l('Save') }}</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <classScheduleResultListOfAllCalculatedResultLookupTableModal
+        #classScheduleResultListOfAllCalculatedResultLookupTableModal
+        (modalSave)="getNewListOfAllCalculatedResultId()"
+    ></classScheduleResultListOfAllCalculatedResultLookupTableModal>
+    <classScheduleResultClassScheduleModeSpaceLookupTableModal
+        #classScheduleResultClassScheduleModeSpaceLookupTableModal
+        (modalSave)="getNewClassScheduleModeSpaceId()"
+    ></classScheduleResultClassScheduleModeSpaceLookupTableModal>
+</div>

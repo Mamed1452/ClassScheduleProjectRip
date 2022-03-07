@@ -1,6 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="en">
-  <texts>    <text name="LessonsOfUniversityProfessors">Lessons of university professors</text>
+  <texts>    <text name="ListOfAllCalculatedResults">List of all calculated results</text>
+    <text name="ListOfAllCalculatedResult">List of all calculated result</text>
+    <text name="Mohajer.ClassScheduleProject.ListOfAllCalculatedResults.ListOfAllCalculatedResult">ListOfAllCalculatedResult</text>
+    <text name="NameCalculatedResult">Name calculated result</text>
+    <text name="ListOfAllCalculatedResultsHeaderInfo">List of all calculated results header info</text>
+    <text name="CreateNewListOfAllCalculatedResult">Create new list of all calculated result</text>
+    <text name="EditListOfAllCalculatedResult">Edit list of all calculated result</text>
+    <text name="DeleteListOfAllCalculatedResult">Delete list of all calculated result</text>
+    <text name="ListOfAllCalculatedResultNameCalculatedResult">List of all calculated result name calculated result</text>
+    <text name="PickListOfAllCalculatedResult">Pick list of all calculated result</text>
+    <text name="ClassScheduleModeSpaces">Class schedule mode spaces</text>
+    <text name="ClassScheduleModeSpace">Class schedule mode space</text>
+    <text name="Mohajer.ClassScheduleProject.ClassScheduleModeSpaces.ClassScheduleModeSpace">ClassScheduleModeSpace</text>
+    <text name="NameClassScheduleModeSpaces">Name class schedule mode spaces</text>
+    <text name="IsLock">Is lock</text>
+    <text name="NotIsLock">Not is lock</text>
+    <text name="ClassScheduleModeSpacesHeaderInfo">Class schedule mode spaces header info</text>
+    <text name="CreateNewClassScheduleModeSpace">Create new class schedule mode space</text>
+    <text name="EditClassScheduleModeSpace">Edit class schedule mode space</text>
+    <text name="DeleteClassScheduleModeSpace">Delete class schedule mode space</text>
+    <text name="ClassScheduleModeSpaceNameClassScheduleModeSpaces">Class schedule mode space name class schedule mode spaces</text>
+    <text name="PickClassScheduleModeSpace">Pick class schedule mode space</text>
+    <text name="ClassScheduleResults">Class schedule results</text>
+    <text name="ClassScheduleResult">Class schedule result</text>
+    <text name="Mohajer.ClassScheduleProject.ClassScheduleResults.ClassScheduleResult">ClassScheduleResult</text>
+    <text name="WorkTimeInDayId">Work time in day id</text>
+    <text name="LessonId">Lesson id</text>
+    <text name="UniversityProfessorId">University professor id</text>
+    <text name="SemesterId">Semester id</text>
+    <text name="GradeId">Grade id</text>
+    <text name="UniversityMajorId">University major id</text>
+    <text name="UniversityDepartmentId">University department id</text>
+    <text name="ClassScheduleResultsHeaderInfo">Class schedule results header info</text>
+    <text name="CreateNewClassScheduleResult">Create new class schedule result</text>
+    <text name="EditClassScheduleResult">Edit class schedule result</text>
+    <text name="DeleteClassScheduleResult">Delete class schedule result</text>
+    <text name="LessonsOfUniversityProfessors">Lessons of university professors</text>
     <text name="LessonsOfUniversityProfessor">Lessons of university professor</text>
     <text name="Mohajer.ClassScheduleProject.LessonsOfUniversityProfessors.LessonsOfUniversityProfessor">LessonsOfUniversityProfessor</text>
     <text name="LessonsOfUniversityProfessorsHeaderInfo">Lessons of university professors header info</text>

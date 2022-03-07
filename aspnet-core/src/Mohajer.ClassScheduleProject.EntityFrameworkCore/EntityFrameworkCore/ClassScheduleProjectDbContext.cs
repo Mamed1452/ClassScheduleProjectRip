@@ -1,4 +1,7 @@
-﻿using Mohajer.ClassScheduleProject.CentralUnit.LessonsOfUniversityProfessors;
+﻿using Mohajer.ClassScheduleProject.CentralUnit.ListOfAllCalculatedResults;
+using Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleModeSpaces;
+using Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults;
+using Mohajer.ClassScheduleProject.CentralUnit.LessonsOfUniversityProfessors;
 using Mohajer.ClassScheduleProject.CentralUnit.LessonsOfSemesters;
 using Mohajer.ClassScheduleProject.CentralUnit.Lessons;
 using Mohajer.ClassScheduleProject.CentralUnit.UniversityProfessorWorkingTimes;
@@ -33,6 +36,12 @@ namespace Mohajer.ClassScheduleProject.EntityFrameworkCore
 {
     public class ClassScheduleProjectDbContext : AbpZeroDbContext<Tenant, Role, User, ClassScheduleProjectDbContext>, IAbpPersistedGrantDbContext
     {
+        public virtual DbSet<ListOfAllCalculatedResult> ListOfAllCalculatedResults { get; set; }
+
+        public virtual DbSet<ClassScheduleModeSpace> ClassScheduleModeSpaces { get; set; }
+
+        public virtual DbSet<ClassScheduleResult> ClassScheduleResults { get; set; }
+
         public virtual DbSet<LessonsOfUniversityProfessor> LessonsOfUniversityProfessors { get; set; }
 
         public virtual DbSet<LessonsOfSemester> LessonsOfSemesters { get; set; }
@@ -89,10 +98,30 @@ namespace Mohajer.ClassScheduleProject.EntityFrameworkCore
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<LessonsOfUniversityProfessor>(l =>
+            modelBuilder.Entity<ClassScheduleResult>(c =>
             {
-                l.HasIndex(e => new { e.TenantId });
+                c.HasIndex(e => new { e.TenantId });
             });
+            modelBuilder.Entity<ListOfAllCalculatedResult>(l =>
+                       {
+                           l.HasIndex(e => new { e.TenantId });
+                       });
+            modelBuilder.Entity<ClassScheduleResult>(c =>
+                       {
+                           c.HasIndex(e => new { e.TenantId });
+                       });
+            modelBuilder.Entity<ClassScheduleModeSpace>(c =>
+                       {
+                           c.HasIndex(e => new { e.TenantId });
+                       });
+            modelBuilder.Entity<ClassScheduleResult>(c =>
+                       {
+                           c.HasIndex(e => new { e.TenantId });
+                       });
+            modelBuilder.Entity<LessonsOfUniversityProfessor>(l =>
+                       {
+                           l.HasIndex(e => new { e.TenantId });
+                       });
             modelBuilder.Entity<LessonsOfSemester>(l =>
                        {
                            l.HasIndex(e => new { e.TenantId });
