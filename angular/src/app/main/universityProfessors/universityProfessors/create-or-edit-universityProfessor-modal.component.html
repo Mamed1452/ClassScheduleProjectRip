@@ -1,0 +1,78 @@
+﻿<div
+    bsModal
+    #createOrEditModal="bs-modal"
+    class="modal fade"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="createOrEditModal"
+    aria-hidden="true"
+    [config]="{ backdrop: 'static' }"
+>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form *ngIf="active" #universityProfessorForm="ngForm" novalidate (ngSubmit)="save()" autocomplete="off">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <span *ngIf="universityProfessor.id">{{ l('EditUniversityProfessor') }}</span>
+                        <span *ngIf="!universityProfessor.id">{{ l('CreateNewUniversityProfessor') }}</span>
+                    </h4>
+                    <button type="button" class="close" (click)="close()" aria-label="Close" [disabled]="saving">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="UniversityProfessor_UniversityProfessorName">
+                            {{ l('UniversityProfessorName') }} *
+                        </label>
+                        <input
+                            type="text"
+                            #UniversityProfessor_UniversityProfessorName="ngModel"
+                            id="UniversityProfessor_UniversityProfessorName"
+                            class="form-control"
+                            [(ngModel)]="universityProfessor.universityProfessorName"
+                            name="UniversityProfessorName"
+                            minlength="1"
+                            maxlength="200"
+                            required
+                        />
+                        <validation-messages
+                            [formCtrl]="UniversityProfessor_UniversityProfessorName"
+                        ></validation-messages>
+                    </div>
+
+                    <br />
+                    <div class="m-checkbox-list">
+                        <label for="UniversityProfessor_IsActive" class="kt-checkbox">
+                            <input
+                                id="UniversityProfessor_IsActive"
+                                #UniversityProfessor_IsActive="ngModel"
+                                type="checkbox"
+                                name="IsActive"
+                                [(ngModel)]="universityProfessor.isActive"
+                            />
+                            {{ l('IsActive') }}
+                            <span></span>
+                        </label>
+                        <validation-messages [formCtrl]="UniversityProfessor_IsActive"></validation-messages>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button [disabled]="saving" type="button" class="btn btn-default" (click)="close()">
+                        {{ l('Cancel') }}
+                    </button>
+                    <button
+                        type="submit"
+                        class="btn btn-primary blue"
+                        [disabled]="!universityProfessorForm.form.valid"
+                        [buttonBusy]="saving"
+                        [busyText]="l('SavingWithThreeDot')"
+                    >
+                        <i class="fa fa-save"></i>
+                        <span>{{ l('Save') }}</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

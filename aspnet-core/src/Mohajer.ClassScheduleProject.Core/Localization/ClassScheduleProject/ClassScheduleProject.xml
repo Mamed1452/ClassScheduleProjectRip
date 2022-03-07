@@ -1,6 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="en">
-  <texts>    <text name="AssigningGradeToUniversityMajors">Assigning grade to university majors</text>
+  <texts>    <text name="UniversityProfessorWorkingTimes">University professor working times</text>
+    <text name="UniversityProfessorWorkingTime">University professor working time</text>
+    <text name="Mohajer.ClassScheduleProject.UniversityProfessorWorkingTimes.UniversityProfessorWorkingTime">UniversityProfessorWorkingTime</text>
+    <text name="UniversityProfessorWorkingTimesHeaderInfo">University professor working times header info</text>
+    <text name="CreateNewUniversityProfessorWorkingTime">Create new university professor working time</text>
+    <text name="EditUniversityProfessorWorkingTime">Edit university professor working time</text>
+    <text name="DeleteUniversityProfessorWorkingTime">Delete university professor working time</text>
+    <text name="UniversityProfessorUniversityProfessorName">University professor university professor name</text>
+    <text name="PickUniversityProfessor">Pick university professor</text>
+    <text name="WorkTimeInDayNameWorkTimeInDay">Work time in day name work time in day</text>
+    <text name="PickWorkTimeInDay">Pick work time in day</text>
+    <text name="UniversityProfessors">University professors</text>
+    <text name="UniversityProfessor">University professor</text>
+    <text name="Mohajer.ClassScheduleProject.UniversityProfessors.UniversityProfessor">UniversityProfessor</text>
+    <text name="UniversityProfessorName">University professor name</text>
+    <text name="UniversityProfessorsHeaderInfo">University professors header info</text>
+    <text name="CreateNewUniversityProfessor">Create new university professor</text>
+    <text name="EditUniversityProfessor">Edit university professor</text>
+    <text name="DeleteUniversityProfessor">Delete university professor</text>
+    <text name="WorkTimeInDays">Work time in days</text>
+    <text name="WorkTimeInDay">Work time in day</text>
+    <text name="Mohajer.ClassScheduleProject.WorkTimeInDays.WorkTimeInDay">WorkTimeInDay</text>
+    <text name="NameWorkTimeInDay">Name work time in day</text>
+    <text name="DayOfWeek">Day of week</text>
+    <text name="startTime">start time</text>
+    <text name="WhatTimeOfDay">What time of day</text>
+    <text name="WorkTimeInDaysHeaderInfo">Work time in days header info</text>
+    <text name="CreateNewWorkTimeInDay">Create new work time in day</text>
+    <text name="EditWorkTimeInDay">Edit work time in day</text>
+    <text name="DeleteWorkTimeInDay">Delete work time in day</text>
+    <text name="AssigningGradeToUniversityMajors">Assigning grade to university majors</text>
     <text name="AssigningGradeToUniversityMajor">Assigning grade to university major</text>
     <text name="Mohajer.ClassScheduleProject.AssigningGradeToUniversityMajors.AssigningGradeToUniversityMajor">AssigningGradeToUniversityMajor</text>
     <text name="NameAssignedGradeToUniversityMajor">Name assigned grade to university major</text>

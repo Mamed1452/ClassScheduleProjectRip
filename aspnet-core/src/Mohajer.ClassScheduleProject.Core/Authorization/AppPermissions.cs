@@ -6,6 +6,21 @@
     /// </summary>
     public static class AppPermissions
     {
+        public const string Pages_UniversityProfessorWorkingTimes = "Pages.UniversityProfessorWorkingTimes";
+        public const string Pages_UniversityProfessorWorkingTimes_Create = "Pages.UniversityProfessorWorkingTimes.Create";
+        public const string Pages_UniversityProfessorWorkingTimes_Edit = "Pages.UniversityProfessorWorkingTimes.Edit";
+        public const string Pages_UniversityProfessorWorkingTimes_Delete = "Pages.UniversityProfessorWorkingTimes.Delete";
+
+        public const string Pages_UniversityProfessors = "Pages.UniversityProfessors";
+        public const string Pages_UniversityProfessors_Create = "Pages.UniversityProfessors.Create";
+        public const string Pages_UniversityProfessors_Edit = "Pages.UniversityProfessors.Edit";
+        public const string Pages_UniversityProfessors_Delete = "Pages.UniversityProfessors.Delete";
+
+        public const string Pages_WorkTimeInDays = "Pages.WorkTimeInDays";
+        public const string Pages_WorkTimeInDays_Create = "Pages.WorkTimeInDays.Create";
+        public const string Pages_WorkTimeInDays_Edit = "Pages.WorkTimeInDays.Edit";
+        public const string Pages_WorkTimeInDays_Delete = "Pages.WorkTimeInDays.Delete";
+
         public const string Pages_AssigningGradeToUniversityMajors = "Pages.AssigningGradeToUniversityMajors";
         public const string Pages_AssigningGradeToUniversityMajors_Create = "Pages.AssigningGradeToUniversityMajors.Create";
         public const string Pages_AssigningGradeToUniversityMajors_Edit = "Pages.AssigningGradeToUniversityMajors.Edit";

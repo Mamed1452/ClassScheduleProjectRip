@@ -2,6 +2,20 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppCommonModule } from '@app/shared/common/app-common.module';
+import { UniversityProfessorWorkingTimesComponent } from './universityProfessorWorkingTimes/universityProfessorWorkingTimes/universityProfessorWorkingTimes.component';
+import { ViewUniversityProfessorWorkingTimeModalComponent } from './universityProfessorWorkingTimes/universityProfessorWorkingTimes/view-universityProfessorWorkingTime-modal.component';
+import { CreateOrEditUniversityProfessorWorkingTimeModalComponent } from './universityProfessorWorkingTimes/universityProfessorWorkingTimes/create-or-edit-universityProfessorWorkingTime-modal.component';
+import { UniversityProfessorWorkingTimeUniversityProfessorLookupTableModalComponent } from './universityProfessorWorkingTimes/universityProfessorWorkingTimes/universityProfessorWorkingTime-universityProfessor-lookup-table-modal.component';
+import { UniversityProfessorWorkingTimeWorkTimeInDayLookupTableModalComponent } from './universityProfessorWorkingTimes/universityProfessorWorkingTimes/universityProfessorWorkingTime-workTimeInDay-lookup-table-modal.component';
+
+import { UniversityProfessorsComponent } from './universityProfessors/universityProfessors/universityProfessors.component';
+import { ViewUniversityProfessorModalComponent } from './universityProfessors/universityProfessors/view-universityProfessor-modal.component';
+import { CreateOrEditUniversityProfessorModalComponent } from './universityProfessors/universityProfessors/create-or-edit-universityProfessor-modal.component';
+
+import { WorkTimeInDaysComponent } from './workTimeInDays/workTimeInDays/workTimeInDays.component';
+import { ViewWorkTimeInDayModalComponent } from './workTimeInDays/workTimeInDays/view-workTimeInDay-modal.component';
+import { CreateOrEditWorkTimeInDayModalComponent } from './workTimeInDays/workTimeInDays/create-or-edit-workTimeInDay-modal.component';
+
 import { AssigningGradeToUniversityMajorsComponent } from './assigningGradeToUniversityMajors/assigningGradeToUniversityMajors/assigningGradeToUniversityMajors.component';
 import { ViewAssigningGradeToUniversityMajorModalComponent } from './assigningGradeToUniversityMajors/assigningGradeToUniversityMajors/view-assigningGradeToUniversityMajor-modal.component';
 import { CreateOrEditAssigningGradeToUniversityMajorModalComponent } from './assigningGradeToUniversityMajors/assigningGradeToUniversityMajors/create-or-edit-assigningGradeToUniversityMajor-modal.component';
@@ -93,6 +107,20 @@ NgxBootstrapDatePickerConfigService.registerNgxBootstrapDatePickerLocales();
         PopoverModule.forRoot()
     ],
     declarations: [
+		UniversityProfessorWorkingTimesComponent,
+
+		ViewUniversityProfessorWorkingTimeModalComponent,
+		CreateOrEditUniversityProfessorWorkingTimeModalComponent,
+    UniversityProfessorWorkingTimeUniversityProfessorLookupTableModalComponent,
+    UniversityProfessorWorkingTimeWorkTimeInDayLookupTableModalComponent,
+		UniversityProfessorsComponent,
+
+		ViewUniversityProfessorModalComponent,
+		CreateOrEditUniversityProfessorModalComponent,
+		WorkTimeInDaysComponent,
+
+		ViewWorkTimeInDayModalComponent,
+		CreateOrEditWorkTimeInDayModalComponent,
 		AssigningGradeToUniversityMajorsComponent,
 
 		ViewAssigningGradeToUniversityMajorModalComponent,

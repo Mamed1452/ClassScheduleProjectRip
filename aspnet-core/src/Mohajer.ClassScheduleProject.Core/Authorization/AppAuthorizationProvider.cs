@@ -30,6 +30,21 @@ namespace Mohajer.ClassScheduleProject.Authorization
 
             var pages = context.GetPermissionOrNull(AppPermissions.Pages) ?? context.CreatePermission(AppPermissions.Pages, L("Pages"));
 
+            var universityProfessorWorkingTimes = pages.CreateChildPermission(AppPermissions.Pages_UniversityProfessorWorkingTimes, L("UniversityProfessorWorkingTimes"), multiTenancySides: MultiTenancySides.Tenant);
+            universityProfessorWorkingTimes.CreateChildPermission(AppPermissions.Pages_UniversityProfessorWorkingTimes_Create, L("CreateNewUniversityProfessorWorkingTime"), multiTenancySides: MultiTenancySides.Tenant);
+            universityProfessorWorkingTimes.CreateChildPermission(AppPermissions.Pages_UniversityProfessorWorkingTimes_Edit, L("EditUniversityProfessorWorkingTime"), multiTenancySides: MultiTenancySides.Tenant);
+            universityProfessorWorkingTimes.CreateChildPermission(AppPermissions.Pages_UniversityProfessorWorkingTimes_Delete, L("DeleteUniversityProfessorWorkingTime"), multiTenancySides: MultiTenancySides.Tenant);
+
+            var universityProfessors = pages.CreateChildPermission(AppPermissions.Pages_UniversityProfessors, L("UniversityProfessors"), multiTenancySides: MultiTenancySides.Tenant);
+            universityProfessors.CreateChildPermission(AppPermissions.Pages_UniversityProfessors_Create, L("CreateNewUniversityProfessor"), multiTenancySides: MultiTenancySides.Tenant);
+            universityProfessors.CreateChildPermission(AppPermissions.Pages_UniversityProfessors_Edit, L("EditUniversityProfessor"), multiTenancySides: MultiTenancySides.Tenant);
+            universityProfessors.CreateChildPermission(AppPermissions.Pages_UniversityProfessors_Delete, L("DeleteUniversityProfessor"), multiTenancySides: MultiTenancySides.Tenant);
+
+            var workTimeInDays = pages.CreateChildPermission(AppPermissions.Pages_WorkTimeInDays, L("WorkTimeInDays"), multiTenancySides: MultiTenancySides.Tenant);
+            workTimeInDays.CreateChildPermission(AppPermissions.Pages_WorkTimeInDays_Create, L("CreateNewWorkTimeInDay"), multiTenancySides: MultiTenancySides.Tenant);
+            workTimeInDays.CreateChildPermission(AppPermissions.Pages_WorkTimeInDays_Edit, L("EditWorkTimeInDay"), multiTenancySides: MultiTenancySides.Tenant);
+            workTimeInDays.CreateChildPermission(AppPermissions.Pages_WorkTimeInDays_Delete, L("DeleteWorkTimeInDay"), multiTenancySides: MultiTenancySides.Tenant);
+
             var assigningGradeToUniversityMajors = pages.CreateChildPermission(AppPermissions.Pages_AssigningGradeToUniversityMajors, L("AssigningGradeToUniversityMajors"), multiTenancySides: MultiTenancySides.Tenant);
             assigningGradeToUniversityMajors.CreateChildPermission(AppPermissions.Pages_AssigningGradeToUniversityMajors_Create, L("CreateNewAssigningGradeToUniversityMajor"), multiTenancySides: MultiTenancySides.Tenant);
             assigningGradeToUniversityMajors.CreateChildPermission(AppPermissions.Pages_AssigningGradeToUniversityMajors_Edit, L("EditAssigningGradeToUniversityMajor"), multiTenancySides: MultiTenancySides.Tenant);

@@ -1,0 +1,132 @@
+﻿<div
+    bsModal
+    #createOrEditModal="bs-modal"
+    class="modal fade"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="createOrEditModal"
+    aria-hidden="true"
+    [config]="{ backdrop: 'static' }"
+>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form *ngIf="active" #workTimeInDayForm="ngForm" novalidate (ngSubmit)="save()" autocomplete="off">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <span *ngIf="workTimeInDay.id">{{ l('EditWorkTimeInDay') }}</span>
+                        <span *ngIf="!workTimeInDay.id">{{ l('CreateNewWorkTimeInDay') }}</span>
+                    </h4>
+                    <button type="button" class="close" (click)="close()" aria-label="Close" [disabled]="saving">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="WorkTimeInDay_NameWorkTimeInDay">{{ l('NameWorkTimeInDay') }} *</label>
+                        <input
+                            type="text"
+                            #WorkTimeInDay_NameWorkTimeInDay="ngModel"
+                            id="WorkTimeInDay_NameWorkTimeInDay"
+                            class="form-control"
+                            [(ngModel)]="workTimeInDay.nameWorkTimeInDay"
+                            name="NameWorkTimeInDay"
+                            minlength="1"
+                            maxlength="200"
+                            required
+                        />
+                        <validation-messages [formCtrl]="WorkTimeInDay_NameWorkTimeInDay"></validation-messages>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="WorkTimeInDay_DayOfWeek">{{ l('DayOfWeek') }}</label>
+                        <select
+                            class="form-control"
+                            #WorkTimeInDay_DayOfWeek="ngModel"
+                            name="DayOfWeek"
+                            id="WorkTimeInDay_DayOfWeek"
+                            [(ngModel)]="workTimeInDay.dayOfWeek"
+                        >
+                            <option value="1">{{ l('Saturday') }}</option>
+
+                            <option value="2">{{ l('Sunday') }}</option>
+
+                            <option value="3">{{ l('Monday') }}</option>
+
+                            <option value="4">{{ l('Tuesday') }}</option>
+
+                            <option value="5">{{ l('Wednesday') }}</option>
+
+                            <option value="6">{{ l('Thursday') }}</option>
+
+                            <option value="7">{{ l('Friday') }}</option>
+                        </select>
+                        <validation-messages [formCtrl]="WorkTimeInDay_DayOfWeek"></validation-messages>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="WorkTimeInDay_startTime">{{ l('startTime') }} *</label>
+                        <input
+                            type="text"
+                            #WorkTimeInDay_startTime="ngModel"
+                            id="WorkTimeInDay_startTime"
+                            class="form-control"
+                            [(ngModel)]="workTimeInDay.startTime"
+                            name="startTime"
+                            minlength="1"
+                            maxlength="50"
+                            required
+                        />
+                        <validation-messages [formCtrl]="WorkTimeInDay_startTime"></validation-messages>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="WorkTimeInDay_EndTime">{{ l('EndTime') }} *</label>
+                        <input
+                            type="text"
+                            #WorkTimeInDay_EndTime="ngModel"
+                            id="WorkTimeInDay_EndTime"
+                            class="form-control"
+                            [(ngModel)]="workTimeInDay.endTime"
+                            name="EndTime"
+                            minlength="1"
+                            maxlength="50"
+                            required
+                        />
+                        <validation-messages [formCtrl]="WorkTimeInDay_EndTime"></validation-messages>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="WorkTimeInDay_WhatTimeOfDay">{{ l('WhatTimeOfDay') }} *</label>
+                        <input
+                            type="text"
+                            #WorkTimeInDay_WhatTimeOfDay="ngModel"
+                            id="WorkTimeInDay_WhatTimeOfDay"
+                            class="form-control"
+                            [(ngModel)]="workTimeInDay.whatTimeOfDay"
+                            name="WhatTimeOfDay"
+                            minlength="1"
+                            maxlength="200"
+                            required
+                        />
+                        <validation-messages [formCtrl]="WorkTimeInDay_WhatTimeOfDay"></validation-messages>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button [disabled]="saving" type="button" class="btn btn-default" (click)="close()">
+                        {{ l('Cancel') }}
+                    </button>
+                    <button
+                        type="submit"
+                        class="btn btn-primary blue"
+                        [disabled]="!workTimeInDayForm.form.valid"
+                        [buttonBusy]="saving"
+                        [busyText]="l('SavingWithThreeDot')"
+                    >
+                        <i class="fa fa-save"></i>
+                        <span>{{ l('Save') }}</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

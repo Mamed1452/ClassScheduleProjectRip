@@ -1,4 +1,7 @@
-﻿using Mohajer.ClassScheduleProject.CentralUnit.AssigningGradeToUniversityMajors;
+﻿using Mohajer.ClassScheduleProject.CentralUnit.UniversityProfessorWorkingTimes;
+using Mohajer.ClassScheduleProject.CentralUnit.UniversityProfessors;
+using Mohajer.ClassScheduleProject.CentralUnit.WorkTimeInDays;
+using Mohajer.ClassScheduleProject.CentralUnit.AssigningGradeToUniversityMajors;
 using Mohajer.ClassScheduleProject.CentralUnit.Semesters;
 using Mohajer.ClassScheduleProject.CentralUnit.Grades;
 using Mohajer.ClassScheduleProject.CentralUnit.AssigningUniversityMajorToClassroomBuildings;
@@ -27,6 +30,12 @@ namespace Mohajer.ClassScheduleProject.EntityFrameworkCore
 {
     public class ClassScheduleProjectDbContext : AbpZeroDbContext<Tenant, Role, User, ClassScheduleProjectDbContext>, IAbpPersistedGrantDbContext
     {
+        public virtual DbSet<UniversityProfessorWorkingTime> UniversityProfessorWorkingTimes { get; set; }
+
+        public virtual DbSet<UniversityProfessor> UniversityProfessors { get; set; }
+
+        public virtual DbSet<WorkTimeInDay> WorkTimeInDays { get; set; }
+
         public virtual DbSet<AssigningGradeToUniversityMajor> AssigningGradeToUniversityMajors { get; set; }
 
         public virtual DbSet<Semester> Semesters { get; set; }
@@ -71,10 +80,22 @@ namespace Mohajer.ClassScheduleProject.EntityFrameworkCore
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Semester>(s =>
+            modelBuilder.Entity<UniversityProfessorWorkingTime>(u =>
             {
-                s.HasIndex(e => new { e.TenantId });
+                u.HasIndex(e => new { e.TenantId });
             });
+            modelBuilder.Entity<UniversityProfessor>(u =>
+                       {
+                           u.HasIndex(e => new { e.TenantId });
+                       });
+            modelBuilder.Entity<WorkTimeInDay>(w =>
+                       {
+                           w.HasIndex(e => new { e.TenantId });
+                       });
+            modelBuilder.Entity<Semester>(s =>
+                       {
+                           s.HasIndex(e => new { e.TenantId });
+                       });
             modelBuilder.Entity<AssigningGradeToUniversityMajor>(a =>
                        {
                            a.HasIndex(e => new { e.TenantId });

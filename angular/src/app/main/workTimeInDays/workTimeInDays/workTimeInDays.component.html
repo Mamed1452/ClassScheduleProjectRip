@@ -1,0 +1,318 @@
+﻿<div [@routerTransition]>
+    <div class="content d-flex flex-column flex-column-fluid">
+        <sub-header [title]="'WorkTimeInDays' | localize" [description]="'WorkTimeInDaysHeaderInfo' | localize">
+            <div role="actions">
+                <button (click)="exportToExcel()" class="btn btn-outline-success">
+                    <i class="fa fa-file-excel"></i>
+                    {{ l('ExportToExcel') }}
+                </button>
+
+                <button
+                    *ngIf="isGranted('Pages.WorkTimeInDays.Create')"
+                    (click)="createWorkTimeInDay()"
+                    class="btn btn-primary blue"
+                >
+                    <i class="fa fa-plus"></i>
+                    {{ l('CreateNewWorkTimeInDay') }}
+                </button>
+            </div>
+        </sub-header>
+
+        <div [class]="containerClass">
+            <div class="card card-custom gutter-b">
+                <div class="card-body">
+                    <form class="form" autocomplete="off">
+                        <div>
+                            <div class="row align-items-center">
+                                <div class="col-xl-12">
+                                    <div class="form-group m-form__group align-items-center">
+                                        <div class="input-group">
+                                            <input
+                                                [(ngModel)]="filterText"
+                                                name="filterText"
+                                                autoFocus
+                                                class="form-control m-input"
+                                                [placeholder]="l('SearchWithThreeDot')"
+                                                type="text"
+                                            />
+                                            <span class="input-group-btn">
+                                                <button
+                                                    (click)="getWorkTimeInDays()"
+                                                    class="btn btn-primary"
+                                                    type="submit"
+                                                >
+                                                    <i class="flaticon-search-1"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" [hidden]="!advancedFiltersAreShown">
+                                <div class="col-md-12">
+                                    <div class="separator separator-dashed"></div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="NameWorkTimeInDayFilter">{{ l('NameWorkTimeInDay') }}</label>
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="NameWorkTimeInDayFilter"
+                                            name="nameWorkTimeInDayFilter"
+                                            [(ngModel)]="nameWorkTimeInDayFilter"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="DayOfWeekFilterSelect">{{ l('DayOfWeek') }}</label>
+                                    <select
+                                        class="form-control"
+                                        name="DayOfWeekFilter"
+                                        id="DayOfWeekFilterSelect"
+                                        [(ngModel)]="dayOfWeekFilter"
+                                    >
+                                        <option value="-1">{{ l('All') }}</option>
+                                        <option value="1">{{ l('Saturday') }}</option>
+
+                                        <option value="2">{{ l('Sunday') }}</option>
+
+                                        <option value="3">{{ l('Monday') }}</option>
+
+                                        <option value="4">{{ l('Tuesday') }}</option>
+
+                                        <option value="5">{{ l('Wednesday') }}</option>
+
+                                        <option value="6">{{ l('Thursday') }}</option>
+
+                                        <option value="7">{{ l('Friday') }}</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="startTimeFilter">{{ l('startTime') }}</label>
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="startTimeFilter"
+                                            name="startTimeFilter"
+                                            [(ngModel)]="startTimeFilter"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="EndTimeFilter">{{ l('EndTime') }}</label>
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="EndTimeFilter"
+                                            name="endTimeFilter"
+                                            [(ngModel)]="endTimeFilter"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="WhatTimeOfDayFilter">{{ l('WhatTimeOfDay') }}</label>
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="WhatTimeOfDayFilter"
+                                            name="whatTimeOfDayFilter"
+                                            [(ngModel)]="whatTimeOfDayFilter"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-sm-12">
+                                    <span
+                                        class="clickable-item text-muted"
+                                        *ngIf="!advancedFiltersAreShown"
+                                        (click)="advancedFiltersAreShown = !advancedFiltersAreShown"
+                                    >
+                                        <i class="fa fa-angle-down"></i>
+                                        {{ l('ShowAdvancedFilters') }}
+                                    </span>
+                                    <span
+                                        class="clickable-item text-muted"
+                                        *ngIf="advancedFiltersAreShown"
+                                        (click)="advancedFiltersAreShown = !advancedFiltersAreShown"
+                                    >
+                                        <i class="fa fa-angle-up"></i>
+                                        {{ l('HideAdvancedFilters') }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="row align-items-center">
+                        <!--<Primeng-Datatable-Start>-->
+                        <div class="primeng-datatable-container col-12" [busyIf]="primengTableHelper.isLoading">
+                            <p-table
+                                #dataTable
+                                (onLazyLoad)="getWorkTimeInDays($event)"
+                                [value]="primengTableHelper.records"
+                                rows="{{ primengTableHelper.defaultRecordsCountPerPage }}"
+                                [paginator]="false"
+                                [lazy]="true"
+                                [scrollable]="true"
+                                ScrollWidth="100%"
+                                [responsive]="primengTableHelper.isResponsive"
+                                [resizableColumns]="primengTableHelper.resizableColumns"
+                            >
+                                <ng-template pTemplate="header">
+                                    <tr>
+                                        <th
+                                            style="width: 130px"
+                                            [hidden]="
+                                                !isGrantedAny(
+                                                    'Pages.WorkTimeInDays.Edit',
+                                                    'Pages.WorkTimeInDays.Delete'
+                                                )
+                                            "
+                                        >
+                                            {{ l('Actions') }}
+                                        </th>
+                                        <th style="width: 150px" pSortableColumn="nameWorkTimeInDay">
+                                            {{ l('NameWorkTimeInDay') }}
+                                            <p-sortIcon field="workTimeInDay.nameWorkTimeInDay"></p-sortIcon>
+                                        </th>
+                                        <th style="width: 150px" pSortableColumn="dayOfWeek">
+                                            {{ l('DayOfWeek') }}
+                                            <p-sortIcon field="workTimeInDay.dayOfWeek"></p-sortIcon>
+                                        </th>
+                                        <th style="width: 150px" pSortableColumn="startTime">
+                                            {{ l('startTime') }}
+                                            <p-sortIcon field="workTimeInDay.startTime"></p-sortIcon>
+                                        </th>
+                                        <th style="width: 150px" pSortableColumn="endTime">
+                                            {{ l('EndTime') }}
+                                            <p-sortIcon field="workTimeInDay.endTime"></p-sortIcon>
+                                        </th>
+                                        <th style="width: 150px" pSortableColumn="whatTimeOfDay">
+                                            {{ l('WhatTimeOfDay') }}
+                                            <p-sortIcon field="workTimeInDay.whatTimeOfDay"></p-sortIcon>
+                                        </th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-record="$implicit" let-i="rowIndex">
+                                    <tr>
+                                        <td
+                                            style="width: 130px"
+                                            [hidden]="
+                                                !isGrantedAny(
+                                                    'Pages.WorkTimeInDays.Edit',
+                                                    'Pages.WorkTimeInDays.Delete'
+                                                )
+                                            "
+                                        >
+                                            <div class="btn-group dropdown" dropdown container="body">
+                                                <button class="dropdown-toggle btn btn-sm btn-primary" dropdownToggle>
+                                                    <i class="fa fa-cog"></i>
+                                                    <span class="caret"></span>
+                                                    {{ l('Actions') }}
+                                                </button>
+                                                <ul class="dropdown-menu" *dropdownMenu>
+                                                    <li>
+                                                        <a
+                                                            href="javascript:;"
+                                                            class="dropdown-item"
+                                                            (click)="viewWorkTimeInDayModal.show(record)"
+                                                        >
+                                                            {{ l('View') }}
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a
+                                                            href="javascript:;"
+                                                            *ngIf="permission.isGranted('Pages.WorkTimeInDays.Edit')"
+                                                            class="dropdown-item"
+                                                            (click)="
+                                                                createOrEditWorkTimeInDayModal.show(
+                                                                    record.workTimeInDay.id
+                                                                )
+                                                            "
+                                                        >
+                                                            {{ l('Edit') }}
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a
+                                                            class="dropdown-item"
+                                                            href="javascript:;"
+                                                            *ngIf="permission.isGranted('Pages.WorkTimeInDays.Delete')"
+                                                            (click)="deleteWorkTimeInDay(record.workTimeInDay)"
+                                                        >
+                                                            {{ l('Delete') }}
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a
+                                                            href="javascript:;"
+                                                            *ngIf="entityHistoryEnabled"
+                                                            class="dropdown-item"
+                                                            (click)="showHistory(record.workTimeInDay)"
+                                                        >
+                                                            {{ l('History') }}
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                        <td style="width: 150px">
+                                            <span class="p-column-title">{{ l('NameWorkTimeInDay') }}</span>
+                                            {{ record.workTimeInDay.nameWorkTimeInDay }}
+                                        </td>
+                                        <td style="width: 150px">
+                                            <span class="p-column-title">{{ l('DayOfWeek') }}</span>
+                                            {{ l(dayOfWeekEnum[record.workTimeInDay.dayOfWeek]) }}
+                                        </td>
+                                        <td style="width: 150px">
+                                            <span class="p-column-title">{{ l('startTime') }}</span>
+                                            {{ record.workTimeInDay.startTime }}
+                                        </td>
+                                        <td style="width: 150px">
+                                            <span class="p-column-title">{{ l('EndTime') }}</span>
+                                            {{ record.workTimeInDay.endTime }}
+                                        </td>
+                                        <td style="width: 150px">
+                                            <span class="p-column-title">{{ l('WhatTimeOfDay') }}</span>
+                                            {{ record.workTimeInDay.whatTimeOfDay }}
+                                        </td>
+                                    </tr>
+                                </ng-template>
+                            </p-table>
+                            <div class="primeng-no-data" *ngIf="primengTableHelper.totalRecordsCount == 0">
+                                {{ l('NoData') }}
+                            </div>
+                            <div class="primeng-paging-container">
+                                <p-paginator
+                                    [rows]="primengTableHelper.defaultRecordsCountPerPage"
+                                    #paginator
+                                    (onPageChange)="getWorkTimeInDays($event)"
+                                    [totalRecords]="primengTableHelper.totalRecordsCount"
+                                    [rowsPerPageOptions]="primengTableHelper.predefinedRecordsCountPerPage"
+                                    [showCurrentPageReport]="true"
+                                    [currentPageReportTemplate]="
+                                        'TotalRecordsCount' | localize: primengTableHelper.totalRecordsCount
+                                    "
+                                ></p-paginator>
+                            </div>
+                        </div>
+                        <!--<Primeng-Datatable-End>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <createOrEditWorkTimeInDayModal
+            #createOrEditWorkTimeInDayModal
+            (modalSave)="getWorkTimeInDays()"
+        ></createOrEditWorkTimeInDayModal>
+        <viewWorkTimeInDayModal #viewWorkTimeInDayModal></viewWorkTimeInDayModal>
+        <entityTypeHistoryModal #entityTypeHistoryModal></entityTypeHistoryModal>
+    </div>
+</div>

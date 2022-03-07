@@ -1,5 +1,8 @@
 ﻿import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { UniversityProfessorWorkingTimesComponent } from './universityProfessorWorkingTimes/universityProfessorWorkingTimes/universityProfessorWorkingTimes.component';
+import { UniversityProfessorsComponent } from './universityProfessors/universityProfessors/universityProfessors.component';
+import { WorkTimeInDaysComponent } from './workTimeInDays/workTimeInDays/workTimeInDays.component';
 import { AssigningGradeToUniversityMajorsComponent } from './assigningGradeToUniversityMajors/assigningGradeToUniversityMajors/assigningGradeToUniversityMajors.component';
 import { SemestersComponent } from './semesters/semesters/semesters.component';
 import { GradesComponent } from './grades/grades/grades.component';
@@ -15,6 +18,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
             {
                 path: '',
                 children: [
+                    { path: 'universityProfessorWorkingTimes/universityProfessorWorkingTimes', component: UniversityProfessorWorkingTimesComponent, data: { permission: 'Pages.UniversityProfessorWorkingTimes' }  },
+                    { path: 'universityProfessors/universityProfessors', component: UniversityProfessorsComponent, data: { permission: 'Pages.UniversityProfessors' }  },
+                    { path: 'workTimeInDays/workTimeInDays', component: WorkTimeInDaysComponent, data: { permission: 'Pages.WorkTimeInDays' }  },
                     { path: 'assigningGradeToUniversityMajors/assigningGradeToUniversityMajors', component: AssigningGradeToUniversityMajorsComponent, data: { permission: 'Pages.AssigningGradeToUniversityMajors' }  },
                     { path: 'semesters/semesters', component: SemestersComponent, data: { permission: 'Pages.Semesters' }  },
                     { path: 'grades/grades', component: GradesComponent, data: { permission: 'Pages.Grades' }  },
