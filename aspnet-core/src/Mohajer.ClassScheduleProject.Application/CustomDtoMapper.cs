@@ -1,4 +1,10 @@
-﻿using System;
+﻿using Mohajer.ClassScheduleProject.CentralUnit.UniversityDepartments.Dtos;
+using Mohajer.ClassScheduleProject.CentralUnit.UniversityDepartments;
+using Mohajer.ClassScheduleProject.CentralUnit.UniversityMajors.Dtos;
+using Mohajer.ClassScheduleProject.CentralUnit.UniversityMajors;
+using Mohajer.ClassScheduleProject.CentralUnit.ClassroomBuildings.Dtos;
+using Mohajer.ClassScheduleProject.CentralUnit.ClassroomBuildings;
+using System;
 using System.Linq;
 using Abp.Application.Editions;
 using Abp.Application.Features;
@@ -48,13 +54,18 @@ using Mohajer.ClassScheduleProject.Sessions.Dto;
 using Mohajer.ClassScheduleProject.WebHooks.Dto;
 using Abp.Extensions;
 
-
 namespace Mohajer.ClassScheduleProject
 {
     internal static class CustomDtoMapper
     {
         public static void CreateMappings(IMapperConfigurationExpression configuration)
         {
+            configuration.CreateMap<CreateOrEditUniversityDepartmentDto, UniversityDepartment>().ReverseMap();
+            configuration.CreateMap<UniversityDepartmentDto, UniversityDepartment>().ReverseMap();
+            configuration.CreateMap<CreateOrEditUniversityMajorDto, UniversityMajor>().ReverseMap();
+            configuration.CreateMap<UniversityMajorDto, UniversityMajor>().ReverseMap();
+            configuration.CreateMap<CreateOrEditClassroomBuildingDto, ClassroomBuilding>().ReverseMap();
+            configuration.CreateMap<ClassroomBuildingDto, ClassroomBuilding>().ReverseMap();
             //Inputs
             configuration.CreateMap<CheckboxInputType, FeatureInputTypeDto>();
             configuration.CreateMap<SingleLineStringInputType, FeatureInputTypeDto>();
@@ -83,8 +94,6 @@ namespace Mohajer.ClassScheduleProject
             configuration.CreateMap<Role, RoleListDto>();
             configuration.CreateMap<UserRole, UserListRoleDto>();
 
-
-
             //Edition
             configuration.CreateMap<EditionEditDto, SubscribableEdition>().ReverseMap();
             configuration.CreateMap<EditionCreateDto, SubscribableEdition>();
@@ -97,7 +106,6 @@ namespace Mohajer.ClassScheduleProject
             configuration.CreateMap<Edition, EditionEditDto>();
             configuration.CreateMap<Edition, SubscribableEdition>();
             configuration.CreateMap<Edition, EditionSelectDto>();
-
 
             //Payment
             configuration.CreateMap<SubscriptionPaymentDto, SubscriptionPayment>().ReverseMap();
@@ -172,7 +180,6 @@ namespace Mohajer.ClassScheduleProject
 
             /* ADD YOUR OWN CUSTOM AUTOMAPPER MAPPINGS HERE */
 
-           
         }
-    }   
+    }
 }

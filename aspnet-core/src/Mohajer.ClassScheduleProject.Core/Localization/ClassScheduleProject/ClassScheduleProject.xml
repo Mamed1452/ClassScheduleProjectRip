@@ -1,6 +1,43 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="en">
-  <texts>
+  <texts>    <text name="UniversityDepartments">University departments</text>
+    <text name="UniversityDepartment">University department</text>
+    <text name="Mohajer.ClassScheduleProject.UniversityDepartments.UniversityDepartment">UniversityDepartment</text>
+    <text name="UniversityDepartmentName">University department name</text>
+    <text name="UniversityDepartmentsHeaderInfo">University departments header info</text>
+    <text name="CreateNewUniversityDepartment">Create new university department</text>
+    <text name="EditUniversityDepartment">Edit university department</text>
+    <text name="DeleteUniversityDepartment">Delete university department</text>
+    <text name="UniversityDepartmentUniversityDepartmentName">University department university department name</text>
+    <text name="PickUniversityDepartment">Pick university department</text>
+    <text name="UniversityMajors">University majors</text>
+    <text name="UniversityMajor">University major</text>
+    <text name="Mohajer.ClassScheduleProject.UniversityMajors.UniversityMajor">UniversityMajor</text>
+    <text name="UniversityMajorName">University major name</text>
+    <text name="UniversityMajorType">University major type</text>
+    <text name="UniversityMajorsHeaderInfo">University majors header info</text>
+    <text name="CreateNewUniversityMajor">Create new university major</text>
+    <text name="EditUniversityMajor">Edit university major</text>
+    <text name="DeleteUniversityMajor">Delete university major</text>
+    <text name="ClassroomBuildings">Classroom buildings</text>
+    <text name="ClassroomBuilding">Classroom building</text>
+    <text name="Mohajer.ClassScheduleProject.ClassroomBuildings.ClassroomBuilding">ClassroomBuilding</text>
+    <text name="ClassroomBuildingName">Classroom building name</text>
+    <text name="NumberOfClassrooms">Number of classrooms</text>
+    <text name="ClassificationClassroomBuilding">Classification classroom building</text>
+    <text name="ClassroomBuildingsHeaderInfo">Classroom buildings header info</text>
+    <text name="CreateNewClassroomBuilding">Create new classroom building</text>
+    <text name="EditClassroomBuilding">Edit classroom building</text>
+    <text name="DeleteClassroomBuilding">Delete classroom building</text>
+    <text name="{0}IsRequired">{0} is required.</text>
+    <text name="View">View</text>
+    <text name="Details">Details</text>
+    <text name="Pick">Pick</text>
+    <text name="True">True</text>
+    <text name="False">False</text>
+    <text name="MinValue">Min</text>
+    <text name="MaxValue">Max</text>
+
     <text name="HomePage">Home page</text>
     <text name="AboutUs">About us</text>
     <text name="Administration">Administration</text>

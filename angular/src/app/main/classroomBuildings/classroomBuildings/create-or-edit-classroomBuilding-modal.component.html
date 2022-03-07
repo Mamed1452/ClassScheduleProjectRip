@@ -1,0 +1,93 @@
+﻿<div
+    bsModal
+    #createOrEditModal="bs-modal"
+    class="modal fade"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="createOrEditModal"
+    aria-hidden="true"
+    [config]="{ backdrop: 'static' }"
+>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form *ngIf="active" #classroomBuildingForm="ngForm" novalidate (ngSubmit)="save()" autocomplete="off">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <span *ngIf="classroomBuilding.id">{{ l('EditClassroomBuilding') }}</span>
+                        <span *ngIf="!classroomBuilding.id">{{ l('CreateNewClassroomBuilding') }}</span>
+                    </h4>
+                    <button type="button" class="close" (click)="close()" aria-label="Close" [disabled]="saving">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="ClassroomBuilding_ClassroomBuildingName">{{ l('ClassroomBuildingName') }} *</label>
+                        <input
+                            type="text"
+                            #ClassroomBuilding_ClassroomBuildingName="ngModel"
+                            id="ClassroomBuilding_ClassroomBuildingName"
+                            class="form-control"
+                            [(ngModel)]="classroomBuilding.classroomBuildingName"
+                            name="ClassroomBuildingName"
+                            minlength="1"
+                            maxlength="200"
+                            required
+                        />
+                        <validation-messages [formCtrl]="ClassroomBuilding_ClassroomBuildingName"></validation-messages>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ClassroomBuilding_NumberOfClassrooms">{{ l('NumberOfClassrooms') }}</label>
+                        <input
+                            type="number"
+                            #ClassroomBuilding_NumberOfClassrooms="ngModel"
+                            id="ClassroomBuilding_NumberOfClassrooms"
+                            class="form-control"
+                            [(ngModel)]="classroomBuilding.numberOfClassrooms"
+                            name="NumberOfClassrooms"
+                            min="1"
+                            max="300"
+                        />
+                        <validation-messages [formCtrl]="ClassroomBuilding_NumberOfClassrooms"></validation-messages>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ClassroomBuilding_ClassificationClassroomBuilding">
+                            {{ l('ClassificationClassroomBuilding') }}
+                        </label>
+                        <select
+                            class="form-control"
+                            #ClassroomBuilding_ClassificationClassroomBuilding="ngModel"
+                            name="ClassificationClassroomBuilding"
+                            id="ClassroomBuilding_ClassificationClassroomBuilding"
+                            [(ngModel)]="classroomBuilding.classificationClassroomBuilding"
+                        >
+                            <option value="1">{{ l('Specialized') }}</option>
+
+                            <option value="2">{{ l('General') }}</option>
+                        </select>
+                        <validation-messages
+                            [formCtrl]="ClassroomBuilding_ClassificationClassroomBuilding"
+                        ></validation-messages>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button [disabled]="saving" type="button" class="btn btn-default" (click)="close()">
+                        {{ l('Cancel') }}
+                    </button>
+                    <button
+                        type="submit"
+                        class="btn btn-primary blue"
+                        [disabled]="!classroomBuildingForm.form.valid"
+                        [buttonBusy]="saving"
+                        [busyText]="l('SavingWithThreeDot')"
+                    >
+                        <i class="fa fa-save"></i>
+                        <span>{{ l('Save') }}</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

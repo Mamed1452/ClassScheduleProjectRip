@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Mohajer.ClassScheduleProject.CentralUnit.UniversityDepartments;
+using Mohajer.ClassScheduleProject.CentralUnit.UniversityMajors;
+using Mohajer.ClassScheduleProject.CentralUnit.ClassroomBuildings;
+using System;
 using System.Linq;
 using Abp.Organizations;
 using Mohajer.ClassScheduleProject.Authorization.Roles;
@@ -17,6 +20,9 @@ namespace Mohajer.ClassScheduleProject.EntityHistory
 
         public static readonly Type[] TenantSideTrackedTypes =
         {
+            typeof(UniversityDepartment),
+            typeof(UniversityMajor),
+            typeof(ClassroomBuilding),
             typeof(OrganizationUnit), typeof(Role)
         };
 

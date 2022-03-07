@@ -6,6 +6,21 @@
     /// </summary>
     public static class AppPermissions
     {
+        public const string Pages_UniversityDepartments = "Pages.UniversityDepartments";
+        public const string Pages_UniversityDepartments_Create = "Pages.UniversityDepartments.Create";
+        public const string Pages_UniversityDepartments_Edit = "Pages.UniversityDepartments.Edit";
+        public const string Pages_UniversityDepartments_Delete = "Pages.UniversityDepartments.Delete";
+
+        public const string Pages_UniversityMajors = "Pages.UniversityMajors";
+        public const string Pages_UniversityMajors_Create = "Pages.UniversityMajors.Create";
+        public const string Pages_UniversityMajors_Edit = "Pages.UniversityMajors.Edit";
+        public const string Pages_UniversityMajors_Delete = "Pages.UniversityMajors.Delete";
+
+        public const string Pages_ClassroomBuildings = "Pages.ClassroomBuildings";
+        public const string Pages_ClassroomBuildings_Create = "Pages.ClassroomBuildings.Create";
+        public const string Pages_ClassroomBuildings_Edit = "Pages.ClassroomBuildings.Edit";
+        public const string Pages_ClassroomBuildings_Delete = "Pages.ClassroomBuildings.Delete";
+
         //COMMON PERMISSIONS (FOR BOTH OF TENANTS AND HOST)
 
         public const string Pages = "Pages";
@@ -82,8 +97,6 @@
 
         // SystemAdmin
         public const string System_Admin = "SystemAdmin";
-
-
 
         //TENANT-SPECIFIC PERMISSIONS
 

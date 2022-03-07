@@ -1,4 +1,7 @@
-﻿using Abp.IdentityServer4vNext;
+﻿using Mohajer.ClassScheduleProject.CentralUnit.UniversityDepartments;
+using Mohajer.ClassScheduleProject.CentralUnit.UniversityMajors;
+using Mohajer.ClassScheduleProject.CentralUnit.ClassroomBuildings;
+using Abp.IdentityServer4vNext;
 using Abp.Zero.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Mohajer.ClassScheduleProject.Authorization.Delegation;
@@ -20,6 +23,12 @@ namespace Mohajer.ClassScheduleProject.EntityFrameworkCore
 {
     public class ClassScheduleProjectDbContext : AbpZeroDbContext<Tenant, Role, User, ClassScheduleProjectDbContext>, IAbpPersistedGrantDbContext
     {
+        public virtual DbSet<UniversityDepartment> UniversityDepartments { get; set; }
+
+        public virtual DbSet<UniversityMajor> UniversityMajors { get; set; }
+
+        public virtual DbSet<ClassroomBuilding> ClassroomBuildings { get; set; }
+
         /* Define an IDbSet for each entity of the application */
 
         public virtual DbSet<BinaryObject> BinaryObjects { get; set; }
@@ -50,10 +59,26 @@ namespace Mohajer.ClassScheduleProject.EntityFrameworkCore
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<BinaryObject>(b =>
+            modelBuilder.Entity<UniversityMajor>(u =>
             {
-                b.HasIndex(e => new { e.TenantId });
+                u.HasIndex(e => new { e.TenantId });
             });
+            modelBuilder.Entity<UniversityDepartment>(u =>
+                       {
+                           u.HasIndex(e => new { e.TenantId });
+                       });
+            modelBuilder.Entity<UniversityMajor>(u =>
+                       {
+                           u.HasIndex(e => new { e.TenantId });
+                       });
+            modelBuilder.Entity<ClassroomBuilding>(c =>
+                       {
+                           c.HasIndex(e => new { e.TenantId });
+                       });
+            modelBuilder.Entity<BinaryObject>(b =>
+                       {
+                           b.HasIndex(e => new { e.TenantId });
+                       });
 
             modelBuilder.Entity<ChatMessage>(b =>
             {
@@ -95,7 +120,7 @@ namespace Mohajer.ClassScheduleProject.EntityFrameworkCore
                 b.HasIndex(e => new { e.TenantId, e.SourceUserId });
                 b.HasIndex(e => new { e.TenantId, e.TargetUserId });
             });
- 
+
             modelBuilder.ConfigurePersistedGrantEntity();
         }
     }
