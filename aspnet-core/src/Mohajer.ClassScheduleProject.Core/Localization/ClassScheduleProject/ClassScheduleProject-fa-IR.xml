@@ -1,6 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <localizationDictionary culture="fa-IR">
   <texts>
+    <text name="Class_Start_Time">شروع زمان کلاس ها</text>
+    <text name="Class_End_Time">پایان زمان کلاس ها</text>
+    <text name="Time_Each_Class">زمان هر کلاس</text>
+    <text name="Reast_Start_Time">شروع زمان استراحت</text>
+    <text name="Reast_End_Time">پایان زمان استراحت</text>
 
     <text name = "ListOfAllCalculatedResults"> فهرست همه نتایج محاسبه شده </text>
     <text name = "ListOfAllCalculatedResult"> فهرست همه نتایج محاسبه شده </text>
