@@ -126,7 +126,8 @@ import { MainRoutingModule } from './main-routing.module';
 import { BsDatepickerConfig, BsDaterangepickerConfig, BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { NgxBootstrapDatePickerConfigService } from 'assets/ngx-bootstrap/ngx-bootstrap-datepicker-config.service';
-
+import {NgxMatTimepickerModule} from 'ngx-mat-timepicker';
+import { MaterialModule } from '../../core/material/material.module';;
 NgxBootstrapDatePickerConfigService.registerNgxBootstrapDatePickerLocales();
 
 @NgModule({
@@ -149,7 +150,9 @@ NgxBootstrapDatePickerConfigService.registerNgxBootstrapDatePickerLocales();
         CountoModule,
         BsDatepickerModule.forRoot(),
         BsDropdownModule.forRoot(),
-        PopoverModule.forRoot()
+        PopoverModule.forRoot(),
+        NgxMatTimepickerModule.setLocale("en-GB"),
+        MaterialModule
     ],
     declarations: [
 		ListOfAllCalculatedResultsComponent,

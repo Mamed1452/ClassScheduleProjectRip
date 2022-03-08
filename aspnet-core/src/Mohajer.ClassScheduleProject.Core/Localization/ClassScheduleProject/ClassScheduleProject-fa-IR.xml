@@ -8,6 +8,7 @@
     <text name="ReastEndTime">پایان زمان استراحت</text>
     <text name="hour">ساعت</text>
     <text name="day">روز</text>
+    <text name="CreateingAllWorkTimeInDay">ایجاد همه ی زمان های کاری به صورت یکجا</text>
 
     <text name = "ListOfAllCalculatedResults"> فهرست همه نتایج محاسبه شده </text>
     <text name = "ListOfAllCalculatedResult"> فهرست همه نتایج محاسبه شده </text>

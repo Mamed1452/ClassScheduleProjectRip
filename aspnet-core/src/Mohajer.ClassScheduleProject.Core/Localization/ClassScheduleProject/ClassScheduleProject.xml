@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="en">
-  <texts>    <text name="ClassStartTime">Class Start Time</text>    <text name="ClassEndTime">Class End Time</text>    <text name="TimeEachClass">Time Each Class</text>    <text name="ReastStartTime">Reast Start Time</text>    <text name="ReastEndTime">Reast End Time</text>    <text name="hour">hour</text>    <text name="day">day</text>        <text name="ListOfAllCalculatedResults">List of all calculated results</text>
+  <texts>    <text name="ClassStartTime">Class Start Time</text>    <text name="ClassEndTime">Class End Time</text>    <text name="TimeEachClass">Time Each Class</text>    <text name="ReastStartTime">Reast Start Time</text>    <text name="ReastEndTime">Reast End Time</text>    <text name="hour">hour</text>    <text name="day">day</text>    <text name="CreateingAllWorkTimeInDay">Createing All Work Time In Day</text>    <text name="ListOfAllCalculatedResults">List of all calculated results</text>
     <text name="ListOfAllCalculatedResult">List of all calculated result</text>
     <text name="Mohajer.ClassScheduleProject.ListOfAllCalculatedResults.ListOfAllCalculatedResult">ListOfAllCalculatedResult</text>
     <text name="NameCalculatedResult">Name calculated result</text>

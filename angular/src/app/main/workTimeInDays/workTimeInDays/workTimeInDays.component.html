@@ -11,10 +11,21 @@
                     *ngIf="isGranted('Pages.WorkTimeInDays.Create')"
                     (click)="createWorkTimeInDay()"
                     class="btn btn-primary blue"
+                    [buttonBusy]="createingAllWorkTimeInDay"
                 >
                     <i class="fa fa-plus"></i>
                     {{ l('CreateNewWorkTimeInDay') }}
                 </button>
+
+                <button
+                *ngIf="isGranted('Pages.WorkTimeInDays.Create')"
+                (click)="createallWorkTimeInDay()"
+                class="btn btn-primary blue"
+                [buttonBusy]="createingAllWorkTimeInDay"
+                [busyText]="l('SavingWithThreeDot')">
+                <i class="fa fa-plus"></i>
+                <span>{{ l('CreateingAllWorkTimeInDay') }}</span>
+            </button>
             </div>
         </sub-header>
 
@@ -89,6 +100,7 @@
                                         <option value="7">{{ l('Friday') }}</option>
                                     </select>
                                 </div>
+
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="startTimeFilter">{{ l('startTime') }}</label>
@@ -308,6 +320,7 @@
                 </div>
             </div>
         </div>
+
         <createOrEditWorkTimeInDayModal
             #createOrEditWorkTimeInDayModal
             (modalSave)="getWorkTimeInDays()"

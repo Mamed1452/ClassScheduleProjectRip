@@ -191,14 +191,14 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.WorkTimeInDays
             DateTime d1 = DateTime.Parse(time1);
             DateTime d2 = DateTime.Parse(time2);
             DateTime d3 = d1.Add(d2.TimeOfDay);
-            return d3.TimeOfDay.ToString();
+            return d3.TimeOfDay.ToString(@"hh\:mm");
         }
         private string MinesTwoTime(string time1, string time2)
         {
             DateTime d1 = DateTime.Parse(time1);
             DateTime d2 = DateTime.Parse(time2);
             DateTime d3 = d1 - d2.TimeOfDay;
-            return d3.TimeOfDay.ToString();
+            return d3.TimeOfDay.ToString(@"hh\:mm");
         }
         private double DivdeTwoTime(string time1, string time2)
         {
@@ -223,9 +223,10 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.WorkTimeInDays
             foreach (var item in Enum.GetValues(typeof(DayOfWeekEnum)))
             {
                 double classTimeInDa = Math.Ceiling(DivdeTwoTime(MinesTwoTime(class_Start_Time, class_End_Time), time_Each_Class));
+                timeTmop = "00:00";
                 for (int timeInDayIndex = 0; timeInDayIndex < classTimeInDa; timeInDayIndex++)
                 {
-                    if (((CmpTwoTime(SumTwoTime(class_Start_Time, timeTmop), reast_Start_Time)) == 1) || ((CmpTwoTime(SumTwoTime(class_Start_Time, timeTmop), reast_End_Time)) == -1) || ((CmpTwoTime(SumTwoTime(class_Start_Time, timeTmop), reast_End_Time)) == 0))
+                    if (((CmpTwoTime(SumTwoTime(class_Start_Time, timeTmop), reast_Start_Time)) == -1) || (((CmpTwoTime(SumTwoTime(class_Start_Time, timeTmop), reast_End_Time)) == 1) || ((CmpTwoTime(SumTwoTime(class_Start_Time, timeTmop), reast_End_Time)) == 0)))
                     {
                         _workTimeInDayRepository.Insert(new WorkTimeInDay()
                         {
@@ -233,8 +234,8 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.WorkTimeInDays
                             startTime = SumTwoTime(class_Start_Time, timeTmop),
                             EndTime = SumTwoTime(class_Start_Time, SumTwoTime(timeTmop, time_Each_Class)),
                             WhatTimeOfDay = L((timeInDayIndex + 1).ToString()),
-                            NameWorkTimeInDay =$"{L("hour")} {L((timeInDayIndex + 1).ToString())} {L("day")} {L(item.ToString())}"
-                        });                       
+                            NameWorkTimeInDay = $"{L("hour")} {L((timeInDayIndex + 1).ToString())} {L("day")} {L(item.ToString())}"
+                        });
                     }
                     timeTmop = SumTwoTime(timeTmop, time_Each_Class);
                 }

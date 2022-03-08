@@ -46,7 +46,7 @@ export class WorkTimeInDaysComponent extends AppComponentBase {
 
     _entityTypeFullName = 'Mohajer.ClassScheduleProject.CentralUnit.WorkTimeInDays.WorkTimeInDay';
     entityHistoryEnabled = false;
-
+    createingAllWorkTimeInDay = false;
     constructor(
         injector: Injector,
         private _workTimeInDaysServiceProxy: WorkTimeInDaysServiceProxy,
@@ -143,5 +143,17 @@ export class WorkTimeInDaysComponent extends AppComponentBase {
             .subscribe((result) => {
                 this._fileDownloadService.downloadTempFile(result);
             });
+    }
+    createallWorkTimeInDay()
+    {
+        this.createingAllWorkTimeInDay=true;
+        this._workTimeInDaysServiceProxy
+        .createAllWorkTimeInDay()
+        .subscribe(()=>
+        {
+            this.reloadPage();
+            this.notify.success(this.l('SavedSuccessfully'));
+            this.createingAllWorkTimeInDay=false;
+        });
     }
 }
