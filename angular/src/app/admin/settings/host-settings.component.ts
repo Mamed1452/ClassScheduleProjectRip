@@ -8,7 +8,7 @@ import {
     HostSettingsEditDto,
     HostSettingsServiceProxy,
     SendTestEmailInput,
-    JsonClaimMapDto, CrmSettingsEditDto
+    JsonClaimMapDto
 } from '@shared/service-proxies/service-proxies';
 import { KeyValueListManagerComponent } from '@app/shared/common/key-value-list-manager/key-value-list-manager.component';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';

@@ -3518,7 +3518,7 @@ export class ClassScheduleResultsServiceProxy {
      * @param maxResultCount (optional)
      * @return Success
      */
-    getAll(filter: string | null | undefined, maxWorkTimeInDayIdFilter: number | null | undefined, minWorkTimeInDayIdFilter: number | null | undefined, maxLessonIdFilter: number | null | undefined, minLessonIdFilter: number | null | undefined, maxUniversityProfessorIdFilter: number | null | undefined, minUniversityProfessorIdFilter: number | null | undefined, maxSemesterIdFilter: number | null | undefined, minSemesterIdFilter: number | null | undefined, maxGradeIdFilter: number | null | undefined, minGradeIdFilter: number | null | undefined, maxUniversityMajorIdFilter: number | null | undefined, minUniversityMajorIdFilter: number | null | undefined, maxUniversityDepartmentIdFilter: number | null | undefined, minUniversityDepartmentIdFilter: number | null | undefined, listOfAllCalculatedResultNameCalculatedResultFilter: string | null | undefined, classScheduleModeSpaceNameClassScheduleModeSpacesFilter: string | null | undefined, listOfAllCalculatedResultIdFilter: number | null | undefined, sorting: string | null | undefined, skipCount: number | undefined, maxResultCount?: number | undefined): Observable<PagedResultDtoOfGetClassScheduleResultForViewDto> {
+    getAll(filter: string | null | undefined, maxWorkTimeInDayIdFilter: number | null | undefined, minWorkTimeInDayIdFilter: number | null | undefined, maxLessonIdFilter: number | null | undefined, minLessonIdFilter: number | null | undefined, maxUniversityProfessorIdFilter: number | null | undefined, minUniversityProfessorIdFilter: number | null | undefined, maxSemesterIdFilter: number | null | undefined, minSemesterIdFilter: number | null | undefined, maxGradeIdFilter: number | null | undefined, minGradeIdFilter: number | null | undefined, maxUniversityMajorIdFilter: number | null | undefined, minUniversityMajorIdFilter: number | null | undefined, maxUniversityDepartmentIdFilter: number | null | undefined, minUniversityDepartmentIdFilter: number | null | undefined, listOfAllCalculatedResultNameCalculatedResultFilter: string | null | undefined, classScheduleModeSpaceNameClassScheduleModeSpacesFilter: string | null | undefined, listOfAllCalculatedResultIdFilter: number | null | undefined, sorting: string | null | undefined, skipCount: number | undefined, maxResultCount: number | undefined): Observable<PagedResultDtoOfGetClassScheduleResultForViewDto> {
         let url_ = this.baseUrl + "/api/services/app/ClassScheduleResults/GetAll?";
         if (filter !== undefined && filter !== null)
             url_ += "Filter=" + encodeURIComponent("" + filter) + "&";
@@ -29070,66 +29070,6 @@ export interface IExternalLoginProviderSettingsEditDto {
     wsFederationClaimsMapping: JsonClaimMapDto[] | undefined;
 }
 
-export class CrmSettingsEditDto implements ICrmSettingsEditDto {
-    valueAddedPercentage!: number;
-    startLetterNumber!: number;
-    contractRegistrationNumber!: number;
-    defaultWarning!: number;
-    defaultCritical!: number;
-    defaultFatalDay!: number;
-    startFactorNumber!: number;
-
-    constructor(data?: ICrmSettingsEditDto) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            this.valueAddedPercentage = _data["valueAddedPercentage"];
-            this.startLetterNumber = _data["startLetterNumber"];
-            this.contractRegistrationNumber = _data["contractRegistrationNumber"];
-            this.defaultWarning = _data["defaultWarning"];
-            this.defaultCritical = _data["defaultCritical"];
-            this.defaultFatalDay = _data["defaultFatalDay"];
-            this.startFactorNumber = _data["startFactorNumber"];
-        }
-    }
-
-    static fromJS(data: any): CrmSettingsEditDto {
-        data = typeof data === 'object' ? data : {};
-        let result = new CrmSettingsEditDto();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["valueAddedPercentage"] = this.valueAddedPercentage;
-        data["startLetterNumber"] = this.startLetterNumber;
-        data["contractRegistrationNumber"] = this.contractRegistrationNumber;
-        data["defaultWarning"] = this.defaultWarning;
-        data["defaultCritical"] = this.defaultCritical;
-        data["defaultFatalDay"] = this.defaultFatalDay;
-        data["startFactorNumber"] = this.startFactorNumber;
-        return data;
-    }
-}
-
-export interface ICrmSettingsEditDto {
-    valueAddedPercentage: number;
-    startLetterNumber: number;
-    contractRegistrationNumber: number;
-    defaultWarning: number;
-    defaultCritical: number;
-    defaultFatalDay: number;
-    startFactorNumber: number;
-}
-
 export class HostSettingsEditDto implements IHostSettingsEditDto {
     general!: GeneralSettingsEditDto;
     userManagement!: HostUserManagementSettingsEditDto;
@@ -29139,7 +29079,6 @@ export class HostSettingsEditDto implements IHostSettingsEditDto {
     billing!: HostBillingSettingsEditDto;
     otherSettings!: OtherSettingsEditDto;
     externalLoginProviderSettings!: ExternalLoginProviderSettingsEditDto;
-    crmSettings!: CrmSettingsEditDto;
 
     constructor(data?: IHostSettingsEditDto) {
         if (data) {
@@ -29167,7 +29106,6 @@ export class HostSettingsEditDto implements IHostSettingsEditDto {
             this.billing = _data["billing"] ? HostBillingSettingsEditDto.fromJS(_data["billing"]) : <any>undefined;
             this.otherSettings = _data["otherSettings"] ? OtherSettingsEditDto.fromJS(_data["otherSettings"]) : <any>undefined;
             this.externalLoginProviderSettings = _data["externalLoginProviderSettings"] ? ExternalLoginProviderSettingsEditDto.fromJS(_data["externalLoginProviderSettings"]) : <any>undefined;
-            this.crmSettings = _data["crmSettings"] ? CrmSettingsEditDto.fromJS(_data["crmSettings"]) : <any>undefined;
         }
     }
 
@@ -29188,7 +29126,6 @@ export class HostSettingsEditDto implements IHostSettingsEditDto {
         data["billing"] = this.billing ? this.billing.toJSON() : <any>undefined;
         data["otherSettings"] = this.otherSettings ? this.otherSettings.toJSON() : <any>undefined;
         data["externalLoginProviderSettings"] = this.externalLoginProviderSettings ? this.externalLoginProviderSettings.toJSON() : <any>undefined;
-        data["crmSettings"] = this.crmSettings ? this.crmSettings.toJSON() : <any>undefined;
         return data;
     }
 }
@@ -29202,7 +29139,6 @@ export interface IHostSettingsEditDto {
     billing: HostBillingSettingsEditDto;
     otherSettings: OtherSettingsEditDto;
     externalLoginProviderSettings: ExternalLoginProviderSettingsEditDto;
-    crmSettings: CrmSettingsEditDto;
 }
 
 export class SendTestEmailInput implements ISendTestEmailInput {
@@ -36782,6 +36718,58 @@ export interface ITenantOtherSettingsEditDto {
     isQuickThemeSelectEnabled: boolean;
 }
 
+export class ClassScheduleSettingEditDto implements IClassScheduleSettingEditDto {
+    class_Start_Time!: string | undefined;
+    class_End_Time!: string | undefined;
+    time_Each_Class!: string | undefined;
+    reast_Start_Time!: string | undefined;
+    reast_End_Time!: string | undefined;
+
+    constructor(data?: IClassScheduleSettingEditDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.class_Start_Time = _data["class_Start_Time"];
+            this.class_End_Time = _data["class_End_Time"];
+            this.time_Each_Class = _data["time_Each_Class"];
+            this.reast_Start_Time = _data["reast_Start_Time"];
+            this.reast_End_Time = _data["reast_End_Time"];
+        }
+    }
+
+    static fromJS(data: any): ClassScheduleSettingEditDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new ClassScheduleSettingEditDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["class_Start_Time"] = this.class_Start_Time;
+        data["class_End_Time"] = this.class_End_Time;
+        data["time_Each_Class"] = this.time_Each_Class;
+        data["reast_Start_Time"] = this.reast_Start_Time;
+        data["reast_End_Time"] = this.reast_End_Time;
+        return data;
+    }
+}
+
+export interface IClassScheduleSettingEditDto {
+    class_Start_Time: string | undefined;
+    class_End_Time: string | undefined;
+    time_Each_Class: string | undefined;
+    reast_Start_Time: string | undefined;
+    reast_End_Time: string | undefined;
+}
+
 export class TenantSettingsEditDto implements ITenantSettingsEditDto {
     general!: GeneralSettingsEditDto;
     userManagement!: TenantUserManagementSettingsEditDto;
@@ -36791,7 +36779,7 @@ export class TenantSettingsEditDto implements ITenantSettingsEditDto {
     billing!: TenantBillingSettingsEditDto;
     otherSettings!: TenantOtherSettingsEditDto;
     externalLoginProviderSettings!: ExternalLoginProviderSettingsEditDto;
-    crmSettings!: CrmSettingsEditDto;
+    classScheduleSetting!: ClassScheduleSettingEditDto;
 
     constructor(data?: ITenantSettingsEditDto) {
         if (data) {
@@ -36816,7 +36804,7 @@ export class TenantSettingsEditDto implements ITenantSettingsEditDto {
             this.billing = _data["billing"] ? TenantBillingSettingsEditDto.fromJS(_data["billing"]) : <any>undefined;
             this.otherSettings = _data["otherSettings"] ? TenantOtherSettingsEditDto.fromJS(_data["otherSettings"]) : <any>undefined;
             this.externalLoginProviderSettings = _data["externalLoginProviderSettings"] ? ExternalLoginProviderSettingsEditDto.fromJS(_data["externalLoginProviderSettings"]) : <any>undefined;
-            this.crmSettings = _data["crmSettings"] ? CrmSettingsEditDto.fromJS(_data["crmSettings"]) : <any>undefined;
+            this.classScheduleSetting = _data["classScheduleSetting"] ? ClassScheduleSettingEditDto.fromJS(_data["classScheduleSetting"]) : <any>undefined;
         }
     }
 
@@ -36837,7 +36825,7 @@ export class TenantSettingsEditDto implements ITenantSettingsEditDto {
         data["billing"] = this.billing ? this.billing.toJSON() : <any>undefined;
         data["otherSettings"] = this.otherSettings ? this.otherSettings.toJSON() : <any>undefined;
         data["externalLoginProviderSettings"] = this.externalLoginProviderSettings ? this.externalLoginProviderSettings.toJSON() : <any>undefined;
-        data["crmSettings"] = this.crmSettings ? this.crmSettings.toJSON() : <any>undefined;
+        data["classScheduleSetting"] = this.classScheduleSetting ? this.classScheduleSetting.toJSON() : <any>undefined;
         return data;
     }
 }
@@ -36851,7 +36839,7 @@ export interface ITenantSettingsEditDto {
     billing: TenantBillingSettingsEditDto;
     otherSettings: TenantOtherSettingsEditDto;
     externalLoginProviderSettings: ExternalLoginProviderSettingsEditDto;
-    crmSettings: CrmSettingsEditDto;
+    classScheduleSetting: ClassScheduleSettingEditDto;
 }
 
 export enum SettingScopes {

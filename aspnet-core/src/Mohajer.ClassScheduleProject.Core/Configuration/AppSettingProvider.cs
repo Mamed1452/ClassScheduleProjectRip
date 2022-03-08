@@ -137,20 +137,20 @@ namespace Mohajer.ClassScheduleProject.Configuration
             return new[]
             {
                 new SettingDefinition(AppSettings.ClassScheduleSetting.Class_Start_Time,
-                    GetFromAppSettings(AppSettings.ClassScheduleSetting.Class_Start_Time, "07:30"),
+                    GetFromAppSettings(AppSettings.ClassScheduleSetting.Class_Start_Time, "7:30"),
                     scopes:  SettingScopes.Tenant, isVisibleToClients: true),
                 new SettingDefinition(AppSettings.ClassScheduleSetting.Class_End_Time,
                     GetFromAppSettings(AppSettings.ClassScheduleSetting.Class_End_Time, "19:30"),
                     scopes:  SettingScopes.Tenant, isVisibleToClients: true),
                 new SettingDefinition(AppSettings.ClassScheduleSetting.Time_Each_Class,
-                    GetFromAppSettings(AppSettings.ClassScheduleSetting.Time_Each_Class, "01:00"),
-                    scopes:  SettingScopes.Application | SettingScopes.Tenant, isVisibleToClients: true),
+                    GetFromAppSettings(AppSettings.ClassScheduleSetting.Time_Each_Class, "1:00"),
+                    scopes:  SettingScopes.Tenant, isVisibleToClients: true),
                  new SettingDefinition(AppSettings.ClassScheduleSetting.Reast_Start_Time,
                     GetFromAppSettings(AppSettings.ClassScheduleSetting.Reast_Start_Time, "12:30"),
-                    scopes:  SettingScopes.Application | SettingScopes.Tenant, isVisibleToClients: true),
+                    scopes:  SettingScopes.Tenant, isVisibleToClients: true),
                   new SettingDefinition(AppSettings.ClassScheduleSetting.Reast_End_Time,
                     GetFromAppSettings(AppSettings.ClassScheduleSetting.Reast_End_Time, "13:30"),
-                    scopes:  SettingScopes.Application | SettingScopes.Tenant, isVisibleToClients: true),                                   
+                    scopes:   SettingScopes.Tenant, isVisibleToClients: true),                                   
             };
         }
 

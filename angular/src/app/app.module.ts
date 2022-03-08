@@ -71,6 +71,7 @@ import { NotificationsComponent } from './shared/layout/notifications/notificati
 import { TextMaskModule } from 'angular2-text-mask';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { ActiveDelegatedUsersComboComponent } from './shared/layout/topbar/active-delegated-users-combo.component';
+import {NgxMatTimepickerModule} from 'ngx-mat-timepicker';
 // Metronic
 import {
     PerfectScrollbarModule,
@@ -174,7 +175,9 @@ import { MaterialModule } from '../core/material/material.module';
         AutoCompleteModule,
         NgxSpinnerModule,
         AppBsModalModule,
-        JalaliDatePickerModule
+        JalaliDatePickerModule,
+        NgxMatTimepickerModule.setLocale("fa-IR"),
+        MaterialModule
     ],
     providers: [
         ImpersonationService,

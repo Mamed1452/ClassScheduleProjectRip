@@ -7,7 +7,8 @@ import {
     SettingScopes,
     SendTestEmailInput,
     TenantSettingsEditDto,
-    TenantSettingsServiceProxy, JsonClaimMapDto
+    TenantSettingsServiceProxy, JsonClaimMapDto,
+    ClassScheduleSettingEditDto
 } from '@shared/service-proxies/service-proxies';
 import { FileUploader, FileUploaderOptions } from 'ng2-file-upload';
 import { finalize } from 'rxjs/operators';

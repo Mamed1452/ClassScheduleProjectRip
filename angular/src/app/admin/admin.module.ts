@@ -85,7 +85,7 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { NgxBootstrapDatePickerConfigService } from 'assets/ngx-bootstrap/ngx-bootstrap-datepicker-config.service';
 import { DropdownModule } from 'primeng/dropdown';
-
+import {NgxMatTimepickerModule} from 'ngx-mat-timepicker';
 // Metronic
 import {
     PerfectScrollbarModule,
@@ -159,7 +159,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         MatProgressSpinnerModule,
         MatInputModule,
         MatButtonModule,
-        MaterialModule
+        MaterialModule,
+        NgxMatTimepickerModule.setLocale('en-GB')
     ],
     declarations: [
         UsersComponent,

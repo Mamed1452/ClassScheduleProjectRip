@@ -729,45 +729,102 @@
                         <tab class="p-5" *ngIf="true" heading="{{'ApplicationSttings' | localize}}">
                             <mat-card>
                                 <div class="mt-5">
-                                    <mat-form-field appearance="outline" class="col-md-3 col-sm-6">
-                                        <mat-label>{{"ValueAddedPercentage"|localize}}</mat-label>
-                                        <input type="number" matInput
-                                               [(ngModel)]="settings.crmSettings.valueAddedPercentage">
+
+                                    <mat-form-field appearance="outline" class="col-sm-6">
+                                        <mat-label>{{'class_Start_Time'|localize}}</mat-label>
+                                        <input matInput readonly [ngxMatTimepicker]="class_Start_TimePicker"  [(ngModel)]="settings.classScheduleSetting.class_Start_Time"
+                                            controlOnly="true" [format]="24">
+                                        <ngx-mat-timepicker #class_Start_TimePicker #fullTime [cancelBtnTmpl]="cancelBtn" [confirmBtnTmpl]="confirmBtn"
+                                            >
+                                        </ngx-mat-timepicker>
+                                        <ng-template #cancelBtn>
+                                            <button mat-raised-button class="mx-2">{{'Cancel'|localize}}</button>
+                                        </ng-template>
+                                        <ng-template #confirmBtn>
+                                            <button mat-raised-button class="mx-2" color="default">{{'Ok'|localize}}</button>
+                                        </ng-template>
+
+                                        <mat-icon matSuffix class="mat-timepicker-toggle" (click)="class_Start_TimePicker.open()">
+                                            <i class="fa fa-clock"></i>
+                                        </mat-icon>
                                     </mat-form-field>
-                                    <mat-form-field appearance="outline" class="col-md-3 col-sm-6">
-                                        <mat-label>{{"StartLetterNumber"|localize}}</mat-label>
-                                        <input type="number" matInput
-                                               [(ngModel)]="settings.crmSettings.startLetterNumber">
+
+                                    <mat-form-field appearance="outline" class="col-sm-6">
+                                        <mat-label>{{'class_End_Time'|localize}}</mat-label>
+                                        <input matInput readonly [ngxMatTimepicker]="class_End_TimePicker"  [(ngModel)]="settings.classScheduleSetting.class_End_Time"
+                                            controlOnly="true" [format]="24">
+                                        <ngx-mat-timepicker #class_End_TimePicker #fullTime [cancelBtnTmpl]="cancelBtn" [confirmBtnTmpl]="confirmBtn"
+                                            >
+                                        </ngx-mat-timepicker>
+                                        <ng-template #cancelBtn>
+                                            <button mat-raised-button class="mx-2">{{'Cancel'|localize}}</button>
+                                        </ng-template>
+                                        <ng-template #confirmBtn>
+                                            <button mat-raised-button class="mx-2" color="default">{{'Ok'|localize}}</button>
+                                        </ng-template>
+
+                                        <mat-icon matSuffix class="mat-timepicker-toggle" (click)="class_End_TimePicker.open()">
+                                            <i class="fa fa-clock"></i>
+                                        </mat-icon>
                                     </mat-form-field>
-                                    <mat-form-field appearance="outline" class="col-md-3 col-sm-6">
-                                        <mat-label>{{"StartContractRegistrationNumber"|localize}}</mat-label>
-                                        <input type="number" matInput
-                                               [(ngModel)]="settings.crmSettings.contractRegistrationNumber">
+
+
+                                    <mat-form-field appearance="outline" class="col-sm-6">
+                                        <mat-label>{{'time_Each_Class'|localize}}</mat-label>
+                                        <input matInput readonly [ngxMatTimepicker]="time_Each_ClassPicker"  [(ngModel)]="settings.classScheduleSetting.time_Each_Class"
+                                            controlOnly="true" [format]="24">
+                                        <ngx-mat-timepicker #time_Each_ClassPicker #fullTime [cancelBtnTmpl]="cancelBtn" [confirmBtnTmpl]="confirmBtn"
+                                            >
+                                        </ngx-mat-timepicker>
+                                        <ng-template #cancelBtn>
+                                            <button mat-raised-button class="mx-2">{{'Cancel'|localize}}</button>
+                                        </ng-template>
+                                        <ng-template #confirmBtn>
+                                            <button mat-raised-button class="mx-2" color="default">{{'Ok'|localize}}</button>
+                                        </ng-template>
+
+                                        <mat-icon matSuffix class="mat-timepicker-toggle" (click)="time_Each_ClassPicker.open()">
+                                            <i class="fa fa-clock"></i>
+                                        </mat-icon>
                                     </mat-form-field>
-<!--                                    <mat-form-field appearance="outline" class="col-md-3 col-sm-6">-->
-<!--                                        <mat-label>{{"DefaultWarningMin"|localize}}</mat-label>-->
-<!--                                        <input type="number" matInput-->
-<!--                                               [(ngModel)]="settings.crmSettings.defaultWarningMin">-->
-<!--                                    </mat-form-field>-->
-<!--                                    <mat-form-field appearance="outline" class="col-md-3 col-sm-6">-->
-<!--                                        <mat-label>{{"DefaultWarningMax"|localize}}</mat-label>-->
-<!--                                        <input type="number" matInput-->
-<!--                                               [(ngModel)]="settings.crmSettings.defaultWarningMax">-->
-<!--                                    </mat-form-field>-->
-<!--                                    <mat-form-field appearance="outline" class="col-md-3 col-sm-6">-->
-<!--                                        <mat-label>{{"DefaultCriticalMin"|localize}}</mat-label>-->
-<!--                                        <input type="number" matInput-->
-<!--                                               [(ngModel)]="settings.crmSettings.defaultCriticalMin">-->
-<!--                                    </mat-form-field>-->
-<!--                                    <mat-form-field appearance="outline" class="col-md-3 col-sm-6">-->
-<!--                                        <mat-label>{{"DefaultCriticalMax"|localize}}</mat-label>-->
-<!--                                        <input type="number" matInput-->
-<!--                                               [(ngModel)]="settings.crmSettings.defaultCriticalMax">-->
-<!--                                    </mat-form-field>-->
-                                    <mat-form-field appearance="outline" class="col-md-3 col-sm-6">
-                                        <mat-label>{{"StartFactorNumber"|localize}}</mat-label>
-                                        <input type="number" matInput
-                                               [(ngModel)]="settings.crmSettings.startFactorNumber">
+
+                                    <mat-form-field appearance="outline" class="col-sm-6">
+                                        <mat-label>{{'reast_Start_Time'|localize}}</mat-label>
+                                        <input matInput readonly [ngxMatTimepicker]="reast_Start_TimePicker"  [(ngModel)]="settings.classScheduleSetting.reast_Start_Time"
+                                            controlOnly="true" [format]="24">
+                                        <ngx-mat-timepicker #reast_Start_TimePicker #fullTime [cancelBtnTmpl]="cancelBtn" [confirmBtnTmpl]="confirmBtn"
+                                            >
+                                        </ngx-mat-timepicker>
+                                        <ng-template #cancelBtn>
+                                            <button mat-raised-button class="mx-2">{{'Cancel'|localize}}</button>
+                                        </ng-template>
+                                        <ng-template #confirmBtn>
+                                            <button mat-raised-button class="mx-2" color="default">{{'Ok'|localize}}</button>
+                                        </ng-template>
+
+                                        <mat-icon matSuffix class="mat-timepicker-toggle" (click)="reast_Start_TimePicker.open()">
+                                            <i class="fa fa-clock"></i>
+                                        </mat-icon>
+                                    </mat-form-field>
+
+
+                                    <mat-form-field appearance="outline" class="col-sm-6">
+                                        <mat-label>{{'reast_End_Time'|localize}}</mat-label>
+                                        <input matInput readonly [ngxMatTimepicker]="reast_End_TimePicker"  [(ngModel)]="settings.classScheduleSetting.reast_End_Time"
+                                            controlOnly="true" [format]="24">
+                                        <ngx-mat-timepicker #reast_End_TimePicker #fullTime [cancelBtnTmpl]="cancelBtn" [confirmBtnTmpl]="confirmBtn"
+                                            >
+                                        </ngx-mat-timepicker>
+                                        <ng-template #cancelBtn>
+                                            <button mat-raised-button class="mx-2">{{'Cancel'|localize}}</button>
+                                        </ng-template>
+                                        <ng-template #confirmBtn>
+                                            <button mat-raised-button class="mx-2" color="default">{{'Ok'|localize}}</button>
+                                        </ng-template>
+
+                                        <mat-icon matSuffix class="mat-timepicker-toggle" (click)="reast_End_TimePicker.open()">
+                                            <i class="fa fa-clock"></i>
+                                        </mat-icon>
                                     </mat-form-field>
                                 </div>
                             </mat-card>
