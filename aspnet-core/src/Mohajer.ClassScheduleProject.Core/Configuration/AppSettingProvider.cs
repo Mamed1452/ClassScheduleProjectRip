@@ -50,7 +50,7 @@ namespace Mohajer.ClassScheduleProject.Configuration
                 .Union(GetTheme12Settings())
                 .Union(GetDashboardSettings())
                 .Union(GetExternalLoginProviderSettings())
-                .Union(GetCrmSettings());
+                .Union(GetClassScheduleSetting());
         }
 
         private void ChangeEmailSettingScopes(SettingDefinitionProviderContext context)
@@ -132,31 +132,25 @@ namespace Mohajer.ClassScheduleProject.Configuration
                         ClassScheduleProjectConsts.MultiTenancyEnabled ? "true" : "false"), scopes: SettingScopes.Tenant)
             };
         }
-        private IEnumerable<SettingDefinition> GetCrmSettings()
+        private IEnumerable<SettingDefinition> GetClassScheduleSetting()
         {
             return new[]
             {
-                new SettingDefinition(AppSettings.CrmManagement.ValueAddedPercentage,
-                    GetFromAppSettings(AppSettings.CrmManagement.ValueAddedPercentage, "9"),
+                new SettingDefinition(AppSettings.ClassScheduleSetting.Class_Start_Time,
+                    GetFromAppSettings(AppSettings.ClassScheduleSetting.Class_Start_Time, "07:30"),
+                    scopes:  SettingScopes.Tenant, isVisibleToClients: true),
+                new SettingDefinition(AppSettings.ClassScheduleSetting.Class_End_Time,
+                    GetFromAppSettings(AppSettings.ClassScheduleSetting.Class_End_Time, "19:30"),
+                    scopes:  SettingScopes.Tenant, isVisibleToClients: true),
+                new SettingDefinition(AppSettings.ClassScheduleSetting.Time_Each_Class,
+                    GetFromAppSettings(AppSettings.ClassScheduleSetting.Time_Each_Class, "01:00"),
                     scopes:  SettingScopes.Application | SettingScopes.Tenant, isVisibleToClients: true),
-                new SettingDefinition(AppSettings.CrmManagement.StartLetterNumber,
-                    GetFromAppSettings(AppSettings.CrmManagement.StartLetterNumber, "0"),
+                 new SettingDefinition(AppSettings.ClassScheduleSetting.Reast_Start_Time,
+                    GetFromAppSettings(AppSettings.ClassScheduleSetting.Reast_Start_Time, "12:30"),
                     scopes:  SettingScopes.Application | SettingScopes.Tenant, isVisibleToClients: true),
-                new SettingDefinition(AppSettings.CrmManagement.ContractRegistrationNumber,
-                    GetFromAppSettings(AppSettings.CrmManagement.ContractRegistrationNumber, "0"),
-                    scopes:  SettingScopes.Application | SettingScopes.Tenant, isVisibleToClients: true),
-                 new SettingDefinition(AppSettings.CrmManagement.DefaultWarning,
-                    GetFromAppSettings(AppSettings.CrmManagement.DefaultWarning, "10"),
-                    scopes:  SettingScopes.Application | SettingScopes.Tenant, isVisibleToClients: true),
-                  new SettingDefinition(AppSettings.CrmManagement.DefaultCritical,
-                    GetFromAppSettings(AppSettings.CrmManagement.DefaultCritical, "3"),
-                    scopes:  SettingScopes.Application | SettingScopes.Tenant, isVisibleToClients: true),                
-                     new SettingDefinition(AppSettings.CrmManagement.StartFactorNumber,
-                    GetFromAppSettings(AppSettings.CrmManagement.StartFactorNumber, "0"),
-                    scopes:  SettingScopes.Application | SettingScopes.Tenant, isVisibleToClients: true),
-                      new SettingDefinition(AppSettings.CrmManagement.DefaultFatalDay,
-                    GetFromAppSettings(AppSettings.CrmManagement.DefaultFatalDay, "0"),
-                    scopes:  SettingScopes.Application | SettingScopes.Tenant, isVisibleToClients: true)
+                  new SettingDefinition(AppSettings.ClassScheduleSetting.Reast_End_Time,
+                    GetFromAppSettings(AppSettings.ClassScheduleSetting.Reast_End_Time, "13:30"),
+                    scopes:  SettingScopes.Application | SettingScopes.Tenant, isVisibleToClients: true),                                   
             };
         }
 

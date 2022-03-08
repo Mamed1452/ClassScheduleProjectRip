@@ -63,7 +63,7 @@ namespace Mohajer.ClassScheduleProject.Configuration.Tenants
                 OtherSettings = await GetOtherSettingsAsync(),
                 Email = await GetEmailSettingsAsync(),
                 ExternalLoginProviderSettings = await GetExternalLoginProviderSettings(),
-                CrmSettings = await GetCrmSettingsAsync()
+                ClassScheduleSetting = await GetClassScheduleSettingAsync()
             };
 
             if (!_multiTenancyConfig.IsEnabled || Clock.SupportsMultipleTimezone)
@@ -256,26 +256,23 @@ namespace Mohajer.ClassScheduleProject.Configuration.Tenants
 
             return settings;
         }
-        private async Task<CrmSettingsEditDto> GetCrmSettingsAsync()
+        private async Task<ClassScheduleSettingEditDto> GetClassScheduleSettingAsync()
         {
-            var contractRegistrationNumber = await SettingManager.GetSettingValueForTenantAsync(AppSettings.CrmManagement.ContractRegistrationNumber, AbpSession.GetTenantId());
-            var startLetterNumber = await SettingManager.GetSettingValueForTenantAsync(AppSettings.CrmManagement.StartLetterNumber, AbpSession.GetTenantId());
-            var valueAddedPercentage = await SettingManager.GetSettingValueForTenantAsync(AppSettings.CrmManagement.ValueAddedPercentage, AbpSession.GetTenantId());
-            var defaultWarning = await SettingManager.GetSettingValueForTenantAsync(AppSettings.CrmManagement.DefaultWarning, AbpSession.GetTenantId());
-            var defaultCritical = await SettingManager.GetSettingValueForTenantAsync(AppSettings.CrmManagement.DefaultCritical, AbpSession.GetTenantId());
-            var startFactorNumber = await SettingManager.GetSettingValueForTenantAsync(AppSettings.CrmManagement.StartFactorNumber, AbpSession.GetTenantId());
-            var defaultFatalDay = await SettingManager.GetSettingValueForTenantAsync(AppSettings.CrmManagement.DefaultFatalDay, AbpSession.GetTenantId());
-            CrmSettingsEditDto crmSetting = new CrmSettingsEditDto()
+            var class_Start_Time = await SettingManager.GetSettingValueForTenantAsync(AppSettings.ClassScheduleSetting.Class_Start_Time, AbpSession.GetTenantId());
+            var class_End_Time = await SettingManager.GetSettingValueForTenantAsync(AppSettings.ClassScheduleSetting.Class_End_Time, AbpSession.GetTenantId());
+            var time_Each_Class = await SettingManager.GetSettingValueForTenantAsync(AppSettings.ClassScheduleSetting.Time_Each_Class, AbpSession.GetTenantId());
+            var reast_Start_Time = await SettingManager.GetSettingValueForTenantAsync(AppSettings.ClassScheduleSetting.Reast_Start_Time, AbpSession.GetTenantId());
+            var reast_End_Time = await SettingManager.GetSettingValueForTenantAsync(AppSettings.ClassScheduleSetting.Reast_End_Time, AbpSession.GetTenantId());
+           
+            ClassScheduleSettingEditDto classScheduleSetting = new ClassScheduleSettingEditDto()
             {
-                ContractRegistrationNumber = int.Parse(contractRegistrationNumber),
-                StartLetterNumber = int.Parse(startLetterNumber),
-                ValueAddedPercentage = int.Parse(valueAddedPercentage),
-                DefaultCritical= int.Parse(defaultCritical),
-                DefaultWarning= int.Parse(defaultWarning),
-                StartFactorNumber= int.Parse(startFactorNumber),
-                DefaultFatalDay= int.Parse(defaultFatalDay)
+                Class_Start_Time = class_Start_Time,
+                Class_End_Time = class_End_Time,
+                Time_Each_Class = time_Each_Class,
+                Reast_Start_Time= reast_Start_Time,
+                Reast_End_Time= reast_End_Time
             };
-            return crmSetting;
+            return classScheduleSetting;
         }
         private async Task<bool> GetOneConcurrentLoginPerUserSetting()
         {
@@ -346,7 +343,7 @@ namespace Mohajer.ClassScheduleProject.Configuration.Tenants
             await UpdateBillingSettingsAsync(input.Billing);
             await UpdateEmailSettingsAsync(input.Email);
             await UpdateExternalLoginSettingsAsync(input.ExternalLoginProviderSettings);
-            await UpdateCrmSettingsAsync(input.CrmSettings);
+            await UpdateClassScheduleSettingAsync(input.ClassScheduleSetting);
             //Time Zone
             if (Clock.SupportsMultipleTimezone)
             {
@@ -584,15 +581,13 @@ namespace Mohajer.ClassScheduleProject.Configuration.Tenants
                 await SettingManager.ChangeSettingForTenantAsync(AbpSession.GetTenantId(), AppSettings.UserManagement.TwoFactorLogin.IsGoogleAuthenticatorEnabled, settings.IsGoogleAuthenticatorEnabled.ToString().ToLowerInvariant());
             }
         }
-        private async Task UpdateCrmSettingsAsync(CrmSettingsEditDto CrmSettings)
+        private async Task UpdateClassScheduleSettingAsync(ClassScheduleSettingEditDto classScheduleSetting)
         {
-            await SettingManager.ChangeSettingForTenantAsync(AbpSession.GetTenantId(), AppSettings.CrmManagement.ContractRegistrationNumber, CrmSettings.ContractRegistrationNumber.ToString());
-            await SettingManager.ChangeSettingForTenantAsync(AbpSession.GetTenantId(), AppSettings.CrmManagement.StartLetterNumber, CrmSettings.StartLetterNumber.ToString());
-            await SettingManager.ChangeSettingForTenantAsync(AbpSession.GetTenantId(), AppSettings.CrmManagement.ValueAddedPercentage, CrmSettings.ValueAddedPercentage.ToString());
-            await SettingManager.ChangeSettingForTenantAsync(AbpSession.GetTenantId(), AppSettings.CrmManagement.DefaultWarning, CrmSettings.DefaultWarning.ToString());
-            await SettingManager.ChangeSettingForTenantAsync(AbpSession.GetTenantId(), AppSettings.CrmManagement.DefaultCritical, CrmSettings.DefaultCritical.ToString());
-            await SettingManager.ChangeSettingForTenantAsync(AbpSession.GetTenantId(), AppSettings.CrmManagement.StartFactorNumber, CrmSettings.StartFactorNumber.ToString());
-            await SettingManager.ChangeSettingForTenantAsync(AbpSession.GetTenantId(), AppSettings.CrmManagement.DefaultFatalDay, CrmSettings.DefaultFatalDay.ToString());
+            await SettingManager.ChangeSettingForTenantAsync(AbpSession.GetTenantId(), AppSettings.ClassScheduleSetting.Class_Start_Time, classScheduleSetting.Class_Start_Time);
+            await SettingManager.ChangeSettingForTenantAsync(AbpSession.GetTenantId(), AppSettings.ClassScheduleSetting.Class_End_Time, classScheduleSetting.Class_End_Time);
+            await SettingManager.ChangeSettingForTenantAsync(AbpSession.GetTenantId(), AppSettings.ClassScheduleSetting.Time_Each_Class, classScheduleSetting.Time_Each_Class);
+            await SettingManager.ChangeSettingForTenantAsync(AbpSession.GetTenantId(), AppSettings.ClassScheduleSetting.Reast_Start_Time, classScheduleSetting.Reast_Start_Time);
+            await SettingManager.ChangeSettingForTenantAsync(AbpSession.GetTenantId(), AppSettings.ClassScheduleSetting.Reast_End_Time, classScheduleSetting.Reast_End_Time);
         }
 
         private async Task UpdateOneConcurrentLoginPerUserSettingAsync(bool allowOneConcurrentLoginPerUser)

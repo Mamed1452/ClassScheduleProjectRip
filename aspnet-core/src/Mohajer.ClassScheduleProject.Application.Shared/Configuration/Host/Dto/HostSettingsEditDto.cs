@@ -27,6 +27,5 @@ namespace Mohajer.ClassScheduleProject.Configuration.Host.Dto
 
         public ExternalLoginProviderSettingsEditDto ExternalLoginProviderSettings { get; set; }
 
-        public CrmSettingsEditDto CrmSettings { get; set; }
     }
 }

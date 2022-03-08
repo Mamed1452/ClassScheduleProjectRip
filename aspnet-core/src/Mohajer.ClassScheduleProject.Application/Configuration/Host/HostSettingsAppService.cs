@@ -58,31 +58,10 @@ namespace Mohajer.ClassScheduleProject.Configuration.Host
                 Security = await GetSecuritySettingsAsync(),
                 Billing = await GetBillingSettingsAsync(),
                 OtherSettings = await GetOtherSettingsAsync(),
-                ExternalLoginProviderSettings = await GetExternalLoginProviderSettings(),
-                CrmSettings = await GetCrmSettingsAsync()
+                ExternalLoginProviderSettings = await GetExternalLoginProviderSettings()
             };
         }
-        private async Task<CrmSettingsEditDto> GetCrmSettingsAsync()
-        {
-            var contractRegistrationNumber = await SettingManager.GetSettingValueAsync(AppSettings.CrmManagement.ContractRegistrationNumber);
-            var startLetterNumber = await SettingManager.GetSettingValueAsync(AppSettings.CrmManagement.StartLetterNumber);
-            var valueAddedPercentage = await SettingManager.GetSettingValueAsync(AppSettings.CrmManagement.ValueAddedPercentage);
-            var defaultWarning = await SettingManager.GetSettingValueAsync(AppSettings.CrmManagement.DefaultWarning);
-            var defaultCritical = await SettingManager.GetSettingValueAsync(AppSettings.CrmManagement.DefaultCritical);
-            var startFactorNumber = await SettingManager.GetSettingValueAsync(AppSettings.CrmManagement.StartFactorNumber);
-            var defaultFatalDay = await SettingManager.GetSettingValueAsync(AppSettings.CrmManagement.DefaultFatalDay);
-            CrmSettingsEditDto crmSetting = new CrmSettingsEditDto()
-            {
-                ContractRegistrationNumber = int.Parse(contractRegistrationNumber),
-                StartLetterNumber = int.Parse(startLetterNumber),
-                ValueAddedPercentage = int.Parse(valueAddedPercentage),
-                DefaultCritical = int.Parse(defaultCritical),
-                DefaultWarning = int.Parse(defaultWarning),
-                StartFactorNumber = int.Parse(startFactorNumber),
-                DefaultFatalDay= int.Parse(defaultFatalDay)
-            };
-            return crmSetting;
-        }
+       
         private async Task<GeneralSettingsEditDto> GetGeneralSettingsAsync()
         {
             var timezone = await SettingManager.GetSettingValueForApplicationAsync(TimingSettingNames.TimeZone);
@@ -369,17 +348,8 @@ namespace Mohajer.ClassScheduleProject.Configuration.Host
             await UpdateBillingSettingsAsync(input.Billing);
             await UpdateOtherSettingsAsync(input.OtherSettings);
             await UpdateExternalLoginSettingsAsync(input.ExternalLoginProviderSettings);
-            await UpdateCrmSettingsAsync(input.CrmSettings);
         }
-        private async Task UpdateCrmSettingsAsync(CrmSettingsEditDto CrmSettings)
-        {
-            await SettingManager.ChangeSettingForApplicationAsync(AppSettings.CrmManagement.ContractRegistrationNumber, CrmSettings.ContractRegistrationNumber.ToString());
-            await SettingManager.ChangeSettingForApplicationAsync(AppSettings.CrmManagement.StartLetterNumber, CrmSettings.StartLetterNumber.ToString());
-            await SettingManager.ChangeSettingForApplicationAsync(AppSettings.CrmManagement.ValueAddedPercentage, CrmSettings.ValueAddedPercentage.ToString());
-            await SettingManager.ChangeSettingForApplicationAsync(AppSettings.CrmManagement.DefaultWarning, CrmSettings.DefaultWarning.ToString());
-            await SettingManager.ChangeSettingForApplicationAsync(AppSettings.CrmManagement.DefaultCritical, CrmSettings.DefaultCritical.ToString());
-            await SettingManager.ChangeSettingForApplicationAsync(AppSettings.CrmManagement.StartFactorNumber, CrmSettings.StartFactorNumber.ToString());
-        }
+       
 
         private async Task UpdateOtherSettingsAsync(OtherSettingsEditDto input)
         {

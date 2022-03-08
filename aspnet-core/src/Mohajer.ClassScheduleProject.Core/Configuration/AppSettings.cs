@@ -73,15 +73,13 @@
             public const string CrmContractRegistrationNumber = "App.TenantManagement.CrmContractRegistrationNumber";
         }
 
-        public static class CrmManagement
+        public static class ClassScheduleSetting
         {           
-            public const string ValueAddedPercentage = "App.CrmManagement.ValueAddedPercentage";
-            public const string StartLetterNumber = "App.CrmManagement.StartLetterNumber";
-            public const string ContractRegistrationNumber = "App.CrmManagement.ContractRegistrationNumber";
-            public const string DefaultWarning = "App.CrmManagement.DefaultWarning";
-            public const string DefaultCritical = "App.CrmManagement.DefaultCritical";
-            public const string DefaultFatalDay = "App.CrmManagement.DefaultFatalDay";
-            public const string StartFactorNumber = "App.CrmManagement.StartFactorNumber";
+            public const string Class_Start_Time = "App.ClassScheduleSetting.Class_Start_Time";
+            public const string Class_End_Time = "App.ClassScheduleSetting.Class_End_Time";
+            public const string Time_Each_Class = "App.ClassScheduleSetting.Time_Each_Class";
+            public const string Reast_Start_Time = "App.ClassScheduleSetting.Reast_Start_Time";
+            public const string Reast_End_Time = "App.ClassScheduleSetting.Reast_End_Time";
         }
 
 
