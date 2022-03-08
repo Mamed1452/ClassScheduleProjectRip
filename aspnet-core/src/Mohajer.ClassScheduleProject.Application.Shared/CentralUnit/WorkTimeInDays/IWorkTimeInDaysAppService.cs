@@ -17,6 +17,8 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.WorkTimeInDays
 
         Task CreateOrEdit(CreateOrEditWorkTimeInDayDto input);
 
+        Task CreateAllWorkTimeInDay();
+
         Task Delete(EntityDto<long> input);
 
         Task<FileDto> GetWorkTimeInDaysToExcel(GetAllWorkTimeInDaysForExcelInput input);

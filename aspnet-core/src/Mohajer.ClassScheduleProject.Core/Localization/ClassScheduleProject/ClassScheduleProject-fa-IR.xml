@@ -1,11 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <localizationDictionary culture="fa-IR">
   <texts>
-    <text name="Class_Start_Time">شروع زمان کلاس ها</text>
-    <text name="Class_End_Time">پایان زمان کلاس ها</text>
-    <text name="Time_Each_Class">زمان هر کلاس</text>
-    <text name="Reast_Start_Time">شروع زمان استراحت</text>
-    <text name="Reast_End_Time">پایان زمان استراحت</text>
+    <text name="ClassStartTime">شروع زمان کلاس ها</text>
+    <text name="ClassEndTime">پایان زمان کلاس ها</text>
+    <text name="TimeEachClass">زمان هر کلاس</text>
+    <text name="ReastStartTime">شروع زمان استراحت</text>
+    <text name="ReastEndTime">پایان زمان استراحت</text>
+    <text name="hour">ساعت</text>
+    <text name="day">روز</text>
 
     <text name = "ListOfAllCalculatedResults"> فهرست همه نتایج محاسبه شده </text>
     <text name = "ListOfAllCalculatedResult"> فهرست همه نتایج محاسبه شده </text>
@@ -2063,6 +2065,9 @@
     <text name="BackToDefaultSetting">برگشت به تنظیمات پیش فرض</text>
     <text name="FiledsDragAndDrop">فیلد مورد نظر را بکشید و رها کنید</text>
     <text name="StatusReport">صورت وضعیت</text>
+    
+    
+    
     <text name="1">اول</text>
     <text name="2">دوم</text>
     <text name="3">سوم</text>
@@ -2075,6 +2080,22 @@
     <text name="10">دهم</text>
     <text name="11">یازدهم</text>
     <text name="12">دوازدهم</text>
+    <text name="13">سیزدهم</text>
+    <text name="14">چهاردهم</text>
+    <text name="15">پانزدهم</text>
+    <text name="16">شانزدهم</text>
+    <text name="17">هفدهم</text>
+    <text name="18">هجدهم</text>
+    <text name="19">نوزدهم</text>
+    <text name="20">بیستم</text>
+    <text name="21">بیست و یکم</text>
+    <text name="22">بیست و دوم</text>
+    <text name="23">بیست و سوم</text>
+    <text name="24">بیست و چهارم</text>
+    
+    
+    
+    
     <text name="Development">توسعه</text>
     <text name="WarnExpiryNotificationDefinition">هشدار تاریخ {Entity} به شماره {EntityNumber} در تاریخ {EntityDate} به پایان میرسد</text>
     <text name="ErrorExpiryNotificationDefinition">هشدار بحرانی {Entity} به شماره {EntityNumber} در تاریخ {EntityDate} به پایان میرسد</text>

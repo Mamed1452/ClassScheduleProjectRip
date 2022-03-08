@@ -17,6 +17,7 @@ using Abp.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Abp.UI;
 using Mohajer.ClassScheduleProject.Storage;
+using Mohajer.ClassScheduleProject.Configuration;
 
 namespace Mohajer.ClassScheduleProject.CentralUnit.WorkTimeInDays
 {
@@ -185,6 +186,63 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.WorkTimeInDays
 
             return _workTimeInDaysExcelExporter.ExportToFile(workTimeInDayListDtos);
         }
-
+        private string SumTwoTime(string time1, string time2)
+        {
+            DateTime d1 = DateTime.Parse(time1);
+            DateTime d2 = DateTime.Parse(time2);
+            DateTime d3 = d1.Add(d2.TimeOfDay);
+            return d3.TimeOfDay.ToString();
+        }
+        private string MinesTwoTime(string time1, string time2)
+        {
+            DateTime d1 = DateTime.Parse(time1);
+            DateTime d2 = DateTime.Parse(time2);
+            DateTime d3 = d1 - d2.TimeOfDay;
+            return d3.TimeOfDay.ToString();
+        }
+        private double DivdeTwoTime(string time1, string time2)
+        {
+            DateTime d1 = DateTime.Parse(time1);
+            DateTime d2 = DateTime.Parse(time2);
+            return d1.TimeOfDay.Divide(d2.TimeOfDay);
+        }
+        private int CmpTwoTime(string time1, string time2)
+        {
+            DateTime d1 = DateTime.Parse(time1);
+            DateTime d2 = DateTime.Parse(time2);
+            return d1.TimeOfDay.CompareTo(d2.TimeOfDay);
+        }
+        public async Task CreateAllWorkTimeInDay()
+        {
+            string class_Start_Time = SettingManager.GetSettingValueForTenant(AppSettings.ClassScheduleSetting.Class_Start_Time, AbpSession.TenantId.Value);
+            string class_End_Time = SettingManager.GetSettingValueForTenant(AppSettings.ClassScheduleSetting.Class_End_Time, AbpSession.TenantId.Value);
+            string time_Each_Class = SettingManager.GetSettingValueForTenant(AppSettings.ClassScheduleSetting.Time_Each_Class, AbpSession.TenantId.Value);
+            string reast_Start_Time = SettingManager.GetSettingValueForTenant(AppSettings.ClassScheduleSetting.Reast_Start_Time, AbpSession.TenantId.Value);
+            string reast_End_Time = SettingManager.GetSettingValueForTenant(AppSettings.ClassScheduleSetting.Reast_End_Time, AbpSession.TenantId.Value);
+            string timeTmop = "00:00";
+            foreach (var item in Enum.GetValues(typeof(DayOfWeekEnum)))
+            {
+                double classTimeInDa = Math.Ceiling(DivdeTwoTime(MinesTwoTime(class_Start_Time, class_End_Time), time_Each_Class));
+                for (int timeInDayIndex = 0; timeInDayIndex < classTimeInDa; timeInDayIndex++)
+                {
+                    if (((CmpTwoTime(SumTwoTime(class_Start_Time, timeTmop), reast_Start_Time)) == 1) || ((CmpTwoTime(SumTwoTime(class_Start_Time, timeTmop), reast_End_Time)) == -1) || ((CmpTwoTime(SumTwoTime(class_Start_Time, timeTmop), reast_End_Time)) == 0))
+                    {
+                        _workTimeInDayRepository.Insert(new WorkTimeInDay()
+                        {
+                            DayOfWeek = (DayOfWeekEnum)item,
+                            startTime = SumTwoTime(class_Start_Time, timeTmop),
+                            EndTime = SumTwoTime(class_Start_Time, SumTwoTime(timeTmop, time_Each_Class)),
+                            WhatTimeOfDay = L((timeInDayIndex + 1).ToString()),
+                            NameWorkTimeInDay =$"{L("hour")} {L((timeInDayIndex + 1).ToString())} {L("day")} {L(item.ToString())}"
+                        });                       
+                    }
+                    timeTmop = SumTwoTime(timeTmop, time_Each_Class);
+                }
+                if ((DayOfWeekEnum)item == DayOfWeekEnum.Friday)
+                {
+                    break;
+                }
+            }
+        }
     }
 }
