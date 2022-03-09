@@ -134,7 +134,7 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.UniversityProfessorWorkingTim
                 var _lookupWorkTimeInDay = await _lookup_workTimeInDayRepository.FirstOrDefaultAsync((long)output.UniversityProfessorWorkingTime.Id);
                 output.WorkTimeInDayNameWorkTimeInDay = _lookupWorkTimeInDay?.NameWorkTimeInDay?.ToString();
             }
-           
+
 
             return output;
         }
@@ -154,6 +154,11 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.UniversityProfessorWorkingTim
         [AbpAuthorize(AppPermissions.Pages_UniversityProfessorWorkingTimes_Create)]
         protected virtual async Task Create(CreateOrEditUniversityProfessorWorkingTimeDto input)
         {
+            var esistUniversityProfessorWorkingTime = await _universityProfessorWorkingTimeRepository.FirstOrDefaultAsync(record => record.UniversityProfessorId == input.UniversityProfessorId && record.WorkTimeInDayId == input.WorkTimeInDayId);
+            if (esistUniversityProfessorWorkingTime != null)
+            {
+                throw new UserFriendlyException(L("AssinedBeforWorkOfTimeSelected"));
+            }
             var universityProfessorWorkingTime = ObjectMapper.Map<UniversityProfessorWorkingTime>(input);
 
             if (AbpSession.TenantId != null)
@@ -275,9 +280,23 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.UniversityProfessorWorkingTim
             var _lookupWorkTimeInDayMin = await _lookup_workTimeInDayRepository.FirstOrDefaultAsync(input.WorkTimeInDayIdMin);
             var _lookupWorkTimeInDayMax = await _lookup_workTimeInDayRepository.FirstOrDefaultAsync(input.WorkTimeInDayIdMax);
             var workOfTimes = await _lookup_workTimeInDayRepository.GetAll()
-                .Where(reorod => reorod.DayOfWeek >= _lookupWorkTimeInDayMin.DayOfWeek && reorod.DayOfWeek <= _lookupWorkTimeInDayMax.DayOfWeek)
-                .Where(record => record.WhatTimeOfDayIndex >= _lookupWorkTimeInDayMin.WhatTimeOfDayIndex && record.WhatTimeOfDayIndex <= _lookupWorkTimeInDayMax.WhatTimeOfDayIndex)
+                .OrderBy(record => record.DayOfWeek)
+                .ThenBy(record => record.WhatTimeOfDayIndex)
+                .Where(reorod => (int)reorod.DayOfWeek >= (int)_lookupWorkTimeInDayMin.DayOfWeek && (int)reorod.DayOfWeek <= (int)_lookupWorkTimeInDayMax.DayOfWeek)
                 .ToListAsync();
+            int firstIndex = workOfTimes.FindIndex(record => record.WhatTimeOfDayIndex == _lookupWorkTimeInDayMin.WhatTimeOfDayIndex);
+            int lastIndex = workOfTimes.FindLastIndex(record => record.WhatTimeOfDayIndex == _lookupWorkTimeInDayMax.WhatTimeOfDayIndex);
+            workOfTimes = workOfTimes.GetRange(firstIndex, ((lastIndex + 1) - firstIndex));
+            var workOfTimesExsist = await _universityProfessorWorkingTimeRepository.GetAll()
+               .Where(recorod => recorod.UniversityProfessorId == input.UniversityProfessorId)
+               .Include(s => s.WorkTimeInDayFk)
+               .ToListAsync();
+            var workOfTimesIds = workOfTimes.Select(s => s.Id).ToList();
+            var invalids = workOfTimesExsist.Where(record => workOfTimesIds.Contains(record.WorkTimeInDayId)).ToList();
+            if (invalids.Count > 0)
+            {
+                throw new UserFriendlyException(L("AssinedBeforWorkOfTimesSelected", string.Join(',', invalids.Select(s => s.WorkTimeInDayFk.NameWorkTimeInDay))));
+            }
             for (int workOfTimesIndex = 0; workOfTimesIndex < workOfTimes.Count; workOfTimesIndex++)
             {
                 UniversityProfessorWorkingTime universityProfessorWorkingTime = new UniversityProfessorWorkingTime()

@@ -9,7 +9,7 @@ import { NotifyService } from 'abp-ng2-module';
 import { AppComponentBase } from '@shared/common/app-component-base';
 import { TokenAuthServiceProxy } from '@shared/service-proxies/service-proxies';
 import { CreateOrEditUniversityProfessorWorkingTimeModalComponent } from './create-or-edit-universityProfessorWorkingTime-modal.component';
-
+import { CreateGroupUniversityProfessorWorkingTimeComponent } from './create-group-university-professor-working-time/create-group-university-professor-working-time.component';
 import { ViewUniversityProfessorWorkingTimeModalComponent } from './view-universityProfessorWorkingTime-modal.component';
 import { appModuleAnimation } from '@shared/animations/routerTransition';
 import { Table } from 'primeng/table';
@@ -31,6 +31,8 @@ export class UniversityProfessorWorkingTimesComponent extends AppComponentBase {
     @ViewChild('entityTypeHistoryModal', { static: true }) entityTypeHistoryModal: EntityTypeHistoryModalComponent;
     @ViewChild('createOrEditUniversityProfessorWorkingTimeModal', { static: true })
     createOrEditUniversityProfessorWorkingTimeModal: CreateOrEditUniversityProfessorWorkingTimeModalComponent;
+    @ViewChild('createGroupUniversityProfessorWorkingTimeModule', { static: true })
+    createGroupUniversityProfessorWorkingTimeComponent: CreateGroupUniversityProfessorWorkingTimeComponent;
     @ViewChild('viewUniversityProfessorWorkingTimeModalComponent', { static: true })
     viewUniversityProfessorWorkingTimeModal: ViewUniversityProfessorWorkingTimeModalComponent;
 
@@ -106,7 +108,9 @@ export class UniversityProfessorWorkingTimesComponent extends AppComponentBase {
     createUniversityProfessorWorkingTime(): void {
         this.createOrEditUniversityProfessorWorkingTimeModal.show();
     }
-
+    createGroupUniversityProfessorWorkingTime(): void {
+        this.createGroupUniversityProfessorWorkingTimeComponent.show();
+    }
     showHistory(universityProfessorWorkingTime: UniversityProfessorWorkingTimeDto): void {
         this.entityTypeHistoryModal.show({
             entityId: universityProfessorWorkingTime.id.toString(),

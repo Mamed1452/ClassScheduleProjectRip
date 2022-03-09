@@ -157,6 +157,12 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.AssigningUniversityMajorToCla
         [AbpAuthorize(AppPermissions.Pages_AssigningUniversityMajorToClassroomBuildings_Create)]
         protected virtual async Task Create(CreateOrEditAssigningUniversityMajorToClassroomBuildingDto input)
         {
+            var esistAssigningUniversityMajorToClassroomBuilding = await _assigningUniversityMajorToClassroomBuildingRepository
+                .FirstOrDefaultAsync(record => record.ClassroomBuildingId == input.ClassroomBuildingId && record.UniversityMajorId == input.UniversityMajorId);
+            if (esistAssigningUniversityMajorToClassroomBuilding != null)
+            {
+                throw new UserFriendlyException(L("AssinedBeforAssigningUniversityMajorToClassroomBuildingSelected"));
+            }
             var assigningUniversityMajorToClassroomBuilding = ObjectMapper.Map<AssigningUniversityMajorToClassroomBuilding>(input);
 
             if (AbpSession.TenantId != null)

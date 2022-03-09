@@ -226,7 +226,14 @@
     <text name="False">False</text>
     <text name="MinValue">Min</text>
     <text name="MaxValue">Max</text>
+    <text name="CreateGroupProfessorWorkingTime">Create Group Professor Working Time</text>
+    <text name="AssinedBeforWorkOfTimesSelected">Assined Befor this {0} Work Of Times Selected</text>
+    <text name="AssinedBeforWorkOfTimeSelected">Assined Befor Work Of Time Selected!</text>
+    <text name="AssinedBeforAssigningUniversityMajorToClassroomBuildingSelected">Assined Befor Assigning University Major To Classroom Building Selected!</text>
+    <text name="AssinedBeforAssigningGradeToUniversityMajorSelected">Assined Befor Assigning Grade To University Major Selected!</text>
 
+    <text name="MaxWorkTimeInDay">End time</text>
+    <text name="MinWorkTimeInDay">Start time</text>
 
     <text name="Specialized">Specialized</text>
     <text name="TheoryLesson">Theory Lesson</text>

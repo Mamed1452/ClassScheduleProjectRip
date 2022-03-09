@@ -220,31 +220,33 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.WorkTimeInDays
             string reast_Start_Time = SettingManager.GetSettingValueForTenant(AppSettings.ClassScheduleSetting.Reast_Start_Time, AbpSession.TenantId.Value);
             string reast_End_Time = SettingManager.GetSettingValueForTenant(AppSettings.ClassScheduleSetting.Reast_End_Time, AbpSession.TenantId.Value);
             string timeTmop = "00:00";
-            foreach (var item in Enum.GetValues(typeof(DayOfWeekEnum)))
+            var dayOfWeeklist = Enum.GetValues(typeof(DayOfWeekEnum)).Cast<DayOfWeekEnum>().ToList().OrderBy(record => (int)record).ToList();
+            for (int dayOfWeeklistIndex = 0; dayOfWeeklistIndex < dayOfWeeklist.Count(); dayOfWeeklistIndex++)
             {
+                if (dayOfWeeklist[dayOfWeeklistIndex] == DayOfWeekEnum.Friday)
+                {
+                    break;
+                }
                 double classTimeInDa = Math.Ceiling(DivdeTwoTime(MinesTwoTime(class_Start_Time, class_End_Time), time_Each_Class));
                 timeTmop = "00:00";
                 for (int timeInDayIndex = 0; timeInDayIndex < classTimeInDa; timeInDayIndex++)
                 {
                     if (((CmpTwoTime(SumTwoTime(class_Start_Time, timeTmop), reast_Start_Time)) == -1) || (((CmpTwoTime(SumTwoTime(class_Start_Time, timeTmop), reast_End_Time)) == 1) || ((CmpTwoTime(SumTwoTime(class_Start_Time, timeTmop), reast_End_Time)) == 0)))
                     {
-                        _workTimeInDayRepository.Insert(new WorkTimeInDay()
+                        await _workTimeInDayRepository.InsertAsync(new WorkTimeInDay()
                         {
-                            DayOfWeek = (DayOfWeekEnum)item,
+                            DayOfWeek = dayOfWeeklist[dayOfWeeklistIndex],
                             startTime = SumTwoTime(class_Start_Time, timeTmop),
                             EndTime = SumTwoTime(class_Start_Time, SumTwoTime(timeTmop, time_Each_Class)),
                             WhatTimeOfDay = L((timeInDayIndex + 1).ToString()),
-                            NameWorkTimeInDay = $"{L("hour")} {L((timeInDayIndex + 1).ToString())} {L("day")} {L(item.ToString())}",
+                            NameWorkTimeInDay = $"{L("hour")} {L((timeInDayIndex + 1).ToString())} {L("day")} {L(dayOfWeeklist[dayOfWeeklistIndex].ToString())}",
                             WhatTimeOfDayIndex = (timeInDayIndex + 1)
                         });
                     }
                     timeTmop = SumTwoTime(timeTmop, time_Each_Class);
                 }
-                if ((DayOfWeekEnum)item == DayOfWeekEnum.Friday)
-                {
-                    break;
-                }
             }
+            
         }
     }
 }

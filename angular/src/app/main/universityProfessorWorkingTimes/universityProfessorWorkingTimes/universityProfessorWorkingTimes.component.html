@@ -18,6 +18,14 @@
                     <i class="fa fa-plus"></i>
                     {{ l('CreateNewUniversityProfessorWorkingTime') }}
                 </button>
+                <button
+                *ngIf="isGranted('Pages.UniversityProfessorWorkingTimes.Create')"
+                (click)="createGroupUniversityProfessorWorkingTime()"
+                class="btn btn-primary blue"
+            >
+                <i class="fa fa-plus"></i>
+                {{ l('CreateGroupProfessorWorkingTime') }}
+            </button>
             </div>
         </sub-header>
 
@@ -264,6 +272,10 @@
             #createOrEditUniversityProfessorWorkingTimeModal
             (modalSave)="getUniversityProfessorWorkingTimes()"
         ></createOrEditUniversityProfessorWorkingTimeModal>
+        <createGroupUniversityProfessorWorkingTimeModule
+            #createGroupUniversityProfessorWorkingTimeModule
+            (modalSave)="getUniversityProfessorWorkingTimes()"
+        ></createGroupUniversityProfessorWorkingTimeModule>
         <viewUniversityProfessorWorkingTimeModal
             #viewUniversityProfessorWorkingTimeModal
         ></viewUniversityProfessorWorkingTimeModal>

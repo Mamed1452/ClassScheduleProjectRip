@@ -156,6 +156,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { NgxBootstrapDatePickerConfigService } from 'assets/ngx-bootstrap/ngx-bootstrap-datepicker-config.service';
 import {NgxMatTimepickerModule} from 'ngx-mat-timepicker';
 import { MaterialModule } from '../../core/material/material.module';;
+import { CreateGroupUniversityProfessorWorkingTimeComponent } from './universityProfessorWorkingTimes/universityProfessorWorkingTimes/create-group-university-professor-working-time/create-group-university-professor-working-time.component';
 NgxBootstrapDatePickerConfigService.registerNgxBootstrapDatePickerLocales();
 
 @NgModule({
@@ -304,7 +305,8 @@ NgxBootstrapDatePickerConfigService.registerNgxBootstrapDatePickerLocales();
 		ClassroomBuildingsComponent,
 		ViewClassroomBuildingModalComponent,
 		CreateOrEditClassroomBuildingModalComponent,
-        DashboardComponent
+        DashboardComponent,
+        CreateGroupUniversityProfessorWorkingTimeComponent
     ],
     providers: [
         { provide: BsDatepickerConfig, useFactory: NgxBootstrapDatePickerConfigService.getDatepickerConfig },

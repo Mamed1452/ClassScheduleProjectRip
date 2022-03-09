@@ -143,6 +143,7 @@ export class MasterDetailChild_ClassScheduleModeSpace_ClassScheduleResultsCompon
                     ? this.minUniversityDepartmentIdFilterEmpty
                     : this.minUniversityDepartmentIdFilter,
                 null,
+                null,
                 this.listOfAllCalculatedResultNameCalculatedResultFilter,
                 this.classScheduleModeSpaceId,
                 this.primengTableHelper.getSorting(this.dataTable),
@@ -218,10 +219,6 @@ export class MasterDetailChild_ClassScheduleModeSpace_ClassScheduleResultsCompon
                     ? this.minUniversityDepartmentIdFilterEmpty
                     : this.minUniversityDepartmentIdFilter,
                 undefined,
-                undefined,
-                undefined,
-                undefined,
-
                 null,
                 this.listOfAllCalculatedResultNameCalculatedResultFilter,
                 this.classScheduleModeSpaceId

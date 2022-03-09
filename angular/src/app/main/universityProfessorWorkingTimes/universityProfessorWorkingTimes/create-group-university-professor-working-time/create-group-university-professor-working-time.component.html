@@ -1,0 +1,185 @@
+<div
+    bsModal
+    #createOrEditModal="bs-modal"
+    class="modal fade"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="createOrEditModal"
+    aria-hidden="true"
+    [config]="{ backdrop: 'static' }"
+>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form
+                *ngIf="active"
+                #universityProfessorWorkingTimeForm="ngForm"
+                novalidate
+                (ngSubmit)="save()"
+                autocomplete="off"
+            >
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <span >
+                            {{ l('CreateGroupProfessorWorkingTime') }}
+                        </span>
+                    </h4>
+                    <button type="button" class="close" (click)="close()" aria-label="Close" [disabled]="saving">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group m-form__group">
+                        <label for="UniversityProfessorUniversityProfessorName">{{ l('UniversityProfessor') }}</label>
+                        <div class="input-group">
+                            <input
+                                class="form-control"
+                                id="UniversityProfessorUniversityProfessorName"
+                                name="universityProfessorUniversityProfessorName"
+                                [(ngModel)]="universityProfessorUniversityProfessorName"
+                                type="text"
+                                disabled
+                            />
+                            <div class="input-group-append">
+                                <button
+                                    class="btn btn-primary blue"
+                                    (click)="openSelectUniversityProfessorModal()"
+                                    type="button"
+                                >
+                                    <i class="fa fa-search"></i>
+                                    {{ l('Pick') }}
+                                </button>
+                            </div>
+                            <div class="input-group-prepend">
+                                <button
+                                    class="btn btn-danger btn-icon"
+                                    type="button"
+                                    (click)="setUniversityProfessorIdNull()"
+                                >
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <input
+                        class="form-control"
+                        name="universityProfessorWorkingTime.universityProfessorId"
+                        [(ngModel)]="universityProfessorWorkingTime.universityProfessorId"
+                        type="text"
+                        required
+                        hidden
+                    />
+
+                    <div class="form-group m-form__group">
+                        <label for="workTimeInDayNameWorkTimeInDayMin">{{ l('MinWorkTimeInDay') }}</label>
+                        <div class="input-group">
+                            <input
+                                class="form-control"
+                                id="workTimeInDayNameWorkTimeInDayMin"
+                                name="workTimeInDayNameWorkTimeInDayMin"
+                                [(ngModel)]="workTimeInDayNameWorkTimeInDayMin"
+                                type="text"
+                                disabled
+                            />
+                            <div class="input-group-append">
+                                <button
+                                    class="btn btn-primary blue"
+                                    (click)="openSelectWorkTimeInDayModalMin()"
+                                    type="button"
+                                >
+                                    <i class="fa fa-search"></i>
+                                    {{ l('Pick') }}
+                                </button>
+                            </div>
+                            <div class="input-group-prepend">
+                                <button
+                                    class="btn btn-danger btn-icon"
+                                    type="button"
+                                    (click)="setWorkTimeInDayIdNullMin()"
+                                >
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <input
+                        class="form-control"
+                        name="universityProfessorWorkingTime.workTimeInDayIdMin"
+                        [(ngModel)]="universityProfessorWorkingTime.workTimeInDayIdMin"
+                        type="text"
+                        required
+                        hidden
+                    />
+
+                    <div class="form-group m-form__group">
+                        <label for="workTimeInDayNameWorkTimeInDayMax">{{ l('MaxWorkTimeInDay') }}</label>
+                        <div class="input-group">
+                            <input
+                                class="form-control"
+                                id="workTimeInDayNameWorkTimeInDayMax"
+                                name="workTimeInDayNameWorkTimeInDayMax"
+                                [(ngModel)]="workTimeInDayNameWorkTimeInDayMax"
+                                type="text"
+                                disabled
+                            />
+                            <div class="input-group-append">
+                                <button
+                                    class="btn btn-primary blue"
+                                    (click)="openSelectWorkTimeInDayModalMax()"
+                                    type="button"
+                                >
+                                    <i class="fa fa-search"></i>
+                                    {{ l('Pick') }}
+                                </button>
+                            </div>
+                            <div class="input-group-prepend">
+                                <button
+                                    class="btn btn-danger btn-icon"
+                                    type="button"
+                                    (click)="setWorkTimeInDayIdNullMax()"
+                                >
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <input
+                        class="form-control"
+                        name="universityProfessorWorkingTime.workTimeInDayIdMax"
+                        [(ngModel)]="universityProfessorWorkingTime.workTimeInDayIdMax"
+                        type="text"
+                        required
+                        hidden
+                    />
+                </div>
+                <div class="modal-footer">
+                    <button [disabled]="saving" type="button" class="btn btn-default" (click)="close()">
+                        {{ l('Cancel') }}
+                    </button>
+                    <button
+                        type="submit"
+                        class="btn btn-primary blue"
+                        [disabled]="!universityProfessorWorkingTimeForm.form.valid"
+                        [buttonBusy]="saving"
+                        [busyText]="l('SavingWithThreeDot')"
+                    >
+                        <i class="fa fa-save"></i>
+                        <span>{{ l('Save') }}</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <universityProfessorWorkingTimeUniversityProfessorLookupTableModal
+        #universityProfessorWorkingTimeUniversityProfessorLookupTableModal
+        (modalSave)="getNewUniversityProfessorId()"
+    ></universityProfessorWorkingTimeUniversityProfessorLookupTableModal>
+    <universityProfessorWorkingTimeWorkTimeInDayLookupTableModal
+        #universityProfessorWorkingTimeWorkTimeInDayLookupTableModal
+        (modalSave)="getNewWorkTimeInDayIdMin()"
+    ></universityProfessorWorkingTimeWorkTimeInDayLookupTableModal>
+
+    <universityProfessorWorkingTimeWorkTimeInDayLookupTableModal
+    #universityProfessorWorkingTimeWorkTimeInDayLookupTableModal2
+    (modalSave)="getNewWorkTimeInDayIdMax()"
+>   </universityProfessorWorkingTimeWorkTimeInDayLookupTableModal>
+</div>

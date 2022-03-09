@@ -156,6 +156,12 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.AssigningGradeToUniversityMaj
         [AbpAuthorize(AppPermissions.Pages_AssigningGradeToUniversityMajors_Create)]
         protected virtual async Task Create(CreateOrEditAssigningGradeToUniversityMajorDto input)
         {
+            var esistAssigningGradeToUniversityMajor = await _assigningGradeToUniversityMajorRepository
+               .FirstOrDefaultAsync(record => record.UniversityMajorId == input.UniversityMajorId && record.GradeId == input.GradeId);
+            if (esistAssigningGradeToUniversityMajor != null)
+            {
+                throw new UserFriendlyException(L("AssinedBeforAssigningGradeToUniversityMajorSelected"));
+            }
             var assigningGradeToUniversityMajor = ObjectMapper.Map<AssigningGradeToUniversityMajor>(input);
 
             if (AbpSession.TenantId != null)

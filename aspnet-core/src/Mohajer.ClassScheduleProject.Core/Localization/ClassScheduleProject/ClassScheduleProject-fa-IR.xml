@@ -1,6 +1,41 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <localizationDictionary culture="fa-IR">
   <texts>
+
+
+    <text name="ClassroomBuildingId">شناسه ساختمان کلاس</text>
+    <text name="ListOfMainDomains">فهرست دامنه های اصلی</text>
+    <text name="ListOfMainDomain">فهرست دامنه اصلی</text>
+    <text name="Mohajer.ClassScheduleProject.ListOfMainDomains.ListOfMainDomain">فهرست دامنه اصلی</text>
+    <text name="ListOfMainDomainName">نام فهرست دامنه اصلی</text>
+    <text name="ListOfMainDomainsHeaderInfo">اطلاعات فهرست  دامنه های اصلی</text>
+    <text name="CreateNewListOfMainDomain">ایجاد لیست جدید دامنه اصلی</text>
+    <text name="EditListOfMainDomain">ویرایش لیست دامنه اصلی</text>
+    <text name="DeleteListOfMainDomain">حذف لیست دامنه اصلی</text>
+    <text name="ListOfMainDomainListOfMainDomainName">نام فهرست فهرست دامنه اصلی</text>
+    <text name="PickListOfMainDomain">انتخاب لیست دامنه اصلی</text>
+    <text name="MainDomains">دامنه های اصلی</text>
+    <text name="MainDomain">دامنه اصلی</text>
+    <text name="Mohajer.ClassScheduleProject.MainDomains.MainDomain">دامنه اصلی</text>
+    <text name="MainDomainName">نام دامنه اصلی</text>
+    <text name="MainDomainsHeaderInfo">اطلاعات دامنه اصلی</text>
+    <text name="CreateNewMainDomain">ایجاد دامنه اصلی جدید</text>
+    <text name="EditMainDomain">ویرایش دامنه اصلی</text>
+    <text name="DeleteMainDomain">حذف دامنه اصلی</text>
+    
+    <text name="LessonsOfSemesterLessonsOfSemesterName">نام تخصیص درس به ترم</text>
+    <text name="PickLessonsOfSemester">انتخاب دروس ترم</text>
+    <text name="LessonsOfSemesterName">نام دروس ترم</text>
+    <text name="ListOfClassScheduleModeSpaces">فهرست فضاهای حالت زمانبندی کلاس</text>
+    <text name="ListOfClassScheduleModeSpace">فهرست فضای حالت زمانبندی کلاس</text>
+    <text name="CreateNewListOfClassScheduleModeSpace">ایجاد فهرست جدید فضای حالت برنامه کلاس</text>
+    <text name="EditListOfClassScheduleModeSpace">ویرایش فهرست فضای حالت برنامه کلاس</text>
+    <text name="DeleteListOfClassScheduleModeSpace">حذف لیست فضای حالت زمانبندی کلاس</text>
+    <text name="ListOfClassScheduleModeSpaceListOfClassScheduleModeSpaceName">فهرست زمانبندی کلاسها فهرست فضای حالت زمانبندی کلاس نام فضای حالت زمانبندی کلاس</text>
+    <text name="PickListOfClassScheduleModeSpace">انتخاب فهرست فضای حالت برنامه کلاس</text>
+    
+    
+    
     <text name="ClassStartTime">شروع زمان کلاس ها</text>
     <text name="ClassEndTime">پایان زمان کلاس ها</text>
     <text name="TimeEachClass">زمان هر کلاس</text>
@@ -199,6 +234,13 @@
     <text name="EditClassroomBuilding">ویرایش ساختمان کلاس درس</text>
     <text name="DeleteClassroomBuilding">حذف ساختمان کلاس درس</text>
 
+    <text name="CreateGroupProfessorWorkingTime">تخصیص بازه ی زمان کاری به استاد</text>
+    <text name="AssinedBeforWorkOfTimesSelected">شما قبلا زمان های کاری {0} را به استاد انتخابی اختصاص داده اید!</text>
+    <text name="AssinedBeforWorkOfTimeSelected">شما قبلا زمان کاری انتخاب شده را به استاد انتخابی اختصاص داده اید!</text>
+    <text name="AssinedBeforAssigningUniversityMajorToClassroomBuildingSelected">ساختمان کلاسی که انتخاب کردید قبلا به گروه انتخابی تخصیص داده اید!</text>
+    <text name="AssinedBeforAssigningGradeToUniversityMajorSelected">رشته ای که انتخاب کردید قبلا به مقطع انتخابی تخصیص داده اید!</text>
+    <text name="MaxWorkTimeInDay">شروع بازه ی زمانی</text>
+    <text name="MinWorkTimeInDay">پایان بازه ی زمانی</text>
 
 
     <text name="Min">حداقل</text>
