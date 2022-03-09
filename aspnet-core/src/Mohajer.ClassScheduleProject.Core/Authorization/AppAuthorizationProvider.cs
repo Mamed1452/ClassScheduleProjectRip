@@ -30,6 +30,21 @@ namespace Mohajer.ClassScheduleProject.Authorization
 
             var pages = context.GetPermissionOrNull(AppPermissions.Pages) ?? context.CreatePermission(AppPermissions.Pages, L("Pages"));
 
+            var listOfMainDomains = pages.CreateChildPermission(AppPermissions.Pages_ListOfMainDomains, L("ListOfMainDomains"), multiTenancySides: MultiTenancySides.Tenant);
+            listOfMainDomains.CreateChildPermission(AppPermissions.Pages_ListOfMainDomains_Create, L("CreateNewListOfMainDomain"), multiTenancySides: MultiTenancySides.Tenant);
+            listOfMainDomains.CreateChildPermission(AppPermissions.Pages_ListOfMainDomains_Edit, L("EditListOfMainDomain"), multiTenancySides: MultiTenancySides.Tenant);
+            listOfMainDomains.CreateChildPermission(AppPermissions.Pages_ListOfMainDomains_Delete, L("DeleteListOfMainDomain"), multiTenancySides: MultiTenancySides.Tenant);
+
+            var mainDomains = pages.CreateChildPermission(AppPermissions.Pages_MainDomains, L("MainDomains"), multiTenancySides: MultiTenancySides.Tenant);
+            mainDomains.CreateChildPermission(AppPermissions.Pages_MainDomains_Create, L("CreateNewMainDomain"), multiTenancySides: MultiTenancySides.Tenant);
+            mainDomains.CreateChildPermission(AppPermissions.Pages_MainDomains_Edit, L("EditMainDomain"), multiTenancySides: MultiTenancySides.Tenant);
+            mainDomains.CreateChildPermission(AppPermissions.Pages_MainDomains_Delete, L("DeleteMainDomain"), multiTenancySides: MultiTenancySides.Tenant);
+
+            var listOfClassScheduleModeSpaces = pages.CreateChildPermission(AppPermissions.Pages_ListOfClassScheduleModeSpaces, L("ListOfClassScheduleModeSpaces"), multiTenancySides: MultiTenancySides.Tenant);
+            listOfClassScheduleModeSpaces.CreateChildPermission(AppPermissions.Pages_ListOfClassScheduleModeSpaces_Create, L("CreateNewListOfClassScheduleModeSpace"), multiTenancySides: MultiTenancySides.Tenant);
+            listOfClassScheduleModeSpaces.CreateChildPermission(AppPermissions.Pages_ListOfClassScheduleModeSpaces_Edit, L("EditListOfClassScheduleModeSpace"), multiTenancySides: MultiTenancySides.Tenant);
+            listOfClassScheduleModeSpaces.CreateChildPermission(AppPermissions.Pages_ListOfClassScheduleModeSpaces_Delete, L("DeleteListOfClassScheduleModeSpace"), multiTenancySides: MultiTenancySides.Tenant);
+
             var listOfAllCalculatedResults = pages.CreateChildPermission(AppPermissions.Pages_ListOfAllCalculatedResults, L("ListOfAllCalculatedResults"), multiTenancySides: MultiTenancySides.Tenant);
             listOfAllCalculatedResults.CreateChildPermission(AppPermissions.Pages_ListOfAllCalculatedResults_Create, L("CreateNewListOfAllCalculatedResult"), multiTenancySides: MultiTenancySides.Tenant);
             listOfAllCalculatedResults.CreateChildPermission(AppPermissions.Pages_ListOfAllCalculatedResults_Edit, L("EditListOfAllCalculatedResult"), multiTenancySides: MultiTenancySides.Tenant);

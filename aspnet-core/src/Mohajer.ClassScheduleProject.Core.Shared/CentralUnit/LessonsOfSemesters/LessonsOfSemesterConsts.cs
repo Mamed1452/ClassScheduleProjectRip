@@ -6,5 +6,6 @@
         public const long MaxNumberOfClassesToBeFormedValue = 20;
 
         public const long MinNumberOfClassesToBeFormedValue = 1;
+
     }
 }

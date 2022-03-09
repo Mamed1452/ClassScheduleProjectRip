@@ -21,6 +21,8 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleModeSpaces
 
         Task<FileDto> GetClassScheduleModeSpacesToExcel(GetAllClassScheduleModeSpacesForExcelInput input);
 
+        Task<PagedResultDto<ClassScheduleModeSpaceListOfClassScheduleModeSpaceLookupTableDto>> GetAllListOfClassScheduleModeSpaceForLookupTable(GetAllForLookupTableInput input);
+
         Task<PagedResultDto<ClassScheduleModeSpaceUniversityProfessorLookupTableDto>> GetAllUniversityProfessorForLookupTable(GetAllForLookupTableInput input);
 
         Task<PagedResultDto<ClassScheduleModeSpaceWorkTimeInDayLookupTableDto>> GetAllWorkTimeInDayForLookupTable(GetAllForLookupTableInput input);

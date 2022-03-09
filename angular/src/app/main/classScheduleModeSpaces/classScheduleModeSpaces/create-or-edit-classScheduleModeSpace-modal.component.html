@@ -22,6 +22,49 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group m-form__group">
+                        <label for="ListOfClassScheduleModeSpaceListOfClassScheduleModeSpaceName">
+                            {{ l('ListOfClassScheduleModeSpace') }}
+                        </label>
+                        <div class="input-group">
+                            <input
+                                class="form-control"
+                                id="ListOfClassScheduleModeSpaceListOfClassScheduleModeSpaceName"
+                                name="listOfClassScheduleModeSpaceListOfClassScheduleModeSpaceName"
+                                [(ngModel)]="listOfClassScheduleModeSpaceListOfClassScheduleModeSpaceName"
+                                type="text"
+                                disabled
+                            />
+                            <div class="input-group-append">
+                                <button
+                                    class="btn btn-primary blue"
+                                    (click)="openSelectListOfClassScheduleModeSpaceModal()"
+                                    type="button"
+                                >
+                                    <i class="fa fa-search"></i>
+                                    {{ l('Pick') }}
+                                </button>
+                            </div>
+                            <div class="input-group-prepend">
+                                <button
+                                    class="btn btn-danger btn-icon"
+                                    type="button"
+                                    (click)="setListOfClassScheduleModeSpaceIdNull()"
+                                >
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <input
+                        class="form-control"
+                        name="classScheduleModeSpace.listOfClassScheduleModeSpaceId"
+                        [(ngModel)]="classScheduleModeSpace.listOfClassScheduleModeSpaceId"
+                        type="text"
+                        required
+                        hidden
+                    />
+
+                    <div class="form-group m-form__group">
                         <label for="UniversityProfessorUniversityProfessorName">{{ l('UniversityProfessor') }}</label>
                         <div class="input-group">
                             <input
@@ -190,6 +233,10 @@
             </form>
         </div>
     </div>
+    <classScheduleModeSpaceListOfClassScheduleModeSpaceLookupTableModal
+        #classScheduleModeSpaceListOfClassScheduleModeSpaceLookupTableModal
+        (modalSave)="getNewListOfClassScheduleModeSpaceId()"
+    ></classScheduleModeSpaceListOfClassScheduleModeSpaceLookupTableModal>
     <classScheduleModeSpaceUniversityProfessorLookupTableModal
         #classScheduleModeSpaceUniversityProfessorLookupTableModal
         (modalSave)="getNewUniversityProfessorId()"

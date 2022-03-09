@@ -203,6 +203,19 @@
                             [formCtrl]="ClassScheduleResult_UniversityDepartmentId"
                         ></validation-messages>
                     </div>
+
+                    <div class="form-group">
+                        <label for="ClassScheduleResult_ClassroomBuildingId">{{ l('ClassroomBuildingId') }}</label>
+                        <input
+                            type="number"
+                            #ClassScheduleResult_ClassroomBuildingId="ngModel"
+                            id="ClassScheduleResult_ClassroomBuildingId"
+                            class="form-control"
+                            [(ngModel)]="classScheduleResult.classroomBuildingId"
+                            name="ClassroomBuildingId"
+                        />
+                        <validation-messages [formCtrl]="ClassScheduleResult_ClassroomBuildingId"></validation-messages>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button [disabled]="saving" type="button" class="btn btn-default" (click)="close()">

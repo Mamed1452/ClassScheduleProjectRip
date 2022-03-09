@@ -1,6 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="en">
-  <texts>    <text name="ClassStartTime">Class Start Time</text>    <text name="ClassEndTime">Class End Time</text>    <text name="TimeEachClass">Time Each Class</text>    <text name="ReastStartTime">Reast Start Time</text>    <text name="ReastEndTime">Reast End Time</text>    <text name="hour">hour</text>    <text name="day">day</text>    <text name="CreateingAllWorkTimeInDay">Createing All Work Time In Day</text>    <text name="ListOfAllCalculatedResults">List of all calculated results</text>
+  <texts>    <text name="ClassroomBuildingId">Classroom building id</text>
+    <text name="ListOfMainDomains">List of main domains</text>
+    <text name="ListOfMainDomain">List of main domain</text>
+    <text name="Mohajer.ClassScheduleProject.ListOfMainDomains.ListOfMainDomain">ListOfMainDomain</text>
+    <text name="ListOfMainDomainName">List of main domain name</text>
+    <text name="ListOfMainDomainsHeaderInfo">List of main domains header info</text>
+    <text name="CreateNewListOfMainDomain">Create new list of main domain</text>
+    <text name="EditListOfMainDomain">Edit list of main domain</text>
+    <text name="DeleteListOfMainDomain">Delete list of main domain</text>
+    <text name="ListOfMainDomainListOfMainDomainName">List of main domain list of main domain name</text>
+    <text name="PickListOfMainDomain">Pick list of main domain</text>
+    <text name="MainDomains">Main domains</text>
+    <text name="MainDomain">Main domain</text>
+    <text name="Mohajer.ClassScheduleProject.MainDomains.MainDomain">MainDomain</text>
+    <text name="MainDomainName">Main domain name</text>
+    <text name="MainDomainsHeaderInfo">Main domains header info</text>
+    <text name="CreateNewMainDomain">Create new main domain</text>
+    <text name="EditMainDomain">Edit main domain</text>
+    <text name="DeleteMainDomain">Delete main domain</text>
+    <text name="LessonsOfSemesterLessonsOfSemesterName">Lessons of semester lessons of semester name</text>
+    <text name="PickLessonsOfSemester">Pick lessons of semester</text>
+    <text name="LessonsOfSemesterName">Lessons of semester name</text>
+    <text name="ListOfClassScheduleModeSpaces">List of class schedule mode spaces</text>
+    <text name="ListOfClassScheduleModeSpace">List of class schedule mode space</text>
+    <text name="CreateNewListOfClassScheduleModeSpace">Create new list of class schedule mode space</text>
+    <text name="EditListOfClassScheduleModeSpace">Edit list of class schedule mode space</text>
+    <text name="DeleteListOfClassScheduleModeSpace">Delete list of class schedule mode space</text>
+    <text name="ListOfClassScheduleModeSpaceListOfClassScheduleModeSpaceName">List of class schedule mode space list of class schedule mode space name</text>
+    <text name="PickListOfClassScheduleModeSpace">Pick list of class schedule mode space</text>
+    <text name="ClassStartTime">Class Start Time</text>    <text name="ClassEndTime">Class End Time</text>    <text name="TimeEachClass">Time Each Class</text>    <text name="ReastStartTime">Reast Start Time</text>    <text name="ReastEndTime">Reast End Time</text>    <text name="hour">hour</text>    <text name="day">day</text>    <text name="CreateingAllWorkTimeInDay">Createing All Work Time In Day</text>    <text name="ListOfAllCalculatedResults">List of all calculated results</text>
     <text name="ListOfAllCalculatedResult">List of all calculated result</text>
     <text name="Mohajer.ClassScheduleProject.ListOfAllCalculatedResults.ListOfAllCalculatedResult">ListOfAllCalculatedResult</text>
     <text name="NameCalculatedResult">Name calculated result</text>

@@ -32,5 +32,7 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.WorkTimeInDays
         [StringLength(WorkTimeInDayConsts.MaxWhatTimeOfDayLength, MinimumLength = WorkTimeInDayConsts.MinWhatTimeOfDayLength)]
         public virtual string WhatTimeOfDay { get; set; }
 
+        public virtual int? WhatTimeOfDayIndex { get; set; }
+
     }
 }

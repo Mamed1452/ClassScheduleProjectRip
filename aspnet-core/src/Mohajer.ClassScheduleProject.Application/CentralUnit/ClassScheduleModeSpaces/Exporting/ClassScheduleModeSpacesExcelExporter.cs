@@ -37,6 +37,7 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleModeSpaces.Expor
                         sheet,
                         L("NameClassScheduleModeSpaces"),
                         L("IsLock"),
+                        (L("ListOfClassScheduleModeSpace")) + L("ListOfClassScheduleModeSpaceName"),
                         (L("UniversityProfessor")) + L("UniversityProfessorName"),
                         (L("WorkTimeInDay")) + L("NameWorkTimeInDay"),
                         (L("Lesson")) + L("NameLesson")
@@ -46,6 +47,7 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleModeSpaces.Expor
                         sheet, 2, classScheduleModeSpaces,
                         _ => _.ClassScheduleModeSpace.NameClassScheduleModeSpaces,
                         _ => _.ClassScheduleModeSpace.IsLock,
+                        _ => _.ListOfClassScheduleModeSpaceListOfClassScheduleModeSpaceName,
                         _ => _.UniversityProfessorUniversityProfessorName,
                         _ => _.WorkTimeInDayNameWorkTimeInDay,
                         _ => _.LessonNameLesson

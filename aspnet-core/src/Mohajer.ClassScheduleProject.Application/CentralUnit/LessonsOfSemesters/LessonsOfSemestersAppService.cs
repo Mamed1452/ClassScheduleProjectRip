@@ -47,11 +47,12 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.LessonsOfSemesters
             var filteredLessonsOfSemesters = _lessonsOfSemesterRepository.GetAll()
                         .Include(e => e.LessonFk)
                         .Include(e => e.SemesterFk)
-                        .WhereIf(!string.IsNullOrWhiteSpace(input.Filter), e => false)
+                        .WhereIf(!string.IsNullOrWhiteSpace(input.Filter), e => false || e.LessonsOfSemesterName.Contains(input.Filter))
                         .WhereIf(input.LessonOfSemesterTypeFilter.HasValue && input.LessonOfSemesterTypeFilter > -1, e => e.LessonOfSemesterType == lessonOfSemesterTypeFilter)
                         .WhereIf(input.MinNumberOfClassesToBeFormedFilter != null, e => e.NumberOfClassesToBeFormed >= input.MinNumberOfClassesToBeFormedFilter)
                         .WhereIf(input.MaxNumberOfClassesToBeFormedFilter != null, e => e.NumberOfClassesToBeFormed <= input.MaxNumberOfClassesToBeFormedFilter)
                         .WhereIf(input.IsActiveFilter.HasValue && input.IsActiveFilter > -1, e => (input.IsActiveFilter == 1 && e.IsActive) || (input.IsActiveFilter == 0 && !e.IsActive))
+                        .WhereIf(!string.IsNullOrWhiteSpace(input.LessonsOfSemesterNameFilter), e => e.LessonsOfSemesterName == input.LessonsOfSemesterNameFilter)
                         .WhereIf(!string.IsNullOrWhiteSpace(input.LessonNameLessonFilter), e => e.LessonFk != null && e.LessonFk.NameLesson == input.LessonNameLessonFilter)
                         .WhereIf(!string.IsNullOrWhiteSpace(input.SemesterSemesterNameFilter), e => e.SemesterFk != null && e.SemesterFk.SemesterName == input.SemesterSemesterNameFilter);
 
@@ -72,6 +73,7 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.LessonsOfSemesters
                                          o.LessonOfSemesterType,
                                          o.NumberOfClassesToBeFormed,
                                          o.IsActive,
+                                         o.LessonsOfSemesterName,
                                          Id = o.Id,
                                          LessonNameLesson = s1 == null || s1.NameLesson == null ? "" : s1.NameLesson.ToString(),
                                          SemesterSemesterName = s2 == null || s2.SemesterName == null ? "" : s2.SemesterName.ToString()
@@ -92,6 +94,7 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.LessonsOfSemesters
                         LessonOfSemesterType = o.LessonOfSemesterType,
                         NumberOfClassesToBeFormed = o.NumberOfClassesToBeFormed,
                         IsActive = o.IsActive,
+                        LessonsOfSemesterName = o.LessonsOfSemesterName,
                         Id = o.Id,
                     },
                     LessonNameLesson = o.LessonNameLesson,
@@ -200,11 +203,12 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.LessonsOfSemesters
             var filteredLessonsOfSemesters = _lessonsOfSemesterRepository.GetAll()
                         .Include(e => e.LessonFk)
                         .Include(e => e.SemesterFk)
-                        .WhereIf(!string.IsNullOrWhiteSpace(input.Filter), e => false)
+                        .WhereIf(!string.IsNullOrWhiteSpace(input.Filter), e => false || e.LessonsOfSemesterName.Contains(input.Filter))
                         .WhereIf(input.LessonOfSemesterTypeFilter.HasValue && input.LessonOfSemesterTypeFilter > -1, e => e.LessonOfSemesterType == lessonOfSemesterTypeFilter)
                         .WhereIf(input.MinNumberOfClassesToBeFormedFilter != null, e => e.NumberOfClassesToBeFormed >= input.MinNumberOfClassesToBeFormedFilter)
                         .WhereIf(input.MaxNumberOfClassesToBeFormedFilter != null, e => e.NumberOfClassesToBeFormed <= input.MaxNumberOfClassesToBeFormedFilter)
                         .WhereIf(input.IsActiveFilter.HasValue && input.IsActiveFilter > -1, e => (input.IsActiveFilter == 1 && e.IsActive) || (input.IsActiveFilter == 0 && !e.IsActive))
+                        .WhereIf(!string.IsNullOrWhiteSpace(input.LessonsOfSemesterNameFilter), e => e.LessonsOfSemesterName == input.LessonsOfSemesterNameFilter)
                         .WhereIf(!string.IsNullOrWhiteSpace(input.LessonNameLessonFilter), e => e.LessonFk != null && e.LessonFk.NameLesson == input.LessonNameLessonFilter)
                         .WhereIf(!string.IsNullOrWhiteSpace(input.SemesterSemesterNameFilter), e => e.SemesterFk != null && e.SemesterFk.SemesterName == input.SemesterSemesterNameFilter);
 
@@ -222,6 +226,7 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.LessonsOfSemesters
                                  LessonOfSemesterType = o.LessonOfSemesterType,
                                  NumberOfClassesToBeFormed = o.NumberOfClassesToBeFormed,
                                  IsActive = o.IsActive,
+                                 LessonsOfSemesterName = o.LessonsOfSemesterName,
                                  Id = o.Id
                              },
                              LessonNameLesson = s1 == null || s1.NameLesson == null ? "" : s1.NameLesson.ToString(),

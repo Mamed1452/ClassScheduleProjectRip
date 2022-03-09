@@ -59,7 +59,18 @@
       }
     }
   ],
-  "NavigationProperties": [
+  "NavigationProperties": [{
+      "Namespace": "Mohajer.ClassScheduleProject.CentralUnit.ListOfClassScheduleModeSpaces",
+      "ForeignEntityName": "ListOfClassScheduleModeSpace",
+      "IdType": "long",
+      "IsNullable": false,
+      "PropertyName": "ListOfClassScheduleModeSpaceId",
+      "DisplayPropertyName": "ListOfClassScheduleModeSpaceName",
+      "DuplicationNumber": 0,
+      "RelationType": "single",
+      "ViewType": "LookupTable",
+      "IsGeneratedByMasterPage": true
+    },
     {
       "Namespace": "Mohajer.ClassScheduleProject.CentralUnit.UniversityProfessors",
       "ForeignEntityName": "UniversityProfessor",

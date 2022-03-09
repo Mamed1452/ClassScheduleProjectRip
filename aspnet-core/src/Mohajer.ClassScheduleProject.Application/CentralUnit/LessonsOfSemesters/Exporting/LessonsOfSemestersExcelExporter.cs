@@ -38,6 +38,7 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.LessonsOfSemesters.Exporting
                         L("LessonOfSemesterType"),
                         L("NumberOfClassesToBeFormed"),
                         L("IsActive"),
+                        L("LessonsOfSemesterName"),
                         (L("Lesson")) + L("NameLesson"),
                         (L("Semester")) + L("SemesterName")
                         );
@@ -47,6 +48,7 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.LessonsOfSemesters.Exporting
                         _ => _.LessonsOfSemester.LessonOfSemesterType,
                         _ => _.LessonsOfSemester.NumberOfClassesToBeFormed,
                         _ => _.LessonsOfSemester.IsActive,
+                        _ => _.LessonsOfSemester.LessonsOfSemesterName,
                         _ => _.LessonNameLesson,
                         _ => _.SemesterSemesterName
                         );

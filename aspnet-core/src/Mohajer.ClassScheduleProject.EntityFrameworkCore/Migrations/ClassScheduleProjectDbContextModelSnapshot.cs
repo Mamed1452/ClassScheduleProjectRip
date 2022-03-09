@@ -1783,6 +1783,9 @@ namespace Mohajer.ClassScheduleProject.Migrations
                     b.Property<long>("LessonId")
                         .HasColumnType("bigint");
 
+                    b.Property<long>("ListOfClassScheduleModeSpaceId")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("NameClassScheduleModeSpaces")
                         .IsRequired()
                         .HasMaxLength(400)
@@ -1800,6 +1803,8 @@ namespace Mohajer.ClassScheduleProject.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("LessonId");
+
+                    b.HasIndex("ListOfClassScheduleModeSpaceId");
 
                     b.HasIndex("TenantId");
 
@@ -1819,6 +1824,9 @@ namespace Mohajer.ClassScheduleProject.Migrations
 
                     b.Property<long>("ClassScheduleModeSpaceId")
                         .HasColumnType("bigint");
+
+                    b.Property<int>("ClassroomBuildingId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
@@ -1844,8 +1852,8 @@ namespace Mohajer.ClassScheduleProject.Migrations
                     b.Property<long?>("LastModifierUserId")
                         .HasColumnType("bigint");
 
-                    b.Property<int>("LessonId")
-                        .HasColumnType("int");
+                    b.Property<long>("LessonId")
+                        .HasColumnType("bigint");
 
                     b.Property<long>("ListOfAllCalculatedResultId")
                         .HasColumnType("bigint");
@@ -2074,6 +2082,10 @@ namespace Mohajer.ClassScheduleProject.Migrations
                     b.Property<int>("LessonOfSemesterType")
                         .HasColumnType("int");
 
+                    b.Property<string>("LessonsOfSemesterName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("NumberOfClassesToBeFormed")
                         .HasColumnType("int");
 
@@ -2189,6 +2201,140 @@ namespace Mohajer.ClassScheduleProject.Migrations
                     b.HasIndex("TenantId");
 
                     b.ToTable("ListOfAllCalculatedResults");
+                });
+
+            modelBuilder.Entity("Mohajer.ClassScheduleProject.CentralUnit.ListOfClassScheduleModeSpaces.ListOfClassScheduleModeSpace", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .UseIdentityColumn();
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ListOfClassScheduleModeSpaceName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TenantId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TenantId");
+
+                    b.ToTable("ListOfClassScheduleModeSpaces");
+                });
+
+            modelBuilder.Entity("Mohajer.ClassScheduleProject.CentralUnit.ListOfMainDomains.ListOfMainDomain", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .UseIdentityColumn();
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ListOfMainDomainName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TenantId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TenantId");
+
+                    b.ToTable("ListOfMainDomains");
+                });
+
+            modelBuilder.Entity("Mohajer.ClassScheduleProject.CentralUnit.MainDomains.MainDomain", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .UseIdentityColumn();
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("LessonsOfSemesterId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("ListOfMainDomainId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("MainDomainName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TenantId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LessonsOfSemesterId");
+
+                    b.HasIndex("ListOfMainDomainId");
+
+                    b.HasIndex("TenantId");
+
+                    b.ToTable("MainDomains");
                 });
 
             modelBuilder.Entity("Mohajer.ClassScheduleProject.CentralUnit.Semesters.Semester", b =>
@@ -2478,6 +2624,9 @@ namespace Mohajer.ClassScheduleProject.Migrations
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
+
+                    b.Property<int?>("WhatTimeOfDayIndex")
+                        .HasColumnType("int");
 
                     b.Property<string>("startTime")
                         .IsRequired()
@@ -3140,6 +3289,12 @@ namespace Mohajer.ClassScheduleProject.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Mohajer.ClassScheduleProject.CentralUnit.ListOfClassScheduleModeSpaces.ListOfClassScheduleModeSpace", "ListOfClassScheduleModeSpaceFk")
+                        .WithMany()
+                        .HasForeignKey("ListOfClassScheduleModeSpaceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Mohajer.ClassScheduleProject.CentralUnit.UniversityProfessors.UniversityProfessor", "UniversityProfessorFk")
                         .WithMany()
                         .HasForeignKey("UniversityProfessorId")
@@ -3153,6 +3308,8 @@ namespace Mohajer.ClassScheduleProject.Migrations
                         .IsRequired();
 
                     b.Navigation("LessonFk");
+
+                    b.Navigation("ListOfClassScheduleModeSpaceFk");
 
                     b.Navigation("UniversityProfessorFk");
 
@@ -3225,6 +3382,25 @@ namespace Mohajer.ClassScheduleProject.Migrations
                     b.Navigation("LessonFk");
 
                     b.Navigation("UniversityProfessorFk");
+                });
+
+            modelBuilder.Entity("Mohajer.ClassScheduleProject.CentralUnit.MainDomains.MainDomain", b =>
+                {
+                    b.HasOne("Mohajer.ClassScheduleProject.CentralUnit.LessonsOfSemesters.LessonsOfSemester", "LessonsOfSemesterFk")
+                        .WithMany()
+                        .HasForeignKey("LessonsOfSemesterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Mohajer.ClassScheduleProject.CentralUnit.ListOfMainDomains.ListOfMainDomain", "ListOfMainDomainFk")
+                        .WithMany()
+                        .HasForeignKey("ListOfMainDomainId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("LessonsOfSemesterFk");
+
+                    b.Navigation("ListOfMainDomainFk");
                 });
 
             modelBuilder.Entity("Mohajer.ClassScheduleProject.CentralUnit.Semesters.Semester", b =>

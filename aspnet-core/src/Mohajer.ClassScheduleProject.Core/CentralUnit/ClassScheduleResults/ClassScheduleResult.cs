@@ -17,7 +17,7 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults
 
         public virtual long WorkTimeInDayId { get; set; }
 
-        public virtual int LessonId { get; set; }
+        public virtual long LessonId { get; set; }
 
         public virtual int UniversityProfessorId { get; set; }
 
@@ -28,6 +28,8 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults
         public virtual int UniversityMajorId { get; set; }
 
         public virtual int UniversityDepartmentId { get; set; }
+
+        public virtual int ClassroomBuildingId { get; set; }
 
         public virtual long ListOfAllCalculatedResultId { get; set; }
 

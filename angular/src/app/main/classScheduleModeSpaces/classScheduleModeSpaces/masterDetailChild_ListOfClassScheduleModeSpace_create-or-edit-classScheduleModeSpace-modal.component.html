@@ -1,0 +1,85 @@
+﻿<div bsModal #createOrEditModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="createOrEditModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form *ngIf="active" #classScheduleModeSpaceForm="ngForm" novalidate (ngSubmit)="save()" autocomplete="off">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <span *ngIf="classScheduleModeSpace.id">{{l("EditClassScheduleModeSpace")}}</span>
+                        <span *ngIf="!classScheduleModeSpace.id">{{l("CreateNewClassScheduleModeSpace")}}</span>
+                    </h4>
+                    <button type="button" class="close" (click)="close()" aria-label="Close" [disabled]="saving">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                 
+
+					<div class="form-group m-form__group">
+                        <label for="UniversityProfessorUniversityProfessorName">{{l("UniversityProfessor")}}</label>
+                        <div class="input-group">
+                            <input class="form-control" id="UniversityProfessorUniversityProfessorName" name="universityProfessorUniversityProfessorName" [(ngModel)]="universityProfessorUniversityProfessorName" type="text" disabled>     
+                            <div class="input-group-append">
+                                <button class="btn btn-primary blue" (click)="openSelectUniversityProfessorModal()" type="button"><i class="fa fa-search"></i> {{l("Pick")}}</button>
+                            </div> <div class="input-group-prepend">
+                                <button class="btn btn-danger btn-icon" type="button" (click)="setUniversityProfessorIdNull()"><i class="fa fa-times"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <input class="form-control" name="classScheduleModeSpace.universityProfessorId" [(ngModel)]="classScheduleModeSpace.universityProfessorId" type="text" required hidden>
+		 
+					<div class="form-group m-form__group">
+                        <label for="WorkTimeInDayNameWorkTimeInDay">{{l("WorkTimeInDay")}}</label>
+                        <div class="input-group">
+                            <input class="form-control" id="WorkTimeInDayNameWorkTimeInDay" name="workTimeInDayNameWorkTimeInDay" [(ngModel)]="workTimeInDayNameWorkTimeInDay" type="text" disabled>     
+                            <div class="input-group-append">
+                                <button class="btn btn-primary blue" (click)="openSelectWorkTimeInDayModal()" type="button"><i class="fa fa-search"></i> {{l("Pick")}}</button>
+                            </div> <div class="input-group-prepend">
+                                <button class="btn btn-danger btn-icon" type="button" (click)="setWorkTimeInDayIdNull()"><i class="fa fa-times"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <input class="form-control" name="classScheduleModeSpace.workTimeInDayId" [(ngModel)]="classScheduleModeSpace.workTimeInDayId" type="text" required hidden>
+		 
+					<div class="form-group m-form__group">
+                        <label for="LessonNameLesson">{{l("Lesson")}}</label>
+                        <div class="input-group">
+                            <input class="form-control" id="LessonNameLesson" name="lessonNameLesson" [(ngModel)]="lessonNameLesson" type="text" disabled>     
+                            <div class="input-group-append">
+                                <button class="btn btn-primary blue" (click)="openSelectLessonModal()" type="button"><i class="fa fa-search"></i> {{l("Pick")}}</button>
+                            </div> <div class="input-group-prepend">
+                                <button class="btn btn-danger btn-icon" type="button" (click)="setLessonIdNull()"><i class="fa fa-times"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <input class="form-control" name="classScheduleModeSpace.lessonId" [(ngModel)]="classScheduleModeSpace.lessonId" type="text" required hidden>
+		 
+
+								<div class="form-group">
+									<label for="ClassScheduleModeSpace_NameClassScheduleModeSpaces">{{l("NameClassScheduleModeSpaces")}} *</label>
+									<input type="text" #ClassScheduleModeSpace_NameClassScheduleModeSpaces="ngModel" id="ClassScheduleModeSpace_NameClassScheduleModeSpaces" class="form-control" [(ngModel)]="classScheduleModeSpace.nameClassScheduleModeSpaces" name="NameClassScheduleModeSpaces"   minlength="1"  maxlength="400"  required/>
+								    <validation-messages [formCtrl]="ClassScheduleModeSpace_NameClassScheduleModeSpaces"></validation-messages>
+								</div>
+					
+								<br/><div class="m-checkbox-list">
+									<label for="ClassScheduleModeSpace_IsLock" class="kt-checkbox">
+										<input id="ClassScheduleModeSpace_IsLock" #ClassScheduleModeSpace_IsLock="ngModel" type="checkbox" name="IsLock" [(ngModel)]="classScheduleModeSpace.isLock"> 
+										{{l("IsLock")}}
+										<span></span>
+									</label>
+									<validation-messages [formCtrl]="ClassScheduleModeSpace_IsLock"></validation-messages>
+								</div>
+					
+
+                </div>
+                <div class="modal-footer">
+                    <button [disabled]="saving" type="button" class="btn btn-default" (click)="close()">{{l("Cancel")}}</button>
+                    <button type="submit" class="btn btn-primary blue" [disabled]="!classScheduleModeSpaceForm.form.valid" [buttonBusy]="saving" [busyText]="l('SavingWithThreeDot')"><i class="fa fa-save"></i> <span>{{l("Save")}}</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+<masterDetailChild_ListOfClassScheduleModeSpace_classScheduleModeSpaceUniversityProfessorLookupTableModal #classScheduleModeSpaceUniversityProfessorLookupTableModal (modalSave)="getNewUniversityProfessorId()"></masterDetailChild_ListOfClassScheduleModeSpace_classScheduleModeSpaceUniversityProfessorLookupTableModal>
+		 <masterDetailChild_ListOfClassScheduleModeSpace_classScheduleModeSpaceWorkTimeInDayLookupTableModal #classScheduleModeSpaceWorkTimeInDayLookupTableModal (modalSave)="getNewWorkTimeInDayId()"></masterDetailChild_ListOfClassScheduleModeSpace_classScheduleModeSpaceWorkTimeInDayLookupTableModal>
+		 <masterDetailChild_ListOfClassScheduleModeSpace_classScheduleModeSpaceLessonLookupTableModal #classScheduleModeSpaceLessonLookupTableModal (modalSave)="getNewLessonId()"></masterDetailChild_ListOfClassScheduleModeSpace_classScheduleModeSpaceLessonLookupTableModal>
+		 
+</div>

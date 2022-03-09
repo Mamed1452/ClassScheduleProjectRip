@@ -9,6 +9,7 @@ import { AppComponentBase } from '@shared/common/app-component-base';
 import { DateTime } from 'luxon';
 
 import { DateTimeService } from '@app/shared/common/timing/date-time.service';
+import { ClassScheduleModeSpaceListOfClassScheduleModeSpaceLookupTableModalComponent } from './classScheduleModeSpace-listOfClassScheduleModeSpace-lookup-table-modal.component';
 import { ClassScheduleModeSpaceUniversityProfessorLookupTableModalComponent } from './classScheduleModeSpace-universityProfessor-lookup-table-modal.component';
 import { ClassScheduleModeSpaceWorkTimeInDayLookupTableModalComponent } from './classScheduleModeSpace-workTimeInDay-lookup-table-modal.component';
 import { ClassScheduleModeSpaceLessonLookupTableModalComponent } from './classScheduleModeSpace-lesson-lookup-table-modal.component';
@@ -19,6 +20,8 @@ import { ClassScheduleModeSpaceLessonLookupTableModalComponent } from './classSc
 })
 export class CreateOrEditClassScheduleModeSpaceModalComponent extends AppComponentBase implements OnInit {
     @ViewChild('createOrEditModal', { static: true }) modal: ModalDirective;
+    @ViewChild('classScheduleModeSpaceListOfClassScheduleModeSpaceLookupTableModal', { static: true })
+    classScheduleModeSpaceListOfClassScheduleModeSpaceLookupTableModal: ClassScheduleModeSpaceListOfClassScheduleModeSpaceLookupTableModalComponent;
     @ViewChild('classScheduleModeSpaceUniversityProfessorLookupTableModal', { static: true })
     classScheduleModeSpaceUniversityProfessorLookupTableModal: ClassScheduleModeSpaceUniversityProfessorLookupTableModalComponent;
     @ViewChild('classScheduleModeSpaceWorkTimeInDayLookupTableModal', { static: true })
@@ -33,6 +36,7 @@ export class CreateOrEditClassScheduleModeSpaceModalComponent extends AppCompone
 
     classScheduleModeSpace: CreateOrEditClassScheduleModeSpaceDto = new CreateOrEditClassScheduleModeSpaceDto();
 
+    listOfClassScheduleModeSpaceListOfClassScheduleModeSpaceName = '';
     universityProfessorUniversityProfessorName = '';
     workTimeInDayNameWorkTimeInDay = '';
     lessonNameLesson = '';
@@ -49,6 +53,7 @@ export class CreateOrEditClassScheduleModeSpaceModalComponent extends AppCompone
         if (!classScheduleModeSpaceId) {
             this.classScheduleModeSpace = new CreateOrEditClassScheduleModeSpaceDto();
             this.classScheduleModeSpace.id = classScheduleModeSpaceId;
+            this.listOfClassScheduleModeSpaceListOfClassScheduleModeSpaceName = '';
             this.universityProfessorUniversityProfessorName = '';
             this.workTimeInDayNameWorkTimeInDay = '';
             this.lessonNameLesson = '';
@@ -61,6 +66,8 @@ export class CreateOrEditClassScheduleModeSpaceModalComponent extends AppCompone
                 .subscribe((result) => {
                     this.classScheduleModeSpace = result.classScheduleModeSpace;
 
+                    this.listOfClassScheduleModeSpaceListOfClassScheduleModeSpaceName =
+                        result.listOfClassScheduleModeSpaceListOfClassScheduleModeSpaceName;
                     this.universityProfessorUniversityProfessorName = result.universityProfessorUniversityProfessorName;
                     this.workTimeInDayNameWorkTimeInDay = result.workTimeInDayNameWorkTimeInDay;
                     this.lessonNameLesson = result.lessonNameLesson;
@@ -88,6 +95,11 @@ export class CreateOrEditClassScheduleModeSpaceModalComponent extends AppCompone
             });
     }
 
+    openSelectListOfClassScheduleModeSpaceModal() {
+        this.classScheduleModeSpaceListOfClassScheduleModeSpaceLookupTableModal.id = this.classScheduleModeSpace.listOfClassScheduleModeSpaceId;
+        this.classScheduleModeSpaceListOfClassScheduleModeSpaceLookupTableModal.displayName = this.listOfClassScheduleModeSpaceListOfClassScheduleModeSpaceName;
+        this.classScheduleModeSpaceListOfClassScheduleModeSpaceLookupTableModal.show();
+    }
     openSelectUniversityProfessorModal() {
         this.classScheduleModeSpaceUniversityProfessorLookupTableModal.id = this.classScheduleModeSpace.universityProfessorId;
         this.classScheduleModeSpaceUniversityProfessorLookupTableModal.displayName = this.universityProfessorUniversityProfessorName;
@@ -104,6 +116,10 @@ export class CreateOrEditClassScheduleModeSpaceModalComponent extends AppCompone
         this.classScheduleModeSpaceLessonLookupTableModal.show();
     }
 
+    setListOfClassScheduleModeSpaceIdNull() {
+        this.classScheduleModeSpace.listOfClassScheduleModeSpaceId = null;
+        this.listOfClassScheduleModeSpaceListOfClassScheduleModeSpaceName = '';
+    }
     setUniversityProfessorIdNull() {
         this.classScheduleModeSpace.universityProfessorId = null;
         this.universityProfessorUniversityProfessorName = '';
@@ -117,6 +133,10 @@ export class CreateOrEditClassScheduleModeSpaceModalComponent extends AppCompone
         this.lessonNameLesson = '';
     }
 
+    getNewListOfClassScheduleModeSpaceId() {
+        this.classScheduleModeSpace.listOfClassScheduleModeSpaceId = this.classScheduleModeSpaceListOfClassScheduleModeSpaceLookupTableModal.id;
+        this.listOfClassScheduleModeSpaceListOfClassScheduleModeSpaceName = this.classScheduleModeSpaceListOfClassScheduleModeSpaceLookupTableModal.displayName;
+    }
     getNewUniversityProfessorId() {
         this.classScheduleModeSpace.universityProfessorId = this.classScheduleModeSpaceUniversityProfessorLookupTableModal.id;
         this.universityProfessorUniversityProfessorName = this.classScheduleModeSpaceUniversityProfessorLookupTableModal.displayName;

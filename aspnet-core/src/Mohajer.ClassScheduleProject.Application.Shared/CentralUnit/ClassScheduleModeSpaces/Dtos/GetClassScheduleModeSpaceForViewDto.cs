@@ -4,6 +4,8 @@
     {
         public ClassScheduleModeSpaceDto ClassScheduleModeSpace { get; set; }
 
+        public string ListOfClassScheduleModeSpaceListOfClassScheduleModeSpaceName { get; set; }
+
         public string UniversityProfessorUniversityProfessorName { get; set; }
 
         public string WorkTimeInDayNameWorkTimeInDay { get; set; }

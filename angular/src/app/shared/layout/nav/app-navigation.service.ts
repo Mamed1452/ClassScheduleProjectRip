@@ -54,6 +54,10 @@ export class AppNavigationService {
             new AppMenuItem('ClassScheduleModeSpaces', 'Pages.ClassScheduleModeSpaces', 'flaticon-more', '/app/main/classScheduleModeSpaces/classScheduleModeSpaces'),
             
             new AppMenuItem('ListOfAllCalculatedResults', 'Pages.ListOfAllCalculatedResults', 'flaticon-more', '/app/main/listOfAllCalculatedResults/listOfAllCalculatedResults'),
+            
+            new AppMenuItem('MainDomains', 'Pages.MainDomains', 'flaticon-more', '/app/main/mainDomains/mainDomains'),
+            
+            new AppMenuItem('ListOfMainDomains', 'Pages.ListOfMainDomains', 'flaticon-more', '/app/main/listOfMainDomains/listOfMainDomains'),
              new AppMenuItem('Administration', '', 'flaticon-interface-8', '', [], [
                 new AppMenuItem('OrganizationUnits', 'Pages.Administration.OrganizationUnits', 'flaticon-map', '/app/admin/organization-units'),
                 new AppMenuItem('Roles', 'Pages.Administration.Roles', 'flaticon-suitcase', '/app/admin/roles'),

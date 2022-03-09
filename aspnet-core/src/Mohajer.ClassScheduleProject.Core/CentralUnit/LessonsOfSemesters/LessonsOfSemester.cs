@@ -22,6 +22,9 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.LessonsOfSemesters
 
         public virtual bool IsActive { get; set; }
 
+        [Required]
+        public virtual string LessonsOfSemesterName { get; set; }
+
         public virtual long LessonId { get; set; }
 
         [ForeignKey("LessonId")]

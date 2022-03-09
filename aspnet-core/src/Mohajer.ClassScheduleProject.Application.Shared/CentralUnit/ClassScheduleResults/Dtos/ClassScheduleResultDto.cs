@@ -7,7 +7,7 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults.Dtos
     {
         public long WorkTimeInDayId { get; set; }
 
-        public int LessonId { get; set; }
+        public long LessonId { get; set; }
 
         public int UniversityProfessorId { get; set; }
 
@@ -18,6 +18,8 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults.Dtos
         public int UniversityMajorId { get; set; }
 
         public int UniversityDepartmentId { get; set; }
+
+        public int ClassroomBuildingId { get; set; }
 
         public long ListOfAllCalculatedResultId { get; set; }
 

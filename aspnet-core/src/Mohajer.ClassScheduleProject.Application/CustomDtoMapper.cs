@@ -1,4 +1,10 @@
-﻿using Mohajer.ClassScheduleProject.CentralUnit.ListOfAllCalculatedResults.Dtos;
+﻿using Mohajer.ClassScheduleProject.CentralUnit.ListOfMainDomains.Dtos;
+using Mohajer.ClassScheduleProject.CentralUnit.ListOfMainDomains;
+using Mohajer.ClassScheduleProject.CentralUnit.MainDomains.Dtos;
+using Mohajer.ClassScheduleProject.CentralUnit.MainDomains;
+using Mohajer.ClassScheduleProject.CentralUnit.ListOfClassScheduleModeSpaces.Dtos;
+using Mohajer.ClassScheduleProject.CentralUnit.ListOfClassScheduleModeSpaces;
+using Mohajer.ClassScheduleProject.CentralUnit.ListOfAllCalculatedResults.Dtos;
 using Mohajer.ClassScheduleProject.CentralUnit.ListOfAllCalculatedResults;
 using Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleModeSpaces.Dtos;
 using Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleModeSpaces;
@@ -86,6 +92,12 @@ namespace Mohajer.ClassScheduleProject
     {
         public static void CreateMappings(IMapperConfigurationExpression configuration)
         {
+            configuration.CreateMap<CreateOrEditListOfMainDomainDto, ListOfMainDomain>().ReverseMap();
+            configuration.CreateMap<ListOfMainDomainDto, ListOfMainDomain>().ReverseMap();
+            configuration.CreateMap<CreateOrEditMainDomainDto, MainDomain>().ReverseMap();
+            configuration.CreateMap<MainDomainDto, MainDomain>().ReverseMap();
+            configuration.CreateMap<CreateOrEditListOfClassScheduleModeSpaceDto, ListOfClassScheduleModeSpace>().ReverseMap();
+            configuration.CreateMap<ListOfClassScheduleModeSpaceDto, ListOfClassScheduleModeSpace>().ReverseMap();
             configuration.CreateMap<CreateOrEditListOfAllCalculatedResultDto, ListOfAllCalculatedResult>().ReverseMap();
             configuration.CreateMap<ListOfAllCalculatedResultDto, ListOfAllCalculatedResult>().ReverseMap();
             configuration.CreateMap<CreateOrEditClassScheduleModeSpaceDto, ClassScheduleModeSpace>().ReverseMap();

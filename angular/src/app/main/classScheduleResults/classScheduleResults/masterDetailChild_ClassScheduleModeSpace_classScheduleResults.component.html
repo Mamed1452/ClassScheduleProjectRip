@@ -215,6 +215,20 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ListOfAllCalculatedResultNameCalculatedResultFilter">
+                                    ({{ l('ListOfAllCalculatedResult') }}) {{ l('NameCalculatedResult') }}
+                                </label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="ListOfAllCalculatedResultNameCalculatedResultFilter"
+                                    name="listOfAllCalculatedResultNameCalculatedResultFilter"
+                                    [(ngModel)]="listOfAllCalculatedResultNameCalculatedResultFilter"
+                                />
+                            </div>
+                        </div>
                     </div>
                     <div class="row mb-2">
                         <div class="col-sm-12">
@@ -266,6 +280,13 @@
                                     "
                                 >
                                     {{ l('Actions') }}
+                                </th>
+                                <th
+                                    style="width: 150px"
+                                    pSortableColumn="listOfAllCalculatedResultFk.nameCalculatedResult"
+                                >
+                                    {{ l('NameCalculatedResult') }}
+                                    <p-sortIcon field="listOfAllCalculatedResultNameCalculatedResult"></p-sortIcon>
                                 </th>
                                 <th style="width: 150px" pSortableColumn="workTimeInDayId">
                                     {{ l('WorkTimeInDayId') }}
@@ -361,6 +382,10 @@
                                             </li>
                                         </ul>
                                     </div>
+                                </td>
+                                <td style="width: 150px">
+                                    <span class="p-column-title">{{ l('NameCalculatedResult') }}</span>
+                                    {{ record.listOfAllCalculatedResultNameCalculatedResult }}
                                 </td>
                                 <td style="width: 150px">
                                     <span class="p-column-title">{{ l('WorkTimeInDayId') }}</span>

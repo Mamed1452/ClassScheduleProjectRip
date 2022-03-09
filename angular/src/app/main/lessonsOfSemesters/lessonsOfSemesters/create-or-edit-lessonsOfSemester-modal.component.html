@@ -137,6 +137,20 @@
                         </label>
                         <validation-messages [formCtrl]="LessonsOfSemester_IsActive"></validation-messages>
                     </div>
+
+                    <div class="form-group">
+                        <label for="LessonsOfSemester_LessonsOfSemesterName">{{ l('LessonsOfSemesterName') }} *</label>
+                        <input
+                            type="text"
+                            #LessonsOfSemester_LessonsOfSemesterName="ngModel"
+                            id="LessonsOfSemester_LessonsOfSemesterName"
+                            class="form-control"
+                            [(ngModel)]="lessonsOfSemester.lessonsOfSemesterName"
+                            name="LessonsOfSemesterName"
+                            required
+                        />
+                        <validation-messages [formCtrl]="LessonsOfSemester_LessonsOfSemesterName"></validation-messages>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button [disabled]="saving" type="button" class="btn btn-default" (click)="close()">

@@ -1,4 +1,5 @@
-﻿using Mohajer.ClassScheduleProject.CentralUnit.UniversityProfessors;
+﻿using Mohajer.ClassScheduleProject.CentralUnit.ListOfClassScheduleModeSpaces;
+using Mohajer.ClassScheduleProject.CentralUnit.UniversityProfessors;
 using Mohajer.ClassScheduleProject.CentralUnit.WorkTimeInDays;
 using Mohajer.ClassScheduleProject.CentralUnit.Lessons;
 
@@ -27,14 +28,16 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleModeSpaces
     {
         private readonly IRepository<ClassScheduleModeSpace, long> _classScheduleModeSpaceRepository;
         private readonly IClassScheduleModeSpacesExcelExporter _classScheduleModeSpacesExcelExporter;
+        private readonly IRepository<ListOfClassScheduleModeSpace, long> _lookup_listOfClassScheduleModeSpaceRepository;
         private readonly IRepository<UniversityProfessor, int> _lookup_universityProfessorRepository;
         private readonly IRepository<WorkTimeInDay, long> _lookup_workTimeInDayRepository;
         private readonly IRepository<Lesson, long> _lookup_lessonRepository;
 
-        public ClassScheduleModeSpacesAppService(IRepository<ClassScheduleModeSpace, long> classScheduleModeSpaceRepository, IClassScheduleModeSpacesExcelExporter classScheduleModeSpacesExcelExporter, IRepository<UniversityProfessor, int> lookup_universityProfessorRepository, IRepository<WorkTimeInDay, long> lookup_workTimeInDayRepository, IRepository<Lesson, long> lookup_lessonRepository)
+        public ClassScheduleModeSpacesAppService(IRepository<ClassScheduleModeSpace, long> classScheduleModeSpaceRepository, IClassScheduleModeSpacesExcelExporter classScheduleModeSpacesExcelExporter, IRepository<ListOfClassScheduleModeSpace, long> lookup_listOfClassScheduleModeSpaceRepository, IRepository<UniversityProfessor, int> lookup_universityProfessorRepository, IRepository<WorkTimeInDay, long> lookup_workTimeInDayRepository, IRepository<Lesson, long> lookup_lessonRepository)
         {
             _classScheduleModeSpaceRepository = classScheduleModeSpaceRepository;
             _classScheduleModeSpacesExcelExporter = classScheduleModeSpacesExcelExporter;
+            _lookup_listOfClassScheduleModeSpaceRepository = lookup_listOfClassScheduleModeSpaceRepository;
             _lookup_universityProfessorRepository = lookup_universityProfessorRepository;
             _lookup_workTimeInDayRepository = lookup_workTimeInDayRepository;
             _lookup_lessonRepository = lookup_lessonRepository;
@@ -45,29 +48,35 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleModeSpaces
         {
 
             var filteredClassScheduleModeSpaces = _classScheduleModeSpaceRepository.GetAll()
+                        .Include(e => e.ListOfClassScheduleModeSpaceFk)
                         .Include(e => e.UniversityProfessorFk)
                         .Include(e => e.WorkTimeInDayFk)
                         .Include(e => e.LessonFk)
                         .WhereIf(!string.IsNullOrWhiteSpace(input.Filter), e => false || e.NameClassScheduleModeSpaces.Contains(input.Filter))
                         .WhereIf(!string.IsNullOrWhiteSpace(input.NameClassScheduleModeSpacesFilter), e => e.NameClassScheduleModeSpaces == input.NameClassScheduleModeSpacesFilter)
                         .WhereIf(input.IsLockFilter.HasValue && input.IsLockFilter > -1, e => (input.IsLockFilter == 1 && e.IsLock) || (input.IsLockFilter == 0 && !e.IsLock))
+                        .WhereIf(!string.IsNullOrWhiteSpace(input.ListOfClassScheduleModeSpaceListOfClassScheduleModeSpaceNameFilter), e => e.ListOfClassScheduleModeSpaceFk != null && e.ListOfClassScheduleModeSpaceFk.ListOfClassScheduleModeSpaceName == input.ListOfClassScheduleModeSpaceListOfClassScheduleModeSpaceNameFilter)
                         .WhereIf(!string.IsNullOrWhiteSpace(input.UniversityProfessorUniversityProfessorNameFilter), e => e.UniversityProfessorFk != null && e.UniversityProfessorFk.UniversityProfessorName == input.UniversityProfessorUniversityProfessorNameFilter)
                         .WhereIf(!string.IsNullOrWhiteSpace(input.WorkTimeInDayNameWorkTimeInDayFilter), e => e.WorkTimeInDayFk != null && e.WorkTimeInDayFk.NameWorkTimeInDay == input.WorkTimeInDayNameWorkTimeInDayFilter)
-                        .WhereIf(!string.IsNullOrWhiteSpace(input.LessonNameLessonFilter), e => e.LessonFk != null && e.LessonFk.NameLesson == input.LessonNameLessonFilter);
+                        .WhereIf(!string.IsNullOrWhiteSpace(input.LessonNameLessonFilter), e => e.LessonFk != null && e.LessonFk.NameLesson == input.LessonNameLessonFilter)
+                        .WhereIf(input.ListOfClassScheduleModeSpaceIdFilter.HasValue, e => false || e.ListOfClassScheduleModeSpaceId == input.ListOfClassScheduleModeSpaceIdFilter.Value);
 
             var pagedAndFilteredClassScheduleModeSpaces = filteredClassScheduleModeSpaces
                 .OrderBy(input.Sorting ?? "id asc")
                 .PageBy(input);
 
             var classScheduleModeSpaces = from o in pagedAndFilteredClassScheduleModeSpaces
-                                          join o1 in _lookup_universityProfessorRepository.GetAll() on o.UniversityProfessorId equals o1.Id into j1
+                                          join o1 in _lookup_listOfClassScheduleModeSpaceRepository.GetAll() on o.ListOfClassScheduleModeSpaceId equals o1.Id into j1
                                           from s1 in j1.DefaultIfEmpty()
 
-                                          join o2 in _lookup_workTimeInDayRepository.GetAll() on o.WorkTimeInDayId equals o2.Id into j2
+                                          join o2 in _lookup_universityProfessorRepository.GetAll() on o.UniversityProfessorId equals o2.Id into j2
                                           from s2 in j2.DefaultIfEmpty()
 
-                                          join o3 in _lookup_lessonRepository.GetAll() on o.LessonId equals o3.Id into j3
+                                          join o3 in _lookup_workTimeInDayRepository.GetAll() on o.WorkTimeInDayId equals o3.Id into j3
                                           from s3 in j3.DefaultIfEmpty()
+
+                                          join o4 in _lookup_lessonRepository.GetAll() on o.LessonId equals o4.Id into j4
+                                          from s4 in j4.DefaultIfEmpty()
 
                                           select new
                                           {
@@ -75,9 +84,10 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleModeSpaces
                                               o.NameClassScheduleModeSpaces,
                                               o.IsLock,
                                               Id = o.Id,
-                                              UniversityProfessorUniversityProfessorName = s1 == null || s1.UniversityProfessorName == null ? "" : s1.UniversityProfessorName.ToString(),
-                                              WorkTimeInDayNameWorkTimeInDay = s2 == null || s2.NameWorkTimeInDay == null ? "" : s2.NameWorkTimeInDay.ToString(),
-                                              LessonNameLesson = s3 == null || s3.NameLesson == null ? "" : s3.NameLesson.ToString()
+                                              ListOfClassScheduleModeSpaceListOfClassScheduleModeSpaceName = s1 == null || s1.ListOfClassScheduleModeSpaceName == null ? "" : s1.ListOfClassScheduleModeSpaceName.ToString(),
+                                              UniversityProfessorUniversityProfessorName = s2 == null || s2.UniversityProfessorName == null ? "" : s2.UniversityProfessorName.ToString(),
+                                              WorkTimeInDayNameWorkTimeInDay = s3 == null || s3.NameWorkTimeInDay == null ? "" : s3.NameWorkTimeInDay.ToString(),
+                                              LessonNameLesson = s4 == null || s4.NameLesson == null ? "" : s4.NameLesson.ToString()
                                           };
 
             var totalCount = await filteredClassScheduleModeSpaces.CountAsync();
@@ -96,6 +106,7 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleModeSpaces
                         IsLock = o.IsLock,
                         Id = o.Id,
                     },
+                    ListOfClassScheduleModeSpaceListOfClassScheduleModeSpaceName = o.ListOfClassScheduleModeSpaceListOfClassScheduleModeSpaceName,
                     UniversityProfessorUniversityProfessorName = o.UniversityProfessorUniversityProfessorName,
                     WorkTimeInDayNameWorkTimeInDay = o.WorkTimeInDayNameWorkTimeInDay,
                     LessonNameLesson = o.LessonNameLesson
@@ -116,6 +127,12 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleModeSpaces
             var classScheduleModeSpace = await _classScheduleModeSpaceRepository.GetAsync(id);
 
             var output = new GetClassScheduleModeSpaceForViewDto { ClassScheduleModeSpace = ObjectMapper.Map<ClassScheduleModeSpaceDto>(classScheduleModeSpace) };
+
+            if (output.ClassScheduleModeSpace.ListOfClassScheduleModeSpaceId != null)
+            {
+                var _lookupListOfClassScheduleModeSpace = await _lookup_listOfClassScheduleModeSpaceRepository.FirstOrDefaultAsync((long)output.ClassScheduleModeSpace.ListOfClassScheduleModeSpaceId);
+                output.ListOfClassScheduleModeSpaceListOfClassScheduleModeSpaceName = _lookupListOfClassScheduleModeSpace?.ListOfClassScheduleModeSpaceName?.ToString();
+            }
 
             if (output.ClassScheduleModeSpace.UniversityProfessorId != null)
             {
@@ -144,6 +161,12 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleModeSpaces
             var classScheduleModeSpace = await _classScheduleModeSpaceRepository.FirstOrDefaultAsync(input.Id);
 
             var output = new GetClassScheduleModeSpaceForEditOutput { ClassScheduleModeSpace = ObjectMapper.Map<CreateOrEditClassScheduleModeSpaceDto>(classScheduleModeSpace) };
+
+            if (output.ClassScheduleModeSpace.ListOfClassScheduleModeSpaceId != null)
+            {
+                var _lookupListOfClassScheduleModeSpace = await _lookup_listOfClassScheduleModeSpaceRepository.FirstOrDefaultAsync((long)output.ClassScheduleModeSpace.ListOfClassScheduleModeSpaceId);
+                output.ListOfClassScheduleModeSpaceListOfClassScheduleModeSpaceName = _lookupListOfClassScheduleModeSpace?.ListOfClassScheduleModeSpaceName?.ToString();
+            }
 
             if (output.ClassScheduleModeSpace.UniversityProfessorId != null)
             {
@@ -210,25 +233,30 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleModeSpaces
         {
 
             var filteredClassScheduleModeSpaces = _classScheduleModeSpaceRepository.GetAll()
+                        .Include(e => e.ListOfClassScheduleModeSpaceFk)
                         .Include(e => e.UniversityProfessorFk)
                         .Include(e => e.WorkTimeInDayFk)
                         .Include(e => e.LessonFk)
                         .WhereIf(!string.IsNullOrWhiteSpace(input.Filter), e => false || e.NameClassScheduleModeSpaces.Contains(input.Filter))
                         .WhereIf(!string.IsNullOrWhiteSpace(input.NameClassScheduleModeSpacesFilter), e => e.NameClassScheduleModeSpaces == input.NameClassScheduleModeSpacesFilter)
                         .WhereIf(input.IsLockFilter.HasValue && input.IsLockFilter > -1, e => (input.IsLockFilter == 1 && e.IsLock) || (input.IsLockFilter == 0 && !e.IsLock))
+                        .WhereIf(!string.IsNullOrWhiteSpace(input.ListOfClassScheduleModeSpaceListOfClassScheduleModeSpaceNameFilter), e => e.ListOfClassScheduleModeSpaceFk != null && e.ListOfClassScheduleModeSpaceFk.ListOfClassScheduleModeSpaceName == input.ListOfClassScheduleModeSpaceListOfClassScheduleModeSpaceNameFilter)
                         .WhereIf(!string.IsNullOrWhiteSpace(input.UniversityProfessorUniversityProfessorNameFilter), e => e.UniversityProfessorFk != null && e.UniversityProfessorFk.UniversityProfessorName == input.UniversityProfessorUniversityProfessorNameFilter)
                         .WhereIf(!string.IsNullOrWhiteSpace(input.WorkTimeInDayNameWorkTimeInDayFilter), e => e.WorkTimeInDayFk != null && e.WorkTimeInDayFk.NameWorkTimeInDay == input.WorkTimeInDayNameWorkTimeInDayFilter)
                         .WhereIf(!string.IsNullOrWhiteSpace(input.LessonNameLessonFilter), e => e.LessonFk != null && e.LessonFk.NameLesson == input.LessonNameLessonFilter);
 
             var query = (from o in filteredClassScheduleModeSpaces
-                         join o1 in _lookup_universityProfessorRepository.GetAll() on o.UniversityProfessorId equals o1.Id into j1
+                         join o1 in _lookup_listOfClassScheduleModeSpaceRepository.GetAll() on o.ListOfClassScheduleModeSpaceId equals o1.Id into j1
                          from s1 in j1.DefaultIfEmpty()
 
-                         join o2 in _lookup_workTimeInDayRepository.GetAll() on o.WorkTimeInDayId equals o2.Id into j2
+                         join o2 in _lookup_universityProfessorRepository.GetAll() on o.UniversityProfessorId equals o2.Id into j2
                          from s2 in j2.DefaultIfEmpty()
 
-                         join o3 in _lookup_lessonRepository.GetAll() on o.LessonId equals o3.Id into j3
+                         join o3 in _lookup_workTimeInDayRepository.GetAll() on o.WorkTimeInDayId equals o3.Id into j3
                          from s3 in j3.DefaultIfEmpty()
+
+                         join o4 in _lookup_lessonRepository.GetAll() on o.LessonId equals o4.Id into j4
+                         from s4 in j4.DefaultIfEmpty()
 
                          select new GetClassScheduleModeSpaceForViewDto()
                          {
@@ -238,14 +266,45 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleModeSpaces
                                  IsLock = o.IsLock,
                                  Id = o.Id
                              },
-                             UniversityProfessorUniversityProfessorName = s1 == null || s1.UniversityProfessorName == null ? "" : s1.UniversityProfessorName.ToString(),
-                             WorkTimeInDayNameWorkTimeInDay = s2 == null || s2.NameWorkTimeInDay == null ? "" : s2.NameWorkTimeInDay.ToString(),
-                             LessonNameLesson = s3 == null || s3.NameLesson == null ? "" : s3.NameLesson.ToString()
+                             ListOfClassScheduleModeSpaceListOfClassScheduleModeSpaceName = s1 == null || s1.ListOfClassScheduleModeSpaceName == null ? "" : s1.ListOfClassScheduleModeSpaceName.ToString(),
+                             UniversityProfessorUniversityProfessorName = s2 == null || s2.UniversityProfessorName == null ? "" : s2.UniversityProfessorName.ToString(),
+                             WorkTimeInDayNameWorkTimeInDay = s3 == null || s3.NameWorkTimeInDay == null ? "" : s3.NameWorkTimeInDay.ToString(),
+                             LessonNameLesson = s4 == null || s4.NameLesson == null ? "" : s4.NameLesson.ToString()
                          });
 
             var classScheduleModeSpaceListDtos = await query.ToListAsync();
 
             return _classScheduleModeSpacesExcelExporter.ExportToFile(classScheduleModeSpaceListDtos);
+        }
+
+        [AbpAuthorize(AppPermissions.Pages_ClassScheduleModeSpaces)]
+        public async Task<PagedResultDto<ClassScheduleModeSpaceListOfClassScheduleModeSpaceLookupTableDto>> GetAllListOfClassScheduleModeSpaceForLookupTable(GetAllForLookupTableInput input)
+        {
+            var query = _lookup_listOfClassScheduleModeSpaceRepository.GetAll().WhereIf(
+                   !string.IsNullOrWhiteSpace(input.Filter),
+                  e => e.ListOfClassScheduleModeSpaceName != null && e.ListOfClassScheduleModeSpaceName.Contains(input.Filter)
+               );
+
+            var totalCount = await query.CountAsync();
+
+            var listOfClassScheduleModeSpaceList = await query
+                .PageBy(input)
+                .ToListAsync();
+
+            var lookupTableDtoList = new List<ClassScheduleModeSpaceListOfClassScheduleModeSpaceLookupTableDto>();
+            foreach (var listOfClassScheduleModeSpace in listOfClassScheduleModeSpaceList)
+            {
+                lookupTableDtoList.Add(new ClassScheduleModeSpaceListOfClassScheduleModeSpaceLookupTableDto
+                {
+                    Id = listOfClassScheduleModeSpace.Id,
+                    DisplayName = listOfClassScheduleModeSpace.ListOfClassScheduleModeSpaceName?.ToString()
+                });
+            }
+
+            return new PagedResultDto<ClassScheduleModeSpaceListOfClassScheduleModeSpaceLookupTableDto>(
+                totalCount,
+                lookupTableDtoList
+            );
         }
 
         [AbpAuthorize(AppPermissions.Pages_ClassScheduleModeSpaces)]

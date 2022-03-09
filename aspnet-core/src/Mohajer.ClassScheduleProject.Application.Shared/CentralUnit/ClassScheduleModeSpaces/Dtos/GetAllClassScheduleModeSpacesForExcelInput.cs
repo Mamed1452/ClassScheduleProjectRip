@@ -11,11 +11,14 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleModeSpaces.Dtos
 
         public int? IsLockFilter { get; set; }
 
+        public string ListOfClassScheduleModeSpaceListOfClassScheduleModeSpaceNameFilter { get; set; }
+
         public string UniversityProfessorUniversityProfessorNameFilter { get; set; }
 
         public string WorkTimeInDayNameWorkTimeInDayFilter { get; set; }
 
         public string LessonNameLessonFilter { get; set; }
 
+        public long? ListOfClassScheduleModeSpaceIdFilter { get; set; }
     }
 }

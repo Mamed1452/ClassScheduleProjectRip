@@ -16,6 +16,9 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.LessonsOfSemesters.Dtos
 
         public bool IsActive { get; set; }
 
+        [Required]
+        public string LessonsOfSemesterName { get; set; }
+
         public long LessonId { get; set; }
 
         public long SemesterId { get; set; }

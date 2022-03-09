@@ -108,6 +108,20 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
+                                        <label for="LessonsOfSemesterNameFilter">
+                                            {{ l('LessonsOfSemesterName') }}
+                                        </label>
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="LessonsOfSemesterNameFilter"
+                                            name="lessonsOfSemesterNameFilter"
+                                            [(ngModel)]="lessonsOfSemesterNameFilter"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
                                         <label for="LessonNameLessonFilter">
                                             ({{ l('Lesson') }}) {{ l('NameLesson') }}
                                         </label>
@@ -207,6 +221,10 @@
                                         <th style="width: 150px" pSortableColumn="isActive">
                                             {{ l('IsActive') }}
                                             <p-sortIcon field="lessonsOfSemester.isActive"></p-sortIcon>
+                                        </th>
+                                        <th style="width: 150px" pSortableColumn="lessonsOfSemesterName">
+                                            {{ l('LessonsOfSemesterName') }}
+                                            <p-sortIcon field="lessonsOfSemester.lessonsOfSemesterName"></p-sortIcon>
                                         </th>
                                     </tr>
                                 </ng-template>
@@ -308,6 +326,10 @@
                                             <div *ngIf="!record.lessonsOfSemester.isActive" class="text-center">
                                                 <i class="fa fa-times-circle" title="False"></i>
                                             </div>
+                                        </td>
+                                        <td style="width: 150px">
+                                            <span class="p-column-title">{{ l('LessonsOfSemesterName') }}</span>
+                                            {{ record.lessonsOfSemester.lessonsOfSemesterName }}
                                         </td>
                                     </tr>
                                 </ng-template>

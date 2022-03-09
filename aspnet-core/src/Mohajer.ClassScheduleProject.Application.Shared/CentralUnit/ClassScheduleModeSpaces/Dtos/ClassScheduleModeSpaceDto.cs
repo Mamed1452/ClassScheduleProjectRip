@@ -9,6 +9,8 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleModeSpaces.Dtos
 
         public bool IsLock { get; set; }
 
+        public long ListOfClassScheduleModeSpaceId { get; set; }
+
         public int UniversityProfessorId { get; set; }
 
         public long WorkTimeInDayId { get; set; }

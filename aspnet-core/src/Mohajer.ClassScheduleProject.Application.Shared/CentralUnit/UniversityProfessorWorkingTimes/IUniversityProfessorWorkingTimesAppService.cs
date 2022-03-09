@@ -16,6 +16,7 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.UniversityProfessorWorkingTim
         Task<GetUniversityProfessorWorkingTimeForEditOutput> GetUniversityProfessorWorkingTimeForEdit(EntityDto<long> input);
 
         Task CreateOrEdit(CreateOrEditUniversityProfessorWorkingTimeDto input);
+        Task CreateGroup(CreateGroupInputDto input);
 
         Task Delete(EntityDto<long> input);
 

@@ -6,6 +6,21 @@
     /// </summary>
     public static class AppPermissions
     {
+        public const string Pages_ListOfMainDomains = "Pages.ListOfMainDomains";
+        public const string Pages_ListOfMainDomains_Create = "Pages.ListOfMainDomains.Create";
+        public const string Pages_ListOfMainDomains_Edit = "Pages.ListOfMainDomains.Edit";
+        public const string Pages_ListOfMainDomains_Delete = "Pages.ListOfMainDomains.Delete";
+
+        public const string Pages_MainDomains = "Pages.MainDomains";
+        public const string Pages_MainDomains_Create = "Pages.MainDomains.Create";
+        public const string Pages_MainDomains_Edit = "Pages.MainDomains.Edit";
+        public const string Pages_MainDomains_Delete = "Pages.MainDomains.Delete";
+
+        public const string Pages_ListOfClassScheduleModeSpaces = "Pages.ListOfClassScheduleModeSpaces";
+        public const string Pages_ListOfClassScheduleModeSpaces_Create = "Pages.ListOfClassScheduleModeSpaces.Create";
+        public const string Pages_ListOfClassScheduleModeSpaces_Edit = "Pages.ListOfClassScheduleModeSpaces.Edit";
+        public const string Pages_ListOfClassScheduleModeSpaces_Delete = "Pages.ListOfClassScheduleModeSpaces.Delete";
+
         public const string Pages_ListOfAllCalculatedResults = "Pages.ListOfAllCalculatedResults";
         public const string Pages_ListOfAllCalculatedResults_Create = "Pages.ListOfAllCalculatedResults.Create";
         public const string Pages_ListOfAllCalculatedResults_Edit = "Pages.ListOfAllCalculatedResults.Edit";

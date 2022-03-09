@@ -1,0 +1,194 @@
+﻿    <div [class]="containerClass">
+        <div class="card card-custom gutter-b">
+                       
+                <div class="card-header align-items-center border-0 mt-4">
+                    <h3 class="card-title align-items-start flex-column">
+                        <span class="font-weight-bolder text-dark">  {{"ClassScheduleModeSpaces" | localize}}</span>
+                    </h3>
+                    <div class="card-toolbar">
+                            <button (click)="exportToExcel()" class="btn btn-outline-success"><i class="fa fa-file-excel"></i> {{l("ExportToExcel")}}</button>
+                <button *ngIf="isGranted('Pages.ClassScheduleModeSpaces.Create')" (click)="createClassScheduleModeSpace()" 
+                            class="btn btn-primary blue"><i class="fa fa-plus"></i> {{l("CreateNewClassScheduleModeSpace")}}</button>                    
+                    </div>
+                </div>
+            
+            <div class="card-body">
+                <form class="form" autocomplete="off">
+                    <div>
+                        <div class="row align-items-center">
+                            <div class="col-xl-12">
+                                <div class="form-group m-form__group align-items-center">
+                                    <div class="input-group">
+                                        <input [(ngModel)]="filterText" name="filterText" autoFocus class="form-control m-input" [placeholder]="l('SearchWithThreeDot')" type="text">
+                                        <span class="input-group-btn">
+                                            <button (click)="getClassScheduleModeSpaces()" class="btn btn-primary" type="submit"><i class="flaticon-search-1"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+						 <div class="row" [hidden]="!advancedFiltersAreShown">
+						 	<div class="col-md-12">
+						         <div class="separator separator-dashed"></div>
+						     </div>
+
+
+							<div class="col-md-3">
+								<div class="form-group">
+									<label for="NameClassScheduleModeSpacesFilter">{{l("NameClassScheduleModeSpaces")}}</label>
+									<input type="text" class="form-control" id="NameClassScheduleModeSpacesFilter" name="nameClassScheduleModeSpacesFilter" [(ngModel)]="nameClassScheduleModeSpacesFilter">
+								</div>
+                            </div>	
+							<div class="col-md-3">
+								<label for="IsLockFilterSelect">{{l("IsLock")}}</label>
+								<select class="form-control" name="IsLockFilter" id="IsLockFilterSelect" [(ngModel)]="isLockFilter">
+								<option value="-1">{{l("All")}}</option>
+								<option value="0">{{l("False")}}</option>
+								<option value="1">{{l("True")}}</option>
+								</select>
+                            </div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label for="UniversityProfessorUniversityProfessorNameFilter">({{l("UniversityProfessor")}}) {{l("UniversityProfessorName")}}</label>
+									<input type="text" class="form-control" id="UniversityProfessorUniversityProfessorNameFilter" name="universityProfessorUniversityProfessorNameFilter" [(ngModel)]="universityProfessorUniversityProfessorNameFilter">
+                                </div>
+                            </div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label for="WorkTimeInDayNameWorkTimeInDayFilter">({{l("WorkTimeInDay")}}) {{l("NameWorkTimeInDay")}}</label>
+									<input type="text" class="form-control" id="WorkTimeInDayNameWorkTimeInDayFilter" name="workTimeInDayNameWorkTimeInDayFilter" [(ngModel)]="workTimeInDayNameWorkTimeInDayFilter">
+                                </div>
+                            </div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label for="LessonNameLessonFilter">({{l("Lesson")}}) {{l("NameLesson")}}</label>
+									<input type="text" class="form-control" id="LessonNameLessonFilter" name="lessonNameLessonFilter" [(ngModel)]="lessonNameLessonFilter">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-sm-12">
+                                <span class="clickable-item text-muted" *ngIf="!advancedFiltersAreShown" (click)="advancedFiltersAreShown=!advancedFiltersAreShown"><i class="fa fa-angle-down"></i> {{l("ShowAdvancedFilters")}}</span>
+                                <span class="clickable-item text-muted" *ngIf="advancedFiltersAreShown" (click)="advancedFiltersAreShown=!advancedFiltersAreShown"><i class="fa fa-angle-up"></i> {{l("HideAdvancedFilters")}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="row align-items-center">
+                    <!--<Primeng-Datatable-Start>-->
+                    <div class="primeng-datatable-container col-12"
+                         [busyIf]="primengTableHelper.isLoading">
+                        <p-table #dataTable
+                                     (onLazyLoad)="getClassScheduleModeSpaces($event)"
+                                     [value]="primengTableHelper.records"
+                                     rows="{{primengTableHelper.defaultRecordsCountPerPage}}"
+                                     [paginator]="false"
+                                     [lazy]="true"
+                                     [scrollable]="true"
+                                     ScrollWidth="100%"
+                                     [responsive]="primengTableHelper.isResponsive"
+                                     [resizableColumns]="primengTableHelper.resizableColumns">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th style="width: 130px" [hidden]="!isGrantedAny('Pages.ClassScheduleModeSpaces.Edit', 'Pages.ClassScheduleModeSpaces.Delete')">{{l('Actions')}}</th>
+                                    <th style="width: 150px" pSortableColumn="universityProfessorFk.universityProfessorName">
+                                        {{l('UniversityProfessorName')}}
+                                        <p-sortIcon field="universityProfessorUniversityProfessorName"></p-sortIcon>
+                                    </th>
+                                    <th style="width: 150px" pSortableColumn="workTimeInDayFk.nameWorkTimeInDay">
+                                        {{l('NameWorkTimeInDay')}}
+                                        <p-sortIcon field="workTimeInDayNameWorkTimeInDay"></p-sortIcon>
+                                    </th>
+                                    <th style="width: 150px" pSortableColumn="lessonFk.nameLesson">
+                                        {{l('NameLesson')}}
+                                        <p-sortIcon field="lessonNameLesson"></p-sortIcon>
+                                    </th>
+                                    <th style="width: 150px" pSortableColumn="nameClassScheduleModeSpaces">
+                                        {{l('NameClassScheduleModeSpaces')}}
+                                        <p-sortIcon field="classScheduleModeSpace.nameClassScheduleModeSpaces"></p-sortIcon>
+                                    </th>
+                                    <th style="width: 150px" pSortableColumn="isLock">
+                                        {{l('IsLock')}}
+                                        <p-sortIcon field="classScheduleModeSpace.isLock"></p-sortIcon>
+                                    </th>
+
+                                </tr>
+                            </ng-template>                           
+							<ng-template pTemplate="body" let-record="$implicit">
+                                <tr>
+                                    <td style="width: 130px"
+                                        [hidden]="!isGrantedAny('Pages.ClassScheduleModeSpaces.Edit', 'Pages.ClassScheduleModeSpaces.Delete')">
+                                       <div class="btn-group dropdown" dropdown container="body">
+                                            <button class="dropdown-toggle btn btn-sm btn-primary" dropdownToggle>
+                                                <i class="fa fa-cog"></i><span class="caret"></span> {{l("Actions")}}
+                                            </button>
+												<ul class="dropdown-menu"  *dropdownMenu>
+												<li>
+													<a href="javascript:;" class="dropdown-item"
+														(click)="viewClassScheduleModeSpaceModal.show(record)">{{l('View')}}</a>
+												</li>
+												<li>
+                                                <a href="javascript:;" *ngIf="permission.isGranted('Pages.ClassScheduleModeSpaces.Edit')" class="dropdown-item"
+														(click)="createOrEditClassScheduleModeSpaceModal.show(listOfClassScheduleModeSpaceId,record.classScheduleModeSpace.id)">{{l('Edit')}}</a>												
+                                                </li>
+												<li>
+											        <a class="dropdown-item" href="javascript:;" *ngIf="permission.isGranted('Pages.ClassScheduleModeSpaces.Delete')"
+														(click)="deleteClassScheduleModeSpace(record.classScheduleModeSpace)">{{l('Delete')}}</a>
+												</li>
+                                                <li>
+                                                    <a href="javascript:;" *ngIf="entityHistoryEnabled" class="dropdown-item"
+                                                       (click)="showHistory(record.classScheduleModeSpace)">{{l('History')}}</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                    <td style="width:150px">
+												<span class="p-column-title"> {{l('UniversityProfessorName')}}</span>
+												{{record.universityProfessorUniversityProfessorName}}
+											</td>
+                                    <td style="width:150px">
+												<span class="p-column-title"> {{l('NameWorkTimeInDay')}}</span>
+												{{record.workTimeInDayNameWorkTimeInDay}}
+											</td>
+                                    <td style="width:150px">
+												<span class="p-column-title"> {{l('NameLesson')}}</span>
+												{{record.lessonNameLesson}}
+											</td>
+                                    <td style="width:150px">
+											<span class="p-column-title"> {{l('NameClassScheduleModeSpaces')}}</span>
+											{{record.classScheduleModeSpace.nameClassScheduleModeSpaces}}
+										</td>
+                                    <td style="width:150px">
+										<span class="p-column-title"> {{l('IsLock')}}</span>
+                                        <div *ngIf="record.classScheduleModeSpace.isLock" class="text-center"><i class="fa fa-check-circle text-success" title="True"></i></div>
+										<div *ngIf="!record.classScheduleModeSpace.isLock" class="text-center"><i class="fa fa-times-circle" title="False"></i></div>
+                                    </td>
+
+                                </tr>
+                            </ng-template>
+                        </p-table>
+						<div class="primeng-no-data" *ngIf="primengTableHelper.totalRecordsCount == 0">
+                            {{l('NoData')}}
+                        </div>
+                        <div class="primeng-paging-container">
+                            <p-paginator [rows]="primengTableHelper.defaultRecordsCountPerPage"
+                                         #paginator
+                                         (onPageChange)="getClassScheduleModeSpaces($event)"
+                                         [totalRecords]="primengTableHelper.totalRecordsCount"
+                                         [rowsPerPageOptions]="primengTableHelper.predefinedRecordsCountPerPage"
+                                         [showCurrentPageReport]="true"
+                                         [currentPageReportTemplate]="'TotalRecordsCount' | localize:primengTableHelper.totalRecordsCount"    
+                            >
+                            </p-paginator>
+                        </div>
+                    </div>
+                    <!--<Primeng-Datatable-End>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <masterDetailChild_ListOfClassScheduleModeSpace_createOrEditClassScheduleModeSpaceModal #createOrEditClassScheduleModeSpaceModal (modalSave)="getClassScheduleModeSpaces()"></masterDetailChild_ListOfClassScheduleModeSpace_createOrEditClassScheduleModeSpaceModal>    
+    <masterDetailChild_ListOfClassScheduleModeSpace_viewClassScheduleModeSpaceModal #viewClassScheduleModeSpaceModal></masterDetailChild_ListOfClassScheduleModeSpace_viewClassScheduleModeSpaceModal>
+     <entityTypeHistoryModal #entityTypeHistoryModal></entityTypeHistoryModal>

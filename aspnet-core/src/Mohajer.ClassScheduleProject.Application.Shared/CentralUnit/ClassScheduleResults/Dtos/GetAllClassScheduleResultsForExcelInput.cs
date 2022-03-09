@@ -10,8 +10,8 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults.Dtos
         public long? MaxWorkTimeInDayIdFilter { get; set; }
         public long? MinWorkTimeInDayIdFilter { get; set; }
 
-        public int? MaxLessonIdFilter { get; set; }
-        public int? MinLessonIdFilter { get; set; }
+        public long? MaxLessonIdFilter { get; set; }
+        public long? MinLessonIdFilter { get; set; }
 
         public int? MaxUniversityProfessorIdFilter { get; set; }
         public int? MinUniversityProfessorIdFilter { get; set; }
@@ -28,10 +28,12 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults.Dtos
         public int? MaxUniversityDepartmentIdFilter { get; set; }
         public int? MinUniversityDepartmentIdFilter { get; set; }
 
+        public int? MaxClassroomBuildingIdFilter { get; set; }
+        public int? MinClassroomBuildingIdFilter { get; set; }
+
         public string ListOfAllCalculatedResultNameCalculatedResultFilter { get; set; }
 
         public string ClassScheduleModeSpaceNameClassScheduleModeSpacesFilter { get; set; }
 
-        public long? ListOfAllCalculatedResultIdFilter { get; set; }
     }
 }

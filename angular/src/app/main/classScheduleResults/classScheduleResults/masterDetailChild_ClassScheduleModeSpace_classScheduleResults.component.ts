@@ -67,6 +67,7 @@ export class MasterDetailChild_ClassScheduleModeSpace_ClassScheduleResultsCompon
     maxUniversityDepartmentIdFilterEmpty: number;
     minUniversityDepartmentIdFilter: number;
     minUniversityDepartmentIdFilterEmpty: number;
+    listOfAllCalculatedResultNameCalculatedResultFilter = '';
 
     _entityTypeFullName = 'Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults.ClassScheduleResult';
     entityHistoryEnabled = false;
@@ -142,8 +143,8 @@ export class MasterDetailChild_ClassScheduleModeSpace_ClassScheduleResultsCompon
                     ? this.minUniversityDepartmentIdFilterEmpty
                     : this.minUniversityDepartmentIdFilter,
                 null,
+                this.listOfAllCalculatedResultNameCalculatedResultFilter,
                 this.classScheduleModeSpaceId,
-                null,
                 this.primengTableHelper.getSorting(this.dataTable),
                 this.primengTableHelper.getSkipCount(this.paginator, event),
                 this.primengTableHelper.getMaxResultCount(this.paginator, event)
@@ -216,6 +217,13 @@ export class MasterDetailChild_ClassScheduleModeSpace_ClassScheduleResultsCompon
                 this.minUniversityDepartmentIdFilter == null
                     ? this.minUniversityDepartmentIdFilterEmpty
                     : this.minUniversityDepartmentIdFilter,
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+
+                null,
+                this.listOfAllCalculatedResultNameCalculatedResultFilter,
                 this.classScheduleModeSpaceId
             )
             .subscribe((result) => {

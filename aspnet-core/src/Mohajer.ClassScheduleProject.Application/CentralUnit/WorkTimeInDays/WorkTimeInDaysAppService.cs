@@ -234,7 +234,8 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.WorkTimeInDays
                             startTime = SumTwoTime(class_Start_Time, timeTmop),
                             EndTime = SumTwoTime(class_Start_Time, SumTwoTime(timeTmop, time_Each_Class)),
                             WhatTimeOfDay = L((timeInDayIndex + 1).ToString()),
-                            NameWorkTimeInDay = $"{L("hour")} {L((timeInDayIndex + 1).ToString())} {L("day")} {L(item.ToString())}"
+                            NameWorkTimeInDay = $"{L("hour")} {L((timeInDayIndex + 1).ToString())} {L("day")} {L(item.ToString())}",
+                            WhatTimeOfDayIndex = (timeInDayIndex + 1)
                         });
                     }
                     timeTmop = SumTwoTime(timeTmop, time_Each_Class);

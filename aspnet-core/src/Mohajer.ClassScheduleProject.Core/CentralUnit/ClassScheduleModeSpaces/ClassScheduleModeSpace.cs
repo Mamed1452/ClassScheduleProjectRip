@@ -1,4 +1,5 @@
-﻿using Mohajer.ClassScheduleProject.CentralUnit.UniversityProfessors;
+﻿using Mohajer.ClassScheduleProject.CentralUnit.ListOfClassScheduleModeSpaces;
+using Mohajer.ClassScheduleProject.CentralUnit.UniversityProfessors;
 using Mohajer.ClassScheduleProject.CentralUnit.WorkTimeInDays;
 using Mohajer.ClassScheduleProject.CentralUnit.Lessons;
 using System;
@@ -21,6 +22,11 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleModeSpaces
         public virtual string NameClassScheduleModeSpaces { get; set; }
 
         public virtual bool IsLock { get; set; }
+
+        public virtual long ListOfClassScheduleModeSpaceId { get; set; }
+
+        [ForeignKey("ListOfClassScheduleModeSpaceId")]
+        public ListOfClassScheduleModeSpace ListOfClassScheduleModeSpaceFk { get; set; }
 
         public virtual int UniversityProfessorId { get; set; }
 

@@ -85,6 +85,23 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
+                                        <label for="ListOfClassScheduleModeSpaceListOfClassScheduleModeSpaceNameFilter">
+                                            ({{ l('ListOfClassScheduleModeSpace') }})
+                                            {{ l('ListOfClassScheduleModeSpaceName') }}
+                                        </label>
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="ListOfClassScheduleModeSpaceListOfClassScheduleModeSpaceNameFilter"
+                                            name="listOfClassScheduleModeSpaceListOfClassScheduleModeSpaceNameFilter"
+                                            [(ngModel)]="
+                                                listOfClassScheduleModeSpaceListOfClassScheduleModeSpaceNameFilter
+                                            "
+                                        />
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
                                         <label for="UniversityProfessorUniversityProfessorNameFilter">
                                             ({{ l('UniversityProfessor') }}) {{ l('UniversityProfessorName') }}
                                         </label>
@@ -176,6 +193,15 @@
                                             "
                                         >
                                             {{ l('Actions') }}
+                                        </th>
+                                        <th
+                                            style="width: 150px"
+                                            pSortableColumn="listOfClassScheduleModeSpaceFk.listOfClassScheduleModeSpaceName"
+                                        >
+                                            {{ l('ListOfClassScheduleModeSpaceName') }}
+                                            <p-sortIcon
+                                                field="listOfClassScheduleModeSpaceListOfClassScheduleModeSpaceName"
+                                            ></p-sortIcon>
                                         </th>
                                         <th
                                             style="width: 150px"
@@ -283,6 +309,12 @@
                                             </div>
                                         </td>
                                         <td style="width: 150px">
+                                            <span class="p-column-title">
+                                                {{ l('ListOfClassScheduleModeSpaceName') }}
+                                            </span>
+                                            {{ record.listOfClassScheduleModeSpaceListOfClassScheduleModeSpaceName }}
+                                        </td>
+                                        <td style="width: 150px">
                                             <span class="p-column-title">{{ l('UniversityProfessorName') }}</span>
                                             {{ record.universityProfessorUniversityProfessorName }}
                                         </td>
@@ -329,7 +361,7 @@
                                             childEntitySelection['ClassScheduleResult_ClassScheduleModeSpaceId']
                                         "
                                     >
-                                        <td colspan="7">
+                                        <td colspan="8">
                                             <masterDetailChild_ClassScheduleModeSpace_classScheduleResults-component
                                                 [classScheduleModeSpaceId]="record.classScheduleModeSpace.id"
                                             ></masterDetailChild_ClassScheduleModeSpace_classScheduleResults-component>

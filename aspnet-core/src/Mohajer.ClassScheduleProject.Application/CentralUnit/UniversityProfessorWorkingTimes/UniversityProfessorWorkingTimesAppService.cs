@@ -131,9 +131,10 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.UniversityProfessorWorkingTim
 
             if (output.UniversityProfessorWorkingTime.WorkTimeInDayId != null)
             {
-                var _lookupWorkTimeInDay = await _lookup_workTimeInDayRepository.FirstOrDefaultAsync((long)output.UniversityProfessorWorkingTime.WorkTimeInDayId);
+                var _lookupWorkTimeInDay = await _lookup_workTimeInDayRepository.FirstOrDefaultAsync((long)output.UniversityProfessorWorkingTime.Id);
                 output.WorkTimeInDayNameWorkTimeInDay = _lookupWorkTimeInDay?.NameWorkTimeInDay?.ToString();
             }
+           
 
             return output;
         }
@@ -161,15 +162,14 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.UniversityProfessorWorkingTim
             }
 
             await _universityProfessorWorkingTimeRepository.InsertAsync(universityProfessorWorkingTime);
-
         }
 
         [AbpAuthorize(AppPermissions.Pages_UniversityProfessorWorkingTimes_Edit)]
         protected virtual async Task Update(CreateOrEditUniversityProfessorWorkingTimeDto input)
         {
-            var universityProfessorWorkingTime = await _universityProfessorWorkingTimeRepository.FirstOrDefaultAsync((long)input.Id);
+            var universityProfessorWorkingTime = await _universityProfessorWorkingTimeRepository.GetAsync((long)input.Id);
             ObjectMapper.Map(input, universityProfessorWorkingTime);
-
+            await _universityProfessorWorkingTimeRepository.UpdateAsync(universityProfessorWorkingTime);
         }
 
         [AbpAuthorize(AppPermissions.Pages_UniversityProfessorWorkingTimes_Delete)]
@@ -270,5 +270,24 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.UniversityProfessorWorkingTim
             );
         }
 
+        public async Task CreateGroup(CreateGroupInputDto input)
+        {
+            var _lookupWorkTimeInDayMin = await _lookup_workTimeInDayRepository.FirstOrDefaultAsync(input.WorkTimeInDayIdMin);
+            var _lookupWorkTimeInDayMax = await _lookup_workTimeInDayRepository.FirstOrDefaultAsync(input.WorkTimeInDayIdMax);
+            var workOfTimes = await _lookup_workTimeInDayRepository.GetAll()
+                .Where(reorod => reorod.DayOfWeek >= _lookupWorkTimeInDayMin.DayOfWeek && reorod.DayOfWeek <= _lookupWorkTimeInDayMax.DayOfWeek)
+                .Where(record => record.WhatTimeOfDayIndex >= _lookupWorkTimeInDayMin.WhatTimeOfDayIndex && record.WhatTimeOfDayIndex <= _lookupWorkTimeInDayMax.WhatTimeOfDayIndex)
+                .ToListAsync();
+            for (int workOfTimesIndex = 0; workOfTimesIndex < workOfTimes.Count; workOfTimesIndex++)
+            {
+                UniversityProfessorWorkingTime universityProfessorWorkingTime = new UniversityProfessorWorkingTime()
+                {
+                    WorkTimeInDayId = workOfTimes[workOfTimesIndex].Id,
+                    TenantId = AbpSession.TenantId.Value,
+                    UniversityProfessorId = input.UniversityProfessorId
+                };
+                await _universityProfessorWorkingTimeRepository.InsertAsync(universityProfessorWorkingTime);
+            }
+        }
     }
 }

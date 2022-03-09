@@ -1,0 +1,145 @@
+﻿<div
+    bsModal
+    #createOrEditModal="bs-modal"
+    class="modal fade"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="createOrEditModal"
+    aria-hidden="true"
+    [config]="{ backdrop: 'static' }"
+>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form *ngIf="active" #mainDomainForm="ngForm" novalidate (ngSubmit)="save()" autocomplete="off">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <span *ngIf="mainDomain.id">{{ l('EditMainDomain') }}</span>
+                        <span *ngIf="!mainDomain.id">{{ l('CreateNewMainDomain') }}</span>
+                    </h4>
+                    <button type="button" class="close" (click)="close()" aria-label="Close" [disabled]="saving">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group m-form__group">
+                        <label for="ListOfMainDomainListOfMainDomainName">{{ l('ListOfMainDomain') }}</label>
+                        <div class="input-group">
+                            <input
+                                class="form-control"
+                                id="ListOfMainDomainListOfMainDomainName"
+                                name="listOfMainDomainListOfMainDomainName"
+                                [(ngModel)]="listOfMainDomainListOfMainDomainName"
+                                type="text"
+                                disabled
+                            />
+                            <div class="input-group-append">
+                                <button
+                                    class="btn btn-primary blue"
+                                    (click)="openSelectListOfMainDomainModal()"
+                                    type="button"
+                                >
+                                    <i class="fa fa-search"></i>
+                                    {{ l('Pick') }}
+                                </button>
+                            </div>
+                            <div class="input-group-prepend">
+                                <button
+                                    class="btn btn-danger btn-icon"
+                                    type="button"
+                                    (click)="setListOfMainDomainIdNull()"
+                                >
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <input
+                        class="form-control"
+                        name="mainDomain.listOfMainDomainId"
+                        [(ngModel)]="mainDomain.listOfMainDomainId"
+                        type="text"
+                        required
+                        hidden
+                    />
+
+                    <div class="form-group m-form__group">
+                        <label for="LessonsOfSemesterLessonsOfSemesterName">{{ l('LessonsOfSemester') }}</label>
+                        <div class="input-group">
+                            <input
+                                class="form-control"
+                                id="LessonsOfSemesterLessonsOfSemesterName"
+                                name="lessonsOfSemesterLessonsOfSemesterName"
+                                [(ngModel)]="lessonsOfSemesterLessonsOfSemesterName"
+                                type="text"
+                                disabled
+                            />
+                            <div class="input-group-append">
+                                <button
+                                    class="btn btn-primary blue"
+                                    (click)="openSelectLessonsOfSemesterModal()"
+                                    type="button"
+                                >
+                                    <i class="fa fa-search"></i>
+                                    {{ l('Pick') }}
+                                </button>
+                            </div>
+                            <div class="input-group-prepend">
+                                <button
+                                    class="btn btn-danger btn-icon"
+                                    type="button"
+                                    (click)="setLessonsOfSemesterIdNull()"
+                                >
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <input
+                        class="form-control"
+                        name="mainDomain.lessonsOfSemesterId"
+                        [(ngModel)]="mainDomain.lessonsOfSemesterId"
+                        type="text"
+                        required
+                        hidden
+                    />
+
+                    <div class="form-group">
+                        <label for="MainDomain_MainDomainName">{{ l('MainDomainName') }}</label>
+                        <input
+                            type="text"
+                            #MainDomain_MainDomainName="ngModel"
+                            id="MainDomain_MainDomainName"
+                            class="form-control"
+                            [(ngModel)]="mainDomain.mainDomainName"
+                            name="MainDomainName"
+                        />
+                        <validation-messages [formCtrl]="MainDomain_MainDomainName"></validation-messages>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button [disabled]="saving" type="button" class="btn btn-default" (click)="close()">
+                        {{ l('Cancel') }}
+                    </button>
+                    <button
+                        type="submit"
+                        class="btn btn-primary blue"
+                        [disabled]="!mainDomainForm.form.valid"
+                        [buttonBusy]="saving"
+                        [busyText]="l('SavingWithThreeDot')"
+                    >
+                        <i class="fa fa-save"></i>
+                        <span>{{ l('Save') }}</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <mainDomainListOfMainDomainLookupTableModal
+        #mainDomainListOfMainDomainLookupTableModal
+        (modalSave)="getNewListOfMainDomainId()"
+    ></mainDomainListOfMainDomainLookupTableModal>
+    <mainDomainLessonsOfSemesterLookupTableModal
+        #mainDomainLessonsOfSemesterLookupTableModal
+        (modalSave)="getNewLessonsOfSemesterId()"
+    ></mainDomainLessonsOfSemesterLookupTableModal>
+</div>

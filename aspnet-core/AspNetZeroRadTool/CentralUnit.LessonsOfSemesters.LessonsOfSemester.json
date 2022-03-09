@@ -1,5 +1,5 @@
 {
-  "IsRegenerate": false,
+  "IsRegenerate": true,
   "MenuPosition": "main",
   "RelativeNamespace": "CentralUnit.LessonsOfSemesters",
   "EntityName": "LessonsOfSemester",
@@ -23,8 +23,8 @@
     {
       "Name": "LessonOfSemesterType",
       "Type": "LessonOfSemesterTypeEnum",
-      "MaxLength": 0,
-      "MinLength": 0,
+      "MaxLength": -1,
+      "MinLength": -1,
       "Range": {
         "IsRangeSet": false,
         "MinimumValue": 0.0,
@@ -42,8 +42,8 @@
     {
       "Name": "NumberOfClassesToBeFormed",
       "Type": "int",
-      "MaxLength": 0,
-      "MinLength": 0,
+      "MaxLength": -1,
+      "MinLength": -1,
       "Range": {
         "IsRangeSet": true,
         "MinimumValue": 1.0,
@@ -61,14 +61,33 @@
     {
       "Name": "IsActive",
       "Type": "bool",
-      "MaxLength": 0,
-      "MinLength": 0,
+      "MaxLength": -1,
+      "MinLength": -1,
       "Range": {
         "IsRangeSet": false,
         "MinimumValue": 0.0,
         "MaximumValue": 0.0
       },
       "Required": false,
+      "Nullable": false,
+      "Regex": "",
+      "UserInterface": {
+        "AdvancedFilter": true,
+        "List": true,
+        "CreateOrUpdate": true
+      }
+    },
+    {
+      "Name": "LessonsOfSemesterName",
+      "Type": "string",
+      "MaxLength": -1,
+      "MinLength": -1,
+      "Range": {
+        "IsRangeSet": false,
+        "MinimumValue": 0.0,
+        "MaximumValue": 0.0
+      },
+      "Required": true,
       "Nullable": false,
       "Regex": "",
       "UserInterface": {

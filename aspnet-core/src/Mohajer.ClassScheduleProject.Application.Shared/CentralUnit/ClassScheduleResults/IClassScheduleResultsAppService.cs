@@ -24,6 +24,7 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults
         Task<PagedResultDto<ClassScheduleResultListOfAllCalculatedResultLookupTableDto>> GetAllListOfAllCalculatedResultForLookupTable(GetAllForLookupTableInput input);
 
         Task<PagedResultDto<ClassScheduleResultClassScheduleModeSpaceLookupTableDto>> GetAllClassScheduleModeSpaceForLookupTable(GetAllForLookupTableInput input);
+        Task<StartClassScheduleOutputDto> StartClassSchedule(StartClassScheduleInputDto input);
 
     }
 }

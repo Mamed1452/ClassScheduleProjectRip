@@ -6,10 +6,10 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.UniversityProfessorWorkingTim
 {
     public class CreateOrEditUniversityProfessorWorkingTimeDto : EntityDto<long?>
     {
-
         public int UniversityProfessorId { get; set; }
 
         public long WorkTimeInDayId { get; set; }
+
 
     }
 }

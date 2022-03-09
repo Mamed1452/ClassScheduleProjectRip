@@ -46,6 +46,7 @@ export class LessonsOfSemestersComponent extends AppComponentBase {
     minNumberOfClassesToBeFormedFilter: number;
     minNumberOfClassesToBeFormedFilterEmpty: number;
     isActiveFilter = -1;
+    lessonsOfSemesterNameFilter = '';
     lessonNameLessonFilter = '';
     semesterSemesterNameFilter = '';
 
@@ -102,6 +103,7 @@ export class LessonsOfSemestersComponent extends AppComponentBase {
                     ? this.minNumberOfClassesToBeFormedFilterEmpty
                     : this.minNumberOfClassesToBeFormedFilter,
                 this.isActiveFilter,
+                this.lessonsOfSemesterNameFilter,
                 this.lessonNameLessonFilter,
                 this.semesterSemesterNameFilter,
                 this.primengTableHelper.getSorting(this.dataTable),
@@ -154,6 +156,7 @@ export class LessonsOfSemestersComponent extends AppComponentBase {
                     ? this.minNumberOfClassesToBeFormedFilterEmpty
                     : this.minNumberOfClassesToBeFormedFilter,
                 this.isActiveFilter,
+                this.lessonsOfSemesterNameFilter,
                 this.lessonNameLessonFilter,
                 this.semesterSemesterNameFilter
             )

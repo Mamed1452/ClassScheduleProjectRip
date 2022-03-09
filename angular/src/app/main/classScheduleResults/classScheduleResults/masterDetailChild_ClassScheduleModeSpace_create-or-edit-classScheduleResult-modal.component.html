@@ -21,6 +21,49 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    <div class="form-group m-form__group">
+                        <label for="ListOfAllCalculatedResultNameCalculatedResult">
+                            {{ l('ListOfAllCalculatedResult') }}
+                        </label>
+                        <div class="input-group">
+                            <input
+                                class="form-control"
+                                id="ListOfAllCalculatedResultNameCalculatedResult"
+                                name="listOfAllCalculatedResultNameCalculatedResult"
+                                [(ngModel)]="listOfAllCalculatedResultNameCalculatedResult"
+                                type="text"
+                                disabled
+                            />
+                            <div class="input-group-append">
+                                <button
+                                    class="btn btn-primary blue"
+                                    (click)="openSelectListOfAllCalculatedResultModal()"
+                                    type="button"
+                                >
+                                    <i class="fa fa-search"></i>
+                                    {{ l('Pick') }}
+                                </button>
+                            </div>
+                            <div class="input-group-prepend">
+                                <button
+                                    class="btn btn-danger btn-icon"
+                                    type="button"
+                                    (click)="setListOfAllCalculatedResultIdNull()"
+                                >
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <input
+                        class="form-control"
+                        name="classScheduleResult.listOfAllCalculatedResultId"
+                        [(ngModel)]="classScheduleResult.listOfAllCalculatedResultId"
+                        type="text"
+                        required
+                        hidden
+                    />
+
                     <div class="form-group">
                         <label for="ClassScheduleResult_WorkTimeInDayId">{{ l('WorkTimeInDayId') }}</label>
                         <input
@@ -136,4 +179,8 @@
             </form>
         </div>
     </div>
+    <masterDetailChild_ClassScheduleModeSpace_classScheduleResultListOfAllCalculatedResultLookupTableModal
+        #classScheduleResultListOfAllCalculatedResultLookupTableModal
+        (modalSave)="getNewListOfAllCalculatedResultId()"
+    ></masterDetailChild_ClassScheduleModeSpace_classScheduleResultListOfAllCalculatedResultLookupTableModal>
 </div>

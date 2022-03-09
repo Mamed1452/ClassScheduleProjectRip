@@ -14,6 +14,8 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.LessonsOfSemesters.Dtos
 
         public int? IsActiveFilter { get; set; }
 
+        public string LessonsOfSemesterNameFilter { get; set; }
+
         public string LessonNameLessonFilter { get; set; }
 
         public string SemesterSemesterNameFilter { get; set; }

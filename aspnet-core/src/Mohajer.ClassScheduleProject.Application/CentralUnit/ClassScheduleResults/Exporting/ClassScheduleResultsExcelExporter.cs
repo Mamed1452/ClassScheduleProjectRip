@@ -42,6 +42,7 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults.Exportin
                         L("GradeId"),
                         L("UniversityMajorId"),
                         L("UniversityDepartmentId"),
+                        L("ClassroomBuildingId"),
                         (L("ListOfAllCalculatedResult")) + L("NameCalculatedResult"),
                         (L("ClassScheduleModeSpace")) + L("NameClassScheduleModeSpaces")
                         );
@@ -55,6 +56,7 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults.Exportin
                         _ => _.ClassScheduleResult.GradeId,
                         _ => _.ClassScheduleResult.UniversityMajorId,
                         _ => _.ClassScheduleResult.UniversityDepartmentId,
+                        _ => _.ClassScheduleResult.ClassroomBuildingId,
                         _ => _.ListOfAllCalculatedResultNameCalculatedResult,
                         _ => _.ClassScheduleModeSpaceNameClassScheduleModeSpaces
                         );

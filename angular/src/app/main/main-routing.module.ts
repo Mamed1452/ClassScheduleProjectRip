@@ -1,5 +1,7 @@
 ﻿import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { ListOfMainDomainsComponent } from './listOfMainDomains/listOfMainDomains/listOfMainDomains.component';
+import { MainDomainsComponent } from './mainDomains/mainDomains/mainDomains.component';
 import { ListOfAllCalculatedResultsComponent } from './listOfAllCalculatedResults/listOfAllCalculatedResults/listOfAllCalculatedResults.component';
 import { ClassScheduleModeSpacesComponent } from './classScheduleModeSpaces/classScheduleModeSpaces/classScheduleModeSpaces.component';
 import { ClassScheduleResultsComponent } from './classScheduleResults/classScheduleResults/classScheduleResults.component';
@@ -24,6 +26,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
             {
                 path: '',
                 children: [
+                    { path: 'listOfMainDomains/listOfMainDomains', component: ListOfMainDomainsComponent, data: { permission: 'Pages.ListOfMainDomains' }  },
+                    { path: 'mainDomains/mainDomains', component: MainDomainsComponent, data: { permission: 'Pages.MainDomains' }  },
                     { path: 'listOfAllCalculatedResults/listOfAllCalculatedResults', component: ListOfAllCalculatedResultsComponent, data: { permission: 'Pages.ListOfAllCalculatedResults' }  },
                     { path: 'classScheduleModeSpaces/classScheduleModeSpaces', component: ClassScheduleModeSpacesComponent, data: { permission: 'Pages.ClassScheduleModeSpaces' }  },
                     { path: 'classScheduleResults/classScheduleResults', component: ClassScheduleResultsComponent, data: { permission: 'Pages.ClassScheduleResults' }  },

@@ -64,6 +64,10 @@ export class ClassScheduleResultsComponent extends AppComponentBase {
     maxUniversityDepartmentIdFilterEmpty: number;
     minUniversityDepartmentIdFilter: number;
     minUniversityDepartmentIdFilterEmpty: number;
+    maxClassroomBuildingIdFilter: number;
+    maxClassroomBuildingIdFilterEmpty: number;
+    minClassroomBuildingIdFilter: number;
+    minClassroomBuildingIdFilterEmpty: number;
     listOfAllCalculatedResultNameCalculatedResultFilter = '';
     classScheduleModeSpaceNameClassScheduleModeSpacesFilter = '';
 
@@ -140,9 +144,14 @@ export class ClassScheduleResultsComponent extends AppComponentBase {
                 this.minUniversityDepartmentIdFilter == null
                     ? this.minUniversityDepartmentIdFilterEmpty
                     : this.minUniversityDepartmentIdFilter,
+                this.maxClassroomBuildingIdFilter == null
+                    ? this.maxClassroomBuildingIdFilterEmpty
+                    : this.maxClassroomBuildingIdFilter,
+                this.minClassroomBuildingIdFilter == null
+                    ? this.minClassroomBuildingIdFilterEmpty
+                    : this.minClassroomBuildingIdFilter,
                 this.listOfAllCalculatedResultNameCalculatedResultFilter,
                 this.classScheduleModeSpaceNameClassScheduleModeSpacesFilter,
-                undefined,
                 this.primengTableHelper.getSorting(this.dataTable),
                 this.primengTableHelper.getSkipCount(this.paginator, event),
                 this.primengTableHelper.getMaxResultCount(this.paginator, event)
@@ -215,9 +224,14 @@ export class ClassScheduleResultsComponent extends AppComponentBase {
                 this.minUniversityDepartmentIdFilter == null
                     ? this.minUniversityDepartmentIdFilterEmpty
                     : this.minUniversityDepartmentIdFilter,
+                this.maxClassroomBuildingIdFilter == null
+                    ? this.maxClassroomBuildingIdFilterEmpty
+                    : this.maxClassroomBuildingIdFilter,
+                this.minClassroomBuildingIdFilter == null
+                    ? this.minClassroomBuildingIdFilterEmpty
+                    : this.minClassroomBuildingIdFilter,
                 this.listOfAllCalculatedResultNameCalculatedResultFilter,
-                this.classScheduleModeSpaceNameClassScheduleModeSpacesFilter,
-                undefined
+                this.classScheduleModeSpaceNameClassScheduleModeSpacesFilter
             )
             .subscribe((result) => {
                 this._fileDownloadService.downloadTempFile(result);

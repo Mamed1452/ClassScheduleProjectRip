@@ -15,11 +15,13 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ListOfAllCalculatedResults
 
         Task<GetListOfAllCalculatedResultForEditOutput> GetListOfAllCalculatedResultForEdit(EntityDto<long> input);
 
-        Task CreateOrEdit(CreateOrEditListOfAllCalculatedResultDto input);
+        Task<CreateOrEditListOfAllCalculatedResultOutputDto> CreateOrEdit(CreateOrEditListOfAllCalculatedResultDto input);
 
         Task Delete(EntityDto<long> input);
 
         Task<FileDto> GetListOfAllCalculatedResultsToExcel(GetAllListOfAllCalculatedResultsForExcelInput input);
+
+      
 
     }
 }

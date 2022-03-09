@@ -1,0 +1,55 @@
+﻿{
+  "IsRegenerate": false,
+  "MenuPosition": null,
+  "RelativeNamespace": "CentralUnit.ListOfClassScheduleModeSpaces",
+  "EntityName": "ListOfClassScheduleModeSpace",
+  "EntityNamePlural": "ListOfClassScheduleModeSpaces",
+  "TableName": "ListOfClassScheduleModeSpaces",
+  "PrimaryKeyType": "long",
+  "BaseClass": "FullAuditedEntity",
+  "EntityHistory": false,
+  "AutoMigration": false,
+  "UpdateDatabase": false,
+  "CreateUserInterface": false,
+  "CreateViewOnly": false,
+  "CreateExcelExport": true,
+  "IsNonModalCRUDPage": false,
+  "IsMasterDetailPage": true,
+  "PagePermission": {
+    "Host": false,
+    "Tenant": true
+  },
+  "Properties": [
+    {
+      "Name": "ListOfClassScheduleModeSpaceName",
+      "Type": "string",
+      "MaxLength": -1,
+      "MinLength": -1,
+      "Range": {
+        "IsRangeSet": false,
+        "MinimumValue": 0.0,
+        "MaximumValue": 0.0
+      },
+      "Required": true,
+      "Nullable": false,
+      "Regex": "",
+      "UserInterface": {
+        "AdvancedFilter": false,
+        "List": false,
+        "CreateOrUpdate": false
+      }
+    }
+  ],
+  "NavigationProperties": [],
+  "NavigationPropertyOneToManyTables": [
+            {
+                "EntityJson": "CentralUnit.ClassScheduleModeSpaces.ClassScheduleModeSpace.json",
+                "ForeignPropertyName": "ListOfClassScheduleModeSpaceId",
+                "IsNullable": "False",
+                "DisplayPropertyName": "ListOfClassScheduleModeSpaceName",
+                "ViewType": "LookupTable"
+            },
+        ],
+  "EnumDefinitions": [],
+  "DbContext": null
+}

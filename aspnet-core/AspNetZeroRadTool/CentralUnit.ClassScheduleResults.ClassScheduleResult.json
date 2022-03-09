@@ -1,5 +1,5 @@
-﻿{
-  "IsRegenerate": false,
+{
+  "IsRegenerate": true,
   "MenuPosition": "main",
   "RelativeNamespace": "CentralUnit.ClassScheduleResults",
   "EntityName": "ClassScheduleResult",
@@ -23,8 +23,8 @@
     {
       "Name": "WorkTimeInDayId",
       "Type": "long",
-      "MaxLength": 0,
-      "MinLength": 0,
+      "MaxLength": -1,
+      "MinLength": -1,
       "Range": {
         "IsRangeSet": false,
         "MinimumValue": 0.0,
@@ -41,9 +41,9 @@
     },
     {
       "Name": "LessonId",
-      "Type": "int",
-      "MaxLength": 0,
-      "MinLength": 0,
+      "Type": "long",
+      "MaxLength": -1,
+      "MinLength": -1,
       "Range": {
         "IsRangeSet": false,
         "MinimumValue": 0.0,
@@ -61,8 +61,8 @@
     {
       "Name": "UniversityProfessorId",
       "Type": "int",
-      "MaxLength": 0,
-      "MinLength": 0,
+      "MaxLength": -1,
+      "MinLength": -1,
       "Range": {
         "IsRangeSet": false,
         "MinimumValue": 0.0,
@@ -80,8 +80,8 @@
     {
       "Name": "SemesterId",
       "Type": "long",
-      "MaxLength": 0,
-      "MinLength": 0,
+      "MaxLength": -1,
+      "MinLength": -1,
       "Range": {
         "IsRangeSet": false,
         "MinimumValue": 0.0,
@@ -99,8 +99,8 @@
     {
       "Name": "GradeId",
       "Type": "int",
-      "MaxLength": 0,
-      "MinLength": 0,
+      "MaxLength": -1,
+      "MinLength": -1,
       "Range": {
         "IsRangeSet": false,
         "MinimumValue": 0.0,
@@ -118,8 +118,8 @@
     {
       "Name": "UniversityMajorId",
       "Type": "int",
-      "MaxLength": 0,
-      "MinLength": 0,
+      "MaxLength": -1,
+      "MinLength": -1,
       "Range": {
         "IsRangeSet": false,
         "MinimumValue": 0.0,
@@ -136,6 +136,25 @@
     },
     {
       "Name": "UniversityDepartmentId",
+      "Type": "int",
+      "MaxLength": -1,
+      "MinLength": -1,
+      "Range": {
+        "IsRangeSet": false,
+        "MinimumValue": 0.0,
+        "MaximumValue": 0.0
+      },
+      "Required": false,
+      "Nullable": false,
+      "Regex": "",
+      "UserInterface": {
+        "AdvancedFilter": true,
+        "List": true,
+        "CreateOrUpdate": true
+      }
+    },
+    {
+      "Name": "ClassroomBuildingId",
       "Type": "int",
       "MaxLength": 0,
       "MinLength": 0,
@@ -154,7 +173,8 @@
       }
     }
   ],
-  "NavigationProperties": [{
+  "NavigationProperties": [
+    {
       "Namespace": "Mohajer.ClassScheduleProject.CentralUnit.ListOfAllCalculatedResults",
       "ForeignEntityName": "ListOfAllCalculatedResult",
       "IdType": "long",
@@ -163,9 +183,9 @@
       "DisplayPropertyName": "NameCalculatedResult",
       "DuplicationNumber": 0,
       "RelationType": "single",
-      "ViewType": "LookupTable",
-      "IsGeneratedByMasterPage": true
-    },{
+      "ViewType": "LookupTable"
+    },
+    {
       "Namespace": "Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleModeSpaces",
       "ForeignEntityName": "ClassScheduleModeSpace",
       "IdType": "long",
@@ -174,9 +194,9 @@
       "DisplayPropertyName": "NameClassScheduleModeSpaces",
       "DuplicationNumber": 0,
       "RelationType": "single",
-      "ViewType": "LookupTable",
-      "IsGeneratedByMasterPage": true
-    },],
+      "ViewType": "LookupTable"
+    }
+  ],
   "NavigationPropertyOneToManyTables": [],
   "EnumDefinitions": [],
   "DbContext": null

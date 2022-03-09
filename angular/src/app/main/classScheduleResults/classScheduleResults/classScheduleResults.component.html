@@ -220,6 +220,30 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
+                                        <label for="MinClassroomBuildingIdFilter">
+                                            {{ l('MinMax') }} {{ l('ClassroomBuildingId') }}
+                                        </label>
+                                        <div class="input-group">
+                                            <input
+                                                type="number"
+                                                class="form-control"
+                                                id="MinClassroomBuildingIdFilter"
+                                                [(ngModel)]="minClassroomBuildingIdFilter"
+                                                placeholder="{{ l('MinValue') }}"
+                                                name="minClassroomBuildingIdFilter"
+                                            />
+                                            <input
+                                                type="number"
+                                                class="form-control"
+                                                [(ngModel)]="maxClassroomBuildingIdFilter"
+                                                placeholder="{{ l('MaxValue') }}"
+                                                name="maxClassroomBuildingIdFilter"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
                                         <label for="ListOfAllCalculatedResultNameCalculatedResultFilter">
                                             ({{ l('ListOfAllCalculatedResult') }}) {{ l('NameCalculatedResult') }}
                                         </label>
@@ -344,6 +368,10 @@
                                             {{ l('UniversityDepartmentId') }}
                                             <p-sortIcon field="classScheduleResult.universityDepartmentId"></p-sortIcon>
                                         </th>
+                                        <th style="width: 150px" pSortableColumn="classroomBuildingId">
+                                            {{ l('ClassroomBuildingId') }}
+                                            <p-sortIcon field="classScheduleResult.classroomBuildingId"></p-sortIcon>
+                                        </th>
                                     </tr>
                                 </ng-template>
                                 <ng-template pTemplate="body" let-record="$implicit" let-i="rowIndex">
@@ -453,6 +481,10 @@
                                         <td style="width: 150px">
                                             <span class="p-column-title">{{ l('UniversityDepartmentId') }}</span>
                                             {{ record.classScheduleResult.universityDepartmentId }}
+                                        </td>
+                                        <td style="width: 150px">
+                                            <span class="p-column-title">{{ l('ClassroomBuildingId') }}</span>
+                                            {{ record.classScheduleResult.classroomBuildingId }}
                                         </td>
                                     </tr>
                                 </ng-template>

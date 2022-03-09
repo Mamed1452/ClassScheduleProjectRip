@@ -1,0 +1,70 @@
+﻿{
+  "IsRegenerate": false,
+  "MenuPosition": "main",
+  "RelativeNamespace": "CentralUnit.MainDomains",
+  "EntityName": "MainDomain",
+  "EntityNamePlural": "MainDomains",
+  "TableName": "MainDomains",
+  "PrimaryKeyType": "long",
+  "BaseClass": "FullAuditedEntity",
+  "EntityHistory": true,
+  "AutoMigration": false,
+  "UpdateDatabase": false,
+  "CreateUserInterface": true,
+  "CreateViewOnly": true,
+  "CreateExcelExport": true,
+  "IsNonModalCRUDPage": false,
+  "IsMasterDetailPage": false,
+  "PagePermission": {
+    "Host": false,
+    "Tenant": true
+  },
+  "Properties": [
+    {
+      "Name": "MainDomainName",
+      "Type": "string",
+      "MaxLength": -1,
+      "MinLength": -1,
+      "Range": {
+        "IsRangeSet": false,
+        "MinimumValue": 0.0,
+        "MaximumValue": 0.0
+      },
+      "Required": false,
+      "Nullable": false,
+      "Regex": "",
+      "UserInterface": {
+        "AdvancedFilter": true,
+        "List": true,
+        "CreateOrUpdate": true
+      }
+    }
+  ],
+  "NavigationProperties": [{
+      "Namespace": "Mohajer.ClassScheduleProject.CentralUnit.ListOfMainDomains",
+      "ForeignEntityName": "ListOfMainDomain",
+      "IdType": "long",
+      "IsNullable": false,
+      "PropertyName": "ListOfMainDomainId",
+      "DisplayPropertyName": "ListOfMainDomainName",
+      "DuplicationNumber": 0,
+      "RelationType": "single",
+      "ViewType": "LookupTable",
+      "IsGeneratedByMasterPage": true
+    },
+    {
+      "Namespace": "Mohajer.ClassScheduleProject.CentralUnit.LessonsOfSemesters",
+      "ForeignEntityName": "LessonsOfSemester",
+      "IdType": "long",
+      "IsNullable": false,
+      "PropertyName": "LessonsOfSemesterId",
+      "DisplayPropertyName": "LessonsOfSemesterName",
+      "DuplicationNumber": 0,
+      "RelationType": "single",
+      "ViewType": "LookupTable"
+    }
+  ],
+  "NavigationPropertyOneToManyTables": [],
+  "EnumDefinitions": [],
+  "DbContext": null
+}

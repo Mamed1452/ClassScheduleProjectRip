@@ -41,6 +41,7 @@ export class ClassScheduleModeSpacesComponent extends AppComponentBase {
     filterText = '';
     nameClassScheduleModeSpacesFilter = '';
     isLockFilter = -1;
+    listOfClassScheduleModeSpaceListOfClassScheduleModeSpaceNameFilter = '';
     universityProfessorUniversityProfessorNameFilter = '';
     workTimeInDayNameWorkTimeInDayFilter = '';
     lessonNameLessonFilter = '';
@@ -94,9 +95,11 @@ export class ClassScheduleModeSpacesComponent extends AppComponentBase {
                 this.filterText,
                 this.nameClassScheduleModeSpacesFilter,
                 this.isLockFilter,
+                this.listOfClassScheduleModeSpaceListOfClassScheduleModeSpaceNameFilter,
                 this.universityProfessorUniversityProfessorNameFilter,
                 this.workTimeInDayNameWorkTimeInDayFilter,
                 this.lessonNameLessonFilter,
+                undefined,
                 this.primengTableHelper.getSorting(this.dataTable),
                 this.primengTableHelper.getSkipCount(this.paginator, event),
                 this.primengTableHelper.getMaxResultCount(this.paginator, event)
@@ -141,9 +144,11 @@ export class ClassScheduleModeSpacesComponent extends AppComponentBase {
                 this.filterText,
                 this.nameClassScheduleModeSpacesFilter,
                 this.isLockFilter,
+                this.listOfClassScheduleModeSpaceListOfClassScheduleModeSpaceNameFilter,
                 this.universityProfessorUniversityProfessorNameFilter,
                 this.workTimeInDayNameWorkTimeInDayFilter,
-                this.lessonNameLessonFilter
+                this.lessonNameLessonFilter,
+                undefined
             )
             .subscribe((result) => {
                 this._fileDownloadService.downloadTempFile(result);

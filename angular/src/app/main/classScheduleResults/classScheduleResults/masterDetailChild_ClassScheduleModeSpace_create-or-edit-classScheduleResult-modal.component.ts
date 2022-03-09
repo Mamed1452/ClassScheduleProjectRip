@@ -9,6 +9,7 @@ import { AppComponentBase } from '@shared/common/app-component-base';
 import { DateTime } from 'luxon';
 
 import { DateTimeService } from '@app/shared/common/timing/date-time.service';
+import { MasterDetailChild_ClassScheduleModeSpace_ClassScheduleResultListOfAllCalculatedResultLookupTableModalComponent } from './masterDetailChild_ClassScheduleModeSpace_classScheduleResult-listOfAllCalculatedResult-lookup-table-modal.component';
 
 @Component({
     selector: 'masterDetailChild_ClassScheduleModeSpace_createOrEditClassScheduleResultModal',
@@ -18,6 +19,8 @@ export class MasterDetailChild_ClassScheduleModeSpace_CreateOrEditClassScheduleR
     extends AppComponentBase
     implements OnInit {
     @ViewChild('createOrEditModal', { static: true }) modal: ModalDirective;
+    @ViewChild('classScheduleResultListOfAllCalculatedResultLookupTableModal', { static: true })
+    classScheduleResultListOfAllCalculatedResultLookupTableModal: MasterDetailChild_ClassScheduleModeSpace_ClassScheduleResultListOfAllCalculatedResultLookupTableModalComponent;
 
     @Output() modalSave: EventEmitter<any> = new EventEmitter<any>();
 
@@ -25,6 +28,8 @@ export class MasterDetailChild_ClassScheduleModeSpace_CreateOrEditClassScheduleR
     saving = false;
 
     classScheduleResult: CreateOrEditClassScheduleResultDto = new CreateOrEditClassScheduleResultDto();
+
+    listOfAllCalculatedResultNameCalculatedResult = '';
 
     constructor(
         injector: Injector,
@@ -42,6 +47,7 @@ export class MasterDetailChild_ClassScheduleModeSpace_CreateOrEditClassScheduleR
         if (!classScheduleResultId) {
             this.classScheduleResult = new CreateOrEditClassScheduleResultDto();
             this.classScheduleResult.id = classScheduleResultId;
+            this.listOfAllCalculatedResultNameCalculatedResult = '';
 
             this.active = true;
             this.modal.show();
@@ -50,6 +56,9 @@ export class MasterDetailChild_ClassScheduleModeSpace_CreateOrEditClassScheduleR
                 .getClassScheduleResultForEdit(classScheduleResultId)
                 .subscribe((result) => {
                     this.classScheduleResult = result.classScheduleResult;
+
+                    this.listOfAllCalculatedResultNameCalculatedResult =
+                        result.listOfAllCalculatedResultNameCalculatedResult;
 
                     this.active = true;
                     this.modal.show();
@@ -74,6 +83,22 @@ export class MasterDetailChild_ClassScheduleModeSpace_CreateOrEditClassScheduleR
                 this.close();
                 this.modalSave.emit(null);
             });
+    }
+
+    openSelectListOfAllCalculatedResultModal() {
+        this.classScheduleResultListOfAllCalculatedResultLookupTableModal.id = this.classScheduleResult.listOfAllCalculatedResultId;
+        this.classScheduleResultListOfAllCalculatedResultLookupTableModal.displayName = this.listOfAllCalculatedResultNameCalculatedResult;
+        this.classScheduleResultListOfAllCalculatedResultLookupTableModal.show();
+    }
+
+    setListOfAllCalculatedResultIdNull() {
+        this.classScheduleResult.listOfAllCalculatedResultId = null;
+        this.listOfAllCalculatedResultNameCalculatedResult = '';
+    }
+
+    getNewListOfAllCalculatedResultId() {
+        this.classScheduleResult.listOfAllCalculatedResultId = this.classScheduleResultListOfAllCalculatedResultLookupTableModal.id;
+        this.listOfAllCalculatedResultNameCalculatedResult = this.classScheduleResultListOfAllCalculatedResultLookupTableModal.displayName;
     }
 
     close(): void {

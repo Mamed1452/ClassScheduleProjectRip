@@ -100,20 +100,20 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ListOfAllCalculatedResults
             return output;
         }
 
-        public async Task CreateOrEdit(CreateOrEditListOfAllCalculatedResultDto input)
+        public async Task<CreateOrEditListOfAllCalculatedResultOutputDto> CreateOrEdit(CreateOrEditListOfAllCalculatedResultDto input)
         {
             if (input.Id == null)
             {
-                await Create(input);
+               return await Create(input);
             }
             else
             {
-                await Update(input);
+                return await Update(input);
             }
         }
 
         [AbpAuthorize(AppPermissions.Pages_ListOfAllCalculatedResults_Create)]
-        protected virtual async Task Create(CreateOrEditListOfAllCalculatedResultDto input)
+        protected virtual async Task<CreateOrEditListOfAllCalculatedResultOutputDto> Create(CreateOrEditListOfAllCalculatedResultDto input)
         {
             var listOfAllCalculatedResult = ObjectMapper.Map<ListOfAllCalculatedResult>(input);
 
@@ -122,16 +122,17 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ListOfAllCalculatedResults
                 listOfAllCalculatedResult.TenantId = (int)AbpSession.TenantId;
             }
 
-            await _listOfAllCalculatedResultRepository.InsertAsync(listOfAllCalculatedResult);
-
+            long resultId = await _listOfAllCalculatedResultRepository.InsertAndGetIdAsync(listOfAllCalculatedResult);
+            return new CreateOrEditListOfAllCalculatedResultOutputDto() { Id = resultId };
         }
 
         [AbpAuthorize(AppPermissions.Pages_ListOfAllCalculatedResults_Edit)]
-        protected virtual async Task Update(CreateOrEditListOfAllCalculatedResultDto input)
+        protected virtual async Task<CreateOrEditListOfAllCalculatedResultOutputDto> Update(CreateOrEditListOfAllCalculatedResultDto input)
         {
-            var listOfAllCalculatedResult = await _listOfAllCalculatedResultRepository.FirstOrDefaultAsync((long)input.Id);
+            var listOfAllCalculatedResult = await _listOfAllCalculatedResultRepository.GetAsync((long)input.Id);
             ObjectMapper.Map(input, listOfAllCalculatedResult);
-
+            await _listOfAllCalculatedResultRepository.UpdateAsync(listOfAllCalculatedResult);
+            return new CreateOrEditListOfAllCalculatedResultOutputDto() { Id = input.Id };
         }
 
         [AbpAuthorize(AppPermissions.Pages_ListOfAllCalculatedResults_Delete)]
