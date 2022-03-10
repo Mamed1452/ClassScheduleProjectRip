@@ -231,6 +231,12 @@
     <text name="AssinedBeforWorkOfTimeSelected">Assined Befor Work Of Time Selected!</text>
     <text name="AssinedBeforAssigningUniversityMajorToClassroomBuildingSelected ">Assined Befor Assigning University Major To Classroom Building Selected!</text>
     <text name="AssinedBeforAssigningGradeToUniversityMajorSelected">Assined Befor Assigning Grade To University Major Selected!</text>
+    <text name="AssinedBeforAssigningLessonsOfUniversityProfessorSelected">Assined Befor Assigning Lessons Of University Professor Selected!</text>
+    <text name="AssinedBeforAssigningLessonsOfSemesterSelected">Assined Befor Assigning Lessons Of Semester Selected!</text>
+
+    <text name="lesson">lesson</text>
+    <text name="for">for</text>
+    <text name="ShowResults">Show Results</text>
     <text name="NotSaved">Not Saved!</text>
 
     <text name="MaxWorkTimeInDay">End time</text>

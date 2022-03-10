@@ -14,8 +14,6 @@ import { Observable, throwError as _observableThrow, of as _observableOf } from 
 import { Injectable, Inject, Optional, InjectionToken } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse, HttpResponseBase } from '@angular/common/http';
 
-
-
 export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL');
 
 @Injectable()
@@ -3575,69 +3573,51 @@ export class ClassScheduleResultsServiceProxy {
 
     /**
      * @param filter (optional)
-     * @param maxWorkTimeInDayIdFilter (optional)
-     * @param minWorkTimeInDayIdFilter (optional)
-     * @param maxLessonIdFilter (optional)
-     * @param minLessonIdFilter (optional)
-     * @param maxUniversityProfessorIdFilter (optional)
-     * @param minUniversityProfessorIdFilter (optional)
-     * @param maxSemesterIdFilter (optional)
-     * @param minSemesterIdFilter (optional)
-     * @param maxGradeIdFilter (optional)
-     * @param minGradeIdFilter (optional)
-     * @param maxUniversityMajorIdFilter (optional)
-     * @param minUniversityMajorIdFilter (optional)
-     * @param maxUniversityDepartmentIdFilter (optional)
-     * @param minUniversityDepartmentIdFilter (optional)
-     * @param maxClassroomBuildingIdFilter (optional)
-     * @param minClassroomBuildingIdFilter (optional)
+     * @param workTimeInDayFilter (optional)
+     * @param lessonFilter (optional)
+     * @param universityProfessorFilter (optional)
+     * @param semesterFilter (optional)
+     * @param gradeFilter (optional)
+     * @param universityMajorFilter (optional)
+     * @param universityDepartmentFilter (optional)
+     * @param classroomBuildingFilter (optional)
      * @param listOfAllCalculatedResultNameCalculatedResultFilter (optional)
      * @param classScheduleModeSpaceNameClassScheduleModeSpacesFilter (optional)
+     * @param listOfAllCalculatedResultNameCalculatedResultIdFilter (optional)
+     * @param classScheduleModeSpaceNameClassScheduleModeSpacesIdFilter (optional)
      * @param sorting (optional)
      * @param skipCount (optional)
      * @param maxResultCount (optional)
      * @return Success
      */
-    getAll(filter: string | null | undefined, maxWorkTimeInDayIdFilter: number | null | undefined, minWorkTimeInDayIdFilter: number | null | undefined, maxLessonIdFilter: number | null | undefined, minLessonIdFilter: number | null | undefined, maxUniversityProfessorIdFilter: number | null | undefined, minUniversityProfessorIdFilter: number | null | undefined, maxSemesterIdFilter: number | null | undefined, minSemesterIdFilter: number | null | undefined, maxGradeIdFilter: number | null | undefined, minGradeIdFilter: number | null | undefined, maxUniversityMajorIdFilter: number | null | undefined, minUniversityMajorIdFilter: number | null | undefined, maxUniversityDepartmentIdFilter: number | null | undefined, minUniversityDepartmentIdFilter: number | null | undefined, maxClassroomBuildingIdFilter: number | null | undefined, minClassroomBuildingIdFilter: number | null | undefined, listOfAllCalculatedResultNameCalculatedResultFilter: string | null | undefined, classScheduleModeSpaceNameClassScheduleModeSpacesFilter: string | null | undefined, sorting: string | null | undefined, skipCount: number | undefined, maxResultCount?: number | undefined): Observable<PagedResultDtoOfGetClassScheduleResultForViewDto> {
+    getAll(filter: string | null | undefined, workTimeInDayFilter: string | null | undefined, lessonFilter: string | null | undefined, universityProfessorFilter: string | null | undefined, semesterFilter: string | null | undefined, gradeFilter: string | null | undefined, universityMajorFilter: string | null | undefined, universityDepartmentFilter: string | null | undefined, classroomBuildingFilter: string | null | undefined, listOfAllCalculatedResultNameCalculatedResultFilter: string | null | undefined, classScheduleModeSpaceNameClassScheduleModeSpacesFilter: string | null | undefined, listOfAllCalculatedResultNameCalculatedResultIdFilter: number | null | undefined, classScheduleModeSpaceNameClassScheduleModeSpacesIdFilter: number | null | undefined, sorting: string | null | undefined, skipCount: number | undefined, maxResultCount: number | undefined): Observable<PagedResultDtoOfGetClassScheduleResultForViewDto> {
         let url_ = this.baseUrl + "/api/services/app/ClassScheduleResults/GetAll?";
         if (filter !== undefined && filter !== null)
             url_ += "Filter=" + encodeURIComponent("" + filter) + "&";
-        if (maxWorkTimeInDayIdFilter !== undefined && maxWorkTimeInDayIdFilter !== null)
-            url_ += "MaxWorkTimeInDayIdFilter=" + encodeURIComponent("" + maxWorkTimeInDayIdFilter) + "&";
-        if (minWorkTimeInDayIdFilter !== undefined && minWorkTimeInDayIdFilter !== null)
-            url_ += "MinWorkTimeInDayIdFilter=" + encodeURIComponent("" + minWorkTimeInDayIdFilter) + "&";
-        if (maxLessonIdFilter !== undefined && maxLessonIdFilter !== null)
-            url_ += "MaxLessonIdFilter=" + encodeURIComponent("" + maxLessonIdFilter) + "&";
-        if (minLessonIdFilter !== undefined && minLessonIdFilter !== null)
-            url_ += "MinLessonIdFilter=" + encodeURIComponent("" + minLessonIdFilter) + "&";
-        if (maxUniversityProfessorIdFilter !== undefined && maxUniversityProfessorIdFilter !== null)
-            url_ += "MaxUniversityProfessorIdFilter=" + encodeURIComponent("" + maxUniversityProfessorIdFilter) + "&";
-        if (minUniversityProfessorIdFilter !== undefined && minUniversityProfessorIdFilter !== null)
-            url_ += "MinUniversityProfessorIdFilter=" + encodeURIComponent("" + minUniversityProfessorIdFilter) + "&";
-        if (maxSemesterIdFilter !== undefined && maxSemesterIdFilter !== null)
-            url_ += "MaxSemesterIdFilter=" + encodeURIComponent("" + maxSemesterIdFilter) + "&";
-        if (minSemesterIdFilter !== undefined && minSemesterIdFilter !== null)
-            url_ += "MinSemesterIdFilter=" + encodeURIComponent("" + minSemesterIdFilter) + "&";
-        if (maxGradeIdFilter !== undefined && maxGradeIdFilter !== null)
-            url_ += "MaxGradeIdFilter=" + encodeURIComponent("" + maxGradeIdFilter) + "&";
-        if (minGradeIdFilter !== undefined && minGradeIdFilter !== null)
-            url_ += "MinGradeIdFilter=" + encodeURIComponent("" + minGradeIdFilter) + "&";
-        if (maxUniversityMajorIdFilter !== undefined && maxUniversityMajorIdFilter !== null)
-            url_ += "MaxUniversityMajorIdFilter=" + encodeURIComponent("" + maxUniversityMajorIdFilter) + "&";
-        if (minUniversityMajorIdFilter !== undefined && minUniversityMajorIdFilter !== null)
-            url_ += "MinUniversityMajorIdFilter=" + encodeURIComponent("" + minUniversityMajorIdFilter) + "&";
-        if (maxUniversityDepartmentIdFilter !== undefined && maxUniversityDepartmentIdFilter !== null)
-            url_ += "MaxUniversityDepartmentIdFilter=" + encodeURIComponent("" + maxUniversityDepartmentIdFilter) + "&";
-        if (minUniversityDepartmentIdFilter !== undefined && minUniversityDepartmentIdFilter !== null)
-            url_ += "MinUniversityDepartmentIdFilter=" + encodeURIComponent("" + minUniversityDepartmentIdFilter) + "&";
-        if (maxClassroomBuildingIdFilter !== undefined && maxClassroomBuildingIdFilter !== null)
-            url_ += "MaxClassroomBuildingIdFilter=" + encodeURIComponent("" + maxClassroomBuildingIdFilter) + "&";
-        if (minClassroomBuildingIdFilter !== undefined && minClassroomBuildingIdFilter !== null)
-            url_ += "MinClassroomBuildingIdFilter=" + encodeURIComponent("" + minClassroomBuildingIdFilter) + "&";
+        if (workTimeInDayFilter !== undefined && workTimeInDayFilter !== null)
+            url_ += "WorkTimeInDayFilter=" + encodeURIComponent("" + workTimeInDayFilter) + "&";
+        if (lessonFilter !== undefined && lessonFilter !== null)
+            url_ += "LessonFilter=" + encodeURIComponent("" + lessonFilter) + "&";
+        if (universityProfessorFilter !== undefined && universityProfessorFilter !== null)
+            url_ += "UniversityProfessorFilter=" + encodeURIComponent("" + universityProfessorFilter) + "&";
+        if (semesterFilter !== undefined && semesterFilter !== null)
+            url_ += "SemesterFilter=" + encodeURIComponent("" + semesterFilter) + "&";
+        if (gradeFilter !== undefined && gradeFilter !== null)
+            url_ += "GradeFilter=" + encodeURIComponent("" + gradeFilter) + "&";
+        if (universityMajorFilter !== undefined && universityMajorFilter !== null)
+            url_ += "UniversityMajorFilter=" + encodeURIComponent("" + universityMajorFilter) + "&";
+        if (universityDepartmentFilter !== undefined && universityDepartmentFilter !== null)
+            url_ += "UniversityDepartmentFilter=" + encodeURIComponent("" + universityDepartmentFilter) + "&";
+        if (classroomBuildingFilter !== undefined && classroomBuildingFilter !== null)
+            url_ += "ClassroomBuildingFilter=" + encodeURIComponent("" + classroomBuildingFilter) + "&";
         if (listOfAllCalculatedResultNameCalculatedResultFilter !== undefined && listOfAllCalculatedResultNameCalculatedResultFilter !== null)
             url_ += "ListOfAllCalculatedResultNameCalculatedResultFilter=" + encodeURIComponent("" + listOfAllCalculatedResultNameCalculatedResultFilter) + "&";
         if (classScheduleModeSpaceNameClassScheduleModeSpacesFilter !== undefined && classScheduleModeSpaceNameClassScheduleModeSpacesFilter !== null)
             url_ += "ClassScheduleModeSpaceNameClassScheduleModeSpacesFilter=" + encodeURIComponent("" + classScheduleModeSpaceNameClassScheduleModeSpacesFilter) + "&";
+        if (listOfAllCalculatedResultNameCalculatedResultIdFilter !== undefined && listOfAllCalculatedResultNameCalculatedResultIdFilter !== null)
+            url_ += "ListOfAllCalculatedResultNameCalculatedResultIdFilter=" + encodeURIComponent("" + listOfAllCalculatedResultNameCalculatedResultIdFilter) + "&";
+        if (classScheduleModeSpaceNameClassScheduleModeSpacesIdFilter !== undefined && classScheduleModeSpaceNameClassScheduleModeSpacesIdFilter !== null)
+            url_ += "ClassScheduleModeSpaceNameClassScheduleModeSpacesIdFilter=" + encodeURIComponent("" + classScheduleModeSpaceNameClassScheduleModeSpacesIdFilter) + "&";
         if (sorting !== undefined && sorting !== null)
             url_ += "Sorting=" + encodeURIComponent("" + sorting) + "&";
         if (skipCount === null)
@@ -3912,66 +3892,48 @@ export class ClassScheduleResultsServiceProxy {
 
     /**
      * @param filter (optional)
-     * @param maxWorkTimeInDayIdFilter (optional)
-     * @param minWorkTimeInDayIdFilter (optional)
-     * @param maxLessonIdFilter (optional)
-     * @param minLessonIdFilter (optional)
-     * @param maxUniversityProfessorIdFilter (optional)
-     * @param minUniversityProfessorIdFilter (optional)
-     * @param maxSemesterIdFilter (optional)
-     * @param minSemesterIdFilter (optional)
-     * @param maxGradeIdFilter (optional)
-     * @param minGradeIdFilter (optional)
-     * @param maxUniversityMajorIdFilter (optional)
-     * @param minUniversityMajorIdFilter (optional)
-     * @param maxUniversityDepartmentIdFilter (optional)
-     * @param minUniversityDepartmentIdFilter (optional)
-     * @param maxClassroomBuildingIdFilter (optional)
-     * @param minClassroomBuildingIdFilter (optional)
+     * @param workTimeInDayFilter (optional)
+     * @param lessonFilter (optional)
+     * @param universityProfessorFilter (optional)
+     * @param semesterFilter (optional)
+     * @param gradeFilter (optional)
+     * @param universityMajorFilter (optional)
+     * @param universityDepartmentFilter (optional)
+     * @param classroomBuildingFilter (optional)
      * @param listOfAllCalculatedResultNameCalculatedResultFilter (optional)
      * @param classScheduleModeSpaceNameClassScheduleModeSpacesFilter (optional)
+     * @param listOfAllCalculatedResultNameCalculatedResultIdFilter (optional)
+     * @param classScheduleModeSpaceNameClassScheduleModeSpacesIdFilter (optional)
      * @return Success
      */
-    getClassScheduleResultsToExcel(filter: string | null | undefined, maxWorkTimeInDayIdFilter: number | null | undefined, minWorkTimeInDayIdFilter: number | null | undefined, maxLessonIdFilter: number | null | undefined, minLessonIdFilter: number | null | undefined, maxUniversityProfessorIdFilter: number | null | undefined, minUniversityProfessorIdFilter: number | null | undefined, maxSemesterIdFilter: number | null | undefined, minSemesterIdFilter: number | null | undefined, maxGradeIdFilter: number | null | undefined, minGradeIdFilter: number | null | undefined, maxUniversityMajorIdFilter: number | null | undefined, minUniversityMajorIdFilter: number | null | undefined, maxUniversityDepartmentIdFilter: number | null | undefined, minUniversityDepartmentIdFilter: number | null | undefined, maxClassroomBuildingIdFilter: number | null | undefined, minClassroomBuildingIdFilter: number | null | undefined, listOfAllCalculatedResultNameCalculatedResultFilter: string | null | undefined, classScheduleModeSpaceNameClassScheduleModeSpacesFilter?: string | null | undefined): Observable<FileDto> {
+    getClassScheduleResultsToExcel(filter: string | null | undefined, workTimeInDayFilter: string | null | undefined, lessonFilter: string | null | undefined, universityProfessorFilter: string | null | undefined, semesterFilter: string | null | undefined, gradeFilter: string | null | undefined, universityMajorFilter: string | null | undefined, universityDepartmentFilter: string | null | undefined, classroomBuildingFilter: string | null | undefined, listOfAllCalculatedResultNameCalculatedResultFilter: string | null | undefined, classScheduleModeSpaceNameClassScheduleModeSpacesFilter: string | null | undefined, listOfAllCalculatedResultNameCalculatedResultIdFilter: number | null | undefined, classScheduleModeSpaceNameClassScheduleModeSpacesIdFilter: number | null | undefined): Observable<FileDto> {
         let url_ = this.baseUrl + "/api/services/app/ClassScheduleResults/GetClassScheduleResultsToExcel?";
         if (filter !== undefined && filter !== null)
             url_ += "Filter=" + encodeURIComponent("" + filter) + "&";
-        if (maxWorkTimeInDayIdFilter !== undefined && maxWorkTimeInDayIdFilter !== null)
-            url_ += "MaxWorkTimeInDayIdFilter=" + encodeURIComponent("" + maxWorkTimeInDayIdFilter) + "&";
-        if (minWorkTimeInDayIdFilter !== undefined && minWorkTimeInDayIdFilter !== null)
-            url_ += "MinWorkTimeInDayIdFilter=" + encodeURIComponent("" + minWorkTimeInDayIdFilter) + "&";
-        if (maxLessonIdFilter !== undefined && maxLessonIdFilter !== null)
-            url_ += "MaxLessonIdFilter=" + encodeURIComponent("" + maxLessonIdFilter) + "&";
-        if (minLessonIdFilter !== undefined && minLessonIdFilter !== null)
-            url_ += "MinLessonIdFilter=" + encodeURIComponent("" + minLessonIdFilter) + "&";
-        if (maxUniversityProfessorIdFilter !== undefined && maxUniversityProfessorIdFilter !== null)
-            url_ += "MaxUniversityProfessorIdFilter=" + encodeURIComponent("" + maxUniversityProfessorIdFilter) + "&";
-        if (minUniversityProfessorIdFilter !== undefined && minUniversityProfessorIdFilter !== null)
-            url_ += "MinUniversityProfessorIdFilter=" + encodeURIComponent("" + minUniversityProfessorIdFilter) + "&";
-        if (maxSemesterIdFilter !== undefined && maxSemesterIdFilter !== null)
-            url_ += "MaxSemesterIdFilter=" + encodeURIComponent("" + maxSemesterIdFilter) + "&";
-        if (minSemesterIdFilter !== undefined && minSemesterIdFilter !== null)
-            url_ += "MinSemesterIdFilter=" + encodeURIComponent("" + minSemesterIdFilter) + "&";
-        if (maxGradeIdFilter !== undefined && maxGradeIdFilter !== null)
-            url_ += "MaxGradeIdFilter=" + encodeURIComponent("" + maxGradeIdFilter) + "&";
-        if (minGradeIdFilter !== undefined && minGradeIdFilter !== null)
-            url_ += "MinGradeIdFilter=" + encodeURIComponent("" + minGradeIdFilter) + "&";
-        if (maxUniversityMajorIdFilter !== undefined && maxUniversityMajorIdFilter !== null)
-            url_ += "MaxUniversityMajorIdFilter=" + encodeURIComponent("" + maxUniversityMajorIdFilter) + "&";
-        if (minUniversityMajorIdFilter !== undefined && minUniversityMajorIdFilter !== null)
-            url_ += "MinUniversityMajorIdFilter=" + encodeURIComponent("" + minUniversityMajorIdFilter) + "&";
-        if (maxUniversityDepartmentIdFilter !== undefined && maxUniversityDepartmentIdFilter !== null)
-            url_ += "MaxUniversityDepartmentIdFilter=" + encodeURIComponent("" + maxUniversityDepartmentIdFilter) + "&";
-        if (minUniversityDepartmentIdFilter !== undefined && minUniversityDepartmentIdFilter !== null)
-            url_ += "MinUniversityDepartmentIdFilter=" + encodeURIComponent("" + minUniversityDepartmentIdFilter) + "&";
-        if (maxClassroomBuildingIdFilter !== undefined && maxClassroomBuildingIdFilter !== null)
-            url_ += "MaxClassroomBuildingIdFilter=" + encodeURIComponent("" + maxClassroomBuildingIdFilter) + "&";
-        if (minClassroomBuildingIdFilter !== undefined && minClassroomBuildingIdFilter !== null)
-            url_ += "MinClassroomBuildingIdFilter=" + encodeURIComponent("" + minClassroomBuildingIdFilter) + "&";
+        if (workTimeInDayFilter !== undefined && workTimeInDayFilter !== null)
+            url_ += "WorkTimeInDayFilter=" + encodeURIComponent("" + workTimeInDayFilter) + "&";
+        if (lessonFilter !== undefined && lessonFilter !== null)
+            url_ += "LessonFilter=" + encodeURIComponent("" + lessonFilter) + "&";
+        if (universityProfessorFilter !== undefined && universityProfessorFilter !== null)
+            url_ += "UniversityProfessorFilter=" + encodeURIComponent("" + universityProfessorFilter) + "&";
+        if (semesterFilter !== undefined && semesterFilter !== null)
+            url_ += "SemesterFilter=" + encodeURIComponent("" + semesterFilter) + "&";
+        if (gradeFilter !== undefined && gradeFilter !== null)
+            url_ += "GradeFilter=" + encodeURIComponent("" + gradeFilter) + "&";
+        if (universityMajorFilter !== undefined && universityMajorFilter !== null)
+            url_ += "UniversityMajorFilter=" + encodeURIComponent("" + universityMajorFilter) + "&";
+        if (universityDepartmentFilter !== undefined && universityDepartmentFilter !== null)
+            url_ += "UniversityDepartmentFilter=" + encodeURIComponent("" + universityDepartmentFilter) + "&";
+        if (classroomBuildingFilter !== undefined && classroomBuildingFilter !== null)
+            url_ += "ClassroomBuildingFilter=" + encodeURIComponent("" + classroomBuildingFilter) + "&";
         if (listOfAllCalculatedResultNameCalculatedResultFilter !== undefined && listOfAllCalculatedResultNameCalculatedResultFilter !== null)
             url_ += "ListOfAllCalculatedResultNameCalculatedResultFilter=" + encodeURIComponent("" + listOfAllCalculatedResultNameCalculatedResultFilter) + "&";
         if (classScheduleModeSpaceNameClassScheduleModeSpacesFilter !== undefined && classScheduleModeSpaceNameClassScheduleModeSpacesFilter !== null)
             url_ += "ClassScheduleModeSpaceNameClassScheduleModeSpacesFilter=" + encodeURIComponent("" + classScheduleModeSpaceNameClassScheduleModeSpacesFilter) + "&";
+        if (listOfAllCalculatedResultNameCalculatedResultIdFilter !== undefined && listOfAllCalculatedResultNameCalculatedResultIdFilter !== null)
+            url_ += "ListOfAllCalculatedResultNameCalculatedResultIdFilter=" + encodeURIComponent("" + listOfAllCalculatedResultNameCalculatedResultIdFilter) + "&";
+        if (classScheduleModeSpaceNameClassScheduleModeSpacesIdFilter !== undefined && classScheduleModeSpaceNameClassScheduleModeSpacesIdFilter !== null)
+            url_ += "ClassScheduleModeSpaceNameClassScheduleModeSpacesIdFilter=" + encodeURIComponent("" + classScheduleModeSpaceNameClassScheduleModeSpacesIdFilter) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -25978,14 +25940,14 @@ export interface IPagedResultDtoOfClassScheduleModeSpaceLessonLookupTableDto {
 }
 
 export class ClassScheduleResultDto implements IClassScheduleResultDto {
-    workTimeInDayId!: number;
-    lessonId!: number;
-    universityProfessorId!: number;
-    semesterId!: number;
-    gradeId!: number;
-    universityMajorId!: number;
-    universityDepartmentId!: number;
-    classroomBuildingId!: number;
+    workTimeInDayId!: string | undefined;
+    lessonId!: string | undefined;
+    universityProfessorId!: string | undefined;
+    semesterId!: string | undefined;
+    gradeId!: string | undefined;
+    universityMajorId!: string | undefined;
+    universityDepartmentId!: string | undefined;
+    classroomBuildingId!: string | undefined;
     listOfAllCalculatedResultId!: number;
     classScheduleModeSpaceId!: number;
     id!: number;
@@ -26040,14 +26002,14 @@ export class ClassScheduleResultDto implements IClassScheduleResultDto {
 }
 
 export interface IClassScheduleResultDto {
-    workTimeInDayId: number;
-    lessonId: number;
-    universityProfessorId: number;
-    semesterId: number;
-    gradeId: number;
-    universityMajorId: number;
-    universityDepartmentId: number;
-    classroomBuildingId: number;
+    workTimeInDayId: string | undefined;
+    lessonId: string | undefined;
+    universityProfessorId: string | undefined;
+    semesterId: string | undefined;
+    gradeId: string | undefined;
+    universityMajorId: string | undefined;
+    universityDepartmentId: string | undefined;
+    classroomBuildingId: string | undefined;
     listOfAllCalculatedResultId: number;
     classScheduleModeSpaceId: number;
     id: number;

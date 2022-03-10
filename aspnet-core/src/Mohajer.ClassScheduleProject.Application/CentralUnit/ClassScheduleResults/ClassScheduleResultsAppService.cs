@@ -134,7 +134,11 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults
                         .Include(e => e.ListOfAllCalculatedResultFk)
                         .Include(e => e.ClassScheduleModeSpaceFk)
                         .WhereIf(!string.IsNullOrEmpty(input.ListOfAllCalculatedResultNameCalculatedResultFilter), e => e.ListOfAllCalculatedResultFk != null && e.ListOfAllCalculatedResultFk.NameCalculatedResult == input.ListOfAllCalculatedResultNameCalculatedResultFilter.Trim())
-                        .WhereIf(!string.IsNullOrEmpty(input.ClassScheduleModeSpaceNameClassScheduleModeSpacesFilter), e => e.ClassScheduleModeSpaceFk != null && e.ClassScheduleModeSpaceFk.NameClassScheduleModeSpaces == input.ClassScheduleModeSpaceNameClassScheduleModeSpacesFilter.Trim());
+                        .WhereIf(!string.IsNullOrEmpty(input.Filter), e => e.ListOfAllCalculatedResultFk != null && e.ListOfAllCalculatedResultFk.NameCalculatedResult == input.Filter.Trim())
+                        .WhereIf(!string.IsNullOrEmpty(input.ClassScheduleModeSpaceNameClassScheduleModeSpacesFilter), e => e.ClassScheduleModeSpaceFk != null && e.ClassScheduleModeSpaceFk.NameClassScheduleModeSpaces == input.ClassScheduleModeSpaceNameClassScheduleModeSpacesFilter.Trim())
+                        .WhereIf(!string.IsNullOrEmpty(input.Filter), e => e.ClassScheduleModeSpaceFk != null && e.ClassScheduleModeSpaceFk.NameClassScheduleModeSpaces == input.Filter.Trim())
+                        .WhereIf(input.ListOfAllCalculatedResultNameCalculatedResultIdFilter.HasValue, e => e.ListOfAllCalculatedResultId == input.ListOfAllCalculatedResultNameCalculatedResultIdFilter)
+                        .WhereIf(input.ClassScheduleModeSpaceNameClassScheduleModeSpacesIdFilter.HasValue, e => e.ListOfAllCalculatedResultId == input.ClassScheduleModeSpaceNameClassScheduleModeSpacesIdFilter);
 
             var pagedAndFilteredClassScheduleResults = filteredClassScheduleResults
                 .OrderBy(input.Sorting ?? "id asc")
@@ -148,51 +152,36 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults
                                         from s2 in j2.DefaultIfEmpty()
 
                                         join o3 in _classroomBuildingRepository.GetAll()
-                                        .WhereIf(!string.IsNullOrEmpty(input.ClassroomBuildingFilter),e=>e.ClassroomBuildingName==input.ClassroomBuildingFilter.Trim())
-                                        .WhereIf(!string.IsNullOrEmpty(input.Filter), e => e.ClassroomBuildingName == input.Filter.Trim())
                                         on o.ClassroomBuildingId equals o3.Id into j3
                                         from s3 in j3.DefaultIfEmpty()
 
                                         join o4 in _universityProfessorRepository.GetAll()
-                                        .WhereIf(!string.IsNullOrEmpty(input.UniversityProfessorFilter), e => e.UniversityProfessorName == input.UniversityProfessorFilter.Trim())
-                                        .WhereIf(!string.IsNullOrEmpty(input.Filter), e => e.UniversityProfessorName == input.Filter.Trim())
                                         on o.UniversityProfessorId equals o4.Id into j4
                                         from s4 in j4.DefaultIfEmpty()
 
                                         join o5 in _universityDepartmentRepository.GetAll()
-                                        .WhereIf(!string.IsNullOrEmpty(input.UniversityDepartmentFilter), e => e.UniversityDepartmentName == input.UniversityDepartmentFilter.Trim())
-                                        .WhereIf(!string.IsNullOrEmpty(input.Filter), e => e.UniversityDepartmentName == input.Filter.Trim())
                                         on o.UniversityDepartmentId equals o5.Id into j5
                                         from s5 in j5.DefaultIfEmpty()
 
                                         join o6 in _gradeRepository.GetAll()
-                                        .WhereIf(!string.IsNullOrEmpty(input.GradeFilter), e => e.GradeName == input.GradeFilter.Trim())
-                                        .WhereIf(!string.IsNullOrEmpty(input.Filter), e => e.GradeName == input.Filter.Trim())
                                         on o.GradeId equals o6.Id into j6
                                         from s6 in j6.DefaultIfEmpty()
 
                                         join o7 in _semesterRepository.GetAll()
-                                        .WhereIf(!string.IsNullOrEmpty(input.SemesterFilter), e => e.SemesterName == input.SemesterFilter.Trim())
-                                        .WhereIf(!string.IsNullOrEmpty(input.Filter), e => e.SemesterName == input.Filter.Trim())
                                         on o.SemesterId equals o7.Id into j7
                                         from s7 in j7.DefaultIfEmpty()
 
                                         join o8 in _universityMajorRepository.GetAll()
-                                        .WhereIf(!string.IsNullOrEmpty(input.UniversityMajorFilter), e => e.UniversityMajorName == input.UniversityMajorFilter.Trim())
-                                        .WhereIf(!string.IsNullOrEmpty(input.Filter), e => e.UniversityMajorName == input.Filter.Trim())
                                         on o.UniversityMajorId equals o8.Id into j8
                                         from s8 in j8.DefaultIfEmpty()
 
 
                                         join o9 in _lessonRepository.GetAll()
-                                        .WhereIf(!string.IsNullOrEmpty(input.LessonFilter), e => e.NameLesson == input.LessonFilter.Trim())
-                                        .WhereIf(!string.IsNullOrEmpty(input.Filter), e => e.NameLesson == input.Filter.Trim())
+
                                         on o.LessonId equals o9.Id into j9
                                         from s9 in j9.DefaultIfEmpty()
 
                                         join o10 in _workTimeInDayRepository.GetAll()
-                                        .WhereIf(!string.IsNullOrEmpty(input.WorkTimeInDayFilter), e => e.NameWorkTimeInDay == input.WorkTimeInDayFilter.Trim())
-                                        .WhereIf(!string.IsNullOrEmpty(input.Filter), e => e.NameWorkTimeInDay == input.Filter.Trim())
                                         on o.WorkTimeInDayId equals o10.Id into j10
                                         from s10 in j10.DefaultIfEmpty()
 
@@ -214,12 +203,28 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults
                                             },
                                             ListOfAllCalculatedResultNameCalculatedResult = s1 == null || s1.NameCalculatedResult == null ? "" : s1.NameCalculatedResult.ToString(),
                                             ClassScheduleModeSpaceNameClassScheduleModeSpaces = s2 == null || s2.NameClassScheduleModeSpaces == null ? "" : s2.NameClassScheduleModeSpaces.ToString()
-                                        });
+                                        })
+                                        .WhereIf(!string.IsNullOrEmpty(input.ClassroomBuildingFilter), e => e.ClassScheduleResult.ClassroomBuildingId == input.ClassroomBuildingFilter.Trim())
+                                        .WhereIf(!string.IsNullOrEmpty(input.Filter), e => e.ClassScheduleResult.ClassroomBuildingId == input.Filter.Trim())
+                                        .WhereIf(!string.IsNullOrEmpty(input.UniversityProfessorFilter), e => e.ClassScheduleResult.UniversityProfessorId == input.UniversityProfessorFilter.Trim())
+                                        .WhereIf(!string.IsNullOrEmpty(input.Filter), e => e.ClassScheduleResult.UniversityProfessorId == input.Filter.Trim())
+                                        .WhereIf(!string.IsNullOrEmpty(input.UniversityDepartmentFilter), e => e.ClassScheduleResult.UniversityDepartmentId == input.UniversityDepartmentFilter.Trim())
+                                        .WhereIf(!string.IsNullOrEmpty(input.Filter), e => e.ClassScheduleResult.UniversityDepartmentId == input.Filter.Trim())
+                                        .WhereIf(!string.IsNullOrEmpty(input.GradeFilter), e => e.ClassScheduleResult.GradeId == input.GradeFilter.Trim())
+                                        .WhereIf(!string.IsNullOrEmpty(input.Filter), e => e.ClassScheduleResult.GradeId == input.Filter.Trim())
+                                        .WhereIf(!string.IsNullOrEmpty(input.SemesterFilter), e => e.ClassScheduleResult.SemesterId == input.SemesterFilter.Trim())
+                                        .WhereIf(!string.IsNullOrEmpty(input.Filter), e => e.ClassScheduleResult.SemesterId == input.Filter.Trim())
+                                        .WhereIf(!string.IsNullOrEmpty(input.UniversityMajorFilter), e => e.ClassScheduleResult.UniversityMajorId == input.UniversityMajorFilter.Trim())
+                                        .WhereIf(!string.IsNullOrEmpty(input.Filter), e => e.ClassScheduleResult.UniversityMajorId == input.Filter.Trim())
+                                        .WhereIf(!string.IsNullOrEmpty(input.LessonFilter), e => e.ClassScheduleResult.LessonId == input.LessonFilter.Trim())
+                                        .WhereIf(!string.IsNullOrEmpty(input.Filter), e => e.ClassScheduleResult.LessonId == input.Filter.Trim())
+                                        .WhereIf(!string.IsNullOrEmpty(input.WorkTimeInDayFilter), e => e.ClassScheduleResult.WorkTimeInDayId == input.WorkTimeInDayFilter.Trim())
+                                        .WhereIf(!string.IsNullOrEmpty(input.Filter), e => e.ClassScheduleResult.WorkTimeInDayId == input.Filter.Trim());
 
             var totalCount = await filteredClassScheduleResults.CountAsync();
 
             var dbList = await classScheduleResults.ToListAsync();
-           
+
             return new PagedResultDto<GetClassScheduleResultForViewDto>(
                 totalCount,
                 dbList
@@ -316,9 +321,12 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults
             var filteredClassScheduleResults = _classScheduleResultRepository.GetAll()
                         .Include(e => e.ListOfAllCalculatedResultFk)
                         .Include(e => e.ClassScheduleModeSpaceFk)
-                        .WhereIf(!string.IsNullOrWhiteSpace(input.Filter), e => false)
-                        .WhereIf(!string.IsNullOrWhiteSpace(input.ListOfAllCalculatedResultNameCalculatedResultFilter), e => e.ListOfAllCalculatedResultFk != null && e.ListOfAllCalculatedResultFk.NameCalculatedResult == input.ListOfAllCalculatedResultNameCalculatedResultFilter)
-                        .WhereIf(!string.IsNullOrWhiteSpace(input.ClassScheduleModeSpaceNameClassScheduleModeSpacesFilter), e => e.ClassScheduleModeSpaceFk != null && e.ClassScheduleModeSpaceFk.NameClassScheduleModeSpaces == input.ClassScheduleModeSpaceNameClassScheduleModeSpacesFilter);
+                        .WhereIf(!string.IsNullOrEmpty(input.ListOfAllCalculatedResultNameCalculatedResultFilter), e => e.ListOfAllCalculatedResultFk != null && e.ListOfAllCalculatedResultFk.NameCalculatedResult == input.ListOfAllCalculatedResultNameCalculatedResultFilter.Trim())
+                        .WhereIf(!string.IsNullOrEmpty(input.Filter), e => e.ListOfAllCalculatedResultFk != null && e.ListOfAllCalculatedResultFk.NameCalculatedResult == input.Filter.Trim())
+                        .WhereIf(!string.IsNullOrEmpty(input.ClassScheduleModeSpaceNameClassScheduleModeSpacesFilter), e => e.ClassScheduleModeSpaceFk != null && e.ClassScheduleModeSpaceFk.NameClassScheduleModeSpaces == input.ClassScheduleModeSpaceNameClassScheduleModeSpacesFilter.Trim())
+                        .WhereIf(!string.IsNullOrEmpty(input.Filter), e => e.ClassScheduleModeSpaceFk != null && e.ClassScheduleModeSpaceFk.NameClassScheduleModeSpaces == input.Filter.Trim())
+                        .WhereIf(input.ListOfAllCalculatedResultNameCalculatedResultIdFilter.HasValue, e => e.ListOfAllCalculatedResultId == input.ListOfAllCalculatedResultNameCalculatedResultIdFilter)
+                        .WhereIf(input.ClassScheduleModeSpaceNameClassScheduleModeSpacesIdFilter.HasValue, e => e.ListOfAllCalculatedResultId == input.ClassScheduleModeSpaceNameClassScheduleModeSpacesIdFilter);
 
             var query = (from o in filteredClassScheduleResults
                          join o1 in _lookup_listOfAllCalculatedResultRepository.GetAll() on o.ListOfAllCalculatedResultId equals o1.Id into j1
@@ -328,51 +336,36 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults
                          from s2 in j2.DefaultIfEmpty()
 
                          join o3 in _classroomBuildingRepository.GetAll()
-                                        .WhereIf(!string.IsNullOrEmpty(input.ClassroomBuildingFilter), e => e.ClassroomBuildingName == input.ClassroomBuildingFilter.Trim())
-                                        .WhereIf(!string.IsNullOrEmpty(input.Filter), e => e.ClassroomBuildingName == input.Filter.Trim())
-                                        on o.ClassroomBuildingId equals o3.Id into j3
+                         on o.ClassroomBuildingId equals o3.Id into j3
                          from s3 in j3.DefaultIfEmpty()
 
                          join o4 in _universityProfessorRepository.GetAll()
-                         .WhereIf(!string.IsNullOrEmpty(input.UniversityProfessorFilter), e => e.UniversityProfessorName == input.UniversityProfessorFilter.Trim())
-                         .WhereIf(!string.IsNullOrEmpty(input.Filter), e => e.UniversityProfessorName == input.Filter.Trim())
                          on o.UniversityProfessorId equals o4.Id into j4
                          from s4 in j4.DefaultIfEmpty()
 
                          join o5 in _universityDepartmentRepository.GetAll()
-                         .WhereIf(!string.IsNullOrEmpty(input.UniversityDepartmentFilter), e => e.UniversityDepartmentName == input.UniversityDepartmentFilter.Trim())
-                         .WhereIf(!string.IsNullOrEmpty(input.Filter), e => e.UniversityDepartmentName == input.Filter.Trim())
                          on o.UniversityDepartmentId equals o5.Id into j5
                          from s5 in j5.DefaultIfEmpty()
 
                          join o6 in _gradeRepository.GetAll()
-                         .WhereIf(!string.IsNullOrEmpty(input.GradeFilter), e => e.GradeName == input.GradeFilter.Trim())
-                         .WhereIf(!string.IsNullOrEmpty(input.Filter), e => e.GradeName == input.Filter.Trim())
                          on o.GradeId equals o6.Id into j6
                          from s6 in j6.DefaultIfEmpty()
 
                          join o7 in _semesterRepository.GetAll()
-                         .WhereIf(!string.IsNullOrEmpty(input.SemesterFilter), e => e.SemesterName == input.SemesterFilter.Trim())
-                         .WhereIf(!string.IsNullOrEmpty(input.Filter), e => e.SemesterName == input.Filter.Trim())
                          on o.SemesterId equals o7.Id into j7
                          from s7 in j7.DefaultIfEmpty()
 
                          join o8 in _universityMajorRepository.GetAll()
-                         .WhereIf(!string.IsNullOrEmpty(input.UniversityMajorFilter), e => e.UniversityMajorName == input.UniversityMajorFilter.Trim())
-                         .WhereIf(!string.IsNullOrEmpty(input.Filter), e => e.UniversityMajorName == input.Filter.Trim())
                          on o.UniversityMajorId equals o8.Id into j8
                          from s8 in j8.DefaultIfEmpty()
 
 
                          join o9 in _lessonRepository.GetAll()
-                         .WhereIf(!string.IsNullOrEmpty(input.LessonFilter), e => e.NameLesson == input.LessonFilter.Trim())
-                         .WhereIf(!string.IsNullOrEmpty(input.Filter), e => e.NameLesson == input.Filter.Trim())
+
                          on o.LessonId equals o9.Id into j9
                          from s9 in j9.DefaultIfEmpty()
 
                          join o10 in _workTimeInDayRepository.GetAll()
-                         .WhereIf(!string.IsNullOrEmpty(input.WorkTimeInDayFilter), e => e.NameWorkTimeInDay == input.WorkTimeInDayFilter.Trim())
-                         .WhereIf(!string.IsNullOrEmpty(input.Filter), e => e.NameWorkTimeInDay == input.Filter.Trim())
                          on o.WorkTimeInDayId equals o10.Id into j10
                          from s10 in j10.DefaultIfEmpty()
 
@@ -394,7 +387,23 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults
                              },
                              ListOfAllCalculatedResultNameCalculatedResult = s1 == null || s1.NameCalculatedResult == null ? "" : s1.NameCalculatedResult.ToString(),
                              ClassScheduleModeSpaceNameClassScheduleModeSpaces = s2 == null || s2.NameClassScheduleModeSpaces == null ? "" : s2.NameClassScheduleModeSpaces.ToString()
-                         });
+                         })
+                                        .WhereIf(!string.IsNullOrEmpty(input.ClassroomBuildingFilter), e => e.ClassScheduleResult.ClassroomBuildingId == input.ClassroomBuildingFilter.Trim())
+                                        .WhereIf(!string.IsNullOrEmpty(input.Filter), e => e.ClassScheduleResult.ClassroomBuildingId == input.Filter.Trim())
+                                        .WhereIf(!string.IsNullOrEmpty(input.UniversityProfessorFilter), e => e.ClassScheduleResult.UniversityProfessorId == input.UniversityProfessorFilter.Trim())
+                                        .WhereIf(!string.IsNullOrEmpty(input.Filter), e => e.ClassScheduleResult.UniversityProfessorId == input.Filter.Trim())
+                                        .WhereIf(!string.IsNullOrEmpty(input.UniversityDepartmentFilter), e => e.ClassScheduleResult.UniversityDepartmentId == input.UniversityDepartmentFilter.Trim())
+                                        .WhereIf(!string.IsNullOrEmpty(input.Filter), e => e.ClassScheduleResult.UniversityDepartmentId == input.Filter.Trim())
+                                        .WhereIf(!string.IsNullOrEmpty(input.GradeFilter), e => e.ClassScheduleResult.GradeId == input.GradeFilter.Trim())
+                                        .WhereIf(!string.IsNullOrEmpty(input.Filter), e => e.ClassScheduleResult.GradeId == input.Filter.Trim())
+                                        .WhereIf(!string.IsNullOrEmpty(input.SemesterFilter), e => e.ClassScheduleResult.SemesterId == input.SemesterFilter.Trim())
+                                        .WhereIf(!string.IsNullOrEmpty(input.Filter), e => e.ClassScheduleResult.SemesterId == input.Filter.Trim())
+                                        .WhereIf(!string.IsNullOrEmpty(input.UniversityMajorFilter), e => e.ClassScheduleResult.UniversityMajorId == input.UniversityMajorFilter.Trim())
+                                        .WhereIf(!string.IsNullOrEmpty(input.Filter), e => e.ClassScheduleResult.UniversityMajorId == input.Filter.Trim())
+                                        .WhereIf(!string.IsNullOrEmpty(input.LessonFilter), e => e.ClassScheduleResult.LessonId == input.LessonFilter.Trim())
+                                        .WhereIf(!string.IsNullOrEmpty(input.Filter), e => e.ClassScheduleResult.LessonId == input.Filter.Trim())
+                                        .WhereIf(!string.IsNullOrEmpty(input.WorkTimeInDayFilter), e => e.ClassScheduleResult.WorkTimeInDayId == input.WorkTimeInDayFilter.Trim())
+                                        .WhereIf(!string.IsNullOrEmpty(input.Filter), e => e.ClassScheduleResult.WorkTimeInDayId == input.Filter.Trim());
 
             var classScheduleResultListDtos = await query.ToListAsync();
 
@@ -483,6 +492,7 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults
                 .ToListAsync();
 
             _semester = await _semesterRepository.GetAll()
+                .Where(record => record.IsActive == true)
                  .Include(s => s.AssigningGradeToUniversityMajorFk.UniversityMajorFk.UniversityDepartmentFk)
                  .Include(s => s.AssigningGradeToUniversityMajorFk.GradeFk)
                  .ToListAsync();
@@ -502,6 +512,7 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults
                 .Include(s => s.LessonFk)
                 .Include(s => s.SemesterFk.AssigningGradeToUniversityMajorFk.UniversityMajorFk.UniversityDepartmentFk)
                 .Include(s => s.SemesterFk.AssigningGradeToUniversityMajorFk.GradeFk)
+                .Where(record => record.IsActive == true && record.SemesterFk.IsActive == true)
                 .ToListAsync();
             _lessonsOfUniversityProfessor = await _lessonsOfUniversityProfessorRepository.GetAll()
                 .Include(s => s.LessonFk)

@@ -25,7 +25,7 @@
     
     <text name="LessonsOfSemesterLessonsOfSemesterName">نام تخصیص درس به ترم</text>
     <text name="PickLessonsOfSemester">انتخاب دروس ترم</text>
-    <text name="LessonsOfSemesterName">نام دروس ترم</text>
+    <text name="LessonsOfSemesterName">نام درس در ترم</text>
     <text name="ListOfClassScheduleModeSpaces">فهرست فضاهای حالت زمانبندی کلاس</text>
     <text name="ListOfClassScheduleModeSpace">فهرست فضای حالت زمانبندی کلاس</text>
     <text name="CreateNewListOfClassScheduleModeSpace">ایجاد فهرست جدید فضای حالت برنامه کلاس</text>
@@ -73,13 +73,13 @@
     <text name="ClassScheduleResults">نتایج برنامه کلاس</text>
     <text name="ClassScheduleResult">نتیجه زمانبندی کلاس</text>
     <text name="Mohajer.ClassScheduleProject.ClassScheduleResults.ClassScheduleResult">نتیجه زمانبندی کلاس</text>
-    <text name="WorkTimeInDayId">شناسه زمان کار در روز</text>
+    <text name="WorkTimeInDayId">زمان کار در روز</text>
     <text name="LessonId">شناسه درس</text>
-    <text name="UniversityProfessorId">شناسه استاد دانشگاه</text>
-    <text name="SemesterId">شناسه ترم</text>
-    <text name="GradeId">شناسه درجه</text>
-    <text name="UniversityMajorId">شناسه رشته دانشگاه</text>
-    <text name="UniversityDepartmentId">شناسه بخش دانشگاه</text>
+    <text name="UniversityProfessorId">استاد دانشگاه</text>
+    <text name="SemesterId">ترم</text>
+    <text name="GradeId">درجه</text>
+    <text name="UniversityMajorId">رشته دانشگاه</text>
+    <text name="UniversityDepartmentId">گروه دانشگاه</text>
     <text name="ClassScheduleResultsHeaderInfo"> لیست نتایج زمانبندی کلاس</text>
     <text name="CreateNewClassScheduleResult">ایجاد نتیجه برنامه کلاسی جدید</text>
     <text name="EditClassScheduleResult">نتیجه برنامه کلاسی را ویرایش کنید</text>
@@ -103,14 +103,14 @@
     <text name="CreateNewLessonsOfSemester">ایجاد درس های جدید ترم</text>
     <text name="EditLessonsOfSemester">ویرایش دروس ترم</text>
     <text name="DeleteLessonsOfSemester">حذف دروس ترم</text>
-    <text name="LessonNameLesson">درس نام درس</text>
+    <text name="LessonNameLesson">نام درس</text>
     <text name="PickLesson">انتخاب درس</text>
     <text name="SemesterSemesterName">نام ترم</text>
     <text name="PickSemester">انتخاب ترم</text>
     <text name="Lessons">دروس</text>
     <text name="Lesson">درس</text>
     <text name="Mohajer.ClassScheduleProject.Lessons.Lesson">درس</text>
-    <text name="NameLesson">درس نام</text>
+    <text name="NameLesson">نام درس</text>
     <text name="HoursPerWeek">ساعت در هفته</text>
     <text name="LessonType">نوع درس</text>
     <text name="ClassificationLesson">درس طبقه بندی</text>
@@ -239,10 +239,15 @@
     <text name="AssinedBeforWorkOfTimeSelected">شما قبلا زمان کاری انتخاب شده را به استاد انتخابی اختصاص داده اید!</text>
     <text name="AssinedBeforAssigningUniversityMajorToClassroomBuildingSelected">ساختمان کلاسی که انتخاب کردید قبلا به گروه انتخابی تخصیص داده اید!</text>
     <text name="AssinedBeforAssigningGradeToUniversityMajorSelected">رشته ای که انتخاب کردید قبلا به مقطع انتخابی تخصیص داده اید!</text>
+    <text name="AssinedBeforAssigningLessonsOfUniversityProfessorSelected">درسی ای که انتخاب کردید قبلا به استاد انتخابی تخصیص داده اید!</text>
+    <text name="AssinedBeforAssigningLessonsOfSemesterSelected">درسی ای که انتخاب کردید قبلا به ترم انتخابی تخصیص داده اید!</text>
+
     <text name="NotSaved">عملیات با موفقیت انجام نشد!</text>
     <text name="MaxWorkTimeInDay">شروع بازه ی زمانی</text>
     <text name="MinWorkTimeInDay">پایان بازه ی زمانی</text>
-
+    <text name="lesson">درس</text>
+    <text name="for">برای</text>
+    <text name="ShowResults">دیدن نتایج</text>
 
     <text name="Min">حداقل</text>
     <text name="Max">حداکثر</text>

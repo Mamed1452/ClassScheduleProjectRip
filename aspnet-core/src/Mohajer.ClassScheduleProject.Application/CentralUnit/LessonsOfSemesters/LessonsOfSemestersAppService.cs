@@ -169,6 +169,13 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.LessonsOfSemesters
         [AbpAuthorize(AppPermissions.Pages_LessonsOfSemesters_Create)]
         protected virtual async Task Create(CreateOrEditLessonsOfSemesterDto input)
         {
+
+            var esistLessonsOfSemester = await _lessonsOfSemesterRepository
+             .FirstOrDefaultAsync(record => record.LessonId == input.LessonId && record.SemesterId == input.SemesterId);
+            if (esistLessonsOfSemester != null)
+            {
+                throw new UserFriendlyException(L("AssinedBeforAssigningLessonsOfSemesterSelected"));
+            }
             var lessonsOfSemester = ObjectMapper.Map<LessonsOfSemester>(input);
 
             if (AbpSession.TenantId != null)
@@ -183,6 +190,12 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.LessonsOfSemesters
         [AbpAuthorize(AppPermissions.Pages_LessonsOfSemesters_Edit)]
         protected virtual async Task Update(CreateOrEditLessonsOfSemesterDto input)
         {
+            var esistLessonsOfSemester = await _lessonsOfSemesterRepository
+             .FirstOrDefaultAsync(record => record.Id != input.Id && record.LessonId == input.LessonId && record.SemesterId == input.SemesterId);
+            if (esistLessonsOfSemester != null)
+            {
+                throw new UserFriendlyException(L("AssinedBeforAssigningLessonsOfSemesterSelected"));
+            }
             var lessonsOfSemester = await _lessonsOfSemesterRepository.FirstOrDefaultAsync((long)input.Id);
             ObjectMapper.Map(input, lessonsOfSemester);
 
@@ -272,9 +285,11 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.LessonsOfSemesters
         public async Task<PagedResultDto<LessonsOfSemesterSemesterLookupTableDto>> GetAllSemesterForLookupTable(GetAllForLookupTableInput input)
         {
             var query = _lookup_semesterRepository.GetAll().WhereIf(
-                   !string.IsNullOrWhiteSpace(input.Filter),
-                  e => e.SemesterName != null && e.SemesterName.Contains(input.Filter)
-               ).Include(s => s.AssigningGradeToUniversityMajorFk);
+                   !string.IsNullOrEmpty(input.Filter),
+                  e => e.SemesterName != null && e.SemesterName.Contains(input.Filter.Trim())
+               ).Include(s => s.AssigningGradeToUniversityMajorFk)
+               .WhereIf(!string.IsNullOrEmpty(input.Filter),
+                  e => e.AssigningGradeToUniversityMajorFk != null && !e.AssigningGradeToUniversityMajorFk.NameAssignedGradeToUniversityMajor.IsNullOrEmpty() && e.AssigningGradeToUniversityMajorFk.NameAssignedGradeToUniversityMajor.Contains(input.Filter.Trim()));
 
             var totalCount = await query.CountAsync();
 
@@ -288,9 +303,9 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.LessonsOfSemesters
                 lookupTableDtoList.Add(new LessonsOfSemesterSemesterLookupTableDto
                 {
                     Id = semester.Id,
-                    DisplayName = (semester.AssigningGradeToUniversityMajorFk.NameAssignedGradeToUniversityMajor +" "+ semester.SemesterName?.ToString())
+                    DisplayName = (semester.AssigningGradeToUniversityMajorFk.NameAssignedGradeToUniversityMajor + " " + semester.SemesterName?.ToString())
                 });
-        }
+            }
 
             return new PagedResultDto<LessonsOfSemesterSemesterLookupTableDto>(
                 totalCount,
@@ -298,5 +313,5 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.LessonsOfSemesters
             );
         }
 
-}
+    }
 }

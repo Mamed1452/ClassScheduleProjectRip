@@ -156,6 +156,12 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.LessonsOfUniversityProfessors
         [AbpAuthorize(AppPermissions.Pages_LessonsOfUniversityProfessors_Create)]
         protected virtual async Task Create(CreateOrEditLessonsOfUniversityProfessorDto input)
         {
+            var esistLessonsOfUniversityProfessor = await _lessonsOfUniversityProfessorRepository
+              .FirstOrDefaultAsync(record => record.LessonId == input.LessonId && record.UniversityProfessorId == input.UniversityProfessorId);
+            if (esistLessonsOfUniversityProfessor != null)
+            {
+                throw new UserFriendlyException(L("AssinedBeforAssigningLessonsOfUniversityProfessorSelected"));
+            }
             var lessonsOfUniversityProfessor = ObjectMapper.Map<LessonsOfUniversityProfessor>(input);
 
             if (AbpSession.TenantId != null)
@@ -170,6 +176,12 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.LessonsOfUniversityProfessors
         [AbpAuthorize(AppPermissions.Pages_LessonsOfUniversityProfessors_Edit)]
         protected virtual async Task Update(CreateOrEditLessonsOfUniversityProfessorDto input)
         {
+            var esistLessonsOfUniversityProfessor = await _lessonsOfUniversityProfessorRepository
+              .FirstOrDefaultAsync(record => record.Id != input.Id && record.LessonId == input.LessonId && record.UniversityProfessorId == input.UniversityProfessorId);
+            if (esistLessonsOfUniversityProfessor != null)
+            {
+                throw new UserFriendlyException(L("AssinedBeforAssigningLessonsOfUniversityProfessorSelected"));
+            }
             var lessonsOfUniversityProfessor = await _lessonsOfUniversityProfessorRepository.FirstOrDefaultAsync((long)input.Id);
             ObjectMapper.Map(input, lessonsOfUniversityProfessor);
 

@@ -96,19 +96,23 @@ export class CreateOrEditLessonsOfSemesterModalComponent extends AppComponentBas
     setLessonIdNull() {
         this.lessonsOfSemester.lessonId = null;
         this.lessonNameLesson = '';
+        this.lessonsOfSemester.lessonsOfSemesterName= this.l('lesson') + " " + this.lessonNameLesson +" "+ this.l('for') + " " +  this.semesterSemesterName;
     }
     setSemesterIdNull() {
         this.lessonsOfSemester.semesterId = null;
         this.semesterSemesterName = '';
+        this.lessonsOfSemester.lessonsOfSemesterName= this.l('lesson') + " " + this.lessonNameLesson +" "+ this.l('for') + " " +  this.semesterSemesterName;
     }
 
     getNewLessonId() {
         this.lessonsOfSemester.lessonId = this.lessonsOfSemesterLessonLookupTableModal.id;
         this.lessonNameLesson = this.lessonsOfSemesterLessonLookupTableModal.displayName;
+        this.lessonsOfSemester.lessonsOfSemesterName= this.l('lesson') + " " + this.lessonNameLesson +" "+ this.l('for') + " " +  this.semesterSemesterName;
     }
     getNewSemesterId() {
         this.lessonsOfSemester.semesterId = this.lessonsOfSemesterSemesterLookupTableModal.id;
         this.semesterSemesterName = this.lessonsOfSemesterSemesterLookupTableModal.displayName;
+        this.lessonsOfSemester.lessonsOfSemesterName= this.l('lesson') + " " + this.lessonNameLesson +" "+ this.l('for') + " " +  this.semesterSemesterName;
     }
 
     close(): void {

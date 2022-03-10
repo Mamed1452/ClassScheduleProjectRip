@@ -39,36 +39,16 @@ export class MasterDetailChild_ListOfAllCalculatedResult_ClassScheduleResultsCom
 
     advancedFiltersAreShown = false;
     filterText = '';
-    maxWorkTimeInDayIdFilter: number;
-    maxWorkTimeInDayIdFilterEmpty: number;
-    minWorkTimeInDayIdFilter: number;
-    minWorkTimeInDayIdFilterEmpty: number;
-    maxLessonIdFilter: number;
-    maxLessonIdFilterEmpty: number;
-    minLessonIdFilter: number;
-    minLessonIdFilterEmpty: number;
-    maxUniversityProfessorIdFilter: number;
-    maxUniversityProfessorIdFilterEmpty: number;
-    minUniversityProfessorIdFilter: number;
-    minUniversityProfessorIdFilterEmpty: number;
-    maxSemesterIdFilter: number;
-    maxSemesterIdFilterEmpty: number;
-    minSemesterIdFilter: number;
-    minSemesterIdFilterEmpty: number;
-    maxGradeIdFilter: number;
-    maxGradeIdFilterEmpty: number;
-    minGradeIdFilter: number;
-    minGradeIdFilterEmpty: number;
-    maxUniversityMajorIdFilter: number;
-    maxUniversityMajorIdFilterEmpty: number;
-    minUniversityMajorIdFilter: number;
-    minUniversityMajorIdFilterEmpty: number;
-    maxUniversityDepartmentIdFilter: number;
-    maxUniversityDepartmentIdFilterEmpty: number;
-    minUniversityDepartmentIdFilter: number;
-    minUniversityDepartmentIdFilterEmpty: number;
+    workTimeInDayFilter: string;
+    lessonFilter: string;
+    universityProfessorFilter: string;
+    semesterFilter: string;
+    gradeFilter: string;
+    universityMajorFilter: string;
+    universityDepartmentFilter: string;
+    classroomBuildingFilter: string;
     classScheduleModeSpaceNameClassScheduleModeSpacesFilter = '';
-
+    listOfAllCalculatedResultNameCalculatedResultFilter = '';
     _entityTypeFullName = 'Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults.ClassScheduleResult';
     entityHistoryEnabled = false;
 
@@ -112,40 +92,18 @@ export class MasterDetailChild_ListOfAllCalculatedResult_ClassScheduleResultsCom
         this._classScheduleResultsServiceProxy
             .getAll(
                 this.filterText,
-                this.maxWorkTimeInDayIdFilter == null
-                    ? this.maxWorkTimeInDayIdFilterEmpty
-                    : this.maxWorkTimeInDayIdFilter,
-                this.minWorkTimeInDayIdFilter == null
-                    ? this.minWorkTimeInDayIdFilterEmpty
-                    : this.minWorkTimeInDayIdFilter,
-                this.maxLessonIdFilter == null ? this.maxLessonIdFilterEmpty : this.maxLessonIdFilter,
-                this.minLessonIdFilter == null ? this.minLessonIdFilterEmpty : this.minLessonIdFilter,
-                this.maxUniversityProfessorIdFilter == null
-                    ? this.maxUniversityProfessorIdFilterEmpty
-                    : this.maxUniversityProfessorIdFilter,
-                this.minUniversityProfessorIdFilter == null
-                    ? this.minUniversityProfessorIdFilterEmpty
-                    : this.minUniversityProfessorIdFilter,
-                this.maxSemesterIdFilter == null ? this.maxSemesterIdFilterEmpty : this.maxSemesterIdFilter,
-                this.minSemesterIdFilter == null ? this.minSemesterIdFilterEmpty : this.minSemesterIdFilter,
-                this.maxGradeIdFilter == null ? this.maxGradeIdFilterEmpty : this.maxGradeIdFilter,
-                this.minGradeIdFilter == null ? this.minGradeIdFilterEmpty : this.minGradeIdFilter,
-                this.maxUniversityMajorIdFilter == null
-                    ? this.maxUniversityMajorIdFilterEmpty
-                    : this.maxUniversityMajorIdFilter,
-                this.minUniversityMajorIdFilter == null
-                    ? this.minUniversityMajorIdFilterEmpty
-                    : this.minUniversityMajorIdFilter,
-                this.maxUniversityDepartmentIdFilter == null
-                    ? this.maxUniversityDepartmentIdFilterEmpty
-                    : this.maxUniversityDepartmentIdFilter,
-                this.minUniversityDepartmentIdFilter == null
-                    ? this.minUniversityDepartmentIdFilterEmpty
-                    : this.minUniversityDepartmentIdFilter,
-                null,
-                undefined,
+                this.workTimeInDayFilter,
+                this.lessonFilter ,
+                this.universityProfessorFilter,
+                this.semesterFilter,
+                this.gradeFilter,
+                this.universityMajorFilter,
+                this.universityDepartmentFilter,
+                this.classroomBuildingFilter,
+                this.listOfAllCalculatedResultNameCalculatedResultFilter,
                 this.classScheduleModeSpaceNameClassScheduleModeSpacesFilter,
                 this.listOfAllCalculatedResultId,
+                undefined,
                 this.primengTableHelper.getSorting(this.dataTable),
                 this.primengTableHelper.getSkipCount(this.paginator, event),
                 this.primengTableHelper.getMaxResultCount(this.paginator, event)
@@ -188,40 +146,18 @@ export class MasterDetailChild_ListOfAllCalculatedResult_ClassScheduleResultsCom
         this._classScheduleResultsServiceProxy
             .getClassScheduleResultsToExcel(
                 this.filterText,
-                this.maxWorkTimeInDayIdFilter == null
-                    ? this.maxWorkTimeInDayIdFilterEmpty
-                    : this.maxWorkTimeInDayIdFilter,
-                this.minWorkTimeInDayIdFilter == null
-                    ? this.minWorkTimeInDayIdFilterEmpty
-                    : this.minWorkTimeInDayIdFilter,
-                this.maxLessonIdFilter == null ? this.maxLessonIdFilterEmpty : this.maxLessonIdFilter,
-                this.minLessonIdFilter == null ? this.minLessonIdFilterEmpty : this.minLessonIdFilter,
-                this.maxUniversityProfessorIdFilter == null
-                    ? this.maxUniversityProfessorIdFilterEmpty
-                    : this.maxUniversityProfessorIdFilter,
-                this.minUniversityProfessorIdFilter == null
-                    ? this.minUniversityProfessorIdFilterEmpty
-                    : this.minUniversityProfessorIdFilter,
-                this.maxSemesterIdFilter == null ? this.maxSemesterIdFilterEmpty : this.maxSemesterIdFilter,
-                this.minSemesterIdFilter == null ? this.minSemesterIdFilterEmpty : this.minSemesterIdFilter,
-                this.maxGradeIdFilter == null ? this.maxGradeIdFilterEmpty : this.maxGradeIdFilter,
-                this.minGradeIdFilter == null ? this.minGradeIdFilterEmpty : this.minGradeIdFilter,
-                this.maxUniversityMajorIdFilter == null
-                    ? this.maxUniversityMajorIdFilterEmpty
-                    : this.maxUniversityMajorIdFilter,
-                this.minUniversityMajorIdFilter == null
-                    ? this.minUniversityMajorIdFilterEmpty
-                    : this.minUniversityMajorIdFilter,
-                this.maxUniversityDepartmentIdFilter == null
-                    ? this.maxUniversityDepartmentIdFilterEmpty
-                    : this.maxUniversityDepartmentIdFilter,
-                this.minUniversityDepartmentIdFilter == null
-                    ? this.minUniversityDepartmentIdFilterEmpty
-                    : this.minUniversityDepartmentIdFilter,
-                undefined,
-                undefined,
+                this.workTimeInDayFilter,
+                this.lessonFilter ,
+                this.universityProfessorFilter,
+                this.semesterFilter,
+                this.gradeFilter,
+                this.universityMajorFilter,
+                this.universityDepartmentFilter,
+                this.classroomBuildingFilter,
+                this.listOfAllCalculatedResultNameCalculatedResultFilter,
                 this.classScheduleModeSpaceNameClassScheduleModeSpacesFilter,
-                this.listOfAllCalculatedResultId
+                this.listOfAllCalculatedResultId,
+                undefined
             )
             .subscribe((result) => {
                 this._fileDownloadService.downloadTempFile(result);

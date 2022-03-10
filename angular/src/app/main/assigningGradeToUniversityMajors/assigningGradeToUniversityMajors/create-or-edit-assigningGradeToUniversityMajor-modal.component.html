@@ -111,14 +111,15 @@
                         </label>
                         <input
                             type="text"
+                            required
                             #AssigningGradeToUniversityMajor_NameAssignedGradeToUniversityMajor="ngModel"
                             id="AssigningGradeToUniversityMajor_NameAssignedGradeToUniversityMajor"
                             class="form-control"
                             [(ngModel)]="assigningGradeToUniversityMajor.nameAssignedGradeToUniversityMajor"
                             name="NameAssignedGradeToUniversityMajor"
                             minlength="1"
+
                             maxlength="200"
-                            required
                         />
                         <validation-messages
                             [formCtrl]="AssigningGradeToUniversityMajor_NameAssignedGradeToUniversityMajor"

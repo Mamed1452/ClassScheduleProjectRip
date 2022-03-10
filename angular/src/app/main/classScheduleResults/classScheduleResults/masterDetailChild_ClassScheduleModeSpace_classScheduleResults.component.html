@@ -55,164 +55,114 @@
 
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="MinWorkTimeInDayIdFilter">
-                                    {{ l('MinMax') }} {{ l('WorkTimeInDayId') }}
+                                <label for="workTimeInDayFilter">
+                                    {{ l('NameWorkTimeInDay') }}
                                 </label>
-                                <div class="input-group">
-                                    <input
-                                        type="number"
-                                        class="form-control"
-                                        id="MinWorkTimeInDayIdFilter"
-                                        [(ngModel)]="minWorkTimeInDayIdFilter"
-                                        placeholder="{{ l('MinValue') }}"
-                                        name="minWorkTimeInDayIdFilter"
-                                    />
-                                    <input
-                                        type="number"
-                                        class="form-control"
-                                        [(ngModel)]="maxWorkTimeInDayIdFilter"
-                                        placeholder="{{ l('MaxValue') }}"
-                                        name="maxWorkTimeInDayIdFilter"
-                                    />
-                                </div>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="workTimeInDayFilter"
+                                    name="workTimeInDayFilter"
+                                    [(ngModel)]="workTimeInDayFilter"
+                                />
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="MinLessonIdFilter">{{ l('MinMax') }} {{ l('LessonId') }}</label>
-                                <div class="input-group">
-                                    <input
-                                        type="number"
-                                        class="form-control"
-                                        id="MinLessonIdFilter"
-                                        [(ngModel)]="minLessonIdFilter"
-                                        placeholder="{{ l('MinValue') }}"
-                                        name="minLessonIdFilter"
-                                    />
-                                    <input
-                                        type="number"
-                                        class="form-control"
-                                        [(ngModel)]="maxLessonIdFilter"
-                                        placeholder="{{ l('MaxValue') }}"
-                                        name="maxLessonIdFilter"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="MinUniversityProfessorIdFilter">
-                                    {{ l('MinMax') }} {{ l('UniversityProfessorId') }}
+                                <label for="lessonFilter">
+                                    {{ l('NameLesson') }}
                                 </label>
-                                <div class="input-group">
-                                    <input
-                                        type="number"
-                                        class="form-control"
-                                        id="MinUniversityProfessorIdFilter"
-                                        [(ngModel)]="minUniversityProfessorIdFilter"
-                                        placeholder="{{ l('MinValue') }}"
-                                        name="minUniversityProfessorIdFilter"
-                                    />
-                                    <input
-                                        type="number"
-                                        class="form-control"
-                                        [(ngModel)]="maxUniversityProfessorIdFilter"
-                                        placeholder="{{ l('MaxValue') }}"
-                                        name="maxUniversityProfessorIdFilter"
-                                    />
-                                </div>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="lessonFilter"
+                                    name="lessonFilter"
+                                    [(ngModel)]="lessonFilter"
+                                />
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="MinSemesterIdFilter">{{ l('MinMax') }} {{ l('SemesterId') }}</label>
-                                <div class="input-group">
-                                    <input
-                                        type="number"
-                                        class="form-control"
-                                        id="MinSemesterIdFilter"
-                                        [(ngModel)]="minSemesterIdFilter"
-                                        placeholder="{{ l('MinValue') }}"
-                                        name="minSemesterIdFilter"
-                                    />
-                                    <input
-                                        type="number"
-                                        class="form-control"
-                                        [(ngModel)]="maxSemesterIdFilter"
-                                        placeholder="{{ l('MaxValue') }}"
-                                        name="maxSemesterIdFilter"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="MinGradeIdFilter">{{ l('MinMax') }} {{ l('GradeId') }}</label>
-                                <div class="input-group">
-                                    <input
-                                        type="number"
-                                        class="form-control"
-                                        id="MinGradeIdFilter"
-                                        [(ngModel)]="minGradeIdFilter"
-                                        placeholder="{{ l('MinValue') }}"
-                                        name="minGradeIdFilter"
-                                    />
-                                    <input
-                                        type="number"
-                                        class="form-control"
-                                        [(ngModel)]="maxGradeIdFilter"
-                                        placeholder="{{ l('MaxValue') }}"
-                                        name="maxGradeIdFilter"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="MinUniversityMajorIdFilter">
-                                    {{ l('MinMax') }} {{ l('UniversityMajorId') }}
+                                <label for="universityProfessorFilter">
+                                    {{ l('UniversityProfessorName') }}
                                 </label>
-                                <div class="input-group">
-                                    <input
-                                        type="number"
-                                        class="form-control"
-                                        id="MinUniversityMajorIdFilter"
-                                        [(ngModel)]="minUniversityMajorIdFilter"
-                                        placeholder="{{ l('MinValue') }}"
-                                        name="minUniversityMajorIdFilter"
-                                    />
-                                    <input
-                                        type="number"
-                                        class="form-control"
-                                        [(ngModel)]="maxUniversityMajorIdFilter"
-                                        placeholder="{{ l('MaxValue') }}"
-                                        name="maxUniversityMajorIdFilter"
-                                    />
-                                </div>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="universityProfessorFilter"
+                                    name="universityProfessorFilter"
+                                    [(ngModel)]="universityProfessorFilter"
+                                />
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="MinUniversityDepartmentIdFilter">
-                                    {{ l('MinMax') }} {{ l('UniversityDepartmentId') }}
+                                <label for="semesterFilter">
+                                    {{ l('SemesterName') }}
                                 </label>
-                                <div class="input-group">
-                                    <input
-                                        type="number"
-                                        class="form-control"
-                                        id="MinUniversityDepartmentIdFilter"
-                                        [(ngModel)]="minUniversityDepartmentIdFilter"
-                                        placeholder="{{ l('MinValue') }}"
-                                        name="minUniversityDepartmentIdFilter"
-                                    />
-                                    <input
-                                        type="number"
-                                        class="form-control"
-                                        [(ngModel)]="maxUniversityDepartmentIdFilter"
-                                        placeholder="{{ l('MaxValue') }}"
-                                        name="maxUniversityDepartmentIdFilter"
-                                    />
-                                </div>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="semesterFilter"
+                                    name="semesterFilter"
+                                    [(ngModel)]="semesterFilter"
+                                />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="gradeFilter">
+                                    {{ l('GradeName') }}
+                                </label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="gradeFilter"
+                                    name="gradeFilter"
+                                    [(ngModel)]="gradeFilter"
+                                />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="universityMajorFilter">
+                                    {{ l('UniversityMajorName') }}
+                                </label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="universityMajorFilter"
+                                    name="universityMajorFilter"
+                                    [(ngModel)]="universityMajorFilter"
+                                />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="universityDepartmentFilter">
+                                    {{ l('UniversityDepartmentName') }}
+                                </label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="universityDepartmentFilter"
+                                    name="universityDepartmentFilter"
+                                    [(ngModel)]="universityDepartmentFilter"
+                                />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="classroomBuildingFilter">
+                                    {{ l('ClassroomBuildingName') }}
+                                </label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="classroomBuildingFilter"
+                                    name="classroomBuildingFilter"
+                                    [(ngModel)]="classroomBuildingFilter"
+                                />
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -226,6 +176,20 @@
                                     id="ListOfAllCalculatedResultNameCalculatedResultFilter"
                                     name="listOfAllCalculatedResultNameCalculatedResultFilter"
                                     [(ngModel)]="listOfAllCalculatedResultNameCalculatedResultFilter"
+                                />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ClassScheduleModeSpaceNameClassScheduleModeSpacesFilter">
+                                    ({{ l('ClassScheduleModeSpace') }}) {{ l('NameClassScheduleModeSpaces') }}
+                                </label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="ClassScheduleModeSpaceNameClassScheduleModeSpacesFilter"
+                                    name="classScheduleModeSpaceNameClassScheduleModeSpacesFilter"
+                                    [(ngModel)]="classScheduleModeSpaceNameClassScheduleModeSpacesFilter"
                                 />
                             </div>
                         </div>

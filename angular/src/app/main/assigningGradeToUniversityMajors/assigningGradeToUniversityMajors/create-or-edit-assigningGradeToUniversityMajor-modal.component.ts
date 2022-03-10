@@ -96,19 +96,23 @@ export class CreateOrEditAssigningGradeToUniversityMajorModalComponent extends A
     setGradeIdNull() {
         this.assigningGradeToUniversityMajor.gradeId = null;
         this.gradeGradeName = '';
+        this.assigningGradeToUniversityMajor.nameAssignedGradeToUniversityMajor= this.gradeGradeName+ " "+  this.universityMajorUniversityMajorName;
     }
     setUniversityMajorIdNull() {
         this.assigningGradeToUniversityMajor.universityMajorId = null;
         this.universityMajorUniversityMajorName = '';
+        this.assigningGradeToUniversityMajor.nameAssignedGradeToUniversityMajor= this.gradeGradeName+ " "+  this.universityMajorUniversityMajorName;
     }
 
     getNewGradeId() {
         this.assigningGradeToUniversityMajor.gradeId = this.assigningGradeToUniversityMajorGradeLookupTableModal.id;
         this.gradeGradeName = this.assigningGradeToUniversityMajorGradeLookupTableModal.displayName;
+        this.assigningGradeToUniversityMajor.nameAssignedGradeToUniversityMajor= this.gradeGradeName+ " "+  this.universityMajorUniversityMajorName;
     }
     getNewUniversityMajorId() {
         this.assigningGradeToUniversityMajor.universityMajorId = this.assigningGradeToUniversityMajorUniversityMajorLookupTableModal.id;
         this.universityMajorUniversityMajorName = this.assigningGradeToUniversityMajorUniversityMajorLookupTableModal.displayName;
+        this.assigningGradeToUniversityMajor.nameAssignedGradeToUniversityMajor= this.gradeGradeName+ " "+  this.universityMajorUniversityMajorName;
     }
 
     close(): void {

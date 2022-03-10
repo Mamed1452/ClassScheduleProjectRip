@@ -27,5 +27,8 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults.Dtos
 
         public string ClassScheduleModeSpaceNameClassScheduleModeSpacesFilter { get; set; }
 
+        public long? ListOfAllCalculatedResultNameCalculatedResultIdFilter { get; set; }
+        public long? ClassScheduleModeSpaceNameClassScheduleModeSpacesIdFilter { get; set; }
+
     }
 }
