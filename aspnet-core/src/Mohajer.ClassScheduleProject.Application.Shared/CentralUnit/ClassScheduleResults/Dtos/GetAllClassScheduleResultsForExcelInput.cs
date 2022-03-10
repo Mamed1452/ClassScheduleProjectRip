@@ -29,6 +29,7 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults.Dtos
 
         public long? ListOfAllCalculatedResultNameCalculatedResultIdFilter { get; set; }
         public long? ClassScheduleModeSpaceNameClassScheduleModeSpacesIdFilter { get; set; }
+        public bool IsAlocated { get; set; }
 
     }
 }

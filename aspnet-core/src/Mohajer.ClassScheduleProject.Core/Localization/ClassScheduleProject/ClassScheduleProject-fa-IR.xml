@@ -3,7 +3,7 @@
   <texts>
 
 
-    <text name="ClassroomBuildingId">شناسه ساختمان کلاس</text>
+    <text name="ClassroomBuildingId">ساختمان کلاس</text>
     <text name="ListOfMainDomains">فهرست دامنه های اصلی</text>
     <text name="ListOfMainDomain">فهرست دامنه اصلی</text>
     <text name="Mohajer.ClassScheduleProject.ListOfMainDomains.ListOfMainDomain">فهرست دامنه اصلی</text>
@@ -248,7 +248,11 @@
     <text name="lesson">درس</text>
     <text name="for">برای</text>
     <text name="ShowResults">دیدن نتایج</text>
-
+    
+    <text name="IsAlocated">تخصیص داده شده</text>
+    <text name="isAlocated">تخصیص داده شده</text>
+    <text name="ShowNotAlocated">نمایش نتایج ناموفق</text>
+    
     <text name="Min">حداقل</text>
     <text name="Max">حداکثر</text>
     

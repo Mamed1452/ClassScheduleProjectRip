@@ -48,7 +48,7 @@ export class ClassScheduleResultsComponent extends AppComponentBase {
     listOfAllCalculatedResultNameCalculatedResultFilter = '';
     listOfAllCalculatedResultId: number;
     classScheduleModeSpaceId: number;
-
+    isAlocated: boolean = true;
     _entityTypeFullName = 'Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults.ClassScheduleResult';
     entityHistoryEnabled = false;
 
@@ -65,9 +65,10 @@ export class ClassScheduleResultsComponent extends AppComponentBase {
         this._activatedRoute.params.subscribe((res)=>
         {
 
-            if (res.listOfAllCalculatedResultsId !== '-') {
+            if (res.listOfAllCalculatedResultsId !== '-'  && res.isAlocate) {
                 this.listOfAllCalculatedResultId=res.listOfAllCalculatedResultsId;
-                this.getClassScheduleResults();
+                this.isAlocated=res.isAlocate;
+               // this.getClassScheduleResults();
             }
         });
     }
@@ -113,6 +114,7 @@ export class ClassScheduleResultsComponent extends AppComponentBase {
                 this.classScheduleModeSpaceNameClassScheduleModeSpacesFilter,
                 this.listOfAllCalculatedResultId,
                 this.classScheduleModeSpaceId,
+                this.isAlocated,
                 this.primengTableHelper.getSorting(this.dataTable),
                 this.primengTableHelper.getSkipCount(this.paginator, event),
                 this.primengTableHelper.getMaxResultCount(this.paginator, event)

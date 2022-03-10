@@ -193,6 +193,16 @@
                                 />
                             </div>
                         </div>
+                        <div class="col-md-3">
+                            <label for="IsAlocatedFilter">{{ l('isAlocated') }}</label>
+                            <input
+                                  type="checkbox"
+                                class="form-control"
+                                name="IsAlocatedFilter"
+                                id="IsAlocatedFilter"
+                                [(ngModel)]="isAlocated"
+                            />
+                        </div>
                     </div>
                     <div class="row mb-2">
                         <div class="col-sm-12">
@@ -246,40 +256,59 @@
                                     {{ l('Actions') }}
                                 </th>
                                 <th
-                                    style="width: 150px"
-                                    pSortableColumn="classScheduleModeSpaceFk.nameClassScheduleModeSpaces"
-                                >
-                                    {{ l('NameClassScheduleModeSpaces') }}
-                                    <p-sortIcon field="classScheduleModeSpaceNameClassScheduleModeSpaces"></p-sortIcon>
-                                </th>
-                                <th style="width: 150px" pSortableColumn="workTimeInDayId">
-                                    {{ l('WorkTimeInDayId') }}
-                                    <p-sortIcon field="classScheduleResult.workTimeInDayId"></p-sortIcon>
-                                </th>
-                                <th style="width: 150px" pSortableColumn="lessonId">
-                                    {{ l('LessonId') }}
-                                    <p-sortIcon field="classScheduleResult.lessonId"></p-sortIcon>
-                                </th>
-                                <th style="width: 150px" pSortableColumn="universityProfessorId">
-                                    {{ l('UniversityProfessorId') }}
-                                    <p-sortIcon field="classScheduleResult.universityProfessorId"></p-sortIcon>
-                                </th>
-                                <th style="width: 150px" pSortableColumn="semesterId">
-                                    {{ l('SemesterId') }}
-                                    <p-sortIcon field="classScheduleResult.semesterId"></p-sortIcon>
-                                </th>
-                                <th style="width: 150px" pSortableColumn="gradeId">
-                                    {{ l('GradeId') }}
-                                    <p-sortIcon field="classScheduleResult.gradeId"></p-sortIcon>
-                                </th>
-                                <th style="width: 150px" pSortableColumn="universityMajorId">
-                                    {{ l('UniversityMajorId') }}
-                                    <p-sortIcon field="classScheduleResult.universityMajorId"></p-sortIcon>
-                                </th>
-                                <th style="width: 150px" pSortableColumn="universityDepartmentId">
-                                    {{ l('UniversityDepartmentId') }}
-                                    <p-sortIcon field="classScheduleResult.universityDepartmentId"></p-sortIcon>
-                                </th>
+
+                                pSortableColumn="listOfAllCalculatedResultNameCalculatedResult"
+                            >
+                                {{ l('NameCalculatedResult') }}
+                                <p-sortIcon
+                                    field="listOfAllCalculatedResultNameCalculatedResult"
+                                ></p-sortIcon>
+                            </th>
+                            <th
+
+                                pSortableColumn="classScheduleModeSpaceNameClassScheduleModeSpaces"
+                            >
+                                {{ l('NameClassScheduleModeSpaces') }}
+                                <p-sortIcon
+                                    field="classScheduleModeSpaceNameClassScheduleModeSpaces"
+                                ></p-sortIcon>
+                            </th>
+                            <th  pSortableColumn="classScheduleResult.workTimeInDayId">
+                                {{ l('WorkTimeInDayId') }}
+                                <p-sortIcon field="classScheduleResult.workTimeInDayId"></p-sortIcon>
+                            </th>
+                            <th  pSortableColumn="classScheduleResult.lessonId">
+                                {{ l('LessonId') }}
+                                <p-sortIcon field="classScheduleResult.lessonId"></p-sortIcon>
+                            </th>
+                            <th  pSortableColumn="classScheduleResult.universityProfessorId">
+                                {{ l('UniversityProfessorId') }}
+                                <p-sortIcon field="classScheduleResult.universityProfessorId"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="classScheduleResult.semesterId">
+                                {{ l('SemesterId') }}
+                                <p-sortIcon field="classScheduleResult.semesterId"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="classScheduleResult.gradeId">
+                                {{ l('GradeId') }}
+                                <p-sortIcon field="classScheduleResult.gradeId"></p-sortIcon>
+                            </th>
+                            <th  pSortableColumn="classScheduleResult.universityMajorId">
+                                {{ l('UniversityMajorId') }}
+                                <p-sortIcon field="classScheduleResult.universityMajorId"></p-sortIcon>
+                            </th>
+                            <th  pSortableColumn="classScheduleResult.universityDepartmentId">
+                                {{ l('UniversityDepartmentId') }}
+                                <p-sortIcon field="classScheduleResult.universityDepartmentId"></p-sortIcon>
+                            </th>
+                            <th  pSortableColumn="classScheduleResult.classroomBuildingId">
+                                {{ l('ClassroomBuildingId') }}
+                                <p-sortIcon field="classScheduleResult.classroomBuildingId"></p-sortIcon>
+                            </th>
+                            <th  pSortableColumn="classScheduleResult.isAlocated">
+                                {{ l('isAlocated') }}
+                                <p-sortIcon field="classScheduleResult.isAlocated"></p-sortIcon>
+                            </th>
                             </tr>
                         </ng-template>
                         <ng-template pTemplate="body" let-record="$implicit">
@@ -300,7 +329,7 @@
                                             {{ l('Actions') }}
                                         </button>
                                         <ul class="dropdown-menu" *dropdownMenu>
-                                            <li>
+                                            <!-- <li>
                                                 <a
                                                     href="javascript:;"
                                                     class="dropdown-item"
@@ -308,33 +337,40 @@
                                                 >
                                                     {{ l('View') }}
                                                 </a>
-                                            </li>
-                                            <li>
+                                            </li> -->
+                                            <!-- <li>
                                                 <a
                                                     href="javascript:;"
-                                                    *ngIf="permission.isGranted('Pages.ClassScheduleResults.Edit')"
+                                                    *ngIf="
+                                                        permission.isGranted('Pages.ClassScheduleResults.Edit')
+                                                    "
                                                     class="dropdown-item"
                                                     (click)="
                                                         createOrEditClassScheduleResultModal.show(
-                                                            listOfAllCalculatedResultId,
                                                             record.classScheduleResult.id
                                                         )
                                                     "
                                                 >
                                                     {{ l('Edit') }}
                                                 </a>
-                                            </li>
-                                            <li>
+                                            </li> -->
+                                            <!-- <li>
                                                 <a
                                                     class="dropdown-item"
                                                     href="javascript:;"
-                                                    *ngIf="permission.isGranted('Pages.ClassScheduleResults.Delete')"
-                                                    (click)="deleteClassScheduleResult(record.classScheduleResult)"
+                                                    *ngIf="
+                                                        permission.isGranted(
+                                                            'Pages.ClassScheduleResults.Delete'
+                                                        )
+                                                    "
+                                                    (click)="
+                                                        deleteClassScheduleResult(record.classScheduleResult)
+                                                    "
                                                 >
                                                     {{ l('Delete') }}
                                                 </a>
-                                            </li>
-                                            <li>
+                                            </li> -->
+                                            <!-- <li>
                                                 <a
                                                     href="javascript:;"
                                                     *ngIf="entityHistoryEnabled"
@@ -343,41 +379,58 @@
                                                 >
                                                     {{ l('History') }}
                                                 </a>
-                                            </li>
+                                            </li> -->
                                         </ul>
                                     </div>
                                 </td>
-                                <td style="width: 150px">
+                                <td >
+                                    <span class="p-column-title">{{ l('NameCalculatedResult') }}</span>
+                                    {{ record.listOfAllCalculatedResultNameCalculatedResult }}
+                                </td>
+                                <td >
                                     <span class="p-column-title">{{ l('NameClassScheduleModeSpaces') }}</span>
                                     {{ record.classScheduleModeSpaceNameClassScheduleModeSpaces }}
                                 </td>
-                                <td style="width: 150px">
+                                <td >
                                     <span class="p-column-title">{{ l('WorkTimeInDayId') }}</span>
                                     {{ record.classScheduleResult.workTimeInDayId }}
                                 </td>
-                                <td style="width: 150px">
+                                <td >
                                     <span class="p-column-title">{{ l('LessonId') }}</span>
                                     {{ record.classScheduleResult.lessonId }}
                                 </td>
-                                <td style="width: 150px">
+                                <td >
                                     <span class="p-column-title">{{ l('UniversityProfessorId') }}</span>
                                     {{ record.classScheduleResult.universityProfessorId }}
                                 </td>
-                                <td style="width: 150px">
+                                <td >
                                     <span class="p-column-title">{{ l('SemesterId') }}</span>
                                     {{ record.classScheduleResult.semesterId }}
                                 </td>
-                                <td style="width: 150px">
+                                <td >
                                     <span class="p-column-title">{{ l('GradeId') }}</span>
                                     {{ record.classScheduleResult.gradeId }}
                                 </td>
-                                <td style="width: 150px">
+                                <td >
                                     <span class="p-column-title">{{ l('UniversityMajorId') }}</span>
                                     {{ record.classScheduleResult.universityMajorId }}
                                 </td>
-                                <td style="width: 150px">
+                                <td >
                                     <span class="p-column-title">{{ l('UniversityDepartmentId') }}</span>
                                     {{ record.classScheduleResult.universityDepartmentId }}
+                                </td>
+                                <td >
+                                    <span class="p-column-title">{{ l('ClassroomBuildingId') }}</span>
+                                    {{ record.classScheduleResult.classroomBuildingId }}
+                                </td>
+                                <td >
+                                    <span class="p-column-title">{{ l('IsAlocated') }}</span>
+                                    <div *ngIf="record.classScheduleResult.isAlocated" class="text-center">
+                                        <i class="fa fa-check-circle text-success" title="True"></i>
+                                    </div>
+                                    <div *ngIf="!record.classScheduleResult.isAlocated" class="text-center">
+                                        <i class="fa fa-times-circle" title="False"></i>
+                                    </div>
                                 </td>
                             </tr>
                         </ng-template>

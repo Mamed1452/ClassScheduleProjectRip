@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Mohajer.ClassScheduleProject.EntityFrameworkCore;
 
 namespace Mohajer.ClassScheduleProject.Migrations
 {
     [DbContext(typeof(ClassScheduleProjectDbContext))]
-    partial class ClassScheduleProjectDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220310132305_add_ListOfAllCalculatedResultId_to_listOfMainDomain_Table")]
+    partial class add_ListOfAllCalculatedResultId_to_listOfMainDomain_Table
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -2313,9 +2315,6 @@ namespace Mohajer.ClassScheduleProject.Migrations
 
                     b.Property<DateTime?>("DeletionTime")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsAlocated")
-                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");

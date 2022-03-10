@@ -25,5 +25,7 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults.Dtos
 
         public long ClassScheduleModeSpaceId { get; set; }
 
+        public bool IsAlocated { get; set; }
+
     }
 }

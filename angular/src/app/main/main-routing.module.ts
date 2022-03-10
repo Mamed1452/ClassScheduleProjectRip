@@ -30,7 +30,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
                     { path: 'mainDomains/mainDomains', component: MainDomainsComponent, data: { permission: 'Pages.MainDomains' }  },
                     { path: 'listOfAllCalculatedResults/listOfAllCalculatedResults', component: ListOfAllCalculatedResultsComponent, data: { permission: 'Pages.ListOfAllCalculatedResults' }  },
                     { path: 'classScheduleModeSpaces/classScheduleModeSpaces', component: ClassScheduleModeSpacesComponent, data: { permission: 'Pages.ClassScheduleModeSpaces' }  },
-                    { path: 'classScheduleResults/classScheduleResults/:listOfAllCalculatedResultsId', component: ClassScheduleResultsComponent, data: { permission: 'Pages.ClassScheduleResults' }  },
+                    { path: 'classScheduleResults/classScheduleResults/:listOfAllCalculatedResultsId/:isAlocate', component: ClassScheduleResultsComponent, data: { permission: 'Pages.ClassScheduleResults' }  },
                     { path: 'lessonsOfUniversityProfessors/lessonsOfUniversityProfessors', component: LessonsOfUniversityProfessorsComponent, data: { permission: 'Pages.LessonsOfUniversityProfessors' }  },
                     { path: 'lessonsOfSemesters/lessonsOfSemesters', component: LessonsOfSemestersComponent, data: { permission: 'Pages.LessonsOfSemesters' }  },
                     { path: 'lessons/lessons', component: LessonsComponent, data: { permission: 'Pages.Lessons' }  },

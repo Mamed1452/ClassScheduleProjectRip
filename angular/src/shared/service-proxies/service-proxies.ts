@@ -14,7 +14,6 @@ import { Observable, throwError as _observableThrow, of as _observableOf } from 
 import { Injectable, Inject, Optional, InjectionToken } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse, HttpResponseBase } from '@angular/common/http';
 
-
 export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL');
 
 @Injectable()
@@ -3586,12 +3585,13 @@ export class ClassScheduleResultsServiceProxy {
      * @param classScheduleModeSpaceNameClassScheduleModeSpacesFilter (optional)
      * @param listOfAllCalculatedResultNameCalculatedResultIdFilter (optional)
      * @param classScheduleModeSpaceNameClassScheduleModeSpacesIdFilter (optional)
+     * @param isAlocated (optional)
      * @param sorting (optional)
      * @param skipCount (optional)
      * @param maxResultCount (optional)
      * @return Success
      */
-    getAll(filter: string | null | undefined, workTimeInDayFilter: string | null | undefined, lessonFilter: string | null | undefined, universityProfessorFilter: string | null | undefined, semesterFilter: string | null | undefined, gradeFilter: string | null | undefined, universityMajorFilter: string | null | undefined, universityDepartmentFilter: string | null | undefined, classroomBuildingFilter: string | null | undefined, listOfAllCalculatedResultNameCalculatedResultFilter: string | null | undefined, classScheduleModeSpaceNameClassScheduleModeSpacesFilter: string | null | undefined, listOfAllCalculatedResultNameCalculatedResultIdFilter: number | null | undefined, classScheduleModeSpaceNameClassScheduleModeSpacesIdFilter: number | null | undefined, sorting: string | null | undefined, skipCount: number | undefined, maxResultCount: number | undefined): Observable<PagedResultDtoOfGetClassScheduleResultForViewDto> {
+    getAll(filter: string | null | undefined, workTimeInDayFilter: string | null | undefined, lessonFilter: string | null | undefined, universityProfessorFilter: string | null | undefined, semesterFilter: string | null | undefined, gradeFilter: string | null | undefined, universityMajorFilter: string | null | undefined, universityDepartmentFilter: string | null | undefined, classroomBuildingFilter: string | null | undefined, listOfAllCalculatedResultNameCalculatedResultFilter: string | null | undefined, classScheduleModeSpaceNameClassScheduleModeSpacesFilter: string | null | undefined, listOfAllCalculatedResultNameCalculatedResultIdFilter: number | null | undefined, classScheduleModeSpaceNameClassScheduleModeSpacesIdFilter: number | null | undefined, isAlocated: boolean | undefined, sorting: string | null | undefined, skipCount: number | undefined, maxResultCount?: number | undefined): Observable<PagedResultDtoOfGetClassScheduleResultForViewDto> {
         let url_ = this.baseUrl + "/api/services/app/ClassScheduleResults/GetAll?";
         if (filter !== undefined && filter !== null)
             url_ += "Filter=" + encodeURIComponent("" + filter) + "&";
@@ -3619,6 +3619,10 @@ export class ClassScheduleResultsServiceProxy {
             url_ += "ListOfAllCalculatedResultNameCalculatedResultIdFilter=" + encodeURIComponent("" + listOfAllCalculatedResultNameCalculatedResultIdFilter) + "&";
         if (classScheduleModeSpaceNameClassScheduleModeSpacesIdFilter !== undefined && classScheduleModeSpaceNameClassScheduleModeSpacesIdFilter !== null)
             url_ += "ClassScheduleModeSpaceNameClassScheduleModeSpacesIdFilter=" + encodeURIComponent("" + classScheduleModeSpaceNameClassScheduleModeSpacesIdFilter) + "&";
+        if (isAlocated === null)
+            throw new Error("The parameter 'isAlocated' cannot be null.");
+        else if (isAlocated !== undefined)
+            url_ += "IsAlocated=" + encodeURIComponent("" + isAlocated) + "&";
         if (sorting !== undefined && sorting !== null)
             url_ += "Sorting=" + encodeURIComponent("" + sorting) + "&";
         if (skipCount === null)
@@ -3905,9 +3909,10 @@ export class ClassScheduleResultsServiceProxy {
      * @param classScheduleModeSpaceNameClassScheduleModeSpacesFilter (optional)
      * @param listOfAllCalculatedResultNameCalculatedResultIdFilter (optional)
      * @param classScheduleModeSpaceNameClassScheduleModeSpacesIdFilter (optional)
+     * @param isAlocated (optional)
      * @return Success
      */
-    getClassScheduleResultsToExcel(filter: string | null | undefined, workTimeInDayFilter: string | null | undefined, lessonFilter: string | null | undefined, universityProfessorFilter: string | null | undefined, semesterFilter: string | null | undefined, gradeFilter: string | null | undefined, universityMajorFilter: string | null | undefined, universityDepartmentFilter: string | null | undefined, classroomBuildingFilter: string | null | undefined, listOfAllCalculatedResultNameCalculatedResultFilter: string | null | undefined, classScheduleModeSpaceNameClassScheduleModeSpacesFilter: string | null | undefined, listOfAllCalculatedResultNameCalculatedResultIdFilter: number | null | undefined, classScheduleModeSpaceNameClassScheduleModeSpacesIdFilter: number | null | undefined): Observable<FileDto> {
+    getClassScheduleResultsToExcel(filter: string | null | undefined, workTimeInDayFilter: string | null | undefined, lessonFilter: string | null | undefined, universityProfessorFilter: string | null | undefined, semesterFilter: string | null | undefined, gradeFilter: string | null | undefined, universityMajorFilter: string | null | undefined, universityDepartmentFilter: string | null | undefined, classroomBuildingFilter: string | null | undefined, listOfAllCalculatedResultNameCalculatedResultFilter: string | null | undefined, classScheduleModeSpaceNameClassScheduleModeSpacesFilter: string | null | undefined, listOfAllCalculatedResultNameCalculatedResultIdFilter: number | null | undefined, classScheduleModeSpaceNameClassScheduleModeSpacesIdFilter: number | null | undefined, isAlocated?: boolean | undefined): Observable<FileDto> {
         let url_ = this.baseUrl + "/api/services/app/ClassScheduleResults/GetClassScheduleResultsToExcel?";
         if (filter !== undefined && filter !== null)
             url_ += "Filter=" + encodeURIComponent("" + filter) + "&";
@@ -3935,6 +3940,10 @@ export class ClassScheduleResultsServiceProxy {
             url_ += "ListOfAllCalculatedResultNameCalculatedResultIdFilter=" + encodeURIComponent("" + listOfAllCalculatedResultNameCalculatedResultIdFilter) + "&";
         if (classScheduleModeSpaceNameClassScheduleModeSpacesIdFilter !== undefined && classScheduleModeSpaceNameClassScheduleModeSpacesIdFilter !== null)
             url_ += "ClassScheduleModeSpaceNameClassScheduleModeSpacesIdFilter=" + encodeURIComponent("" + classScheduleModeSpaceNameClassScheduleModeSpacesIdFilter) + "&";
+        if (isAlocated === null)
+            throw new Error("The parameter 'isAlocated' cannot be null.");
+        else if (isAlocated !== undefined)
+            url_ += "IsAlocated=" + encodeURIComponent("" + isAlocated) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -25951,6 +25960,7 @@ export class ClassScheduleResultDto implements IClassScheduleResultDto {
     classroomBuildingId!: string | undefined;
     listOfAllCalculatedResultId!: number;
     classScheduleModeSpaceId!: number;
+    isAlocated!: boolean;
     id!: number;
 
     constructor(data?: IClassScheduleResultDto) {
@@ -25974,6 +25984,7 @@ export class ClassScheduleResultDto implements IClassScheduleResultDto {
             this.classroomBuildingId = _data["classroomBuildingId"];
             this.listOfAllCalculatedResultId = _data["listOfAllCalculatedResultId"];
             this.classScheduleModeSpaceId = _data["classScheduleModeSpaceId"];
+            this.isAlocated = _data["isAlocated"];
             this.id = _data["id"];
         }
     }
@@ -25997,6 +26008,7 @@ export class ClassScheduleResultDto implements IClassScheduleResultDto {
         data["classroomBuildingId"] = this.classroomBuildingId;
         data["listOfAllCalculatedResultId"] = this.listOfAllCalculatedResultId;
         data["classScheduleModeSpaceId"] = this.classScheduleModeSpaceId;
+        data["isAlocated"] = this.isAlocated;
         data["id"] = this.id;
         return data;
     }
@@ -26013,6 +26025,7 @@ export interface IClassScheduleResultDto {
     classroomBuildingId: string | undefined;
     listOfAllCalculatedResultId: number;
     classScheduleModeSpaceId: number;
+    isAlocated: boolean;
     id: number;
 }
 

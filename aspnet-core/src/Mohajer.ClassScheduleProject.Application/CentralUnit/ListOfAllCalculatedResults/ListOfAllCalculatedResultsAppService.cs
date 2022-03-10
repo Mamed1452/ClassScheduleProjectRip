@@ -18,6 +18,8 @@ using Mohajer.ClassScheduleProject.Storage;
 using Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults;
 using Mohajer.ClassScheduleProject.CentralUnit.ListOfClassScheduleModeSpaces;
 using Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleModeSpaces;
+using Mohajer.ClassScheduleProject.CentralUnit.ListOfMainDomains;
+using Mohajer.ClassScheduleProject.CentralUnit.MainDomains;
 
 namespace Mohajer.ClassScheduleProject.CentralUnit.ListOfAllCalculatedResults
 {
@@ -29,12 +31,17 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ListOfAllCalculatedResults
         private readonly IRepository<ClassScheduleModeSpace, long> _classScheduleModeSpaceRepository;
         private readonly IRepository<ClassScheduleResult, long> _classScheduleResultRepository;
 
+        private readonly IRepository<ListOfMainDomain, long> _listOfMainDomainRepository;
+
+        private readonly IRepository<MainDomain, long> _mainDomainRepository;
         private readonly IListOfAllCalculatedResultsExcelExporter _listOfAllCalculatedResultsExcelExporter;
 
         public ListOfAllCalculatedResultsAppService(IRepository<ListOfAllCalculatedResult, long> listOfAllCalculatedResultRepository, IListOfAllCalculatedResultsExcelExporter listOfAllCalculatedResultsExcelExporter,
             IRepository<ClassScheduleResult, long> classScheduleResultRepository,
             IRepository<ListOfClassScheduleModeSpace, long> listOfClassScheduleModeSpaceRepository,
-             IRepository<ClassScheduleModeSpace, long> classScheduleModeSpaceRepository
+             IRepository<ClassScheduleModeSpace, long> classScheduleModeSpaceRepository,
+              IRepository<ListOfMainDomain, long> listOfMainDomainRepository,
+            IRepository<MainDomain, long> mainDomainRepository
             )
         {
             _listOfAllCalculatedResultRepository = listOfAllCalculatedResultRepository;
@@ -42,6 +49,8 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ListOfAllCalculatedResults
             _classScheduleResultRepository = classScheduleResultRepository;
             _listOfClassScheduleModeSpaceRepository = listOfClassScheduleModeSpaceRepository;
             _classScheduleModeSpaceRepository = classScheduleModeSpaceRepository;
+            _listOfMainDomainRepository = listOfMainDomainRepository;
+            _mainDomainRepository = mainDomainRepository;
 
         }
 
@@ -153,8 +162,17 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ListOfAllCalculatedResults
         public async Task Delete(EntityDto<long> input)
         {
             var listModSpace = await _listOfClassScheduleModeSpaceRepository.FirstOrDefaultAsync(record => record.ListOfAllCalculatedResultId == input.Id);
-            await _classScheduleModeSpaceRepository.DeleteAsync(record => record.ListOfClassScheduleModeSpaceId == listModSpace.Id);
-            await _listOfClassScheduleModeSpaceRepository.DeleteAsync(listModSpace.Id);
+            if (listModSpace != null)
+            {
+                await _classScheduleModeSpaceRepository.DeleteAsync(record => record.ListOfClassScheduleModeSpaceId == listModSpace.Id);
+                await _listOfClassScheduleModeSpaceRepository.DeleteAsync(listModSpace.Id);
+            }
+            var listMainDomain = await _listOfMainDomainRepository.FirstOrDefaultAsync(record => record.ListOfAllCalculatedResultId == input.Id);
+            if (listMainDomain != null)
+            {
+                await _mainDomainRepository.DeleteAsync(record => record.ListOfMainDomainId == listMainDomain.Id);
+                await _listOfMainDomainRepository.DeleteAsync(listMainDomain.Id);
+            }
             await _classScheduleResultRepository.DeleteAsync(record => record.ListOfAllCalculatedResultId == input.Id);
             await _listOfAllCalculatedResultRepository.DeleteAsync(input.Id);
         }

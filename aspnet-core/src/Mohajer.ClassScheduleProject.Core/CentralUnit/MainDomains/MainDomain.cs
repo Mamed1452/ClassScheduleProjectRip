@@ -27,5 +27,7 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.MainDomains
         [ForeignKey("LessonsOfSemesterId")]
         public LessonsOfSemester LessonsOfSemesterFk { get; set; }
 
+        public bool IsAlocated { get; set; }
+
     }
 }

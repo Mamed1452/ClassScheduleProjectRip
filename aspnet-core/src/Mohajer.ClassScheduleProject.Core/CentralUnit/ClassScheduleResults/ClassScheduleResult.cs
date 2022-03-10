@@ -37,6 +37,7 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults
         public ListOfAllCalculatedResult ListOfAllCalculatedResultFk { get; set; }
 
         public virtual long ClassScheduleModeSpaceId { get; set; }
+        public virtual long? MainDomainID { get; set; }
 
         [ForeignKey("ClassScheduleModeSpaceId")]
         public ClassScheduleModeSpace ClassScheduleModeSpaceFk { get; set; }

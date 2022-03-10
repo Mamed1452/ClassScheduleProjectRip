@@ -34,6 +34,7 @@ using Mohajer.ClassScheduleProject.CentralUnit.WorkTimeInDays;
 using Mohajer.ClassScheduleProject.CentralUnit.ListOfClassScheduleModeSpaces;
 using Mohajer.ClassScheduleProject.CentralUnit.ListOfMainDomains;
 using Mohajer.ClassScheduleProject.CentralUnit.MainDomains;
+using System.Collections.Concurrent;
 
 namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults
 {
@@ -124,13 +125,17 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults
             _listOfClassScheduleModeSpaceRepository = listOfClassScheduleModeSpaceRepository;
             _listOfMainDomainRepository = listOfMainDomainRepository;
             _mainDomainRepository = mainDomainRepository;
+            _classScheduleModeSpace = new List<ClassScheduleModeSpace>();
         }
 
 
         public async Task<PagedResultDto<GetClassScheduleResultForViewDto>> GetAll(GetAllClassScheduleResultsInput input)
         {
+            IQueryable<ClassScheduleResult> query = _classScheduleResultRepository.GetAll();
 
-            var filteredClassScheduleResults = _classScheduleResultRepository.GetAll()
+            
+
+            var filteredClassScheduleResults = query
                         .Include(e => e.ListOfAllCalculatedResultFk)
                         .Include(e => e.ClassScheduleModeSpaceFk)
                         .WhereIf(!string.IsNullOrEmpty(input.ListOfAllCalculatedResultNameCalculatedResultFilter), e => e.ListOfAllCalculatedResultFk != null && e.ListOfAllCalculatedResultFk.NameCalculatedResult == input.ListOfAllCalculatedResultNameCalculatedResultFilter.Trim())
@@ -140,13 +145,16 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults
                         .WhereIf(input.ListOfAllCalculatedResultNameCalculatedResultIdFilter.HasValue, e => e.ListOfAllCalculatedResultId == input.ListOfAllCalculatedResultNameCalculatedResultIdFilter)
                         .WhereIf(input.ClassScheduleModeSpaceNameClassScheduleModeSpacesIdFilter.HasValue, e => e.ListOfAllCalculatedResultId == input.ClassScheduleModeSpaceNameClassScheduleModeSpacesIdFilter);
 
-            var pagedAndFilteredClassScheduleResults = filteredClassScheduleResults
-                .OrderBy(input.Sorting ?? "id asc")
-                .PageBy(input);
+            
+            
 
-            var classScheduleResults = (from o in pagedAndFilteredClassScheduleResults
+            var classScheduleResults = (from o in filteredClassScheduleResults
                                         join o1 in _lookup_listOfAllCalculatedResultRepository.GetAll() on o.ListOfAllCalculatedResultId equals o1.Id into j1
                                         from s1 in j1.DefaultIfEmpty()
+
+                                        join o14 in _mainDomainRepository.GetAll()
+                                        on o.MainDomainID equals o14.Id into j14
+                                        from s14 in j14.DefaultIfEmpty()
 
                                         join o2 in _lookup_classScheduleModeSpaceRepository.GetAll() on o.ClassScheduleModeSpaceId equals o2.Id into j2
                                         from s2 in j2.DefaultIfEmpty()
@@ -199,11 +207,13 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults
                                                 ClassroomBuildingId = s3.ClassroomBuildingName,
                                                 Id = o.Id,
                                                 ClassScheduleModeSpaceId = o.ClassScheduleModeSpaceId,
-                                                ListOfAllCalculatedResultId = o.ListOfAllCalculatedResultId
+                                                ListOfAllCalculatedResultId = o.ListOfAllCalculatedResultId,
+                                                IsAlocated=s14.IsAlocated
                                             },
-                                            ListOfAllCalculatedResultNameCalculatedResult = s1 == null || s1.NameCalculatedResult == null ? "" : s1.NameCalculatedResult.ToString(),
-                                            ClassScheduleModeSpaceNameClassScheduleModeSpaces = s2 == null || s2.NameClassScheduleModeSpaces == null ? "" : s2.NameClassScheduleModeSpaces.ToString()
+                                            ListOfAllCalculatedResultNameCalculatedResult = (s1 == null ? "" : s1.NameCalculatedResult),
+                                            ClassScheduleModeSpaceNameClassScheduleModeSpaces = (s2 == null  ? "" : s2.NameClassScheduleModeSpaces)
                                         })
+                                        .Where(record => record.ClassScheduleResult.IsAlocated == input.IsAlocated)
                                         .WhereIf(!string.IsNullOrEmpty(input.ClassroomBuildingFilter), e => e.ClassScheduleResult.ClassroomBuildingId == input.ClassroomBuildingFilter.Trim())
                                         .WhereIf(!string.IsNullOrEmpty(input.Filter), e => e.ClassScheduleResult.ClassroomBuildingId == input.Filter.Trim())
                                         .WhereIf(!string.IsNullOrEmpty(input.UniversityProfessorFilter), e => e.ClassScheduleResult.UniversityProfessorId == input.UniversityProfessorFilter.Trim())
@@ -221,9 +231,14 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults
                                         .WhereIf(!string.IsNullOrEmpty(input.WorkTimeInDayFilter), e => e.ClassScheduleResult.WorkTimeInDayId == input.WorkTimeInDayFilter.Trim())
                                         .WhereIf(!string.IsNullOrEmpty(input.Filter), e => e.ClassScheduleResult.WorkTimeInDayId == input.Filter.Trim());
 
+
+            var pagedAndFilteredClassScheduleResults = classScheduleResults
+                .OrderBy(input.Sorting ?? "classScheduleResult.Id asc")
+                .PageBy(input);
+
             var totalCount = await filteredClassScheduleResults.CountAsync();
 
-            var dbList = await classScheduleResults.ToListAsync();
+            var dbList = await pagedAndFilteredClassScheduleResults.ToListAsync();
 
             return new PagedResultDto<GetClassScheduleResultForViewDto>(
                 totalCount,
@@ -332,6 +347,10 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults
                          join o1 in _lookup_listOfAllCalculatedResultRepository.GetAll() on o.ListOfAllCalculatedResultId equals o1.Id into j1
                          from s1 in j1.DefaultIfEmpty()
 
+                         join o14 in _mainDomainRepository.GetAll()
+                         on o.MainDomainID equals o14.Id into j14
+                         from s14 in j14.DefaultIfEmpty()
+
                          join o2 in _lookup_classScheduleModeSpaceRepository.GetAll() on o.ClassScheduleModeSpaceId equals o2.Id into j2
                          from s2 in j2.DefaultIfEmpty()
 
@@ -388,6 +407,7 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults
                              ListOfAllCalculatedResultNameCalculatedResult = s1 == null || s1.NameCalculatedResult == null ? "" : s1.NameCalculatedResult.ToString(),
                              ClassScheduleModeSpaceNameClassScheduleModeSpaces = s2 == null || s2.NameClassScheduleModeSpaces == null ? "" : s2.NameClassScheduleModeSpaces.ToString()
                          })
+                         .Where(record => record.ClassScheduleResult.IsAlocated == input.IsAlocated)
                                         .WhereIf(!string.IsNullOrEmpty(input.ClassroomBuildingFilter), e => e.ClassScheduleResult.ClassroomBuildingId == input.ClassroomBuildingFilter.Trim())
                                         .WhereIf(!string.IsNullOrEmpty(input.Filter), e => e.ClassScheduleResult.ClassroomBuildingId == input.Filter.Trim())
                                         .WhereIf(!string.IsNullOrEmpty(input.UniversityProfessorFilter), e => e.ClassScheduleResult.UniversityProfessorId == input.UniversityProfessorFilter.Trim())
@@ -527,56 +547,63 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults
             {
                 TenantId = AbpSession.TenantId.Value,
                 ListOfClassScheduleModeSpaceName = listOfAllCalculatedResult.NameCalculatedResult,
-                ListOfAllCalculatedResultId= input.ListOfAllCalculatedResultId
+                ListOfAllCalculatedResultId = input.ListOfAllCalculatedResultId
             });
-           
-            _classScheduleModeSpace = new List<ClassScheduleModeSpace>();
-
-            foreach (var universityProfessors in _universityProfessors)
+            lock (_classScheduleModeSpace)
             {
-                foreach (var lessonOfUniversityProfessor in _lessonsOfUniversityProfessor.Where(record => record.UniversityProfessorId == universityProfessors.Id).ToList())
-                {
-                    foreach (var universityProfessorModeSpace in _universityProfessorWorkingTime.Where(record => record.UniversityProfessorId == universityProfessors.Id))
-                    {
-                        ClassScheduleModeSpace classScheduleModeSpace = new ClassScheduleModeSpace()
-                        {
-                            UniversityProfessorFk = universityProfessors,
-                            IsLock = false,
-                            LessonId = lessonOfUniversityProfessor.LessonId,
-                            NameClassScheduleModeSpaces = $"{universityProfessors.UniversityProfessorName} {lessonOfUniversityProfessor.LessonFk.NameLesson} {universityProfessorModeSpace.WorkTimeInDayFk.NameWorkTimeInDay}",
-                            UniversityProfessorId = universityProfessors.Id,
-                            WorkTimeInDayId = universityProfessorModeSpace.WorkTimeInDayId,
-                            TenantId = AbpSession.TenantId.Value,
-                            ListOfClassScheduleModeSpaceId = listOfClassScheduleModeSpaceId,
+                _classScheduleModeSpace = new List<ClassScheduleModeSpace>();
 
-                        };
-                        long classScheduleModeSpaceId = await _classScheduleModeSpaceRepository.InsertAndGetIdAsync(classScheduleModeSpace);
-                        _classScheduleModeSpace.Add(
-                            new ClassScheduleModeSpace()
+                foreach (var universityProfessors in _universityProfessors)
+                {
+                    foreach (var lessonOfUniversityProfessor in _lessonsOfUniversityProfessor.Where(record => record.UniversityProfessorId == universityProfessors.Id).ToList())
+                    {
+                        foreach (var universityProfessorModeSpace in _universityProfessorWorkingTime.Where(record => record.UniversityProfessorId == universityProfessors.Id))
+                        {
+                            ClassScheduleModeSpace classScheduleModeSpace = new ClassScheduleModeSpace()
                             {
-                                LessonFk = lessonOfUniversityProfessor.LessonFk,
                                 UniversityProfessorFk = universityProfessors,
-                                WorkTimeInDayFk = universityProfessorModeSpace.WorkTimeInDayFk,
                                 IsLock = false,
-                                Id = classScheduleModeSpaceId,
                                 LessonId = lessonOfUniversityProfessor.LessonId,
-                                NameClassScheduleModeSpaces = universityProfessorModeSpace.WorkTimeInDayFk.NameWorkTimeInDay,
+                                NameClassScheduleModeSpaces = $"{universityProfessors.UniversityProfessorName} {lessonOfUniversityProfessor.LessonFk.NameLesson} {universityProfessorModeSpace.WorkTimeInDayFk.NameWorkTimeInDay}",
                                 UniversityProfessorId = universityProfessors.Id,
                                 WorkTimeInDayId = universityProfessorModeSpace.WorkTimeInDayId,
                                 TenantId = AbpSession.TenantId.Value,
-                                ListOfClassScheduleModeSpaceId = listOfClassScheduleModeSpaceId
-                            });
+                                ListOfClassScheduleModeSpaceId = listOfClassScheduleModeSpaceId,
+
+                            };
+                            long classScheduleModeSpaceId = _classScheduleModeSpaceRepository.InsertAndGetId(classScheduleModeSpace);
+                            _classScheduleModeSpace.Add(
+                                new ClassScheduleModeSpace()
+                                {
+                                    LessonFk = lessonOfUniversityProfessor.LessonFk,
+                                    UniversityProfessorFk = universityProfessors,
+                                    WorkTimeInDayFk = universityProfessorModeSpace.WorkTimeInDayFk,
+                                    IsLock = false,
+                                    Id = classScheduleModeSpaceId,
+                                    LessonId = lessonOfUniversityProfessor.LessonId,
+                                    NameClassScheduleModeSpaces = universityProfessorModeSpace.WorkTimeInDayFk.NameWorkTimeInDay,
+                                    UniversityProfessorId = universityProfessors.Id,
+                                    WorkTimeInDayId = universityProfessorModeSpace.WorkTimeInDayId,
+                                    TenantId = AbpSession.TenantId.Value,
+                                    ListOfClassScheduleModeSpaceId = listOfClassScheduleModeSpaceId
+                                });
+                        }
                     }
                 }
             }
+
+            await RelaseCourseToSemester();
             long listOfMainDomainId = await _listOfMainDomainRepository.InsertAndGetIdAsync(new ListOfMainDomain()
             {
                 TenantId = AbpSession.TenantId.Value,
-                ListOfMainDomainName = listOfAllCalculatedResult.NameCalculatedResult
+                ListOfMainDomainName = listOfAllCalculatedResult.NameCalculatedResult,
+                ListOfAllCalculatedResultId = input.ListOfAllCalculatedResultId
             });
-            List<MainDomain> mainDomain = new List<MainDomain>();
+
+            List<List<MainDomain>> mainDomain = new List<List<MainDomain>>();
             foreach (var semester in _semester)
             {
+                List<MainDomain> lListDomainForEcheSempter = new List<MainDomain>();
                 var lessonsOfSemester = _lessonsOfSemester.Where(record => record.SemesterId == semester.Id).ToList();
                 foreach (var Lesson in lessonsOfSemester)
                 {
@@ -591,7 +618,7 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults
                                 ListOfMainDomainId = listOfMainDomainId,
                                 MainDomainName = Lesson.LessonsOfSemesterName
                             });
-                            mainDomain.Add(new MainDomain()
+                            lListDomainForEcheSempter.Add(new MainDomain()
                             {
                                 LessonsOfSemesterFk = Lesson,
                                 TenantId = AbpSession.TenantId.Value,
@@ -603,12 +630,40 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults
                         }
                     }
                 }
+                mainDomain.Add(lListDomainForEcheSempter);
             }
 
             List<ClassScheduleResult> classScheduleResults = new List<ClassScheduleResult>();
             random = new Random(Guid.NewGuid().GetHashCode());
-            Parallel.ForEach(_semester, new ParallelOptions() { MaxDegreeOfParallelism = _semester.Count }, async (semester) => classScheduleResults.AddRange(SetCoursesToSemester(semester).Result));
-            listOfAllCalculatedResult.Price = Convert.ToInt32(Math.Floor(CalculatorH(classScheduleResults, mainDomain)));
+            List<Tuple<Semester, List<MainDomain>>> inputForCal = new List<Tuple<Semester, List<MainDomain>>>();
+            for (int semesterIndex = 0; semesterIndex < _semester.Count; semesterIndex++)
+            {
+                inputForCal.Add(new Tuple<Semester, List<MainDomain>>(_semester[semesterIndex], mainDomain[semesterIndex]));
+            }
+            OrderablePartitioner<Tuple<Semester, List<MainDomain>>> orderablePartitioner = Partitioner.Create(inputForCal);
+
+            var tr = Parallel.ForEach<Tuple<Semester, List<MainDomain>>, List<ClassScheduleResult>>(orderablePartitioner,
+                   new ParallelOptions() { MaxDegreeOfParallelism = _semester.Count },
+                   () =>
+                   {
+                       List<ClassScheduleResult> classScheduleResultstmp = new List<ClassScheduleResult>();
+                       return classScheduleResultstmp;
+                   }
+                   ,
+                   (semester, lps, id, sl1) =>
+                   {
+                       sl1.AddRange(SetCoursesToSemester(semester.Item1, semesterDomain: semester.Item2).Result);
+                       return sl1;
+                   },
+                   (res) =>
+                   {
+                       lock (classScheduleResults)
+                       {
+                           classScheduleResults.AddRange(res);
+                       }
+                   }
+                   );
+            listOfAllCalculatedResult.Price = Convert.ToInt32(Math.Floor(CalculatorMainH(classScheduleResults, mainDomain)));
             await _lookup_listOfAllCalculatedResultRepository.UpdateAsync(listOfAllCalculatedResult);
             foreach (ClassScheduleResult classScheduleResult in classScheduleResults)
             {
@@ -624,9 +679,11 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults
                     UniversityDepartmentId = classScheduleResult.UniversityDepartmentId,
                     UniversityMajorId = classScheduleResult.UniversityMajorId,
                     UniversityProfessorId = classScheduleResult.UniversityProfessorId,
-                    WorkTimeInDayId = classScheduleResult.WorkTimeInDayId
+                    WorkTimeInDayId = classScheduleResult.WorkTimeInDayId,
+                    MainDomainID = classScheduleResult.MainDomainID
                 });
             }
+            await RelaseCourseToSemester();
             return new StartClassScheduleOutputDto() { IsSuccsses = true };
         }
         private async Task<ClassScheduleResult> AllocationCourseToSemester(Lesson lesson, WorkTimeInDay workTimeInDay, UniversityProfessor universityProfessor, Semester semester, Grade grade, UniversityMajor universityMajor, UniversityDepartment universityDepartment, List<ClassScheduleResult> remain)
@@ -644,7 +701,7 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults
                       .Where(
                             ParallelEnumerable.AsParallel(_classScheduleModeSpace),
                             record => record.IsLock == false && record.UniversityProfessorId == universityProfessor.Id && record.WorkTimeInDayId == workTimeInDay.Id)
-                           .WithMergeOptions(ParallelMergeOptions.FullyBuffered).WithExecutionMode(ParallelExecutionMode.ForceParallelism).OrderBy(record => _universityProfessorWorkingTime.Count(record => record.UniversityProfessorId == record.UniversityProfessorId)).ThenBy(record => record.WorkTimeInDayFk.DayOfWeek).ThenBy(record => record.WorkTimeInDayFk.WhatTimeOfDayIndex).ToList();
+                           .WithMergeOptions(ParallelMergeOptions.FullyBuffered).WithExecutionMode(ParallelExecutionMode.ForceParallelism).OrderBy(record => _lessonsOfUniversityProfessor.Count(lessonRow => lessonRow.UniversityProfessorId == record.UniversityProfessorId)).ThenByDescending(record => _universityProfessorWorkingTime.Count(recordcount => record.UniversityProfessorId == recordcount.UniversityProfessorId)).ThenBy(record => record.WorkTimeInDayFk.DayOfWeek).ThenBy(record => record.WorkTimeInDayFk.WhatTimeOfDayIndex).ToList();
                     if (universityProfessorCanAllocationLessonList != null && universityProfessorCanAllocationLessonList.Any())
                     {
                         var universityProfessorCanAllocationLesson = universityProfessorCanAllocationLessonList.FirstOrDefault(record => record.LessonId == lesson.Id);
@@ -691,6 +748,8 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults
 
             }
         }
+
+
         private async Task<bool> RelaseCourseToSemester(List<ClassScheduleResult> remain)
         {
             lock (_classScheduleModeSpace)
@@ -714,6 +773,17 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults
                 }
             }
         }
+        private async Task<bool> RelaseCourseToSemester()
+        {
+            lock (_classScheduleModeSpace)
+            {
+                _classScheduleModeSpace.ForEach((rows) =>
+                    {
+                        rows.IsLock = false;
+                    });
+                return true;
+            }
+        }
         private async Task<List<ClassScheduleModeSpace>> GetWorkTimeInDayOFUniversityProfessor(Lesson lesson)
         {
             lock (_classScheduleModeSpace)
@@ -722,7 +792,7 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults
                .Where(
                      ParallelEnumerable.AsParallel(_classScheduleModeSpace),
                      record => lesson.Id == record.LessonId && record.IsLock == false)
-                    .WithMergeOptions(ParallelMergeOptions.FullyBuffered).WithExecutionMode(ParallelExecutionMode.ForceParallelism).OrderBy(record => _universityProfessorWorkingTime.Count(record => record.UniversityProfessorId == record.UniversityProfessorId)).ThenBy(record => record.WorkTimeInDayFk.DayOfWeek).ThenBy(record => record.WorkTimeInDayFk.WhatTimeOfDayIndex).ToList();
+                    .WithMergeOptions(ParallelMergeOptions.FullyBuffered).WithExecutionMode(ParallelExecutionMode.ForceParallelism).OrderBy(record => _lessonsOfUniversityProfessor.Count(lessonRow => lessonRow.UniversityProfessorId == record.UniversityProfessorId)).ThenByDescending(record => _universityProfessorWorkingTime.Count(recordcount => record.UniversityProfessorId == recordcount.UniversityProfessorId)).ThenBy(record => record.WorkTimeInDayFk.DayOfWeek).ThenBy(record => record.WorkTimeInDayFk.WhatTimeOfDayIndex).ToList();
                 if (universityProfessorCanAllocationLessonList != null && universityProfessorCanAllocationLessonList.Any())
                 {
                     var randomeWorkTimeInDayOFUniversityProfessor = universityProfessorCanAllocationLessonList.Take(lesson.HoursPerWeek).ToList();
@@ -767,28 +837,28 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults
                 return remain;
             }
 
-            if (semesterDomain == null)
-            {
-                semesterDomain = new List<MainDomain>();
-                var lessonsOfSemester = _lessonsOfSemester.Where(record => record.SemesterId == semester.Id).ToList();
-                foreach (var Lesson in lessonsOfSemester)
-                {
-                    for (int numberOfClassesToBeFormedIndex = 0; numberOfClassesToBeFormedIndex < Lesson.NumberOfClassesToBeFormed; numberOfClassesToBeFormedIndex++)
-                    {
-                        for (int courseNumberOfGroupsIndex = 0; courseNumberOfGroupsIndex < Lesson.LessonFk.NumberOfGroups; courseNumberOfGroupsIndex++)
-                        {
-                            semesterDomain.Add(new MainDomain()
-                            {
-                                LessonsOfSemesterFk = Lesson,
-                                TenantId = AbpSession.TenantId.Value,
-                                LessonsOfSemesterId = Lesson.Id,
-                                MainDomainName = Lesson.LessonsOfSemesterName
-                            });
-                        }
-                    }
-                }
+            //if (semesterDomain == null)
+            //{
+            //    semesterDomain = new List<MainDomain>();
+            //    var lessonsOfSemester = _lessonsOfSemester.Where(record => record.SemesterId == semester.Id).ToList();
+            //    foreach (var Lesson in lessonsOfSemester)
+            //    {
+            //        for (int numberOfClassesToBeFormedIndex = 0; numberOfClassesToBeFormedIndex < Lesson.NumberOfClassesToBeFormed; numberOfClassesToBeFormedIndex++)
+            //        {
+            //            for (int courseNumberOfGroupsIndex = 0; courseNumberOfGroupsIndex < Lesson.LessonFk.NumberOfGroups; courseNumberOfGroupsIndex++)
+            //            {
+            //                semesterDomain.Add(new MainDomain()
+            //                {
+            //                    LessonsOfSemesterFk = Lesson,
+            //                    TenantId = AbpSession.TenantId.Value,
+            //                    LessonsOfSemesterId = Lesson.Id,
+            //                    MainDomainName = Lesson.LessonsOfSemesterName
+            //                });
+            //            }
+            //        }
+            //    }
 
-            }
+            //}
             if (remain == null)
             {
                 remain = new List<ClassScheduleResult>();
@@ -815,6 +885,7 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults
                             var coursesDomain = lessonsDomainTask.Result;
                             if (coursesDomain != null)
                             {
+                                coursesDomain.MainDomainID = lesson.Id;
                                 remain.Add(coursesDomain);
                             }
                         }
@@ -839,6 +910,7 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults
                             var coursesDomain = coursesDomainTask.Result;
                             if (coursesDomain != null)
                             {
+                                coursesDomain.MainDomainID = lesson.Id;
                                 remain.Add(coursesDomain);
                             }
                         }
@@ -864,15 +936,38 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults
         private double CalculatorH(List<ClassScheduleResult> classScheduleResults, List<MainDomain> semesterDomain)
         {
             double price = 0;
-            List<MainDomain> calculatoedLesson = new List<MainDomain>();
             if (classScheduleResults != null && semesterDomain != null)
             {
                 foreach (var semesterLesson in semesterDomain)
                 {
-                    if (!calculatoedLesson.Any(record => record.LessonsOfSemesterFk.LessonId == semesterLesson.LessonsOfSemesterFk.LessonId && record.LessonsOfSemesterFk.SemesterId == semesterLesson.LessonsOfSemesterFk.SemesterId && record.LessonsOfSemesterFk.LessonOfSemesterType == semesterLesson.LessonsOfSemesterFk.LessonOfSemesterType) && (classScheduleResults.Count(record => record.LessonId == semesterLesson.LessonsOfSemesterFk.LessonId) == (semesterLesson.LessonsOfSemesterFk.NumberOfClassesToBeFormed * (semesterLesson.LessonsOfSemesterFk.LessonFk.NumberOfGroups * semesterLesson.LessonsOfSemesterFk.LessonFk.HoursPerWeek))))
+                    if (classScheduleResults.Count(record => record.MainDomainID == semesterLesson.Id) == semesterLesson.LessonsOfSemesterFk.LessonFk.HoursPerWeek)
                     {
-                        price = price + (((semesterLesson.LessonsOfSemesterFk.NumberOfClassesToBeFormed * (semesterLesson.LessonsOfSemesterFk.LessonFk.NumberOfGroups)) * 100d) / semesterDomain.Count);
-                        calculatoedLesson.Add(semesterLesson);
+                        price = price + ((classScheduleResults.Count(record => record.MainDomainID == semesterLesson.Id) * 100d) / classScheduleResults.Count);
+                    }
+                }
+            }
+
+            return price;
+        }
+        private double CalculatorMainH(List<ClassScheduleResult> classScheduleResults, List<List<MainDomain>> mainSemesterDomain)
+        {
+            double price = 0;
+
+            if (classScheduleResults != null && mainSemesterDomain != null)
+            {
+                foreach (var semesterDomain in mainSemesterDomain)
+                {
+                    foreach (var semesterLesson in semesterDomain)
+                    {
+                        if (classScheduleResults.Count(record => record.MainDomainID == semesterLesson.Id) == semesterLesson.LessonsOfSemesterFk.LessonFk.HoursPerWeek)
+                        {
+                            price = price + ((classScheduleResults.Count(record => record.MainDomainID == semesterLesson.Id) * 100d) / classScheduleResults.Count);
+
+                            var maindomain = _mainDomainRepository.Get(semesterLesson.Id);
+                            maindomain.IsAlocated = true;
+                            _mainDomainRepository.Update(maindomain);
+                        }
+
                     }
                 }
             }
@@ -881,4 +976,5 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults
         }
 
     }
+
 }

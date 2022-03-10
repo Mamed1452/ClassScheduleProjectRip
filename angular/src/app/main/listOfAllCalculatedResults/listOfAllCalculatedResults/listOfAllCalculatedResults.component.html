@@ -232,9 +232,17 @@
                                                     <li>
                                                         <a
                                                             class="dropdown-item"
-                                                            (click)="showResult(record.listOfAllCalculatedResult.id)"
+                                                            (click)="showResultAlocated(record.listOfAllCalculatedResult.id)"
                                                         >
                                                             {{ l('ShowResults') }}
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a
+                                                            class="dropdown-item"
+                                                            (click)="showResultNotAlocated(record.listOfAllCalculatedResult.id)"
+                                                        >
+                                                            {{ l('ShowNotAlocated') }}
                                                         </a>
                                                     </li>
                                                 </ul>

@@ -235,6 +235,9 @@
     <text name="AssinedBeforAssigningLessonsOfSemesterSelected">Assined Befor Assigning Lessons Of Semester Selected!</text>
 
     <text name="lesson">lesson</text>
+    <text name="IsAlocated">Is Alocated</text>
+    <text name="isAlocated">Is Alocated</text>
+    <text name="ShowNotAlocated">Show Not Alocated</text>
     <text name="for">for</text>
     <text name="ShowResults">Show Results</text>
     <text name="NotSaved">Not Saved!</text>

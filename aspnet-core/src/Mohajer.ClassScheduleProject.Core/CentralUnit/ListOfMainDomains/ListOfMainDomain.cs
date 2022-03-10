@@ -15,5 +15,7 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ListOfMainDomains
 
         public virtual string ListOfMainDomainName { get; set; }
 
+        public virtual long? ListOfAllCalculatedResultId { get; set; }
+
     }
 }

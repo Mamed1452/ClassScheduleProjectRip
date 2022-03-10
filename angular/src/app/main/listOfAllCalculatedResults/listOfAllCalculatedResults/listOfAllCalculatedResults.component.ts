@@ -115,11 +115,14 @@ export class ListOfAllCalculatedResultsComponent extends AppComponentBase {
     createListOfAllCalculatedResult(): void {
         this.createOrEditListOfAllCalculatedResultModal.show();
     }
-    showResult(rowid: number): void
+    showResultAlocated(rowid: number): void
     {
-        this.router.navigate(['app/main/classScheduleResults/classScheduleResults/'+rowid]);
+        this.router.navigate(['app/main/classScheduleResults/classScheduleResults/'+rowid+'/true']);
     }
-
+    showResultNotAlocated(rowid: number): void
+    {
+        this.router.navigate(['app/main/classScheduleResults/classScheduleResults/'+rowid+'/false']);
+    }
     showHistory(listOfAllCalculatedResult: ListOfAllCalculatedResultDto): void {
         this.entityTypeHistoryModal.show({
             entityId: listOfAllCalculatedResult.id.toString(),

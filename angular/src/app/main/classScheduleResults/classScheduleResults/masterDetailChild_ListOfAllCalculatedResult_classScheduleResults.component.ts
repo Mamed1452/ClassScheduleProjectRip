@@ -49,6 +49,7 @@ export class MasterDetailChild_ListOfAllCalculatedResult_ClassScheduleResultsCom
     classroomBuildingFilter: string;
     classScheduleModeSpaceNameClassScheduleModeSpacesFilter = '';
     listOfAllCalculatedResultNameCalculatedResultFilter = '';
+    isAlocated: boolean = true;
     _entityTypeFullName = 'Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults.ClassScheduleResult';
     entityHistoryEnabled = false;
 
@@ -104,6 +105,7 @@ export class MasterDetailChild_ListOfAllCalculatedResult_ClassScheduleResultsCom
                 this.classScheduleModeSpaceNameClassScheduleModeSpacesFilter,
                 this.listOfAllCalculatedResultId,
                 undefined,
+                this.isAlocated,
                 this.primengTableHelper.getSorting(this.dataTable),
                 this.primengTableHelper.getSkipCount(this.paginator, event),
                 this.primengTableHelper.getMaxResultCount(this.paginator, event)
@@ -157,7 +159,8 @@ export class MasterDetailChild_ListOfAllCalculatedResult_ClassScheduleResultsCom
                 this.listOfAllCalculatedResultNameCalculatedResultFilter,
                 this.classScheduleModeSpaceNameClassScheduleModeSpacesFilter,
                 this.listOfAllCalculatedResultId,
-                undefined
+                undefined,
+                this.isAlocated
             )
             .subscribe((result) => {
                 this._fileDownloadService.downloadTempFile(result);
