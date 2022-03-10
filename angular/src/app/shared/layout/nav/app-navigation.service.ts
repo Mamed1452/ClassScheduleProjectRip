@@ -28,36 +28,36 @@ export class AppNavigationService {
 
             new AppMenuItem('UniversityDepartments', 'Pages.UniversityDepartments', 'flaticon-more', '/app/main/universityDepartments/universityDepartments'),
 
-           
+
             new AppMenuItem('AssigningUniversityMajorToClassroomBuildings', 'Pages.AssigningUniversityMajorToClassroomBuildings', 'flaticon-more', '/app/main/assigningUniversityMajorToClassroomBuildings/assigningUniversityMajorToClassroomBuildings'),
-            
+
             new AppMenuItem('Grades', 'Pages.Grades', 'flaticon-more', '/app/main/grades/grades'),
-            
+
             new AppMenuItem('Semesters', 'Pages.Semesters', 'flaticon-more', '/app/main/semesters/semesters'),
-            
+
             new AppMenuItem('AssigningGradeToUniversityMajors', 'Pages.AssigningGradeToUniversityMajors', 'flaticon-more', '/app/main/assigningGradeToUniversityMajors/assigningGradeToUniversityMajors'),
-            
+
             new AppMenuItem('WorkTimeInDays', 'Pages.WorkTimeInDays', 'flaticon-more', '/app/main/workTimeInDays/workTimeInDays'),
-            
+
             new AppMenuItem('UniversityProfessors', 'Pages.UniversityProfessors', 'flaticon-more', '/app/main/universityProfessors/universityProfessors'),
-            
+
             new AppMenuItem('UniversityProfessorWorkingTimes', 'Pages.UniversityProfessorWorkingTimes', 'flaticon-more', '/app/main/universityProfessorWorkingTimes/universityProfessorWorkingTimes'),
-            
+
             new AppMenuItem('Lessons', 'Pages.Lessons', 'flaticon-more', '/app/main/lessons/lessons'),
-            
+
             new AppMenuItem('LessonsOfSemesters', 'Pages.LessonsOfSemesters', 'flaticon-more', '/app/main/lessonsOfSemesters/lessonsOfSemesters'),
-            
+
             new AppMenuItem('LessonsOfUniversityProfessors', 'Pages.LessonsOfUniversityProfessors', 'flaticon-more', '/app/main/lessonsOfUniversityProfessors/lessonsOfUniversityProfessors'),
-            
-            new AppMenuItem('ClassScheduleResults', 'Pages.ClassScheduleResults', 'flaticon-more', '/app/main/classScheduleResults/classScheduleResults'),
-            
-            new AppMenuItem('ClassScheduleModeSpaces', 'Pages.ClassScheduleModeSpaces', 'flaticon-more', '/app/main/classScheduleModeSpaces/classScheduleModeSpaces'),
-            
+
+          //  new AppMenuItem('ClassScheduleResults', 'Pages.ClassScheduleResults', 'flaticon-more', '/app/main/classScheduleResults/classScheduleResults'),
+
+          //  new AppMenuItem('ClassScheduleModeSpaces', 'Pages.ClassScheduleModeSpaces', 'flaticon-more', '/app/main/classScheduleModeSpaces/classScheduleModeSpaces'),
+
             new AppMenuItem('ListOfAllCalculatedResults', 'Pages.ListOfAllCalculatedResults', 'flaticon-more', '/app/main/listOfAllCalculatedResults/listOfAllCalculatedResults'),
-            
-            new AppMenuItem('MainDomains', 'Pages.MainDomains', 'flaticon-more', '/app/main/mainDomains/mainDomains'),
-            
-            new AppMenuItem('ListOfMainDomains', 'Pages.ListOfMainDomains', 'flaticon-more', '/app/main/listOfMainDomains/listOfMainDomains'),
+
+        //    new AppMenuItem('MainDomains', 'Pages.MainDomains', 'flaticon-more', '/app/main/mainDomains/mainDomains'),
+
+         //   new AppMenuItem('ListOfMainDomains', 'Pages.ListOfMainDomains', 'flaticon-more', '/app/main/listOfMainDomains/listOfMainDomains'),
              new AppMenuItem('Administration', '', 'flaticon-interface-8', '', [], [
                 new AppMenuItem('OrganizationUnits', 'Pages.Administration.OrganizationUnits', 'flaticon-map', '/app/admin/organization-units'),
                 new AppMenuItem('Roles', 'Pages.Administration.Roles', 'flaticon-suitcase', '/app/admin/roles'),

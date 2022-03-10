@@ -84,6 +84,13 @@ export class ClassScheduleResultsComponent extends AppComponentBase {
         private _dateTimeService: DateTimeService
     ) {
         super(injector);
+        this._activatedRoute.params.subscribe((res)=>
+        {
+            if (res.Id !== '-') {
+                this.listOfAllCalculatedResultNameCalculatedResultFilter=res.Id;
+                this.getClassScheduleResults();
+            }
+        });
     }
 
     ngOnInit(): void {
@@ -104,6 +111,7 @@ export class ClassScheduleResultsComponent extends AppComponentBase {
     }
 
     getClassScheduleResults(event?: LazyLoadEvent) {
+
         if (this.primengTableHelper.shouldResetPaging(event)) {
             this.paginator.changePage(0);
             return;

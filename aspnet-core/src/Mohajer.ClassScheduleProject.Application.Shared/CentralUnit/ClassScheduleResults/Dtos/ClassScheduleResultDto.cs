@@ -5,21 +5,21 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults.Dtos
 {
     public class ClassScheduleResultDto : EntityDto<long>
     {
-        public long WorkTimeInDayId { get; set; }
+        public string WorkTimeInDayId { get; set; }
 
-        public long LessonId { get; set; }
+        public string LessonId { get; set; }
 
-        public int UniversityProfessorId { get; set; }
+        public string UniversityProfessorId { get; set; }
 
-        public long SemesterId { get; set; }
+        public string SemesterId { get; set; }
 
-        public int GradeId { get; set; }
+        public string GradeId { get; set; }
 
-        public int UniversityMajorId { get; set; }
+        public string UniversityMajorId { get; set; }
 
-        public int UniversityDepartmentId { get; set; }
+        public string UniversityDepartmentId { get; set; }
 
-        public int ClassroomBuildingId { get; set; }
+        public string ClassroomBuildingId { get; set; }
 
         public long ListOfAllCalculatedResultId { get; set; }
 

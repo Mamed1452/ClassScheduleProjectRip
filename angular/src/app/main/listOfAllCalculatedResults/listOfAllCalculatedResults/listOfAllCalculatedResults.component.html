@@ -229,6 +229,14 @@
                                                             {{ l('History') }}
                                                         </a>
                                                     </li>
+                                                    <li>
+                                                        <a
+                                                            class="dropdown-item"
+                                                            (click)="showResult(record.listOfAllCalculatedResultId)"
+                                                        >
+                                                            {{ l('ShowResults') }}
+                                                        </a>
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </td>
@@ -264,7 +272,7 @@
                                     >
                                         <td colspan="4">
                                             <masterDetailChild_ListOfAllCalculatedResult_classScheduleResults-component
-                                                [listOfAllCalculatedResultId]="record.listOfAllCalculatedResult.id"
+                                                [listOfAllCalculatedResultId]="record.listOfAllCalculatedResultId"
                                             ></masterDetailChild_ListOfAllCalculatedResult_classScheduleResults-component>
                                         </td>
                                     </tr>

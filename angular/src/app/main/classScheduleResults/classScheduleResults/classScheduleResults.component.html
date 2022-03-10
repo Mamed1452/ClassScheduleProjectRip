@@ -312,7 +312,7 @@
                                 <ng-template pTemplate="header">
                                     <tr>
                                         <th
-                                            style="width: 130px"
+
                                             [hidden]="
                                                 !isGrantedAny(
                                                     'Pages.ClassScheduleResults.Edit',
@@ -323,7 +323,7 @@
                                             {{ l('Actions') }}
                                         </th>
                                         <th
-                                            style="width: 150px"
+
                                             pSortableColumn="listOfAllCalculatedResultFk.nameCalculatedResult"
                                         >
                                             {{ l('NameCalculatedResult') }}
@@ -332,7 +332,7 @@
                                             ></p-sortIcon>
                                         </th>
                                         <th
-                                            style="width: 150px"
+
                                             pSortableColumn="classScheduleModeSpaceFk.nameClassScheduleModeSpaces"
                                         >
                                             {{ l('NameClassScheduleModeSpaces') }}
@@ -340,35 +340,35 @@
                                                 field="classScheduleModeSpaceNameClassScheduleModeSpaces"
                                             ></p-sortIcon>
                                         </th>
-                                        <th style="width: 150px" pSortableColumn="workTimeInDayId">
+                                        <th  pSortableColumn="workTimeInDayId">
                                             {{ l('WorkTimeInDayId') }}
                                             <p-sortIcon field="classScheduleResult.workTimeInDayId"></p-sortIcon>
                                         </th>
-                                        <th style="width: 150px" pSortableColumn="lessonId">
+                                        <th  pSortableColumn="lessonId">
                                             {{ l('LessonId') }}
                                             <p-sortIcon field="classScheduleResult.lessonId"></p-sortIcon>
                                         </th>
-                                        <th style="width: 150px" pSortableColumn="universityProfessorId">
+                                        <th  pSortableColumn="universityProfessorId">
                                             {{ l('UniversityProfessorId') }}
                                             <p-sortIcon field="classScheduleResult.universityProfessorId"></p-sortIcon>
                                         </th>
-                                        <th style="width: 150px" pSortableColumn="semesterId">
+                                        <th pSortableColumn="semesterId">
                                             {{ l('SemesterId') }}
                                             <p-sortIcon field="classScheduleResult.semesterId"></p-sortIcon>
                                         </th>
-                                        <th style="width: 150px" pSortableColumn="gradeId">
+                                        <th pSortableColumn="gradeId">
                                             {{ l('GradeId') }}
                                             <p-sortIcon field="classScheduleResult.gradeId"></p-sortIcon>
                                         </th>
-                                        <th style="width: 150px" pSortableColumn="universityMajorId">
+                                        <th  pSortableColumn="universityMajorId">
                                             {{ l('UniversityMajorId') }}
                                             <p-sortIcon field="classScheduleResult.universityMajorId"></p-sortIcon>
                                         </th>
-                                        <th style="width: 150px" pSortableColumn="universityDepartmentId">
+                                        <th  pSortableColumn="universityDepartmentId">
                                             {{ l('UniversityDepartmentId') }}
                                             <p-sortIcon field="classScheduleResult.universityDepartmentId"></p-sortIcon>
                                         </th>
-                                        <th style="width: 150px" pSortableColumn="classroomBuildingId">
+                                        <th  pSortableColumn="classroomBuildingId">
                                             {{ l('ClassroomBuildingId') }}
                                             <p-sortIcon field="classScheduleResult.classroomBuildingId"></p-sortIcon>
                                         </th>
@@ -377,7 +377,7 @@
                                 <ng-template pTemplate="body" let-record="$implicit" let-i="rowIndex">
                                     <tr>
                                         <td
-                                            style="width: 130px"
+
                                             [hidden]="
                                                 !isGrantedAny(
                                                     'Pages.ClassScheduleResults.Edit',
@@ -446,43 +446,43 @@
                                                 </ul>
                                             </div>
                                         </td>
-                                        <td style="width: 150px">
+                                        <td >
                                             <span class="p-column-title">{{ l('NameCalculatedResult') }}</span>
                                             {{ record.listOfAllCalculatedResultNameCalculatedResult }}
                                         </td>
-                                        <td style="width: 150px">
+                                        <td >
                                             <span class="p-column-title">{{ l('NameClassScheduleModeSpaces') }}</span>
                                             {{ record.classScheduleModeSpaceNameClassScheduleModeSpaces }}
                                         </td>
-                                        <td style="width: 150px">
+                                        <td >
                                             <span class="p-column-title">{{ l('WorkTimeInDayId') }}</span>
                                             {{ record.classScheduleResult.workTimeInDayId }}
                                         </td>
-                                        <td style="width: 150px">
+                                        <td >
                                             <span class="p-column-title">{{ l('LessonId') }}</span>
                                             {{ record.classScheduleResult.lessonId }}
                                         </td>
-                                        <td style="width: 150px">
+                                        <td >
                                             <span class="p-column-title">{{ l('UniversityProfessorId') }}</span>
                                             {{ record.classScheduleResult.universityProfessorId }}
                                         </td>
-                                        <td style="width: 150px">
+                                        <td >
                                             <span class="p-column-title">{{ l('SemesterId') }}</span>
                                             {{ record.classScheduleResult.semesterId }}
                                         </td>
-                                        <td style="width: 150px">
+                                        <td >
                                             <span class="p-column-title">{{ l('GradeId') }}</span>
                                             {{ record.classScheduleResult.gradeId }}
                                         </td>
-                                        <td style="width: 150px">
+                                        <td >
                                             <span class="p-column-title">{{ l('UniversityMajorId') }}</span>
                                             {{ record.classScheduleResult.universityMajorId }}
                                         </td>
-                                        <td style="width: 150px">
+                                        <td >
                                             <span class="p-column-title">{{ l('UniversityDepartmentId') }}</span>
                                             {{ record.classScheduleResult.universityDepartmentId }}
                                         </td>
-                                        <td style="width: 150px">
+                                        <td >
                                             <span class="p-column-title">{{ l('ClassroomBuildingId') }}</span>
                                             {{ record.classScheduleResult.classroomBuildingId }}
                                         </td>

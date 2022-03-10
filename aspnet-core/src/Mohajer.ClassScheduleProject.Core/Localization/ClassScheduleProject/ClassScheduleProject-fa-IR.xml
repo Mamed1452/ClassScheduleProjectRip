@@ -239,6 +239,7 @@
     <text name="AssinedBeforWorkOfTimeSelected">شما قبلا زمان کاری انتخاب شده را به استاد انتخابی اختصاص داده اید!</text>
     <text name="AssinedBeforAssigningUniversityMajorToClassroomBuildingSelected">ساختمان کلاسی که انتخاب کردید قبلا به گروه انتخابی تخصیص داده اید!</text>
     <text name="AssinedBeforAssigningGradeToUniversityMajorSelected">رشته ای که انتخاب کردید قبلا به مقطع انتخابی تخصیص داده اید!</text>
+    <text name="NotSaved">عملیات با موفقیت انجام نشد!</text>
     <text name="MaxWorkTimeInDay">شروع بازه ی زمانی</text>
     <text name="MinWorkTimeInDay">پایان بازه ی زمانی</text>
 

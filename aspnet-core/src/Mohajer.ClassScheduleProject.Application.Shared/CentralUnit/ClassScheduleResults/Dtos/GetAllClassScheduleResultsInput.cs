@@ -7,29 +7,21 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults.Dtos
     {
         public string Filter { get; set; }
 
-        public long? MaxWorkTimeInDayIdFilter { get; set; }
-        public long? MinWorkTimeInDayIdFilter { get; set; }
+        public string WorkTimeInDayFilter { get; set; }
 
-        public long? MaxLessonIdFilter { get; set; }
-        public long? MinLessonIdFilter { get; set; }
+        public string LessonFilter { get; set; }
 
-        public int? MaxUniversityProfessorIdFilter { get; set; }
-        public int? MinUniversityProfessorIdFilter { get; set; }
+        public string UniversityProfessorFilter { get; set; }
 
-        public long? MaxSemesterIdFilter { get; set; }
-        public long? MinSemesterIdFilter { get; set; }
+        public string SemesterFilter { get; set; }
 
-        public int? MaxGradeIdFilter { get; set; }
-        public int? MinGradeIdFilter { get; set; }
+        public string GradeFilter { get; set; }
 
-        public int? MaxUniversityMajorIdFilter { get; set; }
-        public int? MinUniversityMajorIdFilter { get; set; }
+        public string UniversityMajorFilter { get; set; }
 
-        public int? MaxUniversityDepartmentIdFilter { get; set; }
-        public int? MinUniversityDepartmentIdFilter { get; set; }
+        public string UniversityDepartmentFilter { get; set; }
 
-        public int? MaxClassroomBuildingIdFilter { get; set; }
-        public int? MinClassroomBuildingIdFilter { get; set; }
+        public string ClassroomBuildingFilter { get; set; }
 
         public string ListOfAllCalculatedResultNameCalculatedResultFilter { get; set; }
 

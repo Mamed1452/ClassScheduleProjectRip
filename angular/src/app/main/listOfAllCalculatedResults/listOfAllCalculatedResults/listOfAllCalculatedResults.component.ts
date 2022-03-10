@@ -60,6 +60,7 @@ export class ListOfAllCalculatedResultsComponent extends AppComponentBase {
         private _tokenAuth: TokenAuthServiceProxy,
         private _activatedRoute: ActivatedRoute,
         private _fileDownloadService: FileDownloadService,
+        private router: Router,
         private _dateTimeService: DateTimeService
     ) {
         super(injector);
@@ -113,6 +114,10 @@ export class ListOfAllCalculatedResultsComponent extends AppComponentBase {
 
     createListOfAllCalculatedResult(): void {
         this.createOrEditListOfAllCalculatedResultModal.show();
+    }
+    showResult(rowid: number): void
+    {
+        this.router.navigate(['app/main/classScheduleResults/classScheduleResults/'+rowid]);
     }
 
     showHistory(listOfAllCalculatedResult: ListOfAllCalculatedResultDto): void {

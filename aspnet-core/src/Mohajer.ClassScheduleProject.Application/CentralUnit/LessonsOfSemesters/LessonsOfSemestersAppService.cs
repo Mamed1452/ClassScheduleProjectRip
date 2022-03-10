@@ -274,7 +274,7 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.LessonsOfSemesters
             var query = _lookup_semesterRepository.GetAll().WhereIf(
                    !string.IsNullOrWhiteSpace(input.Filter),
                   e => e.SemesterName != null && e.SemesterName.Contains(input.Filter)
-               );
+               ).Include(s => s.AssigningGradeToUniversityMajorFk);
 
             var totalCount = await query.CountAsync();
 
@@ -288,9 +288,9 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.LessonsOfSemesters
                 lookupTableDtoList.Add(new LessonsOfSemesterSemesterLookupTableDto
                 {
                     Id = semester.Id,
-                    DisplayName = semester.SemesterName?.ToString()
+                    DisplayName = (semester.AssigningGradeToUniversityMajorFk.NameAssignedGradeToUniversityMajor +" "+ semester.SemesterName?.ToString())
                 });
-            }
+        }
 
             return new PagedResultDto<LessonsOfSemesterSemesterLookupTableDto>(
                 totalCount,
@@ -298,5 +298,5 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.LessonsOfSemesters
             );
         }
 
-    }
+}
 }
