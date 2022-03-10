@@ -14,6 +14,7 @@
                 *ngIf="active"
                 #listOfAllCalculatedResultForm="ngForm"
                 novalidate
+                [busyIf]="saving"
                 (ngSubmit)="save()"
                 autocomplete="off"
             >
@@ -47,7 +48,7 @@
                         ></validation-messages>
                     </div>
 
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="ListOfAllCalculatedResult_Price">{{ l('Price') }}</label>
                         <input
                             type="number"
@@ -60,7 +61,7 @@
                             max="200"
                         />
                         <validation-messages [formCtrl]="ListOfAllCalculatedResult_Price"></validation-messages>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="modal-footer">
                     <button [disabled]="saving" type="button" class="btn btn-default" (click)="close()">

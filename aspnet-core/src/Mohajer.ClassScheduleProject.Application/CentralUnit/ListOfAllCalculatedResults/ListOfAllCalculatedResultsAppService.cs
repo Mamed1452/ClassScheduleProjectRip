@@ -15,6 +15,9 @@ using Abp.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Abp.UI;
 using Mohajer.ClassScheduleProject.Storage;
+using Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults;
+using Mohajer.ClassScheduleProject.CentralUnit.ListOfClassScheduleModeSpaces;
+using Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleModeSpaces;
 
 namespace Mohajer.ClassScheduleProject.CentralUnit.ListOfAllCalculatedResults
 {
@@ -22,12 +25,23 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ListOfAllCalculatedResults
     public class ListOfAllCalculatedResultsAppService : ClassScheduleProjectAppServiceBase, IListOfAllCalculatedResultsAppService
     {
         private readonly IRepository<ListOfAllCalculatedResult, long> _listOfAllCalculatedResultRepository;
+        private readonly IRepository<ListOfClassScheduleModeSpace, long> _listOfClassScheduleModeSpaceRepository;
+        private readonly IRepository<ClassScheduleModeSpace, long> _classScheduleModeSpaceRepository;
+        private readonly IRepository<ClassScheduleResult, long> _classScheduleResultRepository;
+
         private readonly IListOfAllCalculatedResultsExcelExporter _listOfAllCalculatedResultsExcelExporter;
 
-        public ListOfAllCalculatedResultsAppService(IRepository<ListOfAllCalculatedResult, long> listOfAllCalculatedResultRepository, IListOfAllCalculatedResultsExcelExporter listOfAllCalculatedResultsExcelExporter)
+        public ListOfAllCalculatedResultsAppService(IRepository<ListOfAllCalculatedResult, long> listOfAllCalculatedResultRepository, IListOfAllCalculatedResultsExcelExporter listOfAllCalculatedResultsExcelExporter,
+            IRepository<ClassScheduleResult, long> classScheduleResultRepository,
+            IRepository<ListOfClassScheduleModeSpace, long> listOfClassScheduleModeSpaceRepository,
+             IRepository<ClassScheduleModeSpace, long> classScheduleModeSpaceRepository
+            )
         {
             _listOfAllCalculatedResultRepository = listOfAllCalculatedResultRepository;
             _listOfAllCalculatedResultsExcelExporter = listOfAllCalculatedResultsExcelExporter;
+            _classScheduleResultRepository = classScheduleResultRepository;
+            _listOfClassScheduleModeSpaceRepository = listOfClassScheduleModeSpaceRepository;
+            _classScheduleModeSpaceRepository = classScheduleModeSpaceRepository;
 
         }
 
@@ -104,7 +118,7 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ListOfAllCalculatedResults
         {
             if (input.Id == null)
             {
-               return await Create(input);
+                return await Create(input);
             }
             else
             {
@@ -116,14 +130,14 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ListOfAllCalculatedResults
         protected virtual async Task<CreateOrEditListOfAllCalculatedResultOutputDto> Create(CreateOrEditListOfAllCalculatedResultDto input)
         {
             var listOfAllCalculatedResult = ObjectMapper.Map<ListOfAllCalculatedResult>(input);
-
+            listOfAllCalculatedResult.Price = 1;
             if (AbpSession.TenantId != null)
             {
                 listOfAllCalculatedResult.TenantId = (int)AbpSession.TenantId;
             }
 
             long resultId = await _listOfAllCalculatedResultRepository.InsertAndGetIdAsync(listOfAllCalculatedResult);
-            return new CreateOrEditListOfAllCalculatedResultOutputDto() { Id = resultId };
+            return new CreateOrEditListOfAllCalculatedResultOutputDto() { Id = resultId, IsCreated = true };
         }
 
         [AbpAuthorize(AppPermissions.Pages_ListOfAllCalculatedResults_Edit)]
@@ -132,12 +146,16 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ListOfAllCalculatedResults
             var listOfAllCalculatedResult = await _listOfAllCalculatedResultRepository.GetAsync((long)input.Id);
             ObjectMapper.Map(input, listOfAllCalculatedResult);
             await _listOfAllCalculatedResultRepository.UpdateAsync(listOfAllCalculatedResult);
-            return new CreateOrEditListOfAllCalculatedResultOutputDto() { Id = input.Id };
+            return new CreateOrEditListOfAllCalculatedResultOutputDto() { Id = input.Id, IsCreated = false };
         }
 
         [AbpAuthorize(AppPermissions.Pages_ListOfAllCalculatedResults_Delete)]
         public async Task Delete(EntityDto<long> input)
         {
+            var listModSpace = await _listOfClassScheduleModeSpaceRepository.FirstOrDefaultAsync(record => record.ListOfAllCalculatedResultId == input.Id);
+            await _classScheduleModeSpaceRepository.DeleteAsync(record => record.ListOfClassScheduleModeSpaceId == listModSpace.Id);
+            await _listOfClassScheduleModeSpaceRepository.DeleteAsync(listModSpace.Id);
+            await _classScheduleResultRepository.DeleteAsync(record => record.ListOfAllCalculatedResultId == input.Id);
             await _listOfAllCalculatedResultRepository.DeleteAsync(input.Id);
         }
 

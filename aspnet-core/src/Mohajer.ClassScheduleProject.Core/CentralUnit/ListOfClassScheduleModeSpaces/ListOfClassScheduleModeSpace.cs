@@ -14,5 +14,7 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ListOfClassScheduleModeSpaces
         [Required]
         public virtual string ListOfClassScheduleModeSpaceName { get; set; }
 
+        public virtual long? ListOfAllCalculatedResultId { get; set; }
+
     }
 }

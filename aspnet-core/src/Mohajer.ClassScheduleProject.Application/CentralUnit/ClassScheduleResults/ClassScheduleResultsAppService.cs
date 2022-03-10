@@ -499,7 +499,9 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults
 
             _workTimesInDay = await _workTimeInDayRepository.GetAll().ToListAsync();
 
-            _universityProfessors = await _universityProfessorRepository.GetAll().ToListAsync();
+            _universityProfessors = await _universityProfessorRepository.GetAll()
+                .Where(record => record.IsActive == true)
+                .ToListAsync();
 
             _universityProfessorWorkingTime = await _universityProfessorWorkingTimeRepository.GetAll()
                 .Include(s => s.UniversityProfessorFk)
@@ -517,15 +519,17 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ClassScheduleResults
             _lessonsOfUniversityProfessor = await _lessonsOfUniversityProfessorRepository.GetAll()
                 .Include(s => s.LessonFk)
                 .Include(s => s.UniversityProfessorFk)
+                .Where(record => record.UniversityProfessorFk.IsActive == true && record.LessonFk.IsActive == true)
                 .ToListAsync();
 
             ListOfAllCalculatedResult listOfAllCalculatedResult = await _lookup_listOfAllCalculatedResultRepository.GetAsync(input.ListOfAllCalculatedResultId);
             long listOfClassScheduleModeSpaceId = await _listOfClassScheduleModeSpaceRepository.InsertAndGetIdAsync(new ListOfClassScheduleModeSpace()
             {
                 TenantId = AbpSession.TenantId.Value,
-                ListOfClassScheduleModeSpaceName = listOfAllCalculatedResult.NameCalculatedResult
+                ListOfClassScheduleModeSpaceName = listOfAllCalculatedResult.NameCalculatedResult,
+                ListOfAllCalculatedResultId= input.ListOfAllCalculatedResultId
             });
-
+           
             _classScheduleModeSpace = new List<ClassScheduleModeSpace>();
 
             foreach (var universityProfessors in _universityProfessors)

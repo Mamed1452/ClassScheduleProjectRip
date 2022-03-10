@@ -7,5 +7,6 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ListOfAllCalculatedResults.Dt
 {
     public class CreateOrEditListOfAllCalculatedResultOutputDto : EntityDto<long?>
     {
+        public bool IsCreated { get; set; }
     }
 }

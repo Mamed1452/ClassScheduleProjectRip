@@ -64,8 +64,9 @@ export class ClassScheduleResultsComponent extends AppComponentBase {
         super(injector);
         this._activatedRoute.params.subscribe((res)=>
         {
-            if (res.Id !== '-') {
-                this.listOfAllCalculatedResultNameCalculatedResultFilter=res.Id;
+
+            if (res.listOfAllCalculatedResultsId !== '-') {
+                this.listOfAllCalculatedResultId=res.listOfAllCalculatedResultsId;
                 this.getClassScheduleResults();
             }
         });

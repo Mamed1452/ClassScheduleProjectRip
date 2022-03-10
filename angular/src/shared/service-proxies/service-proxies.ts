@@ -14,6 +14,7 @@ import { Observable, throwError as _observableThrow, of as _observableOf } from 
 import { Injectable, Inject, Optional, InjectionToken } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse, HttpResponseBase } from '@angular/common/http';
 
+
 export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL');
 
 @Injectable()
@@ -32916,7 +32917,6 @@ export interface IPagedResultDtoOfGetListOfAllCalculatedResultForViewDto {
 
 export class CreateOrEditListOfAllCalculatedResultDto implements ICreateOrEditListOfAllCalculatedResultDto {
     nameCalculatedResult!: string;
-    price!: number;
     id!: number | undefined;
 
     constructor(data?: ICreateOrEditListOfAllCalculatedResultDto) {
@@ -32931,7 +32931,6 @@ export class CreateOrEditListOfAllCalculatedResultDto implements ICreateOrEditLi
     init(_data?: any) {
         if (_data) {
             this.nameCalculatedResult = _data["nameCalculatedResult"];
-            this.price = _data["price"];
             this.id = _data["id"];
         }
     }
@@ -32946,7 +32945,6 @@ export class CreateOrEditListOfAllCalculatedResultDto implements ICreateOrEditLi
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["nameCalculatedResult"] = this.nameCalculatedResult;
-        data["price"] = this.price;
         data["id"] = this.id;
         return data;
     }
@@ -32954,7 +32952,6 @@ export class CreateOrEditListOfAllCalculatedResultDto implements ICreateOrEditLi
 
 export interface ICreateOrEditListOfAllCalculatedResultDto {
     nameCalculatedResult: string;
-    price: number;
     id: number | undefined;
 }
 
@@ -32995,6 +32992,7 @@ export interface IGetListOfAllCalculatedResultForEditOutput {
 }
 
 export class CreateOrEditListOfAllCalculatedResultOutputDto implements ICreateOrEditListOfAllCalculatedResultOutputDto {
+    isCreated!: boolean;
     id!: number | undefined;
 
     constructor(data?: ICreateOrEditListOfAllCalculatedResultOutputDto) {
@@ -33008,6 +33006,7 @@ export class CreateOrEditListOfAllCalculatedResultOutputDto implements ICreateOr
 
     init(_data?: any) {
         if (_data) {
+            this.isCreated = _data["isCreated"];
             this.id = _data["id"];
         }
     }
@@ -33021,12 +33020,14 @@ export class CreateOrEditListOfAllCalculatedResultOutputDto implements ICreateOr
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
+        data["isCreated"] = this.isCreated;
         data["id"] = this.id;
         return data;
     }
 }
 
 export interface ICreateOrEditListOfAllCalculatedResultOutputDto {
+    isCreated: boolean;
     id: number | undefined;
 }
 

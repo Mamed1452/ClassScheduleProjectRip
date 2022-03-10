@@ -22,7 +22,7 @@ export class CreateOrEditListOfAllCalculatedResultModalComponent extends AppComp
     @Output() modalSave: EventEmitter<any> = new EventEmitter<any>();
 
     active = false;
-    saving = false;
+    saving : boolean;
 
     listOfAllCalculatedResult: CreateOrEditListOfAllCalculatedResultDto = new CreateOrEditListOfAllCalculatedResultDto();
     resultDt : StartClassScheduleInputDto=new StartClassScheduleInputDto();
@@ -36,18 +36,19 @@ export class CreateOrEditListOfAllCalculatedResultModalComponent extends AppComp
     }
 
     show(listOfAllCalculatedResultId?: number): void {
+        this.saving=false;
         if (!listOfAllCalculatedResultId) {
             this.listOfAllCalculatedResult = new CreateOrEditListOfAllCalculatedResultDto();
             this.listOfAllCalculatedResult.id = listOfAllCalculatedResultId;
             this.resultDt =new StartClassScheduleInputDto();
             this.active = true;
+
             this.modal.show();
         } else {
             this._listOfAllCalculatedResultsServiceProxy
                 .getListOfAllCalculatedResultForEdit(listOfAllCalculatedResultId)
                 .subscribe((result) => {
                     this.listOfAllCalculatedResult = result.listOfAllCalculatedResult;
-
                     this.active = true;
                     this.modal.show();
                 });
@@ -59,31 +60,41 @@ export class CreateOrEditListOfAllCalculatedResultModalComponent extends AppComp
 
         this._listOfAllCalculatedResultsServiceProxy
             .createOrEdit(this.listOfAllCalculatedResult)
-            .pipe(
-                finalize(() => {
-                    this.saving = false;
-                })
-            )
             .subscribe((res) => {
                 if(res)
                 {
-                    this.resultDt.listOfAllCalculatedResultId=res.id;
-                    this._classScheduleResultsServiceProxy.startClassSchedule(this.resultDt).subscribe((ResultOfSchedule)=>
+                    if(res.isCreated==true)
                     {
-                        if(ResultOfSchedule)
+
+                        this.resultDt.listOfAllCalculatedResultId=res.id;
+                        this._classScheduleResultsServiceProxy.startClassSchedule(this.resultDt).subscribe((ResultOfSchedule)=>
                         {
-                                if(ResultOfSchedule.isSuccsses==true)
-                                {
-                                    this.notify.info(this.l('SavedSuccessfully'));
-                                    this.close();
-                                    this.modalSave.emit(null);
-                                }
-                                else
-                                {
-                                    this.notify.info(this.l('NotSaved'));
-                                }
-                        }
-                    });
+                            if(ResultOfSchedule)
+                            {
+                                    if(ResultOfSchedule.isSuccsses==true)
+                                    {
+                                        this.notify.info(this.l('SavedSuccessfully'));
+                                        this.saving=false;
+                                        this.close();
+                                        this.modalSave.emit(null);
+                                    }
+                                    else
+                                    {
+                                        this.saving=false;
+                                        this.notify.info(this.l('NotSaved'));
+                                    }
+
+                            }
+
+                        });
+                    }
+                    else
+                    {
+
+                        this.notify.info(this.l('SavedSuccessfully'));
+                        this.close();
+                        this.modalSave.emit(null);
+                    }
                 }
             });
     }

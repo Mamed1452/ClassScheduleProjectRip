@@ -11,8 +11,5 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ListOfAllCalculatedResults.Dt
         [StringLength(ListOfAllCalculatedResultConsts.MaxNameCalculatedResultLength, MinimumLength = ListOfAllCalculatedResultConsts.MinNameCalculatedResultLength)]
         public string NameCalculatedResult { get; set; }
 
-        [Range(ListOfAllCalculatedResultConsts.MinPriceValue, ListOfAllCalculatedResultConsts.MaxPriceValue)]
-        public int Price { get; set; }
-
     }
 }

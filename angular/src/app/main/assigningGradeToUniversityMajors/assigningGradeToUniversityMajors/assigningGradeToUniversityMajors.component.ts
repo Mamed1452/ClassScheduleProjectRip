@@ -1,6 +1,7 @@
 ﻿import { AppConsts } from '@shared/AppConsts';
 import { Component, Injector, ViewEncapsulation, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+
 import {
     AssigningGradeToUniversityMajorsServiceProxy,
     AssigningGradeToUniversityMajorDto,

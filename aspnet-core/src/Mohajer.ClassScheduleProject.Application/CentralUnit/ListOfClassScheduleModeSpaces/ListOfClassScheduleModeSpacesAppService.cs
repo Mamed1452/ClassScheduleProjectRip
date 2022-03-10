@@ -100,7 +100,6 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.ListOfClassScheduleModeSpaces
         protected virtual async Task Create(CreateOrEditListOfClassScheduleModeSpaceDto input)
         {
             var listOfClassScheduleModeSpace = ObjectMapper.Map<ListOfClassScheduleModeSpace>(input);
-
             if (AbpSession.TenantId != null)
             {
                 listOfClassScheduleModeSpace.TenantId = (int)AbpSession.TenantId;

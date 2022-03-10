@@ -284,13 +284,11 @@ namespace Mohajer.ClassScheduleProject.CentralUnit.LessonsOfSemesters
         [AbpAuthorize(AppPermissions.Pages_LessonsOfSemesters)]
         public async Task<PagedResultDto<LessonsOfSemesterSemesterLookupTableDto>> GetAllSemesterForLookupTable(GetAllForLookupTableInput input)
         {
-            var query = _lookup_semesterRepository.GetAll().WhereIf(
-                   !string.IsNullOrEmpty(input.Filter),
-                  e => e.SemesterName != null && e.SemesterName.Contains(input.Filter.Trim())
-               ).Include(s => s.AssigningGradeToUniversityMajorFk)
+            var query = _lookup_semesterRepository.GetAll()
+               .Include(s => s.AssigningGradeToUniversityMajorFk)
                .WhereIf(!string.IsNullOrEmpty(input.Filter),
-                  e => e.AssigningGradeToUniversityMajorFk != null && !e.AssigningGradeToUniversityMajorFk.NameAssignedGradeToUniversityMajor.IsNullOrEmpty() && e.AssigningGradeToUniversityMajorFk.NameAssignedGradeToUniversityMajor.Contains(input.Filter.Trim()));
-
+                  e => (e.SemesterName != null && e.SemesterName.Contains(input.Filter.Trim()))  || (e.AssigningGradeToUniversityMajorFk != null && e.AssigningGradeToUniversityMajorFk.NameAssignedGradeToUniversityMajor !=null && e.AssigningGradeToUniversityMajorFk.NameAssignedGradeToUniversityMajor.Contains(input.Filter.Trim())));
+                
             var totalCount = await query.CountAsync();
 
             var semesterList = await query
